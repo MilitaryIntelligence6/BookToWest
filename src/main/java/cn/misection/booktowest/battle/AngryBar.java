@@ -5,39 +5,77 @@ import java.util.*;
 
 import cn.misection.booktowest.util.*;
 
-//怒气槽类
+/**
+ * 怒气槽类;
+ * @author javaman
+ */
 public class AngryBar {
-    //背景层
-    Image back;
-    //当前图片
-    Image currentImage;
-    //图片集合
-    ArrayList<Image> images = new ArrayList<Image>();
-    //计时用编号
-    int code;
-    //是否画出
-    boolean isDraw;
-    //是否停止
-    boolean isStop;
-    //底图的坐标
-    int backX;
-    int backY;
-    //里部图的坐标
-    int dx1;
-    int dy1;
-    int dx2;
-    int dy2;
-    int sx1;
-    int sy1;
-    int sx2;
-    int sy2;
 
-    //战斗面板引用
-    BattlePanel bp;
-    //当前英雄
-    Hero hero;
+    /**
+     * 背景层
+     */
+    private Image back;
 
-    //构造方法
+    /**
+     * 当前图片
+     */
+    private Image currentImage;
+
+    /**
+     * 图片集合
+     */
+    private ArrayList<Image> images = new ArrayList<Image>();
+
+    /**
+     * 计时用编号
+     */
+    private int code;
+
+    /**
+     * 是否画出
+     */
+    private boolean isDraw;
+
+    /**
+     * 是否停止
+     */
+    private boolean isStop;
+
+    /**
+     * 底图的坐标
+     */
+    private int backX;
+
+    private int backY;
+    /**
+     * 里部图的坐标
+     */
+    private int dx1;
+
+    private int dy1;
+
+    private int dx2;
+
+    private int dy2;
+
+    private int sx1;
+
+    private int sy1;
+
+    private int sx2;
+
+    private int sy2;
+
+    /**
+     * 战斗面板引用
+     */
+    private BattlePanel bp;
+
+    /**
+     * 当前英雄
+     */
+    private Hero hero;
+
     public AngryBar(BattlePanel bp, Hero hero) {
         this.bp = bp;
         this.hero = hero;
@@ -70,8 +108,9 @@ public class AngryBar {
                 dx2 = dx1 + 80;
                 dy2 = dy1;
                 break;
+            default:
+                break;
         }
-
         sx1 = 0;
         sy1 = 80;
         sx2 = 80;
@@ -85,7 +124,9 @@ public class AngryBar {
 
     }
 
-    //载入图片
+    /**
+     * 载入图片;
+     */
     public void loadImage() {
         back = Reader.readImage("image/怒气槽/底.png");
         for (int i = 1; i <= 4; i++) {
@@ -94,7 +135,10 @@ public class AngryBar {
         }
     }
 
-    //画出
+    /**
+     * 画出;
+     * @param g
+     */
     public void drawAngryBar(Graphics g) {
         if (isDraw) {
             g.drawImage(back, backX, backY, bp);
@@ -102,7 +146,9 @@ public class AngryBar {
         }
     }
 
-    //更新
+    /**
+     * 更新;
+     */
     public void update() {
         if (!isStop) {
             int height = (int) (((double) hero.getAngryValue() / hero.getHpMax()) * 100);
