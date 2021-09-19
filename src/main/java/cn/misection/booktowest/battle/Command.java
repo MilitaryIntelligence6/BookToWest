@@ -130,7 +130,7 @@ public class Command {
                     }
                     break;
                 case 3:
-                    if (bp.getLxq().isAngry) {
+                    if (bp.getLxq().isAngry()) {
                         //把控制台隐藏掉
                         isDraw = false;
                         //选定攻击对象

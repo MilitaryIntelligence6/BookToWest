@@ -10,40 +10,40 @@ import cn.misection.booktowest.util.*;
  */
 public class LuXueQi implements Hero {
     //角色编号
-    int roleCode = 3;
+    private int roleCode = 3;
     //角色当前的图片引用
-    Image currentImage;
+    private Image currentImage;
     //角色的图片集
-    ArrayList<Image> Images = new ArrayList<Image>();
+    private ArrayList<Image> Images = new ArrayList<Image>();
     //角色的小头像
-    Image headImage;
+    private Image headImage;
     //是否被画出
-    boolean drawn;
+    private boolean drawn;
     //自身动作是否停止
-    boolean stopped;
+    private boolean stopped;
     //是否死亡
-    boolean dead;
+    private boolean dead;
 
     //被击动画
-    BeAttackedAnimation beAttackedAnimation;
+    private BeAttackedAnimation beAttackedAnimation;
     //胜利动画
-    VictoryAnimation victoryAnimation;
+    private VictoryAnimation victoryAnimation;
     //死亡动画
-    DeadAnimation deadAnimation;
+    private DeadAnimation deadAnimation;
 
     //位置坐标
-    int x;
-    int y;
+    private int x;
+    private int y;
     //伤害值显示坐标
     public static int showX;
     public static int showY;
     //战斗面板
-    BattlePanel bp;
+    private BattlePanel bp;
     //编号
-    int code = 0;
+    private int code = 0;
     //当前技能数量
-    public static int skillNumber = 2;
-    BattleState battleState;
+    private static int skillNumber = 2;
+    private BattleState battleState;
 
     //人物战斗数据
 
@@ -54,7 +54,7 @@ public class LuXueQi implements Hero {
     //怒气值
     public static int angryValue = 0;
     //是否愤怒
-    boolean isAngry = false;
+    private boolean isAngry = false;
 
     //hp和mp上限
     public static int hpMax;
@@ -70,38 +70,102 @@ public class LuXueQi implements Hero {
     public static int strength = 8;
 
     //速度
-    public static int speed;
+    private static int speed;
     //攻击力
-    public static int hurt;
+    private static int hurt;
     //技能攻击力
-    public static int skillHurt;
+    private static int skillHurt;
     //防御力
-    public static int defense;
+    private static int defense;
     //技能防御
-    public static int skillDefense;
+    private static int skillDefense;
 
     //当前造成的伤害值
-    int currentDamage;
+    private int currentDamage;
     //当前造成的伤害类型 1.伤害 2.回复
-    int currentDamageType;
+    private int currentDamageType;
     //当前攻击的对象集合
-    ArrayList<Enemy> currentEnemies = new ArrayList<>();
+    private ArrayList<Enemy> currentEnemies = new ArrayList<>();
 
 
     //有关于人物级别的数据
 
     //等级
-    public static int level = 1;
+    private static int level = 1;
     //距离升下级还需要的经验
     public static int expToLevelUp;
     //当前经验
     public static int exp = 0;
     //是否升级
-    boolean isLevelUp;
+    private boolean isLevelUp;
     //是否习得技能
-    boolean isGetSkill;
+    private boolean isGetSkill;
 
-    ArrayList<String> roleInfo = new ArrayList<String>();
+    private ArrayList<String> roleInfo = new ArrayList<String>();
+
+    public static void setShowX(int showX) {
+        LuXueQi.showX = showX;
+    }
+
+    public static void setShowY(int showY) {
+        LuXueQi.showY = showY;
+    }
+
+    public static int getSkillNumber() {
+        return skillNumber;
+    }
+
+    public static void setSkillNumber(int skillNumber) {
+        LuXueQi.skillNumber = skillNumber;
+    }
+
+    public static void setHpMax(int hpMax) {
+        LuXueQi.hpMax = hpMax;
+    }
+
+    public static void setMpMax(int mpMax) {
+        LuXueQi.mpMax = mpMax;
+    }
+
+    public static int getSpeed() {
+        return speed;
+    }
+
+    public static void setSpeed(int speed) {
+        LuXueQi.speed = speed;
+    }
+
+    public static int getHurt() {
+        return hurt;
+    }
+
+    public static void setHurt(int hurt) {
+        LuXueQi.hurt = hurt;
+    }
+
+    public static int getSkillHurt() {
+        return skillHurt;
+    }
+
+    public static void setSkillHurt(int skillHurt) {
+        LuXueQi.skillHurt = skillHurt;
+    }
+
+    public static void setDefense(int defense) {
+        LuXueQi.defense = defense;
+    }
+
+    public static void setSkillDefense(int skillDefense) {
+        LuXueQi.skillDefense = skillDefense;
+    }
+
+    public static int getLevel() {
+        return level;
+    }
+
+    public static void setLevel(int level) {
+        LuXueQi.level = level;
+    }
 
 
     //更新人物的属性值
@@ -178,19 +242,19 @@ public class LuXueQi implements Hero {
                 break;
             case 3:
                 if (bp.getZxf() != null && !bp.getZxf().isDead) {
-                    bp.getProgressBar().ZhangX = bp.getProgressBar().BarX + 400;
+                    bp.getProgressBar().setZhangX(bp.getProgressBar().getBarX() + 400);
                 }
                 if (bp.getYj() != null && !bp.getYj().isDead) {
-                    bp.getProgressBar().YuX = bp.getProgressBar().BarX + 400;
+                    bp.getProgressBar().setYuX(bp.getProgressBar().getBarX() + 400);
                 }
                 if (bp.getEm1() != null) {
-                    bp.getProgressBar().Enemy1X = bp.getProgressBar().BarX;
+                    bp.getProgressBar().setEnemy1X(bp.getProgressBar().getBarX());
                 }
                 if (bp.getEm2() != null) {
-                    bp.getProgressBar().Enemy2X = bp.getProgressBar().BarX;
+                    bp.getProgressBar().setEnemy2X(bp.getProgressBar().getBarX());
                 }
                 if (bp.getEm3() != null) {
-                    bp.getProgressBar().Enemy3X = bp.getProgressBar().BarX;
+                    bp.getProgressBar().setEnemy3X(bp.getProgressBar().getBarX());
                 }
                 for (Enemy enemy : bp.getEnemies()) {
                     enemy.getBattleState().set(1, 5, 70, enemy.getRoleCode(), enemy.getX(), enemy.getY());
@@ -802,4 +866,127 @@ public class LuXueQi implements Hero {
         LuXueQi.strength = strength;
     }
 
+    public void setRoleCode(int roleCode) {
+        this.roleCode = roleCode;
+    }
+
+    public Image getCurrentImage() {
+        return currentImage;
+    }
+
+    public void setCurrentImage(Image currentImage) {
+        this.currentImage = currentImage;
+    }
+
+    public ArrayList<Image> getImages() {
+        return Images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        Images = images;
+    }
+
+    public Image getHeadImage() {
+        return headImage;
+    }
+
+    public void setHeadImage(Image headImage) {
+        this.headImage = headImage;
+    }
+
+    public boolean isDrawn() {
+        return drawn;
+    }
+
+    public void setDrawn(boolean drawn) {
+        this.drawn = drawn;
+    }
+
+    public boolean isStopped() {
+        return stopped;
+    }
+
+    public void setStopped(boolean stopped) {
+        this.stopped = stopped;
+    }
+
+    public void setBeAttackedAnimation(BeAttackedAnimation beAttackedAnimation) {
+        this.beAttackedAnimation = beAttackedAnimation;
+    }
+
+    public void setVictoryAnimation(VictoryAnimation victoryAnimation) {
+        this.victoryAnimation = victoryAnimation;
+    }
+
+    public void setDeadAnimation(DeadAnimation deadAnimation) {
+        this.deadAnimation = deadAnimation;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public void setBattleState(BattleState battleState) {
+        this.battleState = battleState;
+    }
+
+    public int getCurrentDamage() {
+        return currentDamage;
+    }
+
+    public void setCurrentDamage(int currentDamage) {
+        this.currentDamage = currentDamage;
+    }
+
+    public int getCurrentDamageType() {
+        return currentDamageType;
+    }
+
+    public void setCurrentDamageType(int currentDamageType) {
+        this.currentDamageType = currentDamageType;
+    }
+
+    public ArrayList<Enemy> getCurrentEnemies() {
+        return currentEnemies;
+    }
+
+    public void setCurrentEnemies(ArrayList<Enemy> currentEnemies) {
+        this.currentEnemies = currentEnemies;
+    }
+
+    public boolean isGetSkill() {
+        return isGetSkill;
+    }
+
+    public void setGetSkill(boolean getSkill) {
+        isGetSkill = getSkill;
+    }
+
+    public ArrayList<String> getRoleInfo() {
+        return roleInfo;
+    }
+
+    public void setRoleInfo(ArrayList<String> roleInfo) {
+        this.roleInfo = roleInfo;
+    }
 }

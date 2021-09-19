@@ -34,7 +34,7 @@ public class EnemyAI {
                 bp.setCurrentBeAttacked(i);
                 break;
             }
-            if (i == 3 && bp.getLxq() != null && !bp.getLxq().dead) {
+            if (i == 3 && bp.getLxq() != null && !bp.getLxq().isDead()) {
                 bp.setCurrentBeAttacked(i);
                 break;
             }

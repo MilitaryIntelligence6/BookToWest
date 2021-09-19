@@ -19,19 +19,19 @@ public class Check {
         if (bp.getEm1() != null && bp.getEm1().getHp() <= 0) {
             bp.getEnemies().remove(bp.getEnemies().indexOf(bp.getEm1()));
             bp.setEm1(null);
-            bp.getProgressBar().Enemy1X = 0;
+            bp.getProgressBar().setEnemy1X(0);
         }
 
         if (bp.getEm2() != null && bp.getEm2().getHp() <= 0) {
             bp.getEnemies().remove(bp.getEnemies().indexOf(bp.getEm2()));
             bp.setEm2(null);
-            bp.getProgressBar().Enemy2X = 0;
+            bp.getProgressBar().setEnemy2X(0);
         }
 
         if (bp.getEm3() != null && bp.getEm3().getHp() <= 0) {
             bp.getEnemies().remove(bp.getEnemies().indexOf(bp.getEm3()));
             bp.setEm3(null);
-            bp.getProgressBar().Enemy3X = 0;
+            bp.getProgressBar().setEnemy3X(0);
         }
 
         //如果全部怪物被杀死
@@ -61,7 +61,7 @@ public class Check {
             }
 
             //进度条停止
-            bp.getProgressBar().isDraw = false;
+            bp.getProgressBar().setDraw(false);
 
             bp.getVictoryReminder().isDraw = true;
             bp.getVictoryReminder().isStop = false;
@@ -94,7 +94,7 @@ public class Check {
         }
         if (isAllDead) {
             MusicReader.readMusic("战斗失败.wav");
-            bp.getProgressBar().isDraw = false;
+            bp.getProgressBar().setDraw(false);
             bp.getGameOver().setDraw(true);
             bp.getGameOver().setStop(false);
         }

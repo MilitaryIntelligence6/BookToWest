@@ -75,7 +75,7 @@ public class Enemy {
     //当前造成的伤害类型
     private int currentDamageType;
     //当前敌人
-    private ArrayList<Hero> currentEnemies = new ArrayList<Hero>();
+    private ArrayList<Hero> currentEnemies = new ArrayList<>();
 
 //关于等级的数据
 
@@ -140,7 +140,7 @@ public class Enemy {
                 if (bp.getYj() != null && !bp.getYj().isDead) {
                     currentEnemies.add(bp.getYj());
                 }
-                if (bp.getLxq() != null && !bp.getLxq().dead) {
+                if (bp.getLxq() != null && !bp.getLxq().isDead()) {
                     currentEnemies.add(bp.getLxq());
                 }
         }

@@ -91,7 +91,7 @@ public class BeAttackedAnimation {
                     bp.getYj().isDraw = true;
                 }
                 if (bp.getCurrentBeAttacked() == 3) {
-                    bp.getLxq().drawn = true;
+                    bp.getLxq().setDrawn(true);
                 }
                 if (bp.getCurrentBeAttacked() == 4) {
                     for (Hero h : bp.getHeroes()) {

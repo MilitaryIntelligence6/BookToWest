@@ -177,10 +177,10 @@ public class EquipPanel extends FatherPanel {
         ZhangXiaoFan.sprit += equipPack_hero1.weapon.getAddSpirit();
         ZhangXiaoFan.physicalPower += equipPack_hero1.weapon.getAddPhysicalPower();
 
-        LuXueQi.agile += equipPack_hero2.weapon.getAddAgile();
-        LuXueQi.strength += equipPack_hero2.weapon.getAddStrength();
-        LuXueQi.sprit += equipPack_hero2.weapon.getAddSpirit();
-        LuXueQi.physicalPower += equipPack_hero2.weapon.getAddPhysicalPower();
+        LuXueQi.agile = (LuXueQi.agile + equipPack_hero2.weapon.getAddAgile());
+        LuXueQi.strength = (LuXueQi.strength + equipPack_hero2.weapon.getAddStrength());
+        LuXueQi.sprit = (LuXueQi.sprit + equipPack_hero2.weapon.getAddSpirit());
+        LuXueQi.physicalPower = (LuXueQi.physicalPower + equipPack_hero2.weapon.getAddPhysicalPower());
 
         YuJie.agile += equipPack_hero4.weapon.getAddAgile();
         YuJie.strength += equipPack_hero4.weapon.getAddStrength();
@@ -282,6 +282,7 @@ public class EquipPanel extends FatherPanel {
 
     }
 
+    @Override
     public void drawThisPanel(Graphics g) {
         // TODO Auto-generated method stub
         for (MenuButton button : buttonlist) {
@@ -339,10 +340,10 @@ public class EquipPanel extends FatherPanel {
                 ZhangXiaoFan.physicalPower += currentEquipment.getAddPhysicalPower();
                 break;
             case 2:
-                LuXueQi.agile += currentEquipment.getAddAgile();
-                LuXueQi.strength += currentEquipment.getAddStrength();
-                LuXueQi.sprit += currentEquipment.getAddSpirit();
-                LuXueQi.physicalPower += currentEquipment.getAddPhysicalPower();
+                LuXueQi.agile = (LuXueQi.agile + currentEquipment.getAddAgile());
+                LuXueQi.strength = (LuXueQi.strength + currentEquipment.getAddStrength());
+                LuXueQi.sprit = (LuXueQi.sprit+ currentEquipment.getAddSpirit());
+                LuXueQi.physicalPower = (LuXueQi.physicalPower + currentEquipment.getAddPhysicalPower());
                 break;
             case 4:
                 YuJie.agile += currentEquipment.getAddAgile();
@@ -370,10 +371,10 @@ public class EquipPanel extends FatherPanel {
                 ZhangXiaoFan.physicalPower -= heroEquipment.getAddPhysicalPower();
                 break;
             case 2:
-                LuXueQi.agile -= heroEquipment.getAddAgile();
-                LuXueQi.strength -= heroEquipment.getAddStrength();
-                LuXueQi.sprit -= heroEquipment.getAddSpirit();
-                LuXueQi.physicalPower -= heroEquipment.getAddPhysicalPower();
+                LuXueQi.agile = (LuXueQi.agile - heroEquipment.getAddAgile());
+                LuXueQi.strength = (LuXueQi.strength - heroEquipment.getAddStrength());
+                LuXueQi.sprit = (LuXueQi.sprit- heroEquipment.getAddSpirit());
+                LuXueQi.physicalPower = (LuXueQi.physicalPower - heroEquipment.getAddPhysicalPower());
                 break;
             case 4:
                 YuJie.agile -= heroEquipment.getAddAgile();
@@ -996,6 +997,7 @@ public class EquipPanel extends FatherPanel {
 
     }
 
+    @Override
     public ArrayList<String> saveEquipInfo() {
         ArrayList<String> equipInfo = new ArrayList<String>();
         EquipPack ep;
@@ -1041,6 +1043,7 @@ public class EquipPanel extends FatherPanel {
 
     }
 
+    @Override
     public void initialEquipInfo(ArrayList<String> equipInfo) {
         EquipPack ep;
         Hero he;

@@ -59,8 +59,8 @@ public class Instruct {
                 break;
             //陆雪琪
             case 3:
-                x = bp.getLxq().x + 45;
-                y = bp.getLxq().y - 20;
+                x = bp.getLxq().getX() + 45;
+                y = bp.getLxq().getY() - 20;
                 break;
         }
         isDraw = true;

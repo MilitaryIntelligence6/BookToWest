@@ -180,18 +180,18 @@ public class DrugMenu {
     public void progressGo() {
         switch (bp.getCurrentRound()) {
             case 1:
-                bp.getProgressBar().ZhangX = bp.getProgressBar().BarX;
+                bp.getProgressBar().setZhangX(bp.getProgressBar().getBarX());
                 break;
             case 2:
-                bp.getProgressBar().YuX = bp.getProgressBar().BarX;
+                bp.getProgressBar().setYuX(bp.getProgressBar().getBarX());
                 break;
             case 3:
-                bp.getProgressBar().LuX = bp.getProgressBar().BarX;
+                bp.getProgressBar().setLuX(bp.getProgressBar().getBarX());
                 break;
         }
         bp.setCurrentRound(0);
         isDraw = false;
-        bp.getProgressBar().isStop = false;
+        bp.getProgressBar().setStop(false);
     }
 
 

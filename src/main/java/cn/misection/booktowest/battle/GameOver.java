@@ -118,8 +118,8 @@ public class GameOver {
                             bp.getYj().isDraw = true;
                         }
                         if (bp.getLxq() != null) {
-                            bp.getLxq().drawn = true;
-                            bp.getLxq().deadAnimation.setDraw(false);
+                            bp.getLxq().setDrawn(true);
+                            bp.getLxq().getDeadAnimation().setDraw(false);
                         }
                         bp.getHeroes().clear();
                     }

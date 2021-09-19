@@ -300,10 +300,10 @@ public class MagicPanel extends FatherPanel {
                 for (MenuButton button : buttonList1) {
                     button.isDraw = MenuButton.No;
                 }
-                for (int i = 0; i < LuXueQi.skillNumber; i++) {
+                for (int i = 0; i < LuXueQi.getSkillNumber(); i++) {
                     buttonList2.get(i).isDraw = 1;
                 }
-                for (int i = LuXueQi.skillNumber - 1; i < 5; i++) {
+                for (int i = LuXueQi.getSkillNumber() - 1; i < 5; i++) {
                     buttonList2.get(i).isDraw = 0;
                 }
 

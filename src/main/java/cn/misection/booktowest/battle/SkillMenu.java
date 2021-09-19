@@ -87,7 +87,7 @@ public class SkillMenu {
 
 //读入陆雪琪的技能按钮图片
         if (bp.getLxq() != null) {
-            for (int i = 1; i <= LuXueQi.skillNumber; i++) {
+            for (int i = 1; i <= LuXueQi.getSkillNumber(); i++) {
                 for (int j = 1; j <= 3; j++) {
                     Image image = Reader.readImage("image/技能菜单/技能按钮/陆雪琪/技能" + i + "按钮" + j + ".png");
                     luImages.add(image);
@@ -272,17 +272,17 @@ public class SkillMenu {
             if (skillButtons.get(1).clicked == true) {
                 afterClicked(3, false, 8);
             }
-            if (LuXueQi.skillNumber >= 3) {
+            if (LuXueQi.getSkillNumber() >= 3) {
                 if (skillButtons.get(2).clicked == true) {
                     afterClicked(4, false, 8);
                 }
             }
-            if (LuXueQi.skillNumber >= 4) {
+            if (LuXueQi.getSkillNumber() >= 4) {
                 if (skillButtons.get(3).clicked == true) {
                     afterClicked(5, true, 0);
                 }
             }
-            if (LuXueQi.skillNumber >= 5) {
+            if (LuXueQi.getSkillNumber() >= 5) {
                 if (skillButtons.get(4).clicked == true) {
                     afterClicked(6, false, 8);
                 }

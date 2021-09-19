@@ -6,31 +6,31 @@ import cn.misection.booktowest.util.*;
 
 //陆雪琪召唤出的小精灵类
 public class Pet {
-    Image petImage;
+    private Image petImage;
     //小头像
-    Image headImage;
+    private Image headImage;
     //攻击力
-    int power;
+    private int power;
     //速度
-    int speed;
+    private int speed;
     //位置坐标
-    int x;
-    int y;
+    private int x;
+    private int y;
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
     //当前攻击对象
-    Enemy currentEnemy;
+    private Enemy currentEnemy;
     //当前造成的伤害
-    int currentDamage;
+    private int currentDamage;
     //当前造成的伤害类型
-    int currentDamageType;
+    private int currentDamageType;
 
     //是否画出
-    boolean isDraw;
+    private boolean isDraw;
     //是否停止
-    boolean isStop;
+    private boolean isStop;
     //计时器
-    int code;
+    private int code;
 
     //构造方法
     public Pet(BattlePanel bp) {
@@ -42,8 +42,8 @@ public class Pet {
         isDraw = true;
         isStop = false;
 
-        speed = (int) ((ZhangXiaoFan.speed + LuXueQi.speed + YuJie.speed) / 3);
-        power = (int) ((ZhangXiaoFan.hurt + LuXueQi.hurt + YuJie.hurt) / 3);
+        speed = (int) ((ZhangXiaoFan.speed + LuXueQi.getSpeed() + YuJie.speed) / 3);
+        power = (int) ((ZhangXiaoFan.hurt + LuXueQi.getHurt() + YuJie.hurt) / 3);
     }
 
     //选择攻击对象
@@ -134,4 +134,107 @@ public class Pet {
         }
     }
 
+    public Image getPetImage() {
+        return petImage;
+    }
+
+    public void setPetImage(Image petImage) {
+        this.petImage = petImage;
+    }
+
+    public Image getHeadImage() {
+        return headImage;
+    }
+
+    public void setHeadImage(Image headImage) {
+        this.headImage = headImage;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
+
+    public Enemy getCurrentEnemy() {
+        return currentEnemy;
+    }
+
+    public void setCurrentEnemy(Enemy currentEnemy) {
+        this.currentEnemy = currentEnemy;
+    }
+
+    public int getCurrentDamage() {
+        return currentDamage;
+    }
+
+    public void setCurrentDamage(int currentDamage) {
+        this.currentDamage = currentDamage;
+    }
+
+    public int getCurrentDamageType() {
+        return currentDamageType;
+    }
+
+    public void setCurrentDamageType(int currentDamageType) {
+        this.currentDamageType = currentDamageType;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 }

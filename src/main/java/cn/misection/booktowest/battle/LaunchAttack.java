@@ -5,9 +5,9 @@ import cn.misection.booktowest.media.MusicReader;
 //攻击发动器
 public class LaunchAttack {
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
     //计时器
-    int code;
+    private int code;
 
     //构造方法
     public LaunchAttack(BattlePanel bp) {
@@ -145,7 +145,7 @@ public class LaunchAttack {
                 bp.getCheck().checkEnemyDead();
 
                 //进度条继续
-                bp.getProgressBar().ZhangX = bp.getProgressBar().BarX;
+                bp.getProgressBar().setZhangX(bp.getProgressBar().getBarX());
                 //恢复
                 resume();
             }
@@ -158,7 +158,7 @@ public class LaunchAttack {
             }
             bp.getCheck().checkEnemyDead();
             //进度条继续
-            bp.getProgressBar().ZhangX = bp.getProgressBar().BarX;
+            bp.getProgressBar().setZhangX(bp.getProgressBar().getBarX());
             //恢复
             resume();
         }
@@ -245,7 +245,7 @@ public class LaunchAttack {
                 bp.getCheck().checkEnemyDead();
 
                 //进度条继续
-                bp.getProgressBar().YuX = bp.getProgressBar().BarX;
+                bp.getProgressBar().setYuX(bp.getProgressBar().getBarX());
                 //恢复
                 resume();
             }
@@ -259,7 +259,7 @@ public class LaunchAttack {
             bp.getCheck().checkEnemyDead();
 
             //进度条继续
-            bp.getProgressBar().YuX = bp.getProgressBar().BarX;
+            bp.getProgressBar().setYuX(bp.getProgressBar().getBarX());
             //恢复
             resume();
         }
@@ -309,7 +309,7 @@ public class LaunchAttack {
             bp.setPet(new Pet(bp));
 
             //开启动画
-            bp.getLxq().drawn = false;
+            bp.getLxq().setDrawn(false);
             bp.getSkillAnimation().set("陆雪琪秘术", 8, 620, 300, 0, 0, 0, 0, 0, 0, 0, 0);
             bp.getSkillAnimation().setDrawn(true);
             bp.getSkillAnimation().setStopped(false);
@@ -317,7 +317,7 @@ public class LaunchAttack {
             bp.getInstruct().end();
             //处理愤怒值
             LuXueQi.angryValue = 0;
-            bp.getLxq().isAngry = false;
+            bp.getLxq().setAngry(false);
             //使判断只执行一次
             bp.setCurrentPattern(0);
         }
@@ -327,7 +327,7 @@ public class LaunchAttack {
             //为了使这个判断只做一次
             bp.getSkillAnimation().setOver(false);
             //人物重新出现
-            bp.getLxq().drawn = true;
+            bp.getLxq().setDrawn(true);
 
             if (bp.getBackgroundAnimation() == null || !bp.getBackgroundAnimation().isDrawn()) {
                 //显示伤害值
@@ -337,7 +337,7 @@ public class LaunchAttack {
                 bp.getCheck().checkEnemyDead();
 
                 //进度条继续
-                bp.getProgressBar().LuX = bp.getProgressBar().BarX;
+                bp.getProgressBar().setLuX(bp.getProgressBar().getBarX());
                 //恢复
                 resume();
             }
@@ -351,7 +351,7 @@ public class LaunchAttack {
             bp.getCheck().checkEnemyDead();
 
             //进度条继续
-            bp.getProgressBar().LuX = bp.getProgressBar().BarX;
+            bp.getProgressBar().setLuX(bp.getProgressBar().getBarX());
             //恢复
             resume();
         }
@@ -396,7 +396,7 @@ public class LaunchAttack {
             //人物重新出现
             bp.getEm1().setDraw(true);
             //进度条继续
-            bp.getProgressBar().Enemy1X = bp.getProgressBar().BarX;
+            bp.getProgressBar().setEnemy1X(bp.getProgressBar().getBarX());
             //恢复
             resume();
         }
@@ -441,7 +441,7 @@ public class LaunchAttack {
             //人物重新出现
             bp.getEm2().setDraw(true);
             //进度条继续
-            bp.getProgressBar().Enemy2X = bp.getProgressBar().BarX;
+            bp.getProgressBar().setEnemy2X(bp.getProgressBar().getBarX());
             //恢复
             resume();
         }
@@ -487,7 +487,7 @@ public class LaunchAttack {
             //人物重新出现
             bp.getEm3().setDraw(true);
             //进度条继续
-            bp.getProgressBar().Enemy3X = bp.getProgressBar().BarX;
+            bp.getProgressBar().setEnemy3X(bp.getProgressBar().getBarX());
             //恢复
             resume();
         }
@@ -519,9 +519,9 @@ public class LaunchAttack {
             }
             bp.getCheck().checkEnemyDead();
             //人物重新出现
-            bp.getPet().isDraw = true;
+            bp.getPet().setDraw(true);
             //进度条继续
-            bp.getProgressBar().petX = bp.getProgressBar().BarX;
+            bp.getProgressBar().setPetX(bp.getProgressBar().getBarX());
             //恢复
             resume();
         }
@@ -532,7 +532,22 @@ public class LaunchAttack {
         bp.setCurrentRound(0);
         bp.setCurrentBeAttacked(0);
         bp.setCurrentPattern(0);
-        bp.getProgressBar().isStop = false;
+        bp.getProgressBar().setStop(false);
     }
 
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 }

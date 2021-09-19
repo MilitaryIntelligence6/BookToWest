@@ -7,30 +7,30 @@ import cn.misection.booktowest.util.Reader;
 //进度条类
 public class ProgressBar {
     //进度条图片引用及其坐标
-    Image Bar;
-    int BarX;
-    int BarY;
+    private Image Bar;
+    private int BarX;
+    private int BarY;
     //小头像图片引用及横坐标
-    Image zhang;
-    int ZhangX;
-    Image yujie;
-    int YuX;
-    Image luxueqi;
-    int LuX;
-    Image pet;
-    int petX;
-    Image enemy1;
-    int Enemy1X;
-    Image enemy2;
-    int Enemy2X;
-    Image enemy3;
-    int Enemy3X;
+    private Image zhang;
+    private int ZhangX;
+    private Image yujie;
+    private int YuX;
+    private Image luxueqi;
+    private int LuX;
+    private Image pet;
+    private int petX;
+    private Image enemy1;
+    private int Enemy1X;
+    private Image enemy2;
+    private int Enemy2X;
+    private Image enemy3;
+    private int Enemy3X;
     //是否画出
-    boolean isDraw;
+    private boolean isDraw;
     //是否停止
-    boolean isStop;
+    private boolean isStop;
 
-    BattlePanel bp;
+    private BattlePanel bp;
 
     //构造方法
     public ProgressBar(int x, int y, BattlePanel bp) {
@@ -63,7 +63,7 @@ public class ProgressBar {
             yujie = bp.getYj().headImage;
         }
         if (bp.getLxq() != null) {
-            luxueqi = bp.getLxq().headImage;
+            luxueqi = bp.getLxq().getHeadImage();
         }
         pet = Reader.readImage("image/小精灵/头像.png");
         if (bp.getEm1() != null) {
@@ -87,11 +87,11 @@ public class ProgressBar {
                 if (bp.getYj() != null && !bp.getYj().isDead) {
                     YuX += YuJie.speed;
                 }
-                if (bp.getLxq() != null && !bp.getLxq().dead) {
-                    LuX += LuXueQi.speed;
+                if (bp.getLxq() != null && !bp.getLxq().isDead()) {
+                    LuX += LuXueQi.getSpeed();
                 }
                 if (bp.getPet() != null) {
-                    petX += bp.getPet().speed;
+                    petX += bp.getPet().getSpeed();
                 }
                 if (bp.getEm1() != null) {
                     Enemy1X += bp.getEm1().getSpeed();
@@ -191,5 +191,165 @@ public class ProgressBar {
                 g.drawImage(enemy3, Enemy3X, BarY, bp);
             }
         }
+    }
+
+    public Image getBar() {
+        return Bar;
+    }
+
+    public void setBar(Image bar) {
+        Bar = bar;
+    }
+
+    public int getBarX() {
+        return BarX;
+    }
+
+    public void setBarX(int barX) {
+        BarX = barX;
+    }
+
+    public int getBarY() {
+        return BarY;
+    }
+
+    public void setBarY(int barY) {
+        BarY = barY;
+    }
+
+    public Image getZhang() {
+        return zhang;
+    }
+
+    public void setZhang(Image zhang) {
+        this.zhang = zhang;
+    }
+
+    public int getZhangX() {
+        return ZhangX;
+    }
+
+    public void setZhangX(int zhangX) {
+        ZhangX = zhangX;
+    }
+
+    public Image getYujie() {
+        return yujie;
+    }
+
+    public void setYujie(Image yujie) {
+        this.yujie = yujie;
+    }
+
+    public int getYuX() {
+        return YuX;
+    }
+
+    public void setYuX(int yuX) {
+        YuX = yuX;
+    }
+
+    public Image getLuxueqi() {
+        return luxueqi;
+    }
+
+    public void setLuxueqi(Image luxueqi) {
+        this.luxueqi = luxueqi;
+    }
+
+    public int getLuX() {
+        return LuX;
+    }
+
+    public void setLuX(int luX) {
+        LuX = luX;
+    }
+
+    public Image getPet() {
+        return pet;
+    }
+
+    public void setPet(Image pet) {
+        this.pet = pet;
+    }
+
+    public int getPetX() {
+        return petX;
+    }
+
+    public void setPetX(int petX) {
+        this.petX = petX;
+    }
+
+    public Image getEnemy1() {
+        return enemy1;
+    }
+
+    public void setEnemy1(Image enemy1) {
+        this.enemy1 = enemy1;
+    }
+
+    public int getEnemy1X() {
+        return Enemy1X;
+    }
+
+    public void setEnemy1X(int enemy1X) {
+        Enemy1X = enemy1X;
+    }
+
+    public Image getEnemy2() {
+        return enemy2;
+    }
+
+    public void setEnemy2(Image enemy2) {
+        this.enemy2 = enemy2;
+    }
+
+    public int getEnemy2X() {
+        return Enemy2X;
+    }
+
+    public void setEnemy2X(int enemy2X) {
+        Enemy2X = enemy2X;
+    }
+
+    public Image getEnemy3() {
+        return enemy3;
+    }
+
+    public void setEnemy3(Image enemy3) {
+        this.enemy3 = enemy3;
+    }
+
+    public int getEnemy3X() {
+        return Enemy3X;
+    }
+
+    public void setEnemy3X(int enemy3X) {
+        Enemy3X = enemy3X;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
     }
 }

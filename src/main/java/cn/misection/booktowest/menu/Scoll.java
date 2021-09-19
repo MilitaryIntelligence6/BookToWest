@@ -144,7 +144,7 @@ public class Scoll {
             if (hero2.isClicked()) {
                 scollImage = image2;
                 whichHero = luxueqi;
-                level = "" + LuXueQi.level;
+                level = "" + LuXueQi.getLevel();
 
                 MusicReader.readMusic("换头像.wav");
             }

@@ -225,10 +225,10 @@ public class SkillAnimation {
                 }
                 if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 3) {
                     //让陆雪琪显示被击效果
-                    getBp().getLxq().drawn = false;
-                    getBp().getLxq().beAttackedAnimation.getTimes(getBeAttackedTimes());
-                    getBp().getLxq().beAttackedAnimation.setDraw(true);
-                    getBp().getLxq().beAttackedAnimation.setStop(false);
+                    getBp().getLxq().setDrawn(false);
+                    getBp().getLxq().getBeAttackedAnimation().getTimes(getBeAttackedTimes());
+                    getBp().getLxq().getBeAttackedAnimation().setDraw(true);
+                    getBp().getLxq().getBeAttackedAnimation().setStop(false);
                     setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
                     setCode(getCode() + 1);
                 }

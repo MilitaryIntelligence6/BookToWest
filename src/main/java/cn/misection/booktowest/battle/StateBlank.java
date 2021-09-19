@@ -112,7 +112,7 @@ public class StateBlank {
                 g.drawImage(mpImage, mpX + 322 * 2, mpY, mpX + 322 * 2 + lMpWidth, mpY + height, 0, 0, lMpWidth,
                         height, bp);
                 g.setColor(Color.black);
-                g.drawString("当前等级 :" + LuXueQi.level, hpX + 322 * 2, hpY - 20);
+                g.drawString("当前等级 :" + LuXueQi.getLevel(), hpX + 322 * 2, hpY - 20);
                 g.drawString(LuXueQi.hp + "/" + LuXueQi.hpMax, hpX + 322 * 2 + 150, hpY + 10);
                 g.drawString(LuXueQi.mp + "/" + LuXueQi.mpMax, mpX + 322 * 2 + 150, mpY + 10);
             }
