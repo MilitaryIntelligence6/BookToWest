@@ -9,36 +9,36 @@ import java.awt.*;
 //用于显示伤害值的类
 public class HurtValue {
     //图片引用
-    Image image;
+    private Image image;
     //图片集合
-    ArrayList<Image> images = new ArrayList<Image>();
+    private ArrayList<Image> images = new ArrayList<Image>();
     //当前显示的图片集合
-    ArrayList<Image> currentImages = new ArrayList<Image>();
+    private ArrayList<Image> currentImages = new ArrayList<Image>();
     //出现位置
-    int x;
-    int y;
+    private int x;
+    private int y;
     //伤害值
-    int hurt;
+    private int hurt;
     //类型 1.伤害 2.回复
-    int type;
+    private int type;
     //个位
-    int unit;
+    private int unit;
     //十位
-    int ten;
+    private int ten;
     //百位
-    int hundred;
+    private int hundred;
     //千位
-    int thousand;
+    private int thousand;
     //编号
-    int code;
+    private int code;
 
     //是否画出
-    boolean isDraw;
+    private boolean isDraw;
     //是否停止
-    boolean isStop;
+    private boolean isStop;
 
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
 
     //构造函数
     public HurtValue(BattlePanel bp) {
@@ -72,7 +72,7 @@ public class HurtValue {
     }
 
     //根据数字获得当前图片集合
-    public void getCurrentImages() {
+    public void requireCurrentImages() {
         //用于判断首数字的信号
         boolean firstNum;
         switch (type) {
@@ -159,7 +159,7 @@ public class HurtValue {
         this.hurt = hurt;
         this.type = type;
         calcalate();
-        getCurrentImages();
+        requireCurrentImages();
         this.x = x;
         this.y = y;
 
@@ -224,5 +224,125 @@ public class HurtValue {
                 image = images.get(9 + offset);
                 break;
         }
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public ArrayList<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        this.images = images;
+    }
+
+    public ArrayList<Image> getCurrentImages() {
+        return currentImages;
+    }
+
+    public void setCurrentImages(ArrayList<Image> currentImages) {
+        this.currentImages = currentImages;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getHurt() {
+        return hurt;
+    }
+
+    public void setHurt(int hurt) {
+        this.hurt = hurt;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getUnit() {
+        return unit;
+    }
+
+    public void setUnit(int unit) {
+        this.unit = unit;
+    }
+
+    public int getTen() {
+        return ten;
+    }
+
+    public void setTen(int ten) {
+        this.ten = ten;
+    }
+
+    public int getHundred() {
+        return hundred;
+    }
+
+    public void setHundred(int hundred) {
+        this.hundred = hundred;
+    }
+
+    public int getThousand() {
+        return thousand;
+    }
+
+    public void setThousand(int thousand) {
+        this.thousand = thousand;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
     }
 }

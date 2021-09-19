@@ -7,37 +7,37 @@ import cn.misection.booktowest.util.*;
 
 //我方全灭之后的图案
 public class GameOver {
-    Image image1;
-    Image image2;
+    private Image image1;
+    private Image image2;
 
     //左图的八个坐标
-    int ldx1;
-    int ldy1;
-    int ldx2;
-    int ldy2;
-    int lsx1;
-    int lsy1;
-    int lsx2;
-    int lsy2;
+    private int ldx1;
+    private int ldy1;
+    private int ldx2;
+    private int ldy2;
+    private int lsx1;
+    private int lsy1;
+    private int lsx2;
+    private int lsy2;
 
     //右图的八个坐标
-    int rdx1;
-    int rdy1;
-    int rdx2;
-    int rdy2;
-    int rsx1;
-    int rsy1;
-    int rsx2;
-    int rsy2;
+    private int rdx1;
+    private int rdy1;
+    private int rdx2;
+    private int rdy2;
+    private int rsx1;
+    private int rsy1;
+    private int rsx2;
+    private int rsy2;
 
     //计数器
-    int code;
+    private int code;
     //是否画出
-    boolean isDraw;
+    private boolean isDraw;
     //是否停止
-    boolean isStop;
+    private boolean isStop;
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
 
     public GameOver(BattlePanel bp) {
         this.bp = bp;
@@ -127,5 +127,181 @@ public class GameOver {
                 }
             }
         }
+    }
+
+    public Image getImage1() {
+        return image1;
+    }
+
+    public void setImage1(Image image1) {
+        this.image1 = image1;
+    }
+
+    public Image getImage2() {
+        return image2;
+    }
+
+    public void setImage2(Image image2) {
+        this.image2 = image2;
+    }
+
+    public int getLdx1() {
+        return ldx1;
+    }
+
+    public void setLdx1(int ldx1) {
+        this.ldx1 = ldx1;
+    }
+
+    public int getLdy1() {
+        return ldy1;
+    }
+
+    public void setLdy1(int ldy1) {
+        this.ldy1 = ldy1;
+    }
+
+    public int getLdx2() {
+        return ldx2;
+    }
+
+    public void setLdx2(int ldx2) {
+        this.ldx2 = ldx2;
+    }
+
+    public int getLdy2() {
+        return ldy2;
+    }
+
+    public void setLdy2(int ldy2) {
+        this.ldy2 = ldy2;
+    }
+
+    public int getLsx1() {
+        return lsx1;
+    }
+
+    public void setLsx1(int lsx1) {
+        this.lsx1 = lsx1;
+    }
+
+    public int getLsy1() {
+        return lsy1;
+    }
+
+    public void setLsy1(int lsy1) {
+        this.lsy1 = lsy1;
+    }
+
+    public int getLsx2() {
+        return lsx2;
+    }
+
+    public void setLsx2(int lsx2) {
+        this.lsx2 = lsx2;
+    }
+
+    public int getLsy2() {
+        return lsy2;
+    }
+
+    public void setLsy2(int lsy2) {
+        this.lsy2 = lsy2;
+    }
+
+    public int getRdx1() {
+        return rdx1;
+    }
+
+    public void setRdx1(int rdx1) {
+        this.rdx1 = rdx1;
+    }
+
+    public int getRdy1() {
+        return rdy1;
+    }
+
+    public void setRdy1(int rdy1) {
+        this.rdy1 = rdy1;
+    }
+
+    public int getRdx2() {
+        return rdx2;
+    }
+
+    public void setRdx2(int rdx2) {
+        this.rdx2 = rdx2;
+    }
+
+    public int getRdy2() {
+        return rdy2;
+    }
+
+    public void setRdy2(int rdy2) {
+        this.rdy2 = rdy2;
+    }
+
+    public int getRsx1() {
+        return rsx1;
+    }
+
+    public void setRsx1(int rsx1) {
+        this.rsx1 = rsx1;
+    }
+
+    public int getRsy1() {
+        return rsy1;
+    }
+
+    public void setRsy1(int rsy1) {
+        this.rsy1 = rsy1;
+    }
+
+    public int getRsx2() {
+        return rsx2;
+    }
+
+    public void setRsx2(int rsx2) {
+        this.rsx2 = rsx2;
+    }
+
+    public int getRsy2() {
+        return rsy2;
+    }
+
+    public void setRsy2(int rsy2) {
+        this.rsy2 = rsy2;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
     }
 }

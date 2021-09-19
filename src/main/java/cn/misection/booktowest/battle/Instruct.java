@@ -8,21 +8,21 @@ import cn.misection.booktowest.util.*;
 //战斗标记指示类
 public class Instruct {
     //当前图片
-    Image currentImage;
-    ArrayList<Image> images = new ArrayList<Image>();
+    private Image currentImage;
+    private ArrayList<Image> images = new ArrayList<Image>();
     //编号
-    int code;
+    private int code;
     //长度
-    int length;
+    private int length;
     //出现位置
-    int x;
-    int y;
+    private int x;
+    private int y;
     //战斗面板
-    BattlePanel bp;
+    private BattlePanel bp;
     //是否画出
-    boolean isDraw;
+    private boolean isDraw;
     //是否停止
-    boolean isStop;
+    private boolean isStop;
 
     public void getImage() {
         for (int i = 1; i <= length; i++) {
@@ -89,5 +89,77 @@ public class Instruct {
         } else if (code == 5) {
             code = 0;
         }
+    }
+
+    public Image getCurrentImage() {
+        return currentImage;
+    }
+
+    public void setCurrentImage(Image currentImage) {
+        this.currentImage = currentImage;
+    }
+
+    public ArrayList<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        this.images = images;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
     }
 }

@@ -333,7 +333,7 @@ public class StartPanel extends JPanel {
                         this);
             }
             startLoadAction();
-            if (backScroll.isLoop() == true) {
+            if (backScroll.isLoop()) {
                 backScroll.stopScorllAnimation();
                 backScroll.stopButtonAnimation();
                 isUnfolded = false;
@@ -369,6 +369,8 @@ public class StartPanel extends JPanel {
                     loadTimer.initial();
                     isUnfolded = false;
                 }
+                break;
+            default:
                 break;
         }
     }

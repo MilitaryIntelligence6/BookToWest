@@ -95,8 +95,8 @@ public class Check {
         if (isAllDead) {
             MusicReader.readMusic("战斗失败.wav");
             bp.getProgressBar().isDraw = false;
-            bp.getGameOver().isDraw = true;
-            bp.getGameOver().isStop = false;
+            bp.getGameOver().setDraw(true);
+            bp.getGameOver().setStop(false);
         }
     }
 
