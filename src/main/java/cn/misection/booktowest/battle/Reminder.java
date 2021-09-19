@@ -8,32 +8,32 @@ import cn.misection.booktowest.util.*;
 //战斗提示类
 public class Reminder {
     //图片引用
-    Image currentImage;
+    private Image currentImage;
     //图片集合
-    ArrayList<Image> images = new ArrayList<Image>();
+    private ArrayList<Image> images = new ArrayList<Image>();
     //是否显示
-    boolean isDraw;
+    private boolean isDraw;
     //是否停止
-    boolean isStop;
+    private boolean isStop;
     //中心
-    int centreX;
-    int centreY;
+    private int centreX;
+    private int centreY;
     //编号
-    int code;
+    private int code;
     //目标矩形第一个角的坐标
-    int dx1;
-    int dy1;
+    private int dx1;
+    private int dy1;
     //目标矩形第二个角的坐标
-    int dx2;
-    int dy2;
+    private int dx2;
+    private int dy2;
     //源矩形第一个角的坐标
-    int sx1;
-    int sy1;
+    private int sx1;
+    private int sy1;
     //源矩形第二个角的坐标
-    int sx2;
-    int sy2;
+    private int sx2;
+    private int sy2;
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
 
     //构造方法
     public Reminder(BattlePanel bp, int centreX, int centreY) {
@@ -100,5 +100,133 @@ public class Reminder {
                 }
             }
         }
+    }
+
+    public Image getCurrentImage() {
+        return currentImage;
+    }
+
+    public void setCurrentImage(Image currentImage) {
+        this.currentImage = currentImage;
+    }
+
+    public ArrayList<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        this.images = images;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
+    }
+
+    public int getCentreX() {
+        return centreX;
+    }
+
+    public void setCentreX(int centreX) {
+        this.centreX = centreX;
+    }
+
+    public int getCentreY() {
+        return centreY;
+    }
+
+    public void setCentreY(int centreY) {
+        this.centreY = centreY;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public int getDx1() {
+        return dx1;
+    }
+
+    public void setDx1(int dx1) {
+        this.dx1 = dx1;
+    }
+
+    public int getDy1() {
+        return dy1;
+    }
+
+    public void setDy1(int dy1) {
+        this.dy1 = dy1;
+    }
+
+    public int getDx2() {
+        return dx2;
+    }
+
+    public void setDx2(int dx2) {
+        this.dx2 = dx2;
+    }
+
+    public int getDy2() {
+        return dy2;
+    }
+
+    public void setDy2(int dy2) {
+        this.dy2 = dy2;
+    }
+
+    public int getSx1() {
+        return sx1;
+    }
+
+    public void setSx1(int sx1) {
+        this.sx1 = sx1;
+    }
+
+    public int getSy1() {
+        return sy1;
+    }
+
+    public void setSy1(int sy1) {
+        this.sy1 = sy1;
+    }
+
+    public int getSx2() {
+        return sx2;
+    }
+
+    public void setSx2(int sx2) {
+        this.sx2 = sx2;
+    }
+
+    public int getSy2() {
+        return sy2;
+    }
+
+    public void setSy2(int sy2) {
+        this.sy2 = sy2;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
     }
 }

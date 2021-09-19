@@ -39,7 +39,7 @@ public class Check {
 
             //我方获得所有经验
             for (Hero hero : bp.getHeroes()) {
-                hero.setExp(hero.getExp() + bp.getVictoryReminder().expToGet);
+                hero.setExp(hero.getExp() + bp.getVictoryReminder().getExpToGet());
             }
             //我方所有状态清空
             for (Hero hero : bp.getHeroes()) {
@@ -63,8 +63,8 @@ public class Check {
             //进度条停止
             bp.getProgressBar().setDraw(false);
 
-            bp.getVictoryReminder().isDraw = true;
-            bp.getVictoryReminder().isStop = false;
+            bp.getVictoryReminder().setDraw(true);
+            bp.getVictoryReminder().setStop(false);
         }
     }
 

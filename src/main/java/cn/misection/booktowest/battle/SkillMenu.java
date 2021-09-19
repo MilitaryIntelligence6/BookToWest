@@ -9,39 +9,39 @@ import java.util.*;
 //技能菜单类
 public class SkillMenu {
     //技能显示框的背景
-    Image background;
+    private Image background;
     //按钮
-    GameButton skillButton;
-    ArrayList<GameButton> zhangButtons = new ArrayList<GameButton>();
-    ArrayList<GameButton> wenButtons = new ArrayList<GameButton>();
-    ArrayList<GameButton> luButtons = new ArrayList<GameButton>();
-    ArrayList<GameButton> skillButtons;
+    private GameButton skillButton;
+    private ArrayList<GameButton> zhangButtons = new ArrayList<GameButton>();
+    private ArrayList<GameButton> wenButtons = new ArrayList<GameButton>();
+    private ArrayList<GameButton> luButtons = new ArrayList<GameButton>();
+    private ArrayList<GameButton> skillButtons;
     //返回按钮
-    GameButton returnButton;
+    private GameButton returnButton;
     //图片引用
-    ArrayList<Image> zhangImages = new ArrayList<Image>();
-    ArrayList<Image> wenImages = new ArrayList<Image>();
-    ArrayList<Image> luImages = new ArrayList<Image>();
+    private ArrayList<Image> zhangImages = new ArrayList<Image>();
+    private ArrayList<Image> wenImages = new ArrayList<Image>();
+    private ArrayList<Image> luImages = new ArrayList<Image>();
     //菜单出现的位置
-    int x;
-    int y;
+    private int x;
+    private int y;
     //是否被画出
-    boolean isDraw;
+    private boolean isDraw;
 
     //介绍性图片
-    Image introduceImage;
+    private Image introduceImage;
     //介绍图位置
-    int introX;
-    int introY;
+    private int introX;
+    private int introY;
     //介绍图是否画出
-    boolean isDrawIntro;
+    private boolean isDrawIntro;
     //各主角介绍图
-    ArrayList<Image> zhangIntros = new ArrayList<Image>();
-    ArrayList<Image> wenIntros = new ArrayList<Image>();
-    ArrayList<Image> luIntros = new ArrayList<Image>();
+    private ArrayList<Image> zhangIntros = new ArrayList<Image>();
+    private ArrayList<Image> wenIntros = new ArrayList<Image>();
+    private ArrayList<Image> luIntros = new ArrayList<Image>();
 
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
 
     //构造方法
     public SkillMenu(BattlePanel bp) {
@@ -311,4 +311,171 @@ public class SkillMenu {
         }
     }
 
+    public Image getBackground() {
+        return background;
+    }
+
+    public void setBackground(Image background) {
+        this.background = background;
+    }
+
+    public GameButton getSkillButton() {
+        return skillButton;
+    }
+
+    public void setSkillButton(GameButton skillButton) {
+        this.skillButton = skillButton;
+    }
+
+    public ArrayList<GameButton> getZhangButtons() {
+        return zhangButtons;
+    }
+
+    public void setZhangButtons(ArrayList<GameButton> zhangButtons) {
+        this.zhangButtons = zhangButtons;
+    }
+
+    public ArrayList<GameButton> getWenButtons() {
+        return wenButtons;
+    }
+
+    public void setWenButtons(ArrayList<GameButton> wenButtons) {
+        this.wenButtons = wenButtons;
+    }
+
+    public ArrayList<GameButton> getLuButtons() {
+        return luButtons;
+    }
+
+    public void setLuButtons(ArrayList<GameButton> luButtons) {
+        this.luButtons = luButtons;
+    }
+
+    public ArrayList<GameButton> getSkillButtons() {
+        return skillButtons;
+    }
+
+    public void setSkillButtons(ArrayList<GameButton> skillButtons) {
+        this.skillButtons = skillButtons;
+    }
+
+    public GameButton getReturnButton() {
+        return returnButton;
+    }
+
+    public void setReturnButton(GameButton returnButton) {
+        this.returnButton = returnButton;
+    }
+
+    public ArrayList<Image> getZhangImages() {
+        return zhangImages;
+    }
+
+    public void setZhangImages(ArrayList<Image> zhangImages) {
+        this.zhangImages = zhangImages;
+    }
+
+    public ArrayList<Image> getWenImages() {
+        return wenImages;
+    }
+
+    public void setWenImages(ArrayList<Image> wenImages) {
+        this.wenImages = wenImages;
+    }
+
+    public ArrayList<Image> getLuImages() {
+        return luImages;
+    }
+
+    public void setLuImages(ArrayList<Image> luImages) {
+        this.luImages = luImages;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public Image getIntroduceImage() {
+        return introduceImage;
+    }
+
+    public void setIntroduceImage(Image introduceImage) {
+        this.introduceImage = introduceImage;
+    }
+
+    public int getIntroX() {
+        return introX;
+    }
+
+    public void setIntroX(int introX) {
+        this.introX = introX;
+    }
+
+    public int getIntroY() {
+        return introY;
+    }
+
+    public void setIntroY(int introY) {
+        this.introY = introY;
+    }
+
+    public boolean isDrawIntro() {
+        return isDrawIntro;
+    }
+
+    public void setDrawIntro(boolean drawIntro) {
+        isDrawIntro = drawIntro;
+    }
+
+    public ArrayList<Image> getZhangIntros() {
+        return zhangIntros;
+    }
+
+    public void setZhangIntros(ArrayList<Image> zhangIntros) {
+        this.zhangIntros = zhangIntros;
+    }
+
+    public ArrayList<Image> getWenIntros() {
+        return wenIntros;
+    }
+
+    public void setWenIntros(ArrayList<Image> wenIntros) {
+        this.wenIntros = wenIntros;
+    }
+
+    public ArrayList<Image> getLuIntros() {
+        return luIntros;
+    }
+
+    public void setLuIntros(ArrayList<Image> luIntros) {
+        this.luIntros = luIntros;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
 }

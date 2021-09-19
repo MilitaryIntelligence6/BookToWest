@@ -8,24 +8,24 @@ import java.awt.*;
 //游戏取得胜利之后的动画
 public class VictoryAnimation {
     //当前图片
-    Image currentImage;
+    private Image currentImage;
     //图片集合
-    ArrayList<Image> images = new ArrayList<Image>();
+    private ArrayList<Image> images = new ArrayList<Image>();
     //画出的坐标
-    int x;
-    int y;
+    private int x;
+    private int y;
     //长度
-    int length;
+    private int length;
     //编号..计时器
-    int code;
+    private int code;
     //是否画出
-    boolean isDraw;
+    private boolean isDraw;
     //是否停止
-    boolean isStop;
+    private boolean isStop;
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
     //英雄引用
-    Hero hero;
+    private Hero hero;
 
     //构造方法
     public VictoryAnimation(int x, int y, int length, String name, BattlePanel bp, Hero hero) {
@@ -80,5 +80,85 @@ public class VictoryAnimation {
                 hero.setIsDraw(true);
             }
         }
+    }
+
+    public Image getCurrentImage() {
+        return currentImage;
+    }
+
+    public void setCurrentImage(Image currentImage) {
+        this.currentImage = currentImage;
+    }
+
+    public ArrayList<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        this.images = images;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
+
+    public Hero getHero() {
+        return hero;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
     }
 }

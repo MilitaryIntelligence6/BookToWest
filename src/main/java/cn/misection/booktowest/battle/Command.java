@@ -93,7 +93,7 @@ public class Command {
             //把控制台隐藏掉
             isDraw = false;
             bp.getSkillMenu().checkRound();
-            bp.getSkillMenu().isDraw = true;
+            bp.getSkillMenu().setDraw(true);
         }
 
         if (thing.clicked == true) {

@@ -6,20 +6,20 @@ import java.awt.*;
 
 public class StartAnimation {
 
-    BattlePanel bp;
-    int code;
+    private BattlePanel bp;
+    private int code;
     //两侧图片
-    Image left;
-    Image right;
+    private Image left;
+    private Image right;
     //左侧坐标
-    int leftX;
-    int leftY;
+    private int leftX;
+    private int leftY;
     //右侧坐标
-    int rightX;
-    int rightY;
+    private int rightX;
+    private int rightY;
 
-    boolean isDraw;
-    boolean isStop;
+    private boolean isDraw;
+    private boolean isStop;
 
     //构造方法
     public StartAnimation(BattlePanel bp) {
@@ -56,5 +56,85 @@ public class StartAnimation {
                 isStop = true;
             }
         }
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public Image getLeft() {
+        return left;
+    }
+
+    public void setLeft(Image left) {
+        this.left = left;
+    }
+
+    public Image getRight() {
+        return right;
+    }
+
+    public void setRight(Image right) {
+        this.right = right;
+    }
+
+    public int getLeftX() {
+        return leftX;
+    }
+
+    public void setLeftX(int leftX) {
+        this.leftX = leftX;
+    }
+
+    public int getLeftY() {
+        return leftY;
+    }
+
+    public void setLeftY(int leftY) {
+        this.leftY = leftY;
+    }
+
+    public int getRightX() {
+        return rightX;
+    }
+
+    public void setRightX(int rightX) {
+        this.rightX = rightX;
+    }
+
+    public int getRightY() {
+        return rightY;
+    }
+
+    public void setRightY(int rightY) {
+        this.rightY = rightY;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
     }
 }

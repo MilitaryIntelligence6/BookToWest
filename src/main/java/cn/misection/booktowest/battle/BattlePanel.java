@@ -325,7 +325,7 @@ public class BattlePanel extends JPanel implements Runnable {
                     command.checkPressed();
                 }
 
-                if (skillMenu.isDraw) {
+                if (skillMenu.isDraw()) {
                     skillMenu.checkPressed();
                 }
 
@@ -347,7 +347,7 @@ public class BattlePanel extends JPanel implements Runnable {
                     command.checkReleased();
                 }
 
-                if (skillMenu.isDraw) {
+                if (skillMenu.isDraw()) {
                     skillMenu.checkReleased();
                 }
 
@@ -367,7 +367,7 @@ public class BattlePanel extends JPanel implements Runnable {
                     command.checkMoveIn();
                 }
 
-                if (skillMenu.isDraw) {
+                if (skillMenu.isDraw()) {
                     skillMenu.checkMoveIn();
                 }
 
@@ -387,7 +387,7 @@ public class BattlePanel extends JPanel implements Runnable {
                     command.checkMoveIn();
                 }
 
-                if (skillMenu.isDraw) {
+                if (skillMenu.isDraw()) {
                     skillMenu.checkMoveIn();
                 }
 

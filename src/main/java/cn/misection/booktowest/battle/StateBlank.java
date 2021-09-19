@@ -7,39 +7,39 @@ import cn.misection.booktowest.util.*;
 //状态栏类
 public class StateBlank {
     //三主角状态栏背景图片
-    Image zhangBack;
-    Image wenBack;
-    Image luBack;
+    private Image zhangBack;
+    private Image wenBack;
+    private Image luBack;
     //生命值和灵力
-    Image hpImage;
-    Image mpImage;
+    private Image hpImage;
+    private Image mpImage;
     //第一张背景坐标
-    int x;
-    int y;
+    private int x;
+    private int y;
     //第一张血条坐标
-    int hpX;
-    int hpY;
+    private int hpX;
+    private int hpY;
     //第一张精气坐标
-    int mpX;
-    int mpY;
+    private int mpX;
+    private int mpY;
     //血条与精气的宽度和高度
-    int zHpWidth;
-    int zMpWidth;
-    int wHpWidth;
-    int wMpWidth;
-    int lHpWidth;
-    int lMpWidth;
-    int height;
+    private int zHpWidth;
+    private int zMpWidth;
+    private int wHpWidth;
+    private int wMpWidth;
+    private int lHpWidth;
+    private int lMpWidth;
+    private int height;
 
     //字体
-    Font font;
+    private Font font;
 
     //是否画出
-    boolean isDraw;
+    private boolean isDraw;
     //是否停止
-    boolean isStop;
+    private boolean isStop;
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
 
     public StateBlank(BattlePanel bp) {
         this.bp = bp;
@@ -158,4 +158,179 @@ public class StateBlank {
         }
     }
 
+    public Image getZhangBack() {
+        return zhangBack;
+    }
+
+    public void setZhangBack(Image zhangBack) {
+        this.zhangBack = zhangBack;
+    }
+
+    public Image getWenBack() {
+        return wenBack;
+    }
+
+    public void setWenBack(Image wenBack) {
+        this.wenBack = wenBack;
+    }
+
+    public Image getLuBack() {
+        return luBack;
+    }
+
+    public void setLuBack(Image luBack) {
+        this.luBack = luBack;
+    }
+
+    public Image getHpImage() {
+        return hpImage;
+    }
+
+    public void setHpImage(Image hpImage) {
+        this.hpImage = hpImage;
+    }
+
+    public Image getMpImage() {
+        return mpImage;
+    }
+
+    public void setMpImage(Image mpImage) {
+        this.mpImage = mpImage;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getHpX() {
+        return hpX;
+    }
+
+    public void setHpX(int hpX) {
+        this.hpX = hpX;
+    }
+
+    public int getHpY() {
+        return hpY;
+    }
+
+    public void setHpY(int hpY) {
+        this.hpY = hpY;
+    }
+
+    public int getMpX() {
+        return mpX;
+    }
+
+    public void setMpX(int mpX) {
+        this.mpX = mpX;
+    }
+
+    public int getMpY() {
+        return mpY;
+    }
+
+    public void setMpY(int mpY) {
+        this.mpY = mpY;
+    }
+
+    public int getzHpWidth() {
+        return zHpWidth;
+    }
+
+    public void setzHpWidth(int zHpWidth) {
+        this.zHpWidth = zHpWidth;
+    }
+
+    public int getzMpWidth() {
+        return zMpWidth;
+    }
+
+    public void setzMpWidth(int zMpWidth) {
+        this.zMpWidth = zMpWidth;
+    }
+
+    public int getwHpWidth() {
+        return wHpWidth;
+    }
+
+    public void setwHpWidth(int wHpWidth) {
+        this.wHpWidth = wHpWidth;
+    }
+
+    public int getwMpWidth() {
+        return wMpWidth;
+    }
+
+    public void setwMpWidth(int wMpWidth) {
+        this.wMpWidth = wMpWidth;
+    }
+
+    public int getlHpWidth() {
+        return lHpWidth;
+    }
+
+    public void setlHpWidth(int lHpWidth) {
+        this.lHpWidth = lHpWidth;
+    }
+
+    public int getlMpWidth() {
+        return lMpWidth;
+    }
+
+    public void setlMpWidth(int lMpWidth) {
+        this.lMpWidth = lMpWidth;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public Font getFont() {
+        return font;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
 }
