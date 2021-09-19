@@ -18,57 +18,89 @@ import cn.misection.booktowest.util.*;
 
 public class Scoll {
     //各种引用
-    FatherPanel fp;
+    private FatherPanel fp;
 
 
     private int x_scoll = 60 + 32;
     private int y_scoll = 70;
-    Image scollImage;
+    private Image scollImage;
 
-    MenuButton hero1;
-    MenuButton hero2;
+    private MenuButton hero1;
+    private MenuButton hero2;
 
-    MenuButton hero4;
-    int x_head = x_scoll + 14;
-    int y_head = y_scoll + 20;
-    int width_head = 40;
-    int height_head = 40;
-    int hgap = 10;
+    private MenuButton hero4;
+    private int x_head = x_scoll + 14;
+    private int y_head = y_scoll + 20;
+    private int width_head = 40;
+    private int height_head = 40;
+    private int hgap = 10;
 
-    Image currentHeroImage;
-    int whichHero = 1;
-    static int zhangxiaofan = 1;
-    static int luxueqi = 2;
-    static int songdaren = 3;
-    static int yujie = 4;
+    private Image currentHeroImage;
+    private int whichHero = 1;
+    private static int zhangxiaofan = 1;
+    private static int luxueqi = 2;
+    private static int songdaren = 3;
+    private static int yujie = 4;
 
-    Image image1;
-    Image image2;
-    Image image3;
-    Image image4;
-    int x_hero = x_scoll + 38 + 50;
-    int y_hero = y_scoll + 41;
-    int width_hero = 176;
-    int height_hero = 131;
+    private Image image1;
+    private Image image2;
+    private Image image3;
+    private Image image4;
+    private int x_hero = x_scoll + 38 + 50;
+    private int y_hero = y_scoll + 41;
+    private int width_hero = 176;
+    private int height_hero = 131;
 
-    ArrayList<GameButton> buttonList = new ArrayList<GameButton>();
+    private ArrayList<GameButton> buttonList = new ArrayList<GameButton>();
 
 
     // 显示当前的级别 经验等数据
 
-    String level = "" + ZhangXiaoFan.level;
+    private String level = "" + ZhangXiaoFan.level;
 
-    int x_level = x_head + 90;
-    int y_level = y_scoll + 70;
-    Image level_ima;
+    private int x_level = x_head + 90;
+    private int y_level = y_scoll + 70;
+    private Image level_ima;
 
-    int x_num = x_level + 30;
-    int y_num = y_level + 62;
+    private int x_num = x_level + 30;
+    private int y_num = y_level + 62;
 
     public Scoll(FatherPanel a) {
         fp = a;
         addImage();
         initial();
+    }
+
+    public static int getZhangxiaofan() {
+        return zhangxiaofan;
+    }
+
+    public static void setZhangxiaofan(int zhangxiaofan) {
+        Scoll.zhangxiaofan = zhangxiaofan;
+    }
+
+    public static int getLuxueqi() {
+        return luxueqi;
+    }
+
+    public static void setLuxueqi(int luxueqi) {
+        Scoll.luxueqi = luxueqi;
+    }
+
+    public static int getSongdaren() {
+        return songdaren;
+    }
+
+    public static void setSongdaren(int songdaren) {
+        Scoll.songdaren = songdaren;
+    }
+
+    public static int getYujie() {
+        return yujie;
+    }
+
+    public static void setYujie(int yujie) {
+        Scoll.yujie = yujie;
     }
 
     private void addImage() {
@@ -83,7 +115,7 @@ public class Scoll {
 
 
         hero1 = new MenuButton(x_head, y_head, width_head, height_head, image1, image2, image3, fp);
-        hero1.isDraw = MenuButton.Yes;
+        hero1.setIsDraw(MenuButton.getYes());
         buttonList.add(hero1);
 
         image1 = new ImageIcon("sources/菜单/scoll/hero2.png").getImage();
@@ -91,7 +123,7 @@ public class Scoll {
         image3 = new ImageIcon("sources/菜单/scoll/hero23.png").getImage();
         hero2 = new MenuButton(x_head + width_head + hgap, y_head + 6, width_head, height_head, image1, image2,
                 image3, fp);
-        hero2.isDraw = MenuButton.No;
+        hero2.setIsDraw(MenuButton.getNo());
         buttonList.add(hero2);
 
         image1 = new ImageIcon("sources/菜单/scoll/hero4.png").getImage();
@@ -99,7 +131,7 @@ public class Scoll {
         image3 = new ImageIcon("sources/菜单/scoll/hero43.png").getImage();
         hero4 = new MenuButton(x_head + 2 * (width_head + hgap), y_head, width_head, height_head, image1, image2,
                 image3, fp);
-        hero4.isDraw = MenuButton.No;
+        hero4.setIsDraw(MenuButton.getNo());
         buttonList.add(hero4);
 
 
@@ -115,20 +147,20 @@ public class Scoll {
     public void checkMoveIn() {
 
         if (SaveAndLoad.lu) {
-            hero2.isDraw = MenuButton.Yes;
+            hero2.setIsDraw(MenuButton.getYes());
         }
         if (SaveAndLoad.wen) {
-            hero4.isDraw = MenuButton.Yes;
+            hero4.setIsDraw(MenuButton.getYes());
         }
         for (GameButton button : buttonList) {
-            button.isMoveIn(fp.currentX, fp.currentY);
+            button.isMoveIn(fp.getCurrentX(), fp.getCurrentY());
         }
     }
 
     //检查鼠标是否点击
     public void checkPressed() {
         for (GameButton button : buttonList) {
-            button.isPressedButton(fp.currentX, fp.currentY);
+            button.isPressedButton(fp.getCurrentX(), fp.getCurrentY());
         }
 
         if (hero1.isClicked()) {
@@ -167,21 +199,21 @@ public class Scoll {
     public void checkReleased() {
         //检验 击 按钮是否被按下
         for (GameButton button : buttonList) {
-            button.isRelesedButton(fp.currentX, fp.currentY);
+            button.isRelesedButton(fp.getCurrentX(), fp.getCurrentY());
         }
     }
 
     //画出控制台
     public void drawScoll(Graphics g) {
         if (SaveAndLoad.zhang) {
-            hero1.isDraw = MenuButton.Yes;
+            hero1.setIsDraw(MenuButton.getYes());
             level = "" + ZhangXiaoFan.level;
         }
         if (SaveAndLoad.lu) {
-            hero2.isDraw = MenuButton.Yes;
+            hero2.setIsDraw(MenuButton.getYes());
         }
         if (SaveAndLoad.wen) {
-            hero4.isDraw = MenuButton.Yes;
+            hero4.setIsDraw(MenuButton.getYes());
         }
 
 
@@ -198,4 +230,235 @@ public class Scoll {
 
     }
 
+    public FatherPanel getFp() {
+        return fp;
+    }
+
+    public void setFp(FatherPanel fp) {
+        this.fp = fp;
+    }
+
+    public int getX_scoll() {
+        return x_scoll;
+    }
+
+    public void setX_scoll(int x_scoll) {
+        this.x_scoll = x_scoll;
+    }
+
+    public int getY_scoll() {
+        return y_scoll;
+    }
+
+    public void setY_scoll(int y_scoll) {
+        this.y_scoll = y_scoll;
+    }
+
+    public Image getScollImage() {
+        return scollImage;
+    }
+
+    public void setScollImage(Image scollImage) {
+        this.scollImage = scollImage;
+    }
+
+    public MenuButton getHero1() {
+        return hero1;
+    }
+
+    public void setHero1(MenuButton hero1) {
+        this.hero1 = hero1;
+    }
+
+    public MenuButton getHero2() {
+        return hero2;
+    }
+
+    public void setHero2(MenuButton hero2) {
+        this.hero2 = hero2;
+    }
+
+    public MenuButton getHero4() {
+        return hero4;
+    }
+
+    public void setHero4(MenuButton hero4) {
+        this.hero4 = hero4;
+    }
+
+    public int getX_head() {
+        return x_head;
+    }
+
+    public void setX_head(int x_head) {
+        this.x_head = x_head;
+    }
+
+    public int getY_head() {
+        return y_head;
+    }
+
+    public void setY_head(int y_head) {
+        this.y_head = y_head;
+    }
+
+    public int getWidth_head() {
+        return width_head;
+    }
+
+    public void setWidth_head(int width_head) {
+        this.width_head = width_head;
+    }
+
+    public int getHeight_head() {
+        return height_head;
+    }
+
+    public void setHeight_head(int height_head) {
+        this.height_head = height_head;
+    }
+
+    public int getHgap() {
+        return hgap;
+    }
+
+    public void setHgap(int hgap) {
+        this.hgap = hgap;
+    }
+
+    public Image getCurrentHeroImage() {
+        return currentHeroImage;
+    }
+
+    public void setCurrentHeroImage(Image currentHeroImage) {
+        this.currentHeroImage = currentHeroImage;
+    }
+
+    public int getWhichHero() {
+        return whichHero;
+    }
+
+    public void setWhichHero(int whichHero) {
+        this.whichHero = whichHero;
+    }
+
+    public Image getImage1() {
+        return image1;
+    }
+
+    public void setImage1(Image image1) {
+        this.image1 = image1;
+    }
+
+    public Image getImage2() {
+        return image2;
+    }
+
+    public void setImage2(Image image2) {
+        this.image2 = image2;
+    }
+
+    public Image getImage3() {
+        return image3;
+    }
+
+    public void setImage3(Image image3) {
+        this.image3 = image3;
+    }
+
+    public Image getImage4() {
+        return image4;
+    }
+
+    public void setImage4(Image image4) {
+        this.image4 = image4;
+    }
+
+    public int getX_hero() {
+        return x_hero;
+    }
+
+    public void setX_hero(int x_hero) {
+        this.x_hero = x_hero;
+    }
+
+    public int getY_hero() {
+        return y_hero;
+    }
+
+    public void setY_hero(int y_hero) {
+        this.y_hero = y_hero;
+    }
+
+    public int getWidth_hero() {
+        return width_hero;
+    }
+
+    public void setWidth_hero(int width_hero) {
+        this.width_hero = width_hero;
+    }
+
+    public int getHeight_hero() {
+        return height_hero;
+    }
+
+    public void setHeight_hero(int height_hero) {
+        this.height_hero = height_hero;
+    }
+
+    public ArrayList<GameButton> getButtonList() {
+        return buttonList;
+    }
+
+    public void setButtonList(ArrayList<GameButton> buttonList) {
+        this.buttonList = buttonList;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public int getX_level() {
+        return x_level;
+    }
+
+    public void setX_level(int x_level) {
+        this.x_level = x_level;
+    }
+
+    public int getY_level() {
+        return y_level;
+    }
+
+    public void setY_level(int y_level) {
+        this.y_level = y_level;
+    }
+
+    public Image getLevel_ima() {
+        return level_ima;
+    }
+
+    public void setLevel_ima(Image level_ima) {
+        this.level_ima = level_ima;
+    }
+
+    public int getX_num() {
+        return x_num;
+    }
+
+    public void setX_num(int x_num) {
+        this.x_num = x_num;
+    }
+
+    public int getY_num() {
+        return y_num;
+    }
+
+    public void setY_num(int y_num) {
+        this.y_num = y_num;
+    }
 }

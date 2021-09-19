@@ -9,21 +9,21 @@ import java.awt.Image;
 import cn.misection.booktowest.util.*;
 
 public class MagicAnimation {
-    FatherPanel fp;
+    private FatherPanel fp;
     //图片集合
-    Image image;
-    int hero;
-    String skillName = "";
-    int skillNumber;
+    private Image image;
+    private int hero;
+    private String skillName = "";
+    private int skillNumber;
 
-    int length = 0;//动画长度
+    private int length = 0;//动画长度
     //动画出现的坐标
     private int AnimationX;
     private int AnimationY;
-    int code = 1;
-    String[] magicDiscription;
-    int x_discription;
-    int y_discription;
+    private int code = 1;
+    private String[] magicDiscription;
+    private int x_discription;
+    private int y_discription;
 
     public MagicAnimation(int hero, int skillNumber, int length, int x, int y, String[] discription, int a, int b,
                           FatherPanel f) {
@@ -110,4 +110,83 @@ public class MagicAnimation {
         }
     }
 
+    public FatherPanel getFp() {
+        return fp;
+    }
+
+    public void setFp(FatherPanel fp) {
+        this.fp = fp;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public int getHero() {
+        return hero;
+    }
+
+    public void setHero(int hero) {
+        this.hero = hero;
+    }
+
+    public String getSkillName() {
+        return skillName;
+    }
+
+    public void setSkillName(String skillName) {
+        this.skillName = skillName;
+    }
+
+    public int getSkillNumber() {
+        return skillNumber;
+    }
+
+    public void setSkillNumber(int skillNumber) {
+        this.skillNumber = skillNumber;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String[] getMagicDiscription() {
+        return magicDiscription;
+    }
+
+    public void setMagicDiscription(String[] magicDiscription) {
+        this.magicDiscription = magicDiscription;
+    }
+
+    public int getX_discription() {
+        return x_discription;
+    }
+
+    public void setX_discription(int x_discription) {
+        this.x_discription = x_discription;
+    }
+
+    public int getY_discription() {
+        return y_discription;
+    }
+
+    public void setY_discription(int y_discription) {
+        this.y_discription = y_discription;
+    }
 }

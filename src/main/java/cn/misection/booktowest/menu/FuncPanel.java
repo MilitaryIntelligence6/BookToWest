@@ -37,7 +37,7 @@ public class FuncPanel extends FatherPanel {
     @Override
     public void readBackgroundImage() {
         // TODO Auto-generated method stub
-        backgroundImage = Reader.readImage("sources/菜单/天书/天书.png");
+        setBackgroundImage(Reader.readImage("sources/菜单/天书/天书.png"));
     }
 
 

@@ -19,26 +19,26 @@ public abstract class FatherPanel extends JPanel implements Runnable {
     private final static int HEIGHT = 32 * 20;
     //引用
     //人物引用
-    ZhangXiaoFan hero1;
-    LuXueQi hero2;
-    SongDaRen hero3;
-    YuJie hero4;
-    MenuPanel menuPanel;
-    Mouse mouse;
-    Scoll scoll;
+    private ZhangXiaoFan hero1;
+    private LuXueQi hero2;
+    private SongDaRen hero3;
+    private YuJie hero4;
+    private MenuPanel menuPanel;
+    private Mouse mouse;
+    private Scoll scoll;
     // 背景 在抽象方法 readBackgroundImage()中 由各自的panel实现
-    Image backgroundImage;
+    private Image backgroundImage;
     //缓冲图片
-    Image bufferedPic;
+    private Image bufferedPic;
     //缓冲画笔
-    Graphics bufferedGraphics;
+    private Graphics bufferedGraphics;
 
 
     // 游标的当前位置
-    int currentX = 0;
-    int currentY = 0;
+    private int currentX = 0;
+    private int currentY = 0;
     // 偏移量
-    int move = 5;
+    private int move = 5;
 
     public FatherPanel(MenuPanel a, ZhangXiaoFan h1, LuXueQi h2, YuJie h4) {
         menuPanel = a;
@@ -105,7 +105,7 @@ public abstract class FatherPanel extends JPanel implements Runnable {
         // 画背景
         bufferedGraphics.drawImage(backgroundImage, 0, 0, this);
         drawSpecialImage(bufferedGraphics);
-        menuPanel.command.drawCommand(bufferedGraphics);
+        menuPanel.getCommand().drawCommand(bufferedGraphics);
         if (scoll != null) {
             scoll.drawScoll(bufferedGraphics);
         }
@@ -141,4 +141,108 @@ public abstract class FatherPanel extends JPanel implements Runnable {
     public abstract ArrayList<String> saveEquipInfo();
 
     public abstract void initialEquipInfo(ArrayList<String> menuInfo);
+
+    public ZhangXiaoFan getHero1() {
+        return hero1;
+    }
+
+    public void setHero1(ZhangXiaoFan hero1) {
+        this.hero1 = hero1;
+    }
+
+    public LuXueQi getHero2() {
+        return hero2;
+    }
+
+    public void setHero2(LuXueQi hero2) {
+        this.hero2 = hero2;
+    }
+
+    public SongDaRen getHero3() {
+        return hero3;
+    }
+
+    public void setHero3(SongDaRen hero3) {
+        this.hero3 = hero3;
+    }
+
+    public YuJie getHero4() {
+        return hero4;
+    }
+
+    public void setHero4(YuJie hero4) {
+        this.hero4 = hero4;
+    }
+
+    public MenuPanel getMenuPanel() {
+        return menuPanel;
+    }
+
+    public void setMenuPanel(MenuPanel menuPanel) {
+        this.menuPanel = menuPanel;
+    }
+
+    public Mouse getMouse() {
+        return mouse;
+    }
+
+    public void setMouse(Mouse mouse) {
+        this.mouse = mouse;
+    }
+
+    public Scoll getScoll() {
+        return scoll;
+    }
+
+    public void setScoll(Scoll scoll) {
+        this.scoll = scoll;
+    }
+
+    public Image getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(Image backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
+
+    public Image getBufferedPic() {
+        return bufferedPic;
+    }
+
+    public void setBufferedPic(Image bufferedPic) {
+        this.bufferedPic = bufferedPic;
+    }
+
+    public Graphics getBufferedGraphics() {
+        return bufferedGraphics;
+    }
+
+    public void setBufferedGraphics(Graphics bufferedGraphics) {
+        this.bufferedGraphics = bufferedGraphics;
+    }
+
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public void setCurrentX(int currentX) {
+        this.currentX = currentX;
+    }
+
+    public int getCurrentY() {
+        return currentY;
+    }
+
+    public void setCurrentY(int currentY) {
+        this.currentY = currentY;
+    }
+
+    public int getMove() {
+        return move;
+    }
+
+    public void setMove(int move) {
+        this.move = move;
+    }
 }

@@ -52,7 +52,7 @@ public class Loader {
         GameApplication.luXueQi.loadRoleInfo(luXueQiInfo);
         GameApplication.yuJie.loadRoleInfo(yuJieInfo);
         GameApplication.scenePanel.sal.loadSceneInfo(sceneInfo);
-        GameApplication.menuPanel.equipPanel.initialEquipInfo(menuInfo);
+        GameApplication.menuPanel.getEquipPanel().initialEquipInfo(menuInfo);
         GameApplication.shopPanel.initialShopInfo(shopInfo);
         GameApplication.equipmentShopPanel.initialEquipmentShopInfo(equipmentShopInfo);
         SaveAndLoad.zhang = Boolean.parseBoolean(getTextInfo(textcode).get(0));

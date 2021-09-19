@@ -104,14 +104,14 @@ public class EquipPanel extends FatherPanel {
                       LuXueQi h2, YuJie h4) {
         super(a, h1, h2, h4);
         this.setName("equipPanel");
-        scoll = new Scoll(this);
+        setScoll(new Scoll(this));
         addButton();
 
         allEquipment = new EquipmentPack();
         currentList = EquipmentPack.weaponList;
-        equipPack_hero1 = new EquipPack(hero1);
-        equipPack_hero2 = new EquipPack(hero2);
-        equipPack_hero4 = new EquipPack(hero4);
+        equipPack_hero1 = new EquipPack(getHero1());
+        equipPack_hero2 = new EquipPack(getHero2());
+        equipPack_hero4 = new EquipPack(getHero4());
 
         //初始化 武器包
         addPack();
@@ -126,7 +126,7 @@ public class EquipPanel extends FatherPanel {
         currentPack = equipPack_hero1;
         heroEquipment = currentPack.getWeapon();
         if (heroEquipment != null) {
-            abandon_button.isDraw = MenuButton.Yes;
+            abandon_button.setIsDraw(MenuButton.getYes());
         }
         Equiped = new ImageIcon("sources/菜单/装备/已装备.png").getImage();
         can_not_use = new ImageIcon("sources/菜单/装备/不能使用.png").getImage();
@@ -134,9 +134,9 @@ public class EquipPanel extends FatherPanel {
         s2 = "";
         s3 = "";
         s4 = "";
-        hero1.refreshValue();
-        hero2.refreshValue();
-        hero4.refreshValue();
+        getHero1().refreshValue();
+        getHero2().refreshValue();
+        getHero4().refreshValue();
 
         list.clear();
         for (Equipment e : currentList) {
@@ -147,7 +147,7 @@ public class EquipPanel extends FatherPanel {
         if (list.size() > 0) {
             currentEquipment = currentList.get(0);
             signal = 1;
-            use_button.isDraw = MenuButton.Yes;
+            use_button.setIsDraw(MenuButton.getYes());
         } else {
             currentEquipment = null;
             signal = 0;
@@ -188,9 +188,9 @@ public class EquipPanel extends FatherPanel {
         YuJie.sprit += equipPack_hero4.getWeapon().getAddSpirit();
         YuJie.physicalPower += equipPack_hero4.getWeapon().getAddPhysicalPower();
 
-        hero1.refreshValue();
-        hero2.refreshValue();
-        hero4.refreshValue();
+        getHero1().refreshValue();
+        getHero2().refreshValue();
+        getHero4().refreshValue();
     }
 
 
@@ -256,12 +256,12 @@ public class EquipPanel extends FatherPanel {
         image3 = new ImageIcon("sources/菜单/装备/使用3.png").getImage();
         use_button = new MenuButton(x_useButton, y_useButton, width, height, image1, image2, image3, this);
 
-        use_button.isDraw = MenuButton.No;
+        use_button.setIsDraw(MenuButton.getNo());
         image1 = new ImageIcon("sources/菜单/装备/弃用1.png").getImage();
         image2 = new ImageIcon("sources/菜单/装备/弃用2.png").getImage();
         image3 = new ImageIcon("sources/菜单/装备/弃用3.png").getImage();
         abandon_button = new MenuButton(x_abandonButton, y_abandonButton, width, height, image1, image2, image3, this);
-        abandon_button.isDraw = MenuButton.No;
+        abandon_button.setIsDraw(MenuButton.getNo());
         //默认的不显示・・・isDraw=no；
         useButtonList[0] = use_button;
         useButtonList[1] = abandon_button;
@@ -273,7 +273,7 @@ public class EquipPanel extends FatherPanel {
     @Override
     public void readBackgroundImage() {
         // TODO Auto-generated method stub
-        backgroundImage = Reader.readImage("sources/菜单/装备/装备4.png");
+        setBackgroundImage(Reader.readImage("sources/菜单/装备/装备4.png"));
     }
 
     @Override
@@ -333,7 +333,7 @@ public class EquipPanel extends FatherPanel {
 
     private void addHeroValue() {
 
-        switch (scoll.whichHero) {
+        switch (getScoll().getWhichHero()) {
             case 1:
                 ZhangXiaoFan.agile += currentEquipment.getAddAgile();
                 ZhangXiaoFan.strength += currentEquipment.getAddStrength();
@@ -357,14 +357,14 @@ public class EquipPanel extends FatherPanel {
         }
 
 
-        hero4.refreshValue();
-        hero1.refreshValue();
-        hero2.refreshValue();
+        getHero4().refreshValue();
+        getHero1().refreshValue();
+        getHero2().refreshValue();
 
     }
 
     private void minusHeroValue() {
-        switch (scoll.whichHero) {
+        switch (getScoll().getWhichHero()) {
             case 1:
                 ZhangXiaoFan.agile -= heroEquipment.getAddAgile();
                 ZhangXiaoFan.strength -= heroEquipment.getAddStrength();
@@ -388,9 +388,9 @@ public class EquipPanel extends FatherPanel {
         }
 
 
-        hero4.refreshValue();
-        hero1.refreshValue();
-        hero2.refreshValue();
+        getHero4().refreshValue();
+        getHero1().refreshValue();
+        getHero2().refreshValue();
 
     }
 
@@ -398,7 +398,7 @@ public class EquipPanel extends FatherPanel {
         // TODO Auto-generated method stub
         g.setColor(Color.blue);
         g.setFont(new Font("文鼎粗钢笔行楷", Font.BOLD, 22));
-        switch (scoll.whichHero) {
+        switch (getScoll().getWhichHero()) {
             case 1:
                 s1 = "体力：" + ZhangXiaoFan.physicalPower;
                 s2 = "敏捷：" + ZhangXiaoFan.agile;
@@ -439,9 +439,9 @@ public class EquipPanel extends FatherPanel {
         if (heroEquipment != null) {
             g.drawImage(heroEquipment.getPicture(),
                     x_heroEquipment_image, y_currentImage, this);
-            abandon_button.isDraw = MenuButton.Yes;
+            abandon_button.setIsDraw(MenuButton.getYes());
         } else {
-            abandon_button.isDraw = MenuButton.No;
+            abandon_button.setIsDraw(MenuButton.getNo());
         }
         int vgap = 20;
         if (currentPack.getWeapon() != null) {
@@ -582,14 +582,14 @@ public class EquipPanel extends FatherPanel {
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
 
-                if (currentX > x_start_point &&
-                        currentX < x_start_point + 70
-                        && currentY > originalY
-                        && currentY < (originalY + 22)) {
+                if (getCurrentX() > x_start_point &&
+                        getCurrentX() < x_start_point + 70
+                        && getCurrentY() > originalY
+                        && getCurrentY() < (originalY + 22)) {
 
                     currentEquipment = list.get(i);
                     signal = 1;
-                    use_button.isDraw = MenuButton.Yes;
+                    use_button.setIsDraw(MenuButton.getYes());
                 }
 
                 originalY += 22;
@@ -602,12 +602,12 @@ public class EquipPanel extends FatherPanel {
     @Override
     public void checkAllButtonReleased() {
         // TODO Auto-generated method stub
-        scoll.checkReleased();
+        getScoll().checkReleased();
         for (MenuButton button : buttonlist) {
-            button.isRelesedButton(currentX, currentY);
+            button.isRelesedButton(getCurrentX(), getCurrentY());
         }
         for (MenuButton button : useButtonList) {
-            button.isRelesedButton(currentX, currentY);
+            button.isRelesedButton(getCurrentX(), getCurrentY());
         }
     }
 
@@ -615,13 +615,13 @@ public class EquipPanel extends FatherPanel {
     public void checkAllButtonMoveIn() {
         // TODO Auto-generated method stub
 
-        scoll.checkMoveIn();
+        getScoll().checkMoveIn();
         isMoveIn();//判断当前装备;
         for (MenuButton button : buttonlist) {
-            button.isMoveIn(currentX, currentY);
+            button.isMoveIn(getCurrentX(), getCurrentY());
         }
         for (MenuButton button : useButtonList) {
-            button.isMoveIn(currentX, currentY);
+            button.isMoveIn(getCurrentX(), getCurrentY());
         }
     }
 
@@ -629,14 +629,14 @@ public class EquipPanel extends FatherPanel {
     public void checkAllButtonPressed() {
         // TODO Auto-generated method stub
 
-        scoll.checkPressed();
-        if (scoll.hero1.clicked) {
+        getScoll().checkPressed();
+        if (getScoll().getHero1().clicked) {
 
             heroEquipment = equipPack_hero1.getWeapon();
             if (heroEquipment != null) {
-                abandon_button.isDraw = 1;
+                abandon_button.setIsDraw(1);
             } else {
-                abandon_button.isDraw = 0;
+                abandon_button.setIsDraw(0);
             }
             currentPack = equipPack_hero1;
             currentList = EquipmentPack.weaponList;
@@ -650,21 +650,21 @@ public class EquipPanel extends FatherPanel {
             if (list.size() > 0) {
                 currentEquipment = list.get(0);
                 signal = 1;
-                use_button.isDraw = 1;
+                use_button.setIsDraw(1);
             } else {
                 signal = 0;
                 currentEquipment = null;
-                use_button.isDraw = 0;
+                use_button.setIsDraw(0);
             }
 
 
         }
-        if (scoll.hero2.clicked) {
+        if (getScoll().getHero2().clicked) {
             heroEquipment = equipPack_hero2.getWeapon();
             if (heroEquipment != null) {
-                abandon_button.isDraw = 1;
+                abandon_button.setIsDraw(1);
             } else {
-                abandon_button.isDraw = 0;
+                abandon_button.setIsDraw(0);
             }
             CURRENTLIST = WEAPON;
             currentPack = equipPack_hero2;
@@ -676,24 +676,24 @@ public class EquipPanel extends FatherPanel {
                 }
             }
             if (list.size() > 0) {
-                use_button.isDraw = 1;
+                use_button.setIsDraw(1);
                 currentEquipment = list.get(0);
                 signal = 1;
             } else {
                 signal = 0;
                 currentEquipment = null;
-                use_button.isDraw = 0;
+                use_button.setIsDraw(0);
             }
 
 
         }
 
-        if (scoll.hero4.clicked) {
+        if (getScoll().getHero4().clicked) {
             heroEquipment = equipPack_hero4.getWeapon();
             if (heroEquipment != null) {
-                abandon_button.isDraw = 1;
+                abandon_button.setIsDraw(1);
             } else {
-                abandon_button.isDraw = 0;
+                abandon_button.setIsDraw(0);
             }
             CURRENTLIST = WEAPON;
             currentPack = equipPack_hero4;
@@ -705,12 +705,12 @@ public class EquipPanel extends FatherPanel {
                 }
             }
             if (list.size() > 0) {
-                use_button.isDraw = 1;
+                use_button.setIsDraw(1);
                 currentEquipment = list.get(0);
                 signal = 1;
             } else {
                 signal = 0;
-                use_button.isDraw = 0;
+                use_button.setIsDraw(0);
                 currentEquipment = null;
             }
 
@@ -718,10 +718,10 @@ public class EquipPanel extends FatherPanel {
         repaint();
 
         for (MenuButton button : buttonlist) {
-            button.isPressedButton(currentX, currentY);
+            button.isPressedButton(getCurrentX(), getCurrentY());
         }
         for (MenuButton button : useButtonList) {
-            button.isPressedButton(currentX, currentY);
+            button.isPressedButton(getCurrentX(), getCurrentY());
         }
 
         //判断当前的人物  背包
@@ -729,7 +729,7 @@ public class EquipPanel extends FatherPanel {
 
         if (use_button.isClicked()) {
             if (currentEquipment.getUser() == 0 ||
-                    currentEquipment.getUser() == scoll.whichHero) {
+                    currentEquipment.getUser() == getScoll().getWhichHero()) {
                 doUseButton();
             } else {
                 canBeEquiped = 1;
@@ -782,12 +782,12 @@ public class EquipPanel extends FatherPanel {
             if (list.size() > 0) {
                 currentEquipment = list.get(0);
                 signal = 1;
-                use_button.isDraw = 1;
+                use_button.setIsDraw(1);
 
             } else {
                 currentEquipment = null;
                 signal = 0;
-                use_button.isDraw = 0;
+                use_button.setIsDraw(0);
             }
             //	repaint();
 
@@ -802,7 +802,7 @@ public class EquipPanel extends FatherPanel {
             currentEquipment.setNumberGOT(currentEquipment.getNumberGOT() - 1);
             if (currentEquipment.getNumberGOT() == 0) {
                 signal = 0;
-                use_button.isDraw = MenuButton.No;
+                use_button.setIsDraw(MenuButton.getNo());
             } else {
                 signal = 1;
             }
@@ -873,11 +873,11 @@ public class EquipPanel extends FatherPanel {
             if (list.size() > 0) {
 
                 currentEquipment = list.get(0);
-                use_button.isDraw = 1;
+                use_button.setIsDraw(1);
                 signal = 1;
             } else {
                 signal = 0;
-                use_button.isDraw = 0;
+                use_button.setIsDraw(0);
                 currentEquipment = null;
             }
         } else if (armorButton.isClicked()) {
@@ -896,11 +896,11 @@ public class EquipPanel extends FatherPanel {
             if (list.size() > 0) {
 
                 currentEquipment = list.get(0);
-                use_button.isDraw = 1;
+                use_button.setIsDraw(1);
                 signal = 1;
             } else {
                 signal = 0;
-                use_button.isDraw = 0;
+                use_button.setIsDraw(0);
                 currentEquipment = null;
             }
         } else if (helmetButton.isClicked()) {
@@ -918,11 +918,11 @@ public class EquipPanel extends FatherPanel {
             if (list.size() > 0) {
 
                 currentEquipment = list.get(0);
-                use_button.isDraw = 1;
+                use_button.setIsDraw(1);
                 signal = 1;
             } else {
                 signal = 0;
-                use_button.isDraw = 0;
+                use_button.setIsDraw(0);
                 currentEquipment = null;
             }
         } else if (shoeButton.isClicked()) {
@@ -938,12 +938,12 @@ public class EquipPanel extends FatherPanel {
                 }
             }
             if (list.size() > 0) {
-                use_button.isDraw = 1;
+                use_button.setIsDraw(1);
                 currentEquipment = list.get(0);
                 signal = 1;
             } else {
                 signal = 0;
-                use_button.isDraw = 0;
+                use_button.setIsDraw(0);
                 currentEquipment = null;
             }
 
@@ -960,12 +960,12 @@ public class EquipPanel extends FatherPanel {
                 }
             }
             if (list.size() > 0) {
-                use_button.isDraw = 1;
+                use_button.setIsDraw(1);
                 currentEquipment = list.get(0);
                 signal = 1;
             } else {
                 signal = 0;
-                use_button.isDraw = 0;
+                use_button.setIsDraw(0);
                 currentEquipment = null;
             }
         } else if (decorationButton.isClicked()) {
@@ -981,11 +981,11 @@ public class EquipPanel extends FatherPanel {
                 }
             }
             if (list.size() > 0) {
-                use_button.isDraw = 1;
+                use_button.setIsDraw(1);
                 currentEquipment = list.get(0);
                 signal = 1;
             } else {
-                use_button.isDraw = 0;
+                use_button.setIsDraw(0);
                 signal = 0;
                 currentEquipment = null;
             }
@@ -1144,9 +1144,9 @@ public class EquipPanel extends FatherPanel {
             }
 
         }
-        hero1.refreshValue();
-        hero2.refreshValue();
-        hero4.refreshValue();
+        getHero1().refreshValue();
+        getHero2().refreshValue();
+        getHero4().refreshValue();
 
     }
 

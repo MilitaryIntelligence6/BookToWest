@@ -56,16 +56,16 @@ public class DrugPanel extends FatherPanel {
         super(a, h1, h2, h4);
 
         this.setName("thingPanel");
-        scoll = new Scoll(this);
+        setScoll(new Scoll(this));
         drugPack = new DrugPack();
 
         addButton();
         upDateDrugList();
-        hero1.refreshValue();
-        hero2.refreshValue();
-        hero4.refreshValue();
-        hp = hero1.getHp();
-        mp = hero1.getMp();
+        getHero1().refreshValue();
+        getHero2().refreshValue();
+        getHero4().refreshValue();
+        hp = getHero1().getHp();
+        mp = getHero1().getMp();
 
 
     }
@@ -77,7 +77,7 @@ public class DrugPanel extends FatherPanel {
         Image image3 = new ImageIcon("sources/菜单/物品/使用3.png").getImage();
         use_button = new MenuButton(x_button, y_button, width_button,
                 height_button, image1, image2, image3, this);
-        use_button.isDraw = MenuButton.No;
+        use_button.setIsDraw(MenuButton.getNo());
 
 
     }
@@ -85,7 +85,7 @@ public class DrugPanel extends FatherPanel {
     @Override
     public void readBackgroundImage() {
         // TODO Auto-generated method stub
-        backgroundImage = Reader.readImage("sources/菜单/物品/物品3.png");
+        setBackgroundImage(Reader.readImage("sources/菜单/物品/物品3.png"));
     }
 
     @Override
@@ -142,41 +142,41 @@ public class DrugPanel extends FatherPanel {
         if (list.size() != 0) {
 
             for (int i = 0; i < list.size(); i++) {
-                if (currentX > x_start_point
-                        && currentX < x_start_point + 130
-                        && currentY > originalY
-                        && currentY < (originalY + 32)) {
+                if (getCurrentX() > x_start_point
+                        && getCurrentX() < x_start_point + 130
+                        && getCurrentY() > originalY
+                        && getCurrentY() < (originalY + 32)) {
                     currentDrug = list.get(i);
                     y_button = originalY + 5;
-                    use_button.isDraw = MenuButton.Yes;
+                    use_button.setIsDraw(MenuButton.getYes());
                 }
                 originalY += 32;
             }
 
         } else {
-            use_button.isDraw = MenuButton.No;
+            use_button.setIsDraw(MenuButton.getNo());
         }
     }
 
     private void drawValueBar(Graphics g) {
         // TODO Auto-generated method stub
-        hero1.refreshValue();
-        hero2.refreshValue();
-        hero4.refreshValue();
+        getHero1().refreshValue();
+        getHero2().refreshValue();
+        getHero4().refreshValue();
         g.setColor(Color.blue);
         g.setFont(new Font("文鼎粗钢笔行楷", Font.BOLD, 20));
-        switch (scoll.whichHero) {
+        switch (getScoll().getWhichHero()) {
             case 1:
-                hero = hero1;
+                hero = getHero1();
                 break;
             case 2:
-                hero = hero2;
+                hero = getHero2();
                 break;
             case 3:
-                hero = hero3;
+                hero = getHero3();
                 break;
             case 4:
-                hero = hero4;
+                hero = getHero4();
                 break;
             default:
                 break;
@@ -199,16 +199,16 @@ public class DrugPanel extends FatherPanel {
     public void checkAllButtonReleased() {
         // TODO Auto-generated method stub
 
-        scoll.checkReleased();
-        use_button.isRelesedButton(currentX, currentY);
+        getScoll().checkReleased();
+        use_button.isRelesedButton(getCurrentX(), getCurrentY());
     }
 
     @Override
     public void checkAllButtonMoveIn() {
         // TODO Auto-generated method stub
 
-        scoll.checkMoveIn();
-        use_button.isMoveIn(currentX, currentY);
+        getScoll().checkMoveIn();
+        use_button.isMoveIn(getCurrentX(), getCurrentY());
         isMoveIn();
     }
 
@@ -216,8 +216,8 @@ public class DrugPanel extends FatherPanel {
     public void checkAllButtonPressed() {
         // TODO Auto-generated method stub
 
-        scoll.checkPressed();
-        use_button.isPressedButton(currentX, currentY);
+        getScoll().checkPressed();
+        use_button.isPressedButton(getCurrentX(), getCurrentY());
 
         if (use_button.clicked) {
             if (currentDrug != null) {
@@ -226,7 +226,7 @@ public class DrugPanel extends FatherPanel {
                 addValue();
                 if (currentDrug.getNumberGOT() == 0) {
                     currentDrug = null;
-                    use_button.isDraw = MenuButton.No;
+                    use_button.setIsDraw(MenuButton.getNo());
                 }
             }
             upDateDrugList();
@@ -265,29 +265,29 @@ public class DrugPanel extends FatherPanel {
     public void showDrug() {
         if (list.size() > 0) {
             currentDrug = list.get(0);
-            use_button.isDraw = 1;
+            use_button.setIsDraw(1);
         } else {
             currentDrug = null;
-            use_button.isDraw = 0;
+            use_button.setIsDraw(0);
         }
     }
 
     private void addValue() {
         // TODO Auto-generated method stub
-        hero1.refreshValue();
-        hero2.refreshValue();
-        hero4.refreshValue();
+        getHero1().refreshValue();
+        getHero2().refreshValue();
+        getHero4().refreshValue();
         int h;
         int m;
-        switch (scoll.whichHero) {
+        switch (getScoll().getWhichHero()) {
             case 1:
-                hero = hero1;
+                hero = getHero1();
                 break;
             case 2:
-                hero = hero2;
+                hero = getHero2();
                 break;
             case 4:
-                hero = hero4;
+                hero = getHero4();
                 break;
             default:
                 break;

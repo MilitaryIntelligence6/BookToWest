@@ -105,7 +105,7 @@ public class Command {
      */
     public void checkMoveIn() {
         for (MenuButton button : buttonList) {
-            button.isMoveIn(menupanel.currentX, menupanel.currentY);
+            button.isMoveIn(menupanel.getCurrentX(), menupanel.getCurrentY());
         }
     }
 
@@ -114,28 +114,28 @@ public class Command {
      */
     public void checkPressed() {
         for (MenuButton button : buttonList) {
-            button.isPressedButton(menupanel.currentX, menupanel.currentY);
+            button.isPressedButton(menupanel.getCurrentX(), menupanel.getCurrentY());
         }
 
         if (thingButton.isClicked()) {
             MusicReader.readMusic("换list.wav");
-            menupanel.switcher.show(menupanel, menupanel.thingPanel.getName());
-            menupanel.currentPanel = menupanel.thingPanel;
+            menupanel.getSwitcher().show(menupanel, menupanel.getThingPanel().getName());
+            menupanel.setCurrentPanel(menupanel.getThingPanel());
         } else if (magicButton.isClicked()) {
 
             MusicReader.readMusic("换list.wav");
-            menupanel.switcher.show(menupanel, menupanel.magicPanel.getName());
-            menupanel.currentPanel = menupanel.magicPanel;
+            menupanel.getSwitcher().show(menupanel, menupanel.getMagicPanel().getName());
+            menupanel.setCurrentPanel(menupanel.getMagicPanel());
         } else if (funcButton.isClicked()) {
 
             MusicReader.readMusic("换list.wav");
-            menupanel.switcher.show(menupanel, menupanel.funcPanel.getName());
-            menupanel.currentPanel = menupanel.funcPanel;
+            menupanel.getSwitcher().show(menupanel, menupanel.getFuncPanel().getName());
+            menupanel.setCurrentPanel(menupanel.getFuncPanel());
         } else if (equipButton.isClicked()) {
 
             MusicReader.readMusic("换list.wav");
-            menupanel.switcher.show(menupanel, menupanel.equipPanel.getName());
-            menupanel.currentPanel = menupanel.equipPanel;
+            menupanel.getSwitcher().show(menupanel, menupanel.getEquipPanel().getName());
+            menupanel.setCurrentPanel(menupanel.getEquipPanel());
         }
     }
 
@@ -145,7 +145,7 @@ public class Command {
     public void checkReleased() {
         //检验 击 按钮是否被按下
         for (MenuButton button : buttonList) {
-            button.isRelesedButton(menupanel.currentX, menupanel.currentY);
+            button.isRelesedButton(menupanel.getCurrentX(), menupanel.getCurrentY());
         }
     }
 

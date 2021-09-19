@@ -175,9 +175,9 @@ public class GameApplication extends JFrame implements KeyListener {
                 // 如果进入菜单界面的信号为1
                 switcher.show(container, "menuPanel");
                 currentPanel = menuPanel;
-                menuPanel.hero1.refreshValue();
-                menuPanel.hero2.refreshValue();
-                menuPanel.hero4.refreshValue();
+                menuPanel.getHero1().refreshValue();
+                menuPanel.getHero2().refreshValue();
+                menuPanel.getHero4().refreshValue();
                 break;
             // 如果进入开始界面的信号为1
             case "start":

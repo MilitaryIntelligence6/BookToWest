@@ -12,15 +12,31 @@ import cn.misection.booktowest.util.*;
  * 继承自GameBu 主要实现是否显示的问题；
  */
 public class MenuButton extends GameButton {
-    int isDraw = 0;
-    static int Yes = 1;
-    static int No = 0;
+    private int isDraw = 0;
+    private static int Yes = 1;
+    private static int No = 0;
 
     public MenuButton(int x, int y, int width, int height, Image normalImage,
                       Image waitclickImage, Image pressedImage, JPanel mp) {
         super(x, y, width, height, normalImage, waitclickImage, pressedImage, mp);
         // TODO Auto-generated constructor stub
         this.isDraw = MenuButton.Yes;
+    }
+
+    public static int getYes() {
+        return Yes;
+    }
+
+    public static void setYes(int yes) {
+        Yes = yes;
+    }
+
+    public static int getNo() {
+        return No;
+    }
+
+    public static void setNo(int no) {
+        No = no;
     }
 
     @Override
@@ -50,5 +66,13 @@ public class MenuButton extends GameButton {
 
     public boolean isIsMoveIn() {
         return moveIn;
+    }
+
+    public int getIsDraw() {
+        return isDraw;
+    }
+
+    public void setIsDraw(int isDraw) {
+        this.isDraw = isDraw;
     }
 }

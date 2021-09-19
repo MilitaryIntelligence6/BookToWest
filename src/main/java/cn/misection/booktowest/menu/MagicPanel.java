@@ -13,49 +13,49 @@ public class MagicPanel extends FatherPanel {
      *
      */
     private static final long serialVersionUID = 6674008507522389308L;
-    magicDiscription discription;
-    MagicAnimation currentAnimation;
+    private magicDiscription discription;
+    private MagicAnimation currentAnimation;
     //MagicAnimation animationDiscription;
-    ArrayList<MagicAnimation> zhang_animation = new ArrayList<MagicAnimation>();
-    ArrayList<MagicAnimation> lu_animation = new ArrayList<MagicAnimation>();
-    ArrayList<MagicAnimation> song_animation = new ArrayList<MagicAnimation>();
-    ArrayList<MagicAnimation> yu_animation = new ArrayList<MagicAnimation>();
+    private ArrayList<MagicAnimation> zhang_animation = new ArrayList<MagicAnimation>();
+    private ArrayList<MagicAnimation> lu_animation = new ArrayList<MagicAnimation>();
+    private ArrayList<MagicAnimation> song_animation = new ArrayList<MagicAnimation>();
+    private ArrayList<MagicAnimation> yu_animation = new ArrayList<MagicAnimation>();
 
 
-    ArrayList<MenuButton> buttonList1 = new ArrayList<MenuButton>();
-    ArrayList<MenuButton> buttonList2 = new ArrayList<MenuButton>();
-    ArrayList<MenuButton> buttonList3 = new ArrayList<MenuButton>();
-    ArrayList<MenuButton> buttonList4 = new ArrayList<MenuButton>();
-    ArrayList<ArrayList<MenuButton>> buttonList = new ArrayList<ArrayList<MenuButton>>();
-    MenuButton button_lu_1;
-    MenuButton button_lu_2;
-    MenuButton button_lu_3;
-    MenuButton button_lu_4;
-    MenuButton button_lu_5;
+    private ArrayList<MenuButton> buttonList1 = new ArrayList<MenuButton>();
+    private ArrayList<MenuButton> buttonList2 = new ArrayList<MenuButton>();
+    private ArrayList<MenuButton> buttonList3 = new ArrayList<MenuButton>();
+    private ArrayList<MenuButton> buttonList4 = new ArrayList<MenuButton>();
+    private ArrayList<ArrayList<MenuButton>> buttonList = new ArrayList<ArrayList<MenuButton>>();
+    private MenuButton button_lu_1;
+    private MenuButton button_lu_2;
+    private MenuButton button_lu_3;
+    private MenuButton button_lu_4;
+    private MenuButton button_lu_5;
 
-    MenuButton button_zhang_1;
-    MenuButton button_zhang_2;
-    MenuButton button_zhang_3;
-    MenuButton button_zhang_4;
-    MenuButton button_zhang_5;
+    private MenuButton button_zhang_1;
+    private MenuButton button_zhang_2;
+    private MenuButton button_zhang_3;
+    private MenuButton button_zhang_4;
+    private MenuButton button_zhang_5;
 
-    MenuButton button_song_1;
-    MenuButton button_song_2;
-    MenuButton button_song_3;
-    MenuButton button_song_4;
-    MenuButton button_song_5;
+    private MenuButton button_song_1;
+    private MenuButton button_song_2;
+    private MenuButton button_song_3;
+    private MenuButton button_song_4;
+    private MenuButton button_song_5;
 
-    MenuButton button_yu_1;
-    MenuButton button_yu_2;
-    MenuButton button_yu_3;
-    MenuButton button_yu_4;
-    MenuButton button_yu_5;
+    private MenuButton button_yu_1;
+    private MenuButton button_yu_2;
+    private MenuButton button_yu_3;
+    private MenuButton button_yu_4;
+    private MenuButton button_yu_5;
 
 
     public MagicPanel(MenuPanel a, ZhangXiaoFan h1, LuXueQi h2, YuJie h4) {
         super(a, h1, h2, h4);
         this.setName("magicPanel");
-        scoll = new Scoll(this);
+        setScoll(new Scoll(this));
         discription = new magicDiscription();
         addMagicButton();
         addMagicAnimation();
@@ -216,7 +216,7 @@ public class MagicPanel extends FatherPanel {
         buttonList.add(buttonList3);
         buttonList.add(buttonList4);
         for (MenuButton button : buttonList3) {
-            button.isDraw = 0;
+            button.setIsDraw(0);
         }
 
 
@@ -271,7 +271,7 @@ public class MagicPanel extends FatherPanel {
     @Override
     public void readBackgroundImage() {
 
-        backgroundImage = Reader.readImage("sources/菜单/奇术/奇术.png");
+        setBackgroundImage(Reader.readImage("sources/菜单/奇术/奇术.png"));
 
     }
 
@@ -279,52 +279,52 @@ public class MagicPanel extends FatherPanel {
     public void drawThisPanel(Graphics g) {
 
 
-        switch (this.scoll.whichHero) {
+        switch (this.getScoll().getWhichHero()) {
             case 1:
                 for (int i = 0; i < ZhangXiaoFan.skillNumber; i++) {
-                    buttonList1.get(i).isDraw = 1;
+                    buttonList1.get(i).setIsDraw(1);
                 }
                 for (int i = ZhangXiaoFan.skillNumber - 1; i < 5; i++) {
-                    buttonList1.get(i).isDraw = 0;
+                    buttonList1.get(i).setIsDraw(0);
                 }
                 for (MenuButton button : buttonList2) {
-                    button.isDraw = MenuButton.No;
+                    button.setIsDraw(MenuButton.getNo());
                 }
 
                 for (MenuButton button : buttonList4) {
-                    button.isDraw = MenuButton.No;
+                    button.setIsDraw(MenuButton.getNo());
                 }
 
                 break;
             case 2:
                 for (MenuButton button : buttonList1) {
-                    button.isDraw = MenuButton.No;
+                    button.setIsDraw(MenuButton.getNo());
                 }
                 for (int i = 0; i < LuXueQi.getSkillNumber(); i++) {
-                    buttonList2.get(i).isDraw = 1;
+                    buttonList2.get(i).setIsDraw(1);
                 }
                 for (int i = LuXueQi.getSkillNumber() - 1; i < 5; i++) {
-                    buttonList2.get(i).isDraw = 0;
+                    buttonList2.get(i).setIsDraw(0);
                 }
 
                 for (MenuButton button : buttonList4) {
-                    button.isDraw = MenuButton.No;
+                    button.setIsDraw(MenuButton.getNo());
                 }
 
                 break;
 
             case 4:
                 for (MenuButton button : buttonList1) {
-                    button.isDraw = MenuButton.No;
+                    button.setIsDraw(MenuButton.getNo());
                 }
                 for (MenuButton button : buttonList2) {
-                    button.isDraw = MenuButton.No;
+                    button.setIsDraw(MenuButton.getNo());
                 }
                 for (int i = 0; i < YuJie.skillNumber; i++) {
-                    buttonList4.get(i).isDraw = 1;
+                    buttonList4.get(i).setIsDraw(1);
                 }
                 for (int i = YuJie.skillNumber - 1; i < 5; i++) {
-                    buttonList4.get(i).isDraw = 0;
+                    buttonList4.get(i).setIsDraw(0);
                 }
 
                 break;
@@ -349,8 +349,8 @@ public class MagicPanel extends FatherPanel {
         if (currentAnimation != null) {
             currentAnimation.update();
             if (currentAnimation != null) {
-                if (currentAnimation.code == currentAnimation.length) {
-                    currentAnimation.code = 1;
+                if (currentAnimation.getCode() == currentAnimation.getLength()) {
+                    currentAnimation.setCode(1);
                     currentAnimation = null;
                 }
             }
@@ -368,10 +368,10 @@ public class MagicPanel extends FatherPanel {
     public void checkAllButtonReleased() {
         // TODO Auto-generated method stub
 
-        scoll.checkReleased();
+        getScoll().checkReleased();
         for (ArrayList<MenuButton> list : buttonList) {
             for (MenuButton button : list) {
-                button.isRelesedButton(currentX, currentY);
+                button.isRelesedButton(getCurrentX(), getCurrentY());
             }
         }
 
@@ -382,26 +382,26 @@ public class MagicPanel extends FatherPanel {
     public void checkAllButtonMoveIn() {
         // TODO Auto-generated method stub
 
-        scoll.checkMoveIn();
-        switch (this.scoll.whichHero) {
+        getScoll().checkMoveIn();
+        switch (this.getScoll().getWhichHero()) {
             case 1:
                 for (MenuButton button : buttonList1) {
-                    button.isMoveIn(currentX, currentY);
+                    button.isMoveIn(getCurrentX(), getCurrentY());
                 }
                 break;
             case 2:
                 for (MenuButton button : buttonList2) {
-                    button.isMoveIn(currentX, currentY);
+                    button.isMoveIn(getCurrentX(), getCurrentY());
                 }
                 break;
             case 3:
                 for (MenuButton button : buttonList3) {
-                    button.isMoveIn(currentX, currentY);
+                    button.isMoveIn(getCurrentX(), getCurrentY());
                 }
                 break;
             case 4:
                 for (MenuButton button : buttonList4) {
-                    button.isMoveIn(currentX, currentY);
+                    button.isMoveIn(getCurrentX(), getCurrentY());
                 }
                 break;
             default:
@@ -416,27 +416,27 @@ public class MagicPanel extends FatherPanel {
     public void checkAllButtonPressed() {
         // TODO Auto-generated method stub
 
-        scoll.checkPressed();
+        getScoll().checkPressed();
 
-        switch (this.scoll.whichHero) {
+        switch (this.getScoll().getWhichHero()) {
             case 1:
                 for (MenuButton button : buttonList1) {
-                    button.isPressedButton(currentX, currentY);
+                    button.isPressedButton(getCurrentX(), getCurrentY());
                 }
                 break;
             case 2:
                 for (MenuButton button : buttonList2) {
-                    button.isPressedButton(currentX, currentY);
+                    button.isPressedButton(getCurrentX(), getCurrentY());
                 }
                 break;
             case 3:
                 for (MenuButton button : buttonList3) {
-                    button.isPressedButton(currentX, currentY);
+                    button.isPressedButton(getCurrentX(), getCurrentY());
                 }
                 break;
             case 4:
                 for (MenuButton button : buttonList4) {
-                    button.isPressedButton(currentX, currentY);
+                    button.isPressedButton(getCurrentX(), getCurrentY());
                 }
                 break;
             default:
@@ -484,4 +484,251 @@ public class MagicPanel extends FatherPanel {
     }
 
 
+    public magicDiscription getDiscription() {
+        return discription;
+    }
+
+    public void setDiscription(magicDiscription discription) {
+        this.discription = discription;
+    }
+
+    public MagicAnimation getCurrentAnimation() {
+        return currentAnimation;
+    }
+
+    public void setCurrentAnimation(MagicAnimation currentAnimation) {
+        this.currentAnimation = currentAnimation;
+    }
+
+    public ArrayList<MagicAnimation> getZhang_animation() {
+        return zhang_animation;
+    }
+
+    public void setZhang_animation(ArrayList<MagicAnimation> zhang_animation) {
+        this.zhang_animation = zhang_animation;
+    }
+
+    public ArrayList<MagicAnimation> getLu_animation() {
+        return lu_animation;
+    }
+
+    public void setLu_animation(ArrayList<MagicAnimation> lu_animation) {
+        this.lu_animation = lu_animation;
+    }
+
+    public ArrayList<MagicAnimation> getSong_animation() {
+        return song_animation;
+    }
+
+    public void setSong_animation(ArrayList<MagicAnimation> song_animation) {
+        this.song_animation = song_animation;
+    }
+
+    public ArrayList<MagicAnimation> getYu_animation() {
+        return yu_animation;
+    }
+
+    public void setYu_animation(ArrayList<MagicAnimation> yu_animation) {
+        this.yu_animation = yu_animation;
+    }
+
+    public ArrayList<MenuButton> getButtonList1() {
+        return buttonList1;
+    }
+
+    public void setButtonList1(ArrayList<MenuButton> buttonList1) {
+        this.buttonList1 = buttonList1;
+    }
+
+    public ArrayList<MenuButton> getButtonList2() {
+        return buttonList2;
+    }
+
+    public void setButtonList2(ArrayList<MenuButton> buttonList2) {
+        this.buttonList2 = buttonList2;
+    }
+
+    public ArrayList<MenuButton> getButtonList3() {
+        return buttonList3;
+    }
+
+    public void setButtonList3(ArrayList<MenuButton> buttonList3) {
+        this.buttonList3 = buttonList3;
+    }
+
+    public ArrayList<MenuButton> getButtonList4() {
+        return buttonList4;
+    }
+
+    public void setButtonList4(ArrayList<MenuButton> buttonList4) {
+        this.buttonList4 = buttonList4;
+    }
+
+    public ArrayList<ArrayList<MenuButton>> getButtonList() {
+        return buttonList;
+    }
+
+    public void setButtonList(ArrayList<ArrayList<MenuButton>> buttonList) {
+        this.buttonList = buttonList;
+    }
+
+    public MenuButton getButton_lu_1() {
+        return button_lu_1;
+    }
+
+    public void setButton_lu_1(MenuButton button_lu_1) {
+        this.button_lu_1 = button_lu_1;
+    }
+
+    public MenuButton getButton_lu_2() {
+        return button_lu_2;
+    }
+
+    public void setButton_lu_2(MenuButton button_lu_2) {
+        this.button_lu_2 = button_lu_2;
+    }
+
+    public MenuButton getButton_lu_3() {
+        return button_lu_3;
+    }
+
+    public void setButton_lu_3(MenuButton button_lu_3) {
+        this.button_lu_3 = button_lu_3;
+    }
+
+    public MenuButton getButton_lu_4() {
+        return button_lu_4;
+    }
+
+    public void setButton_lu_4(MenuButton button_lu_4) {
+        this.button_lu_4 = button_lu_4;
+    }
+
+    public MenuButton getButton_lu_5() {
+        return button_lu_5;
+    }
+
+    public void setButton_lu_5(MenuButton button_lu_5) {
+        this.button_lu_5 = button_lu_5;
+    }
+
+    public MenuButton getButton_zhang_1() {
+        return button_zhang_1;
+    }
+
+    public void setButton_zhang_1(MenuButton button_zhang_1) {
+        this.button_zhang_1 = button_zhang_1;
+    }
+
+    public MenuButton getButton_zhang_2() {
+        return button_zhang_2;
+    }
+
+    public void setButton_zhang_2(MenuButton button_zhang_2) {
+        this.button_zhang_2 = button_zhang_2;
+    }
+
+    public MenuButton getButton_zhang_3() {
+        return button_zhang_3;
+    }
+
+    public void setButton_zhang_3(MenuButton button_zhang_3) {
+        this.button_zhang_3 = button_zhang_3;
+    }
+
+    public MenuButton getButton_zhang_4() {
+        return button_zhang_4;
+    }
+
+    public void setButton_zhang_4(MenuButton button_zhang_4) {
+        this.button_zhang_4 = button_zhang_4;
+    }
+
+    public MenuButton getButton_zhang_5() {
+        return button_zhang_5;
+    }
+
+    public void setButton_zhang_5(MenuButton button_zhang_5) {
+        this.button_zhang_5 = button_zhang_5;
+    }
+
+    public MenuButton getButton_song_1() {
+        return button_song_1;
+    }
+
+    public void setButton_song_1(MenuButton button_song_1) {
+        this.button_song_1 = button_song_1;
+    }
+
+    public MenuButton getButton_song_2() {
+        return button_song_2;
+    }
+
+    public void setButton_song_2(MenuButton button_song_2) {
+        this.button_song_2 = button_song_2;
+    }
+
+    public MenuButton getButton_song_3() {
+        return button_song_3;
+    }
+
+    public void setButton_song_3(MenuButton button_song_3) {
+        this.button_song_3 = button_song_3;
+    }
+
+    public MenuButton getButton_song_4() {
+        return button_song_4;
+    }
+
+    public void setButton_song_4(MenuButton button_song_4) {
+        this.button_song_4 = button_song_4;
+    }
+
+    public MenuButton getButton_song_5() {
+        return button_song_5;
+    }
+
+    public void setButton_song_5(MenuButton button_song_5) {
+        this.button_song_5 = button_song_5;
+    }
+
+    public MenuButton getButton_yu_1() {
+        return button_yu_1;
+    }
+
+    public void setButton_yu_1(MenuButton button_yu_1) {
+        this.button_yu_1 = button_yu_1;
+    }
+
+    public MenuButton getButton_yu_2() {
+        return button_yu_2;
+    }
+
+    public void setButton_yu_2(MenuButton button_yu_2) {
+        this.button_yu_2 = button_yu_2;
+    }
+
+    public MenuButton getButton_yu_3() {
+        return button_yu_3;
+    }
+
+    public void setButton_yu_3(MenuButton button_yu_3) {
+        this.button_yu_3 = button_yu_3;
+    }
+
+    public MenuButton getButton_yu_4() {
+        return button_yu_4;
+    }
+
+    public void setButton_yu_4(MenuButton button_yu_4) {
+        this.button_yu_4 = button_yu_4;
+    }
+
+    public MenuButton getButton_yu_5() {
+        return button_yu_5;
+    }
+
+    public void setButton_yu_5(MenuButton button_yu_5) {
+        this.button_yu_5 = button_yu_5;
+    }
 }

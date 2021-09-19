@@ -40,7 +40,7 @@ public class Recorder {
         luXueQiInfo = GameApplication.luXueQi.saveRoleInfo();
         yuJieInfo = GameApplication.yuJie.saveRoleInfo();
         sceneInfo = sa.saveSceneInfo();
-        menuInfo = GameApplication.menuPanel.equipPanel.saveEquipInfo();
+        menuInfo = GameApplication.menuPanel.getEquipPanel().saveEquipInfo();
         shopInfo = GameApplication.shopPanel.saveShopInfo();
         equipmentShopInfo = GameApplication.equipmentShopPanel.saveEquipmentShopInfo();
         questionInfo = sa.saveQuestion();

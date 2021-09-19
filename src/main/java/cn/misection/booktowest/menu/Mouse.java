@@ -10,19 +10,20 @@ import javax.swing.ImageIcon;
 public class Mouse {
 
     //引用
-    FatherPanel fp;
+    private FatherPanel fp;
 
-    Image mouseImage;//图片引用
-    Image currentImage;//当前的图片
-    ArrayList<Image> images = new ArrayList<Image>();//图片集合
-    int x, y;//坐标
-    int code;//编号
+    private Image mouseImage;//图片引用
+    private Image currentImage;//当前的图片
+    private ArrayList<Image> images = new ArrayList<Image>();//图片集合
+    private int x;
+    private int y;//坐标
+    private int code;//编号
 
     //构造方法
     public Mouse(FatherPanel a) {
         this.fp = a;
-        x = fp.currentX;
-        y = fp.currentY;
+        x = fp.getCurrentX();
+        y = fp.getCurrentY();
         getImage();
 
     }
@@ -43,8 +44,8 @@ public class Mouse {
 
     //更新方法
     public void update() {
-        x = fp.currentX;
-        y = fp.currentY;
+        x = fp.getCurrentX();
+        y = fp.getCurrentY();
         if (code < 8) {
             currentImage = images.get(code);
             code++;
@@ -53,4 +54,59 @@ public class Mouse {
         }
     }
 
+    public FatherPanel getFp() {
+        return fp;
+    }
+
+    public void setFp(FatherPanel fp) {
+        this.fp = fp;
+    }
+
+    public Image getMouseImage() {
+        return mouseImage;
+    }
+
+    public void setMouseImage(Image mouseImage) {
+        this.mouseImage = mouseImage;
+    }
+
+    public Image getCurrentImage() {
+        return currentImage;
+    }
+
+    public void setCurrentImage(Image currentImage) {
+        this.currentImage = currentImage;
+    }
+
+    public ArrayList<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        this.images = images;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 }

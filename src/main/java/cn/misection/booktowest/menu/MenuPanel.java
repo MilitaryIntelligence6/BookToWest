@@ -23,18 +23,18 @@ public class MenuPanel extends JPanel {
     private final static int HEIGHT = 32 * 20;
 
     //人物引用
-    int currentX;
-    int currentY;
-    public ZhangXiaoFan hero1;
-    public LuXueQi hero2;
-    public YuJie hero4;
-    FatherPanel thingPanel;
-    FatherPanel magicPanel;
-    FatherPanel funcPanel;
-    public FatherPanel equipPanel;
-    FatherPanel currentPanel;
-    Command command;
-    public CardLayout switcher = new CardLayout();
+    private int currentX;
+    private int currentY;
+    private ZhangXiaoFan hero1;
+    private LuXueQi hero2;
+    private YuJie hero4;
+    private FatherPanel thingPanel;
+    private FatherPanel magicPanel;
+    private FatherPanel funcPanel;
+    private FatherPanel equipPanel;
+    private FatherPanel currentPanel;
+    private Command command;
+    private CardLayout switcher = new CardLayout();
 
     public MenuPanel(ZhangXiaoFan h1, LuXueQi h2, YuJie h4) {
         hero1 = h1;
@@ -139,4 +139,99 @@ public class MenuPanel extends JPanel {
     }
 
 
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public void setCurrentX(int currentX) {
+        this.currentX = currentX;
+    }
+
+    public int getCurrentY() {
+        return currentY;
+    }
+
+    public void setCurrentY(int currentY) {
+        this.currentY = currentY;
+    }
+
+    public ZhangXiaoFan getHero1() {
+        return hero1;
+    }
+
+    public void setHero1(ZhangXiaoFan hero1) {
+        this.hero1 = hero1;
+    }
+
+    public LuXueQi getHero2() {
+        return hero2;
+    }
+
+    public void setHero2(LuXueQi hero2) {
+        this.hero2 = hero2;
+    }
+
+    public YuJie getHero4() {
+        return hero4;
+    }
+
+    public void setHero4(YuJie hero4) {
+        this.hero4 = hero4;
+    }
+
+    public FatherPanel getThingPanel() {
+        return thingPanel;
+    }
+
+    public void setThingPanel(FatherPanel thingPanel) {
+        this.thingPanel = thingPanel;
+    }
+
+    public FatherPanel getMagicPanel() {
+        return magicPanel;
+    }
+
+    public void setMagicPanel(FatherPanel magicPanel) {
+        this.magicPanel = magicPanel;
+    }
+
+    public FatherPanel getFuncPanel() {
+        return funcPanel;
+    }
+
+    public void setFuncPanel(FatherPanel funcPanel) {
+        this.funcPanel = funcPanel;
+    }
+
+    public FatherPanel getEquipPanel() {
+        return equipPanel;
+    }
+
+    public void setEquipPanel(FatherPanel equipPanel) {
+        this.equipPanel = equipPanel;
+    }
+
+    public FatherPanel getCurrentPanel() {
+        return currentPanel;
+    }
+
+    public void setCurrentPanel(FatherPanel currentPanel) {
+        this.currentPanel = currentPanel;
+    }
+
+    public Command getCommand() {
+        return command;
+    }
+
+    public void setCommand(Command command) {
+        this.command = command;
+    }
+
+    public CardLayout getSwitcher() {
+        return switcher;
+    }
+
+    public void setSwitcher(CardLayout switcher) {
+        this.switcher = switcher;
+    }
 }
