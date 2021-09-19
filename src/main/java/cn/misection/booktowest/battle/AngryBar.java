@@ -27,6 +27,7 @@ public class AngryBar {
     private int backX;
 
     private int backY;
+
     private int dx1;
 
     private int dy1;
@@ -48,61 +49,58 @@ public class AngryBar {
     private Hero hero;
 
     public AngryBar(BattlePanel battlePanel, Hero hero) {
-        this.setBattlePanel(battlePanel);
-        this.setHero(hero);
+        this.battlePanel = battlePanel;
+        this.hero = hero;
 
         switch (hero.getRoleCode()) {
             //张小凡
             case 1:
-                setBackX(170);
-                setBackY(510 - 96 / 2 + 20);
-                setDx1(getBackX() + 8);
-                setDy1(getBackY() + 8 + 80);
-                setDx2(getDx1() + 80);
-                setDy2(getDy1());
+                backX = 170;
+                backY = (510 - (96 / 2)) + 20;
+                dx1 = backX + 8;
+                dy1 = backY + 8 + 80;
+                dx2 = dx1 + 80;
+                dy2 = dy1;
                 break;
             //文敏
             case 2:
-                setBackX(170 + 322);
-                setBackY(510 - 96 / 2 + 20);
-                setDx1(getBackX() + 8);
-                setDy1(getBackY() + 8 + 80);
-                setDx2(getDx1() + 80);
-                setDy2(getDy1());
+                backX = 170 + 322;
+                backY = ((510 - (96 / 2)) + 20);
+                dx1 = backX + 8;
+                dy1 = backY + 8 + 80;
+                dx2 = dx1 + 80;
+                dy2 = dy1;
                 break;
             //陆雪琪
             case 3:
-                setBackX(170 + 322 * 2);
-                setBackY(510 - 96 / 2 + 20);
-                setDx1(getBackX() + 8);
-                setDy1(getBackY() + 8 + 80);
-                setDx2(getDx1() + 80);
-                setDy2(getDy1());
+                backX = (170 + (322 * 2));
+                backY = ((510 - (96 / 2)) + 20);
+                dx1 = backX + 8;
+                dy1 = backY + 8 + 80;
+                dx2 = dx1 + 80;
+                dy2 = dy1;
                 break;
             default:
                 break;
         }
-        setSx1(0);
-        setSy1(80);
-        setSx2(80);
-        setSy2(80);
-
+        sx1 = 0;
+        sy1 = 80;
+        sx2 = 80;
+        sy2 = 80;
         loadImage();
-        setCurrentImage(getImages().get(0));
-
-        setDrawn(true);
-        setStopped(false);
-
+        currentImage = images.get(0);
+        this.drawn = true;
+        this.stopped = false;
     }
 
     /**
      * 载入图片;
      */
     public void loadImage() {
-        setBack(Reader.readImage("image/怒气槽/底.png"));
+        back = (Reader.readImage("image/怒气槽/底.png"));
         for (int i = 1; i <= 4; i++) {
             Image image = Reader.readImage("image/怒气槽/" + i + ".png");
-            getImages().add(image);
+            images.add(image);
         }
     }
 
@@ -111,7 +109,7 @@ public class AngryBar {
      * @param g
      */
     public void drawAngryBar(Graphics g) {
-        if (isDrawn()) {
+        if (drawn) {
             g.drawImage(getBack(), getBackX(), getBackY(), getBattlePanel());
             g.drawImage(getCurrentImage(), getDx1(), getDy1(), getDx2(), getDy2(), getSx1(), getSy1(), getSx2(), getSy2(), getBattlePanel());
         }
@@ -121,7 +119,7 @@ public class AngryBar {
      * 更新;
      */
     public void update() {
-        if (!isStopped()) {
+        if (!stopped) {
             int height = (int) (((double) getHero().getAngryValue() / getHero().getHpMax()) * 100);
             setDy1(getBackY() + 8 + 80 - height);
             setSy1(80 - height);
