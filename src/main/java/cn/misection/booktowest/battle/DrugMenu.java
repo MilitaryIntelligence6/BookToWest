@@ -9,35 +9,35 @@ import cn.misection.booktowest.shop.*;
 //使用药品的菜单
 public class DrugMenu {
     //背景图
-    Image backImage;
+    private Image backImage;
 
     //按钮
-    GameButton drugButton;
-    ArrayList<GameButton> drugButtons = new ArrayList<GameButton>();
+    private GameButton drugButton;
+    private ArrayList<GameButton> drugButtons = new ArrayList<GameButton>();
     //按钮图片
-    ArrayList<Image> buttonImages = new ArrayList<Image>();
+    private ArrayList<Image> buttonImages = new ArrayList<Image>();
     //菜单出现的位置
-    int x;
-    int y;
+    private int x;
+    private int y;
     //是否画出
-    boolean isDraw;
+    private boolean isDraw;
 
     //介绍性图片
-    Image introduceImage;
+    private Image introduceImage;
     //介绍图位置
-    int introX;
-    int introY;
+    private int introX;
+    private int introY;
     //介绍图是否画出
-    boolean isDrawIntro;
+    private boolean isDrawIntro;
     //介绍文字
-    String introString;
+    private String introString;
 
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
 
-    DrugPack drugPack;
+    private DrugPack drugPack;
     //当前英雄
-    Hero currentHero;
+    private Hero currentHero;
 
     public DrugMenu(BattlePanel bp) {
         this.x = 340;
@@ -135,7 +135,7 @@ public class DrugMenu {
         //按下返回按钮
         if (drugButtons.get(6).clicked == true) {
             isDraw = false;
-            bp.getCommand().isDraw = true;
+            bp.getCommand().setDraw(true);
         }
 
         for (GameButton button : drugButtons) {
@@ -227,5 +227,125 @@ public class DrugMenu {
                 g.drawString(introString, introX + 10, introY + 20);
             }
         }
+    }
+
+    public Image getBackImage() {
+        return backImage;
+    }
+
+    public void setBackImage(Image backImage) {
+        this.backImage = backImage;
+    }
+
+    public GameButton getDrugButton() {
+        return drugButton;
+    }
+
+    public void setDrugButton(GameButton drugButton) {
+        this.drugButton = drugButton;
+    }
+
+    public ArrayList<GameButton> getDrugButtons() {
+        return drugButtons;
+    }
+
+    public void setDrugButtons(ArrayList<GameButton> drugButtons) {
+        this.drugButtons = drugButtons;
+    }
+
+    public ArrayList<Image> getButtonImages() {
+        return buttonImages;
+    }
+
+    public void setButtonImages(ArrayList<Image> buttonImages) {
+        this.buttonImages = buttonImages;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public Image getIntroduceImage() {
+        return introduceImage;
+    }
+
+    public void setIntroduceImage(Image introduceImage) {
+        this.introduceImage = introduceImage;
+    }
+
+    public int getIntroX() {
+        return introX;
+    }
+
+    public void setIntroX(int introX) {
+        this.introX = introX;
+    }
+
+    public int getIntroY() {
+        return introY;
+    }
+
+    public void setIntroY(int introY) {
+        this.introY = introY;
+    }
+
+    public boolean isDrawIntro() {
+        return isDrawIntro;
+    }
+
+    public void setDrawIntro(boolean drawIntro) {
+        isDrawIntro = drawIntro;
+    }
+
+    public String getIntroString() {
+        return introString;
+    }
+
+    public void setIntroString(String introString) {
+        this.introString = introString;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
+
+    public DrugPack getDrugPack() {
+        return drugPack;
+    }
+
+    public void setDrugPack(DrugPack drugPack) {
+        this.drugPack = drugPack;
+    }
+
+    public Hero getCurrentHero() {
+        return currentHero;
+    }
+
+    public void setCurrentHero(Hero currentHero) {
+        this.currentHero = currentHero;
     }
 }

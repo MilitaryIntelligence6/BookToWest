@@ -1,62 +1,56 @@
 package cn.misection.booktowest.battle;
 
-import java.awt.*;
-import java.util.*;
-import java.util.List;
 
-import cn.misection.booktowest.util.*;
+import cn.misection.booktowest.util.Reader;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 /**
- * 怒气槽类;
  * @author javaman
+ * 怒气槽类;
  */
 public class AngryBar {
-
+    //背景层
     private Image back;
-
+    //当前图片
     private Image currentImage;
-
-    private List<Image> images = new ArrayList<>();
-
+    //图片集合
+    private ArrayList<Image> images = new ArrayList<Image>();
+    //计时用编号
     private int code;
-
-    private boolean drawn;
-
-    private boolean stopped;
-
+    //是否画出
+    private boolean isDraw;
+    //是否停止
+    private boolean isStop;
+    //底图的坐标
     private int backX;
-
     private int backY;
-
+    //里部图的坐标
     private int dx1;
-
     private int dy1;
-
     private int dx2;
-
     private int dy2;
-
     private int sx1;
-
     private int sy1;
-
     private int sx2;
-
     private int sy2;
 
-    private BattlePanel battlePanel;
-
+    //战斗面板引用
+    private BattlePanel bp;
+    //当前英雄
     private Hero hero;
 
-    public AngryBar(BattlePanel battlePanel, Hero hero) {
-        this.battlePanel = battlePanel;
+    //构造方法
+    public AngryBar(BattlePanel bp, Hero hero) {
+        this.bp = bp;
         this.hero = hero;
 
         switch (hero.getRoleCode()) {
             //张小凡
             case 1:
                 backX = 170;
-                backY = (510 - (96 / 2)) + 20;
+                backY = 510 - 96 / 2 + 20;
                 dx1 = backX + 8;
                 dy1 = backY + 8 + 80;
                 dx2 = dx1 + 80;
@@ -65,7 +59,7 @@ public class AngryBar {
             //文敏
             case 2:
                 backX = 170 + 322;
-                backY = ((510 - (96 / 2)) + 20);
+                backY = 510 - 96 / 2 + 20;
                 dx1 = backX + 8;
                 dy1 = backY + 8 + 80;
                 dx2 = dx1 + 80;
@@ -73,8 +67,8 @@ public class AngryBar {
                 break;
             //陆雪琪
             case 3:
-                backX = (170 + (322 * 2));
-                backY = ((510 - (96 / 2)) + 20);
+                backX = 170 + 322 * 2;
+                backY = 510 - 96 / 2 + 20;
                 dx1 = backX + 8;
                 dy1 = backY + 8 + 80;
                 dx2 = dx1 + 80;
@@ -83,62 +77,56 @@ public class AngryBar {
             default:
                 break;
         }
+
         sx1 = 0;
         sy1 = 80;
         sx2 = 80;
         sy2 = 80;
+
         loadImage();
         currentImage = images.get(0);
-        this.drawn = true;
-        this.stopped = false;
+
+        isDraw = true;
+        isStop = false;
+
     }
 
-    /**
-     * 载入图片;
-     */
+    //载入图片
     public void loadImage() {
-        back = (Reader.readImage("image/怒气槽/底.png"));
+        back = Reader.readImage("image/怒气槽/底.png");
         for (int i = 1; i <= 4; i++) {
             Image image = Reader.readImage("image/怒气槽/" + i + ".png");
             images.add(image);
         }
     }
 
-    /**
-     * 画出;
-     * @param g
-     */
+    //画出
     public void drawAngryBar(Graphics g) {
-        if (drawn) {
-            g.drawImage(getBack(), getBackX(), getBackY(), getBattlePanel());
-            g.drawImage(getCurrentImage(), getDx1(), getDy1(), getDx2(), getDy2(), getSx1(), getSy1(), getSx2(), getSy2(), getBattlePanel());
+        if (isDraw) {
+            g.drawImage(back, backX, backY, bp);
+            g.drawImage(currentImage, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, bp);
         }
     }
 
-    /**
-     * 更新;
-     */
+    //更新
     public void update() {
-        if (!stopped) {
-            int height = (int) (((double) getHero().getAngryValue() / getHero().getHpMax()) * 100);
-            setDy1(getBackY() + 8 + 80 - height);
-            setSy1(80 - height);
-            if (getHero().isAngry()) {
-                if (getCode() < 4) {
-                    setCurrentImage(getImages().get(getCode()));
-                    setCode(getCode() + 1);
+        if (!isStop) {
+            int height = (int) (((double) hero.getAngryValue() / hero.getHpMax()) * 100);
+            dy1 = backY + 8 + 80 - height;
+            sy1 = 80 - height;
+            if (hero.isAngry()) {
+                if (code < 4) {
+                    currentImage = images.get(code);
+                    code++;
                 }
-                if (getCode() == 4) {
-                    setCode(0);
-                    setCurrentImage(getImages().get(getCode()));
+                if (code == 4) {
+                    code = 0;
+                    currentImage = images.get(code);
                 }
             }
         }
     }
 
-    /**
-     * 背景层
-     */
     public Image getBack() {
         return back;
     }
@@ -147,9 +135,6 @@ public class AngryBar {
         this.back = back;
     }
 
-    /**
-     * 当前图片
-     */
     public Image getCurrentImage() {
         return currentImage;
     }
@@ -158,20 +143,14 @@ public class AngryBar {
         this.currentImage = currentImage;
     }
 
-    /**
-     * 图片集合
-     */
-    public List<Image> getImages() {
+    public ArrayList<Image> getImages() {
         return images;
     }
 
-    public void setImages(List<Image> images) {
+    public void setImages(ArrayList<Image> images) {
         this.images = images;
     }
 
-    /**
-     * 计时用编号
-     */
     public int getCode() {
         return code;
     }
@@ -180,31 +159,22 @@ public class AngryBar {
         this.code = code;
     }
 
-    /**
-     * 是否画出
-     */
-    public boolean isDrawn() {
-        return drawn;
+    public boolean isDraw() {
+        return isDraw;
     }
 
-    public void setDrawn(boolean drawn) {
-        this.drawn = drawn;
+    public void setDraw(boolean draw) {
+        isDraw = draw;
     }
 
-    /**
-     * 是否停止
-     */
-    public boolean isStopped() {
-        return stopped;
+    public boolean isStop() {
+        return isStop;
     }
 
-    public void setStopped(boolean stopped) {
-        this.stopped = stopped;
+    public void setStop(boolean stop) {
+        isStop = stop;
     }
 
-    /**
-     * 底图的坐标
-     */
     public int getBackX() {
         return backX;
     }
@@ -221,9 +191,6 @@ public class AngryBar {
         this.backY = backY;
     }
 
-    /**
-     * 里部图的坐标
-     */
     public int getDx1() {
         return dx1;
     }
@@ -288,20 +255,14 @@ public class AngryBar {
         this.sy2 = sy2;
     }
 
-    /**
-     * 战斗面板引用
-     */
-    public BattlePanel getBattlePanel() {
-        return battlePanel;
+    public BattlePanel getBp() {
+        return bp;
     }
 
-    public void setBattlePanel(BattlePanel battlePanel) {
-        this.battlePanel = battlePanel;
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
     }
 
-    /**
-     * 当前英雄
-     */
     public Hero getHero() {
         return hero;
     }

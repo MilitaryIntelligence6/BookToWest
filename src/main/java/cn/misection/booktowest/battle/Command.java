@@ -8,23 +8,23 @@ import java.util.*;
 //控制台类
 public class Command {
     //按钮引用
-    GameButton attack;
-    GameButton skill;
-    GameButton defend;
-    GameButton thing;
+    private GameButton attack;
+    private GameButton skill;
+    private GameButton defend;
+    private GameButton thing;
     //按钮集合
-    ArrayList<GameButton> gameButtons = new ArrayList<GameButton>();
+    private ArrayList<GameButton> gameButtons = new ArrayList<GameButton>();
     //图片引用
-    Image normalImage;
-    Image waitclickImage;
-    Image pressedImage;
+    private Image normalImage;
+    private Image waitclickImage;
+    private Image pressedImage;
     //击按钮的位置
-    int x;
-    int y;
+    private int x;
+    private int y;
     //是否被画出
-    boolean isDraw;
+    private boolean isDraw;
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
 
     //构造方法
     public Command(BattlePanel bp) {
@@ -100,7 +100,7 @@ public class Command {
             //把控制台隐藏掉
             isDraw = false;
             bp.getDrugMenu().checkHero();
-            bp.getDrugMenu().isDraw = true;
+            bp.getDrugMenu().setDraw(true);
         }
 
         if (defend.clicked == true) {
@@ -158,5 +158,101 @@ public class Command {
                 button.drawButton(g);
             }
         }
+    }
+
+    public GameButton getAttack() {
+        return attack;
+    }
+
+    public void setAttack(GameButton attack) {
+        this.attack = attack;
+    }
+
+    public GameButton getSkill() {
+        return skill;
+    }
+
+    public void setSkill(GameButton skill) {
+        this.skill = skill;
+    }
+
+    public GameButton getDefend() {
+        return defend;
+    }
+
+    public void setDefend(GameButton defend) {
+        this.defend = defend;
+    }
+
+    public GameButton getThing() {
+        return thing;
+    }
+
+    public void setThing(GameButton thing) {
+        this.thing = thing;
+    }
+
+    public ArrayList<GameButton> getGameButtons() {
+        return gameButtons;
+    }
+
+    public void setGameButtons(ArrayList<GameButton> gameButtons) {
+        this.gameButtons = gameButtons;
+    }
+
+    public Image getNormalImage() {
+        return normalImage;
+    }
+
+    public void setNormalImage(Image normalImage) {
+        this.normalImage = normalImage;
+    }
+
+    public Image getWaitclickImage() {
+        return waitclickImage;
+    }
+
+    public void setWaitclickImage(Image waitclickImage) {
+        this.waitclickImage = waitclickImage;
+    }
+
+    public Image getPressedImage() {
+        return pressedImage;
+    }
+
+    public void setPressedImage(Image pressedImage) {
+        this.pressedImage = pressedImage;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
     }
 }

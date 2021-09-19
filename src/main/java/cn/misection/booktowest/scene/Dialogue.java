@@ -1,13 +1,13 @@
 package cn.misection.booktowest.scene;
 
+
+import cn.misection.booktowest.util.Reader;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
-
-import javax.swing.Timer;
-
-import cn.misection.booktowest.util.Reader;
+import java.util.ArrayList;
 
 public class Dialogue {
     ScenePanel scene;

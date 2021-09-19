@@ -27,7 +27,7 @@ public class LaunchAttack {
             hero.skill(skillCode);
         } else {
             bp.getReminder().show(20);
-            bp.getCommand().isDraw = true;
+            bp.getCommand().setDraw(true);
             bp.setCurrentPattern(0);
             bp.setCurrentBeAttacked(0);
         }

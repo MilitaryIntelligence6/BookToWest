@@ -6,7 +6,7 @@ import cn.misection.booktowest.media.MusicReader;
 public class Check {
 
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
 
     //构造方法
     public Check(BattlePanel bp) {
@@ -98,5 +98,13 @@ public class Check {
             bp.getGameOver().isDraw = true;
             bp.getGameOver().isStop = false;
         }
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
     }
 }
