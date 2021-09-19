@@ -43,7 +43,7 @@ public class Check {
             }
             //我方所有状态清空
             for (Hero hero : bp.getHeroes()) {
-                if (hero.getBattleState().isUsable) {
+                if (hero.getBattleState().isUsable()) {
                     hero.returnFromState();
                     hero.getBattleState().clear();
                 }
@@ -74,7 +74,7 @@ public class Check {
             if (hero.getHp() <= 0) {
                 hero.setDead(true);
                 //清空状态
-                if (hero.getBattleState().isUsable) {
+                if (hero.getBattleState().isUsable()) {
                     hero.returnFromState();
                     hero.getBattleState().clear();
                 }

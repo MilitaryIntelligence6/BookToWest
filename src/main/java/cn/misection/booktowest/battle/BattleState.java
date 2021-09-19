@@ -7,24 +7,24 @@ import cn.misection.booktowest.util.Reader;
 //战斗中出现的状态类
 public class BattleState {
     //持续的回合数
-    int roundNum;
+    private int roundNum;
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
     //类型
-    int type;
+    private int type;
     //是否有效
-    boolean isUsable;
+    private boolean isUsable;
     //是否检查
-    boolean isCheck;
+    private boolean isCheck;
     //成功的概率
-    int successRate;
+    private int successRate;
     //被附加状态的人物编号 1.张小凡 2.文敏 3.陆雪琪 5.怪物1 6.怪物2 7.怪物3
-    int roleCode;
+    private int roleCode;
     //状态显示的图片
-    Image stateImage;
+    private Image stateImage;
     //显示的坐标
-    int x;
-    int y;
+    private int x;
+    private int y;
 
     //构造方法
     public BattleState(BattlePanel bp) {
@@ -176,5 +176,85 @@ public class BattleState {
         roundNum = 0;
         roleCode = 0;
         successRate = 0;
+    }
+
+    public int getRoundNum() {
+        return roundNum;
+    }
+
+    public void setRoundNum(int roundNum) {
+        this.roundNum = roundNum;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public boolean isUsable() {
+        return isUsable;
+    }
+
+    public void setUsable(boolean usable) {
+        isUsable = usable;
+    }
+
+    public boolean isCheck() {
+        return isCheck;
+    }
+
+    public void setCheck(boolean check) {
+        isCheck = check;
+    }
+
+    public int getSuccessRate() {
+        return successRate;
+    }
+
+    public void setSuccessRate(int successRate) {
+        this.successRate = successRate;
+    }
+
+    public int getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(int roleCode) {
+        this.roleCode = roleCode;
+    }
+
+    public Image getStateImage() {
+        return stateImage;
+    }
+
+    public void setStateImage(Image stateImage) {
+        this.stateImage = stateImage;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }

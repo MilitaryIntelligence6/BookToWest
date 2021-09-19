@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.awt.image.MemoryImageSource;
+import java.util.List;
 import java.util.ArrayList;
 
 import cn.misection.booktowest.media.*;
@@ -61,7 +62,7 @@ public class BattlePanel extends JPanel implements Runnable {
     private Check check;
 
     //伤害值显示
-    private ArrayList<HurtValue> hurtValues;
+    private List<HurtValue> hurtValues;
 
     //开始动画
     private StartAnimation startAnimation;
@@ -115,7 +116,6 @@ public class BattlePanel extends JPanel implements Runnable {
     //当前攻击模式  1.普通攻击 2.技能1 3.技能2 4.技能3 5.技能4 6.技能5
     private int currentPattern;
 
-    //构造方法
     public BattlePanel() {
         setPreferredSize(new Dimension(getWIDTH(), getHEIGHT()));
         //双缓冲准备
@@ -456,7 +456,7 @@ public class BattlePanel extends JPanel implements Runnable {
         for (Enemy enemy : getEnemies()) {
             enemy.battleState.drawState(getBufferedGraphics());
         }
-        for (HurtValue hurtValue : getHurtValues()) {
+        for (HurtValue hurtValue : hurtValues) {
             hurtValue.drawHurtValue(getBufferedGraphics());
         }
         getInstruct().drawInstruct(getBufferedGraphics());
@@ -697,7 +697,7 @@ public class BattlePanel extends JPanel implements Runnable {
         this.check = check;
     }
 
-    public ArrayList<HurtValue> getHurtValues() {
+    public List<HurtValue> getHurtValues() {
         return hurtValues;
     }
 

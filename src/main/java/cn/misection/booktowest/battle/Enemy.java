@@ -749,7 +749,7 @@ public class Enemy {
 
     //检查战斗的状态
     public void checkState() {
-        switch (battleState.type) {
+        switch (battleState.getType()) {
             //增加敏捷度
             case 1:
                 speed += 1;
@@ -786,7 +786,7 @@ public class Enemy {
 
     //执行状态
     public void excuteState() {
-        switch (battleState.type) {
+        switch (battleState.getType()) {
             //中毒状态
             case 9:
                 bp.getHurtValues().clear();
@@ -804,7 +804,7 @@ public class Enemy {
 
     //从状态中恢复
     public void returnFromState() {
-        switch (battleState.type) {
+        switch (battleState.getType()) {
             case 1:
                 speed -= 1;
                 break;

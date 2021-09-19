@@ -272,7 +272,7 @@ public class ZhangXiaoFan implements Hero {
     //检查战斗的状态
     @Override
     public void checkState() {
-        switch (battleState.type) {
+        switch (battleState.getType()) {
             //增加敏捷度
             case 1:
                 agile += 2;
@@ -324,7 +324,7 @@ public class ZhangXiaoFan implements Hero {
 
     //执行状态
     public void excuteState() {
-        switch (battleState.type) {
+        switch (battleState.getType()) {
             //中毒状态
             case 9:
                 bp.getHurtValues().clear();
@@ -343,7 +343,7 @@ public class ZhangXiaoFan implements Hero {
     //从状态中恢复
     @Override
     public void returnFromState() {
-        switch (battleState.type) {
+        switch (battleState.getType()) {
             case 1:
                 agile -= 2;
                 speed = (int) agile / 2;

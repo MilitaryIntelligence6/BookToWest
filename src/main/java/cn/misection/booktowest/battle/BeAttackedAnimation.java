@@ -11,26 +11,26 @@ import cn.misection.booktowest.util.Reader;
 //受到攻击的动画
 public class BeAttackedAnimation {
     //当前图片引用
-    Image currentImage;
+    private Image currentImage;
     //图片集合
-    ArrayList<Image> Images = new ArrayList<Image>();
+    private ArrayList<Image> Images = new ArrayList<Image>();
     //编号
-    int code;
+    private int code;
     //当前次数
-    int currentTime;
+    private int currentTime;
     //次数
-    int times;
+    private int times;
     //长度
-    int length;
+    private int length;
     //出现位置
-    int x;
-    int y;
+    private int x;
+    private int y;
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
     //是否画出
-    boolean isDraw;
+    private boolean isDraw;
     //是否停止
-    boolean isStop;
+    private boolean isStop;
 
     //获得图片
     public void getImage(String name, int length) {
@@ -120,6 +120,94 @@ public class BeAttackedAnimation {
             }
             MusicReader.readMusic("刀声.wav");
         }
+    }
+
+    public Image getCurrentImage() {
+        return currentImage;
+    }
+
+    public void setCurrentImage(Image currentImage) {
+        this.currentImage = currentImage;
+    }
+
+    public ArrayList<Image> getImages() {
+        return Images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        Images = images;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public int getCurrentTime() {
+        return currentTime;
+    }
+
+    public void setCurrentTime(int currentTime) {
+        this.currentTime = currentTime;
+    }
+
+    public int getTimes() {
+        return times;
+    }
+
+    public void setTimes(int times) {
+        this.times = times;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
     }
 }
 
