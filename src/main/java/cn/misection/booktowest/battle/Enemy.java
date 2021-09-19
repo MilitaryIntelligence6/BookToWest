@@ -621,84 +621,110 @@ public class Enemy {
 
     public void loadAnimation(String name, int beAttackedLength) {
         //载入被击动画
-        beAttackedAnimation = new BeAttackedAnimation(name + "被击", beAttackedLength, this.beAttackedX, this.beAttackedY, bp);
+        beAttackedAnimation = new BeAttackedAnimation(name + "被击", beAttackedLength, this.beAttackedX,
+                this.beAttackedY, bp);
 
         //载入攻击动画
         switch (name) {
             case "怪物1":
-                setSkill("怪物/怪物1攻击", 16, this.x - 50, this.y - 235, 6, 1, 6, 10, 16, this.y - ZhangXiaoFan.showY, this.y - YuJie.showY, this.y - LuXueQi.showY - 30);
+                setSkill("怪物/怪物1攻击", 16, this.x - 50, this.y - 235, 6, 1, 6, 10, 16, this.y - ZhangXiaoFan.showY,
+                        this.y - YuJie.showY, this.y - LuXueQi.showY - 30);
                 break;
             case "怪物2":
-                setSkill("怪物/怪物2攻击", 16, this.x - 50, this.y - 200, 6, 1, 6, 10, 16, this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
+                setSkill("怪物/怪物2攻击", 16, this.x - 50, this.y - 200, 6, 1, 6, 10, 16, this.y - ZhangXiaoFan.showY + 20
+                        , this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
                 break;
             case "大刀":
-                setSkill("怪物/大刀攻击", 26, this.x - 70, this.y - 160, 9, 3, 9, 19, 26, this.y - ZhangXiaoFan.showY - 20, this.y - YuJie.showY, this.y - LuXueQi.showY - 30);
+                setSkill("怪物/大刀攻击", 26, this.x - 70, this.y - 160, 9, 3, 9, 19, 26, this.y - ZhangXiaoFan.showY - 20,
+                        this.y - YuJie.showY, this.y - LuXueQi.showY - 30);
                 break;
             case "武林高手1":
-                setSkill("怪物/武林高手1攻击", 26, this.x - 10, this.y - 170, 9, 3, 10, 18, 26, this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 30, this.y - LuXueQi.showY + 10);
+                setSkill("怪物/武林高手1攻击", 26, this.x - 10, this.y - 170, 9, 3, 10, 18, 26,
+                        this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 30, this.y - LuXueQi.showY + 10);
                 break;
             case "武林高手2":
-                setSkill("怪物/武林高手2攻击", 26, this.x - 10, this.y - 170, 17, 1, 9, 20, 26, this.y - ZhangXiaoFan.showY + 40, this.y - YuJie.showY + 50, this.y - LuXueQi.showY);
+                setSkill("怪物/武林高手2攻击", 26, this.x - 10, this.y - 170, 17, 1, 9, 20, 26,
+                        this.y - ZhangXiaoFan.showY + 40, this.y - YuJie.showY + 50, this.y - LuXueQi.showY);
                 break;
             case "舞剑者":
-                setSkill("怪物/舞剑者攻击", 25, this.x - 10, this.y - 170, 6, 3, 6, 16, 25, this.y - ZhangXiaoFan.showY + 30, this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
+                setSkill("怪物/舞剑者攻击", 25, this.x - 10, this.y - 170, 6, 3, 6, 16, 25, this.y - ZhangXiaoFan.showY + 30
+                        , this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
                 break;
             case "商塔弟子":
-                setSkill("怪物/商塔弟子攻击", 29, this.x - 10, this.y - 170, 7, 3, 8, 20, 29, this.y - ZhangXiaoFan.showY + 30, this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
+                setSkill("怪物/商塔弟子攻击", 29, this.x - 10, this.y - 170, 7, 3, 8, 20, 29,
+                        this.y - ZhangXiaoFan.showY + 30, this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
                 break;
             case "商塔护法":
-                setSkill("怪物/商塔护法攻击", 28, this.x - 10, this.y - 170, 7, 3, 8, 17, 28, this.y - ZhangXiaoFan.showY, this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
+                setSkill("怪物/商塔护法攻击", 28, this.x - 10, this.y - 170, 7, 3, 8, 17, 28, this.y - ZhangXiaoFan.showY,
+                        this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
                 break;
             case "商塔堂主":
-                setSkill("怪物/商塔堂主攻击", 23, this.x - 10, this.y - 170, 5, 3, 6, 14, 23, this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 20, this.y - LuXueQi.showY);
+                setSkill("怪物/商塔堂主攻击", 23, this.x - 10, this.y - 170, 5, 3, 6, 14, 23,
+                        this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 20, this.y - LuXueQi.showY);
                 break;
             case "文学谷大弟子":
-                setSkill("怪物/文学谷大弟子攻击", 15, this.x - 10, this.y - 170, 6, 1, 5, 11, 15, this.y - ZhangXiaoFan.showY - 30, this.y - YuJie.showY, this.y - LuXueQi.showY - 80);
+                setSkill("怪物/文学谷大弟子攻击", 15, this.x - 10, this.y - 170, 6, 1, 5, 11, 15,
+                        this.y - ZhangXiaoFan.showY - 30, this.y - YuJie.showY, this.y - LuXueQi.showY - 80);
                 break;
             case "文学谷弟子":
-                setSkill("怪物/文学谷弟子攻击", 11, this.x - 20, this.y - 150, 4, 1, 4, 8, 11, this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 30, this.y - LuXueQi.showY - 60);
+                setSkill("怪物/文学谷弟子攻击", 11, this.x - 20, this.y - 150, 4, 1, 4, 8, 11,
+                        this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 30, this.y - LuXueQi.showY - 60);
                 break;
             case "文学谷护法":
-                setSkill("怪物/文学谷护法攻击", 9, this.x - 20, this.y - 150, 5, 1, 4, 6, 9, this.y - ZhangXiaoFan.showY + 10, this.y - YuJie.showY + 30, this.y - LuXueQi.showY - 40);
+                setSkill("怪物/文学谷护法攻击", 9, this.x - 20, this.y - 150, 5, 1, 4, 6, 9, this.y - ZhangXiaoFan.showY + 10,
+                        this.y - YuJie.showY + 30, this.y - LuXueQi.showY - 40);
                 break;
             case "文学谷堂主":
-                setSkill("怪物/文学谷堂主攻击", 18, this.x - 20, this.y - 150, 6, 3, 5, 15, 18, this.y - ZhangXiaoFan.showY, this.y - YuJie.showY + 10, this.y - LuXueQi.showY - 10);
+                setSkill("怪物/文学谷堂主攻击", 18, this.x - 20, this.y - 150, 6, 3, 5, 15, 18, this.y - ZhangXiaoFan.showY,
+                        this.y - YuJie.showY + 10, this.y - LuXueQi.showY - 10);
                 break;
             case "文学谷小boss":
-                setSkill("怪物/文学谷小boss攻击", 14, this.x - 20, this.y - 150, 10, 1, 6, 11, 14, this.y - ZhangXiaoFan.showY, this.y - YuJie.showY, this.y - LuXueQi.showY - 40);
+                setSkill("怪物/文学谷小boss攻击", 14, this.x - 20, this.y - 150, 10, 1, 6, 11, 14,
+                        this.y - ZhangXiaoFan.showY, this.y - YuJie.showY, this.y - LuXueQi.showY - 40);
                 break;
             case "罹年居士":
-                setSkill("怪物/罹年居士攻击", 10, this.x - 20, this.y - 130, 4, 1, 4, 7, 10, this.y - ZhangXiaoFan.showY, this.y - YuJie.showY + 20, this.y - LuXueQi.showY);
+                setSkill("怪物/罹年居士攻击", 10, this.x - 20, this.y - 130, 4, 1, 4, 7, 10, this.y - ZhangXiaoFan.showY,
+                        this.y - YuJie.showY + 20, this.y - LuXueQi.showY);
                 break;
             case "风易岚":
-                setSkill("怪物/风易岚攻击", 11, this.x - 50, this.y - 170, 5, 1, 4, 7, 11, this.y - ZhangXiaoFan.showY - 40, this.y - YuJie.showY, this.y - LuXueQi.showY - 50);
+                setSkill("怪物/风易岚攻击", 11, this.x - 50, this.y - 170, 5, 1, 4, 7, 11, this.y - ZhangXiaoFan.showY - 40,
+                        this.y - YuJie.showY, this.y - LuXueQi.showY - 50);
                 break;
             case "缘铭道者":
-                setSkill("怪物/缘铭道者攻击", 9, this.x - 20, this.y - 130, 5, 1, 4, 7, 9, this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 40, this.y - LuXueQi.showY);
+                setSkill("怪物/缘铭道者攻击", 9, this.x - 20, this.y - 130, 5, 1, 4, 7, 9, this.y - ZhangXiaoFan.showY + 20,
+                        this.y - YuJie.showY + 40, this.y - LuXueQi.showY);
                 break;
             case "蒙面怪人":
-                setSkill("怪物/蒙面怪人攻击", 11, this.x - 20, this.y - 120, 6, 1, 4, 8, 11, this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 40, this.y - LuXueQi.showY - 30);
+                setSkill("怪物/蒙面怪人攻击", 11, this.x - 20, this.y - 120, 6, 1, 4, 8, 11, this.y - ZhangXiaoFan.showY + 20
+                        , this.y - YuJie.showY + 40, this.y - LuXueQi.showY - 30);
                 break;
             case "李洵":
-                setSkill("怪物/李洵攻击", 17, this.x - 20, this.y - 120, 6, 1, 5, 14, 17, this.y - ZhangXiaoFan.showY, this.y - YuJie.showY, this.y - LuXueQi.showY);
+                setSkill("怪物/李洵攻击", 17, this.x - 20, this.y - 120, 6, 1, 5, 14, 17, this.y - ZhangXiaoFan.showY,
+                        this.y - YuJie.showY, this.y - LuXueQi.showY);
                 break;
             case "最终李洵":
-                setSkill("怪物/最终李洵攻击", 11, this.x - 50, this.y - 140, 6, 1, 4, 8, 11, this.y - ZhangXiaoFan.showY + 30, this.y - YuJie.showY + 40, this.y - LuXueQi.showY);
+                setSkill("怪物/最终李洵攻击", 11, this.x - 50, this.y - 140, 6, 1, 4, 8, 11, this.y - ZhangXiaoFan.showY + 30
+                        , this.y - YuJie.showY + 40, this.y - LuXueQi.showY);
                 break;
             case "红叶":
-                setSkill("怪物/红叶攻击", 11, this.x - 50, this.y - 140, 3, 2, 3, 8, 11, this.y - ZhangXiaoFan.showY, this.y - YuJie.showY, this.y - LuXueQi.showY);
+                setSkill("怪物/红叶攻击", 11, this.x - 50, this.y - 140, 3, 2, 3, 8, 11, this.y - ZhangXiaoFan.showY,
+                        this.y - YuJie.showY, this.y - LuXueQi.showY);
                 break;
             case "物理阁大弟子":
-                setSkill("怪物/物理阁大弟子攻击", 11, this.x - 50, this.y - 150, 6, 1, 6, 10, 16, this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
+                setSkill("怪物/物理阁大弟子攻击", 11, this.x - 50, this.y - 150, 6, 1, 6, 10, 16,
+                        this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
                 break;
             case "物理阁护法":
-                setSkill("怪物/物理阁护法攻击", 12, this.x - 50, this.y - 150, 6, 1, 6, 10, 16, this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
+                setSkill("怪物/物理阁护法攻击", 12, this.x - 50, this.y - 150, 6, 1, 6, 10, 16,
+                        this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
                 break;
             case "物理阁堂主":
-                setSkill("怪物/物理阁堂主攻击", 9, this.x - 50, this.y - 150, 6, 1, 6, 10, 16, this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
+                setSkill("怪物/物理阁堂主攻击", 9, this.x - 50, this.y - 150, 6, 1, 6, 10, 16,
+                        this.y - ZhangXiaoFan.showY + 20, this.y - YuJie.showY + 30, this.y - LuXueQi.showY);
                 break;
             case "罹年居士分身":
-                setSkill("怪物/罹年居士分身攻击", 10, this.x - 20, this.y - 130, 4, 1, 4, 7, 10, this.y - ZhangXiaoFan.showY, this.y - YuJie.showY + 20, this.y - LuXueQi.showY);
+                setSkill("怪物/罹年居士分身攻击", 10, this.x - 20, this.y - 130, 4, 1, 4, 7, 10, this.y - ZhangXiaoFan.showY,
+                        this.y - YuJie.showY + 20, this.y - LuXueQi.showY);
                 break;
         }
 
@@ -813,7 +839,8 @@ public class Enemy {
     //攻击
     public void attack() {
         isDraw = false;
-        bp.skillAnimation.set(skillName, skillLength, skillX, skillY, beAttackedCode, beAttackedTimes, runCode, attackCode, withdrawCode, offsetTo1, offsetTo2, offsetTo3);
+        bp.skillAnimation.set(skillName, skillLength, skillX, skillY, beAttackedCode, beAttackedTimes, runCode,
+                attackCode, withdrawCode, offsetTo1, offsetTo2, offsetTo3);
         bp.skillAnimation.isDraw = true;
         bp.skillAnimation.isStop = false;
     }

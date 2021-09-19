@@ -1,40 +1,42 @@
 package cn.misection.booktowest.start;
 
 public class StartTimer {
-	int timeLeft;
-	boolean isCompleted;
-	boolean isStarted;
+    int timeLeft;
+    boolean isCompleted;
+    boolean isStarted;
 
-	public StartTimer(){
-		timeLeft=0;
-		isCompleted=false;
-		isStarted=false;
-	}
+    public StartTimer() {
+        timeLeft = 0;
+        isCompleted = false;
+        isStarted = false;
+    }
 
-	public void initial(){
-		timeLeft=0;
-		isCompleted=false;
-		isStarted=false;
-	}
+    public void initial() {
+        timeLeft = 0;
+        isCompleted = false;
+        isStarted = false;
+    }
 
-	public void start(int interval){
-		isStarted=true;
-		this.timeLeft=interval;
-	}
+    public void start(int interval) {
+        isStarted = true;
+        this.timeLeft = interval;
+    }
 
-	public void update(){
-		if(isStarted)
-			timeLeft--;
-		if(timeLeft==0&&isStarted)
-			isCompleted=true;
-	}
+    public void update() {
+        if (isStarted) {
+            timeLeft--;
+        }
+        if (timeLeft == 0 && isStarted) {
+            isCompleted = true;
+        }
+    }
 
-	public boolean stop(){
-		return isCompleted;
-	}
+    public boolean stop() {
+        return isCompleted;
+    }
 
-	public int getTimeLeft() {
-		return timeLeft;
-	}
+    public int getTimeLeft() {
+        return timeLeft;
+    }
 
 }

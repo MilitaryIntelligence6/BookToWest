@@ -6,6 +6,7 @@ import java.awt.Graphics;
 public interface Hero {
     /**
      * 得到被击动画;
+     *
      * @return
      */
     BeAttackedAnimation getBeAttackedAnimation();
