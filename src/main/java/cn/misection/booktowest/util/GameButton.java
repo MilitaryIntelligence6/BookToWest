@@ -11,7 +11,6 @@ public class GameButton {
     private int currentX;
     private int currentY;
     protected int x;
-
     protected int y;
     protected int width;
     protected int height;
