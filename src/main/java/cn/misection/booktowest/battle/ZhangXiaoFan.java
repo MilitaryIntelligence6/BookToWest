@@ -439,8 +439,8 @@ public class ZhangXiaoFan implements Hero {
         //人物不再画出
         isDraw = false;
         bp.getSkillAnimation().set("张小凡攻击", 25, 150, 90, 8, 1, 10, 20, 25, 0, 180, -120);
-        bp.getSkillAnimation().setDrawn(true);
-        bp.getSkillAnimation().setStopped(false);
+        bp.getSkillAnimation().setDraw(true);
+        bp.getSkillAnimation().setStop(false);
     }
 
     //使用技能
@@ -474,8 +474,8 @@ public class ZhangXiaoFan implements Hero {
 
         bp.getBackgroundAnimation().setDrawn(true);
         bp.getBackgroundAnimation().setStopped(false);
-        bp.getSkillAnimation().setDrawn(true);
-        bp.getSkillAnimation().setStopped(false);
+        bp.getSkillAnimation().setDraw(true);
+        bp.getSkillAnimation().setStop(false);
 
     }
 

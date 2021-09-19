@@ -119,8 +119,8 @@ public class LaunchAttack {
             //开启动画
             bp.getZxf().isDraw = false;
             bp.getSkillAnimation().set("张小凡秘术", 18, 560, 190, 0, 0, 0, 0, 0, 0, 0, 0);
-            bp.getSkillAnimation().setDrawn(true);
-            bp.getSkillAnimation().setStopped(false);
+            bp.getSkillAnimation().setDraw(true);
+            bp.getSkillAnimation().setStop(false);
             //指示器停止
             bp.getInstruct().end();
             //处理愤怒值
@@ -219,8 +219,8 @@ public class LaunchAttack {
             //播放动画
             bp.getYj().isDraw = false;
             bp.getSkillAnimation().set("文敏秘术", 10, 650, 100, 0, 0, 0, 0, 0, 0, 0, 0);
-            bp.getSkillAnimation().setDrawn(true);
-            bp.getSkillAnimation().setStopped(false);
+            bp.getSkillAnimation().setDraw(true);
+            bp.getSkillAnimation().setStop(false);
             //指示器停止
             bp.getInstruct().end();
             //处理愤怒值
@@ -311,8 +311,8 @@ public class LaunchAttack {
             //开启动画
             bp.getLxq().setDrawn(false);
             bp.getSkillAnimation().set("陆雪琪秘术", 8, 620, 300, 0, 0, 0, 0, 0, 0, 0, 0);
-            bp.getSkillAnimation().setDrawn(true);
-            bp.getSkillAnimation().setStopped(false);
+            bp.getSkillAnimation().setDraw(true);
+            bp.getSkillAnimation().setStop(false);
             //指示器停止
             bp.getInstruct().end();
             //处理愤怒值

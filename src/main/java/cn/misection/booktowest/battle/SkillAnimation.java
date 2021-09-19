@@ -1,329 +1,330 @@
 package cn.misection.booktowest.battle;
 
-import java.awt.*;
-import java.util.*;
 
-import cn.misection.booktowest.util.*;
+import cn.misection.booktowest.util.Reader;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 public class SkillAnimation {
-    //å½“å‰å›¾ç‰‡å¼•ç”¨
+    //µ±Ç°Í¼Æ¬ÒıÓÃ
     private Image currentImage;
-    //å›¾ç‰‡é›†åˆ
+    //Í¼Æ¬¼¯ºÏ
     private ArrayList<Image> Images = new ArrayList<Image>();
-    //ç¼–å·
+    //±àºÅ
     private int code;
-    //é•¿åº¦
+    //³¤¶È
     private int length;
-    //å‡ºç°ä½ç½®
+    //³öÏÖÎ»ÖÃ
     private int x;
     private int y;
-    //åˆå§‹ä½ç½®
+    //³õÊ¼Î»ÖÃ
     private int initialX;
     private int initialY;
-    //æˆ˜æ–—é¢æ¿å¼•ç”¨
+    //Õ½¶·Ãæ°åÒıÓÃ
     private BattlePanel bp;
-    //æ˜¯å¦ç”»å‡º
-    private boolean drawn;
-    //æ˜¯å¦åœæ­¢
-    private boolean stopped;
-    //æ˜¯å¦å‘åŠ¨ç»“æŸçš„ä¿¡å·
+    //ÊÇ·ñ»­³ö
+    private boolean isDraw;
+    //ÊÇ·ñÍ£Ö¹
+    private boolean isStop;
+    //ÊÇ·ñ·¢¶¯½áÊøµÄĞÅºÅ
     private boolean isOver;
 
-    //è¢«æ”»å‡»æ–¹å¼€å§‹è¢«å‡»åŠ¨ç”»çš„ç¼–å·
+    //±»¹¥»÷·½¿ªÊ¼±»»÷¶¯»­µÄ±àºÅ
     private int beAttackedCode;
-    //è¢«å‡»åŠ¨ç”»æ’­æ”¾çš„æ¬¡æ•°
+    //±»»÷¶¯»­²¥·ÅµÄ´ÎÊı
     private int beAttackedTimes;
-    //æŠ€èƒ½åŠ¨ç”»ä¸‰ä¸ªé˜¶æ®µçš„ä¿¡å·
-//è·‘ä½å›¾
+    //¼¼ÄÜ¶¯»­Èı¸ö½×¶ÎµÄĞÅºÅ
+//ÅÜÎ»Í¼
     private int runCode;
-    //æ”»å‡»å›¾
+    //¹¥»÷Í¼
     private int attackCode;
-    //æ’¤å›å›¾
+    //³·»ØÍ¼
     private int withdrawCode;
 
-    //ç›¸å¯¹äºæ€ªç‰©1(ä¸­é—´)çš„åç§»é‡
+    //Ïà¶ÔÓÚ¹ÖÎï1(ÖĞ¼ä)µÄÆ«ÒÆÁ¿
     private int offsetTo1;
-    //ç›¸å¯¹äºæ€ªç‰©2(ä¸Šæ–¹)çš„åç§»é‡
+    //Ïà¶ÔÓÚ¹ÖÎï2(ÉÏ·½)µÄÆ«ÒÆÁ¿
     private int offsetTo2;
-    //ç›¸å¯¹äºæ€ªç‰©3(ä¸‹æ–¹)çš„åç§»é‡
+    //Ïà¶ÔÓÚ¹ÖÎï3(ÏÂ·½)µÄÆ«ÒÆÁ¿
     private int offsetTo3;
 
     private String name;
     ;
 
-    //æ„é€ æ–¹æ³•
+    //¹¹Ôì·½·¨
     public SkillAnimation(String name, int length, int x, int y, BattlePanel bp, int beAttackedCode,
                           int beAttackedTimes, int runCode, int attackCode, int withdrawCode, int offsetTo1,
                           int offsetTo2, int offsetTo3) {
-        this.setBp(bp);
+        this.bp = bp;
 
-        this.setName(name);
-        this.setX(x);
-        this.setY(y);
+        this.name = name;
+        this.x = x;
+        this.y = y;
 
-        this.setInitialX(x);
-        this.setInitialY(y);
+        this.initialX = x;
+        this.initialY = y;
 
-        this.setLength(length);
-        this.setBeAttackedCode(beAttackedCode);
-        this.setBeAttackedTimes(beAttackedTimes);
-        this.setRunCode(runCode);
-        this.setAttackCode(attackCode);
-        this.setWithdrawCode(withdrawCode);
-        this.setOffsetTo1(offsetTo1);
-        this.setOffsetTo2(offsetTo2);
-        this.setOffsetTo3(offsetTo3);
+        this.length = length;
+        this.beAttackedCode = beAttackedCode;
+        this.beAttackedTimes = beAttackedTimes;
+        this.runCode = runCode;
+        this.attackCode = attackCode;
+        this.withdrawCode = withdrawCode;
+        this.offsetTo1 = offsetTo1;
+        this.offsetTo2 = offsetTo2;
+        this.offsetTo3 = offsetTo3;
 
-        setDrawn(false);
-        setStopped(true);
-        setOver(false);
+        isDraw = false;
+        isStop = true;
+        isOver = false;
     }
 
     public SkillAnimation(BattlePanel bp) {
-        this.setBp(bp);
-        setDrawn(false);
-        setStopped(true);
-        setOver(false);
+        this.bp = bp;
+        isDraw = false;
+        isStop = true;
+        isOver = false;
     }
 
-    //è®¾ç½®æ–¹æ³•
+    //ÉèÖÃ·½·¨
     public void set(String name, int length, int x, int y, int beAttackedCode, int beAttackedTimes, int runCode,
                     int attackCode, int withdrawCode, int offsetTo1, int offsetTo2, int offsetTo3) {
-        this.setName(name);
-        this.setX(x);
-        this.setY(y);
+        this.name = name;
+        this.x = x;
+        this.y = y;
 
-        this.setInitialX(x);
-        this.setInitialY(y);
+        this.initialX = x;
+        this.initialY = y;
 
-        this.setLength(length);
-        this.setBeAttackedCode(beAttackedCode);
-        this.setBeAttackedTimes(beAttackedTimes);
-        this.setRunCode(runCode);
-        this.setAttackCode(attackCode);
-        this.setWithdrawCode(withdrawCode);
-        this.setOffsetTo1(offsetTo1);
-        this.setOffsetTo2(offsetTo2);
-        this.setOffsetTo3(offsetTo3);
+        this.length = length;
+        this.beAttackedCode = beAttackedCode;
+        this.beAttackedTimes = beAttackedTimes;
+        this.runCode = runCode;
+        this.attackCode = attackCode;
+        this.withdrawCode = withdrawCode;
+        this.offsetTo1 = offsetTo1;
+        this.offsetTo2 = offsetTo2;
+        this.offsetTo3 = offsetTo3;
 
-        setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + name + "/1.png"));
+        currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/1.png");
     }
 
-    //ç”»å‡ºåŠ¨ç”»
+    //»­³ö¶¯»­
     public void drawAnimation(Graphics g) {
-        if (isDrawn() && getCurrentImage() != null) {
-            g.drawImage(getCurrentImage(), getX(), getY(), getBp());
+        if (isDraw && currentImage != null) {
+            g.drawImage(currentImage, x, y, bp);
         }
     }
 
-    //æ›´æ–°
+    //¸üĞÂ
     public void update() {
-        if (!isStopped()) {
-            //å¯¹è±¡ä¸ºæ•Œäººä¸€
-            if (getBp().getCurrentBeAttacked() == 5 || getBp().getCurrentBeAttacked() == 1) {
-                if (getCode() < getLength()) {
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+        if (!isStop) {
+            //¶ÔÏóÎªµĞÈËÒ»
+            if (bp.getCurrentBeAttacked() == 5 || bp.getCurrentBeAttacked() == 1) {
+                if (code < length) {
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 5) {
-                    //è®©æ€ªç‰©æ˜¾ç¤ºè¢«å‡»æ•ˆæœ
-                    getBp().getEm1().setDraw(false);
-                    getBp().getEm1().getBeAttackedAnimation().getTimes(getBeAttackedTimes());
-                    getBp().getEm1().getBeAttackedAnimation().setDraw(true);
-                    getBp().getEm1().getBeAttackedAnimation().setStop(false);
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+                if (code == beAttackedCode && bp.getCurrentBeAttacked() == 5) {
+                    //ÈÃ¹ÖÎïÏÔÊ¾±»»÷Ğ§¹û
+                    bp.getEm1().setDraw(false);
+                    bp.getEm1().getBeAttackedAnimation().getTimes(beAttackedTimes);
+                    bp.getEm1().getBeAttackedAnimation().setDraw(true);
+                    bp.getEm1().getBeAttackedAnimation().setStop(false);
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 1) {
-                    //è®©å¼ å°å‡¡æ˜¾ç¤ºè¢«å‡»æ•ˆæœ
-                    getBp().getZxf().isDraw = false;
-                    getBp().getZxf().beAttackedAnimation.getTimes(getBeAttackedTimes());
-                    getBp().getZxf().beAttackedAnimation.setDraw(true);
-                    getBp().getZxf().beAttackedAnimation.setStop(false);
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+                if (code == beAttackedCode && bp.getCurrentBeAttacked() == 1) {
+                    //ÈÃÕÅĞ¡·²ÏÔÊ¾±»»÷Ğ§¹û
+                    bp.getZxf().isDraw = false;
+                    bp.getZxf().beAttackedAnimation.getTimes(beAttackedTimes);
+                    bp.getZxf().beAttackedAnimation.setDraw(true);
+                    bp.getZxf().beAttackedAnimation.setStop(false);
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() < getRunCode()) {
-                    setY(getY() - Math.round(getOffsetTo1() / getRunCode()));
+                if (code < runCode) {
+                    y -= Math.round(offsetTo1 / runCode);
                 }
-                if (getAttackCode() <= getCode() && getCode() < getWithdrawCode()) {
-                    setY(getY() + Math.round(getOffsetTo1() / (getWithdrawCode() - getAttackCode())));
+                if (attackCode <= code && code < withdrawCode) {
+                    y += Math.round(offsetTo1 / (withdrawCode - attackCode));
                 }
-                if (getCode() == getLength()) {
-                    setCode(0);
-                    setCurrentImage(null);
-                    setX(getInitialX());
-                    setY(getInitialY());
-                    //åœæ­¢åŠ¨ç”»
-                    setStopped(true);
-                    //ä¸å†ç”»å‡º
-                    setDrawn(false);
-                    //å‘å‡ºåŠ¨ç”»ç»“æŸä¿¡å·
-                    setOver(true);
+                if (code == length) {
+                    code = 0;
+                    currentImage = null;
+                    x = initialX;
+                    y = initialY;
+                    //Í£Ö¹¶¯»­
+                    isStop = true;
+                    //²»ÔÙ»­³ö
+                    isDraw = false;
+                    //·¢³ö¶¯»­½áÊøĞÅºÅ
+                    isOver = true;
                 }
-            }//æ”»å‡»æ•Œäººä¸€ç»“æŸ
+            }//¹¥»÷µĞÈËÒ»½áÊø
 
-            //å¯¹è±¡ä¸ºæ•ŒäººäºŒ
-            if (getBp().getCurrentBeAttacked() == 6 || getBp().getCurrentBeAttacked() == 2) {
-                if (getCode() < getLength()) {
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+            //¶ÔÏóÎªµĞÈË¶ş
+            if (bp.getCurrentBeAttacked() == 6 || bp.getCurrentBeAttacked() == 2) {
+                if (code < length) {
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 6) {
-                    //è®©æ€ªç‰©æ˜¾ç¤ºè¢«å‡»æ•ˆæœ
-                    getBp().getEm2().setDraw(false);
-                    getBp().getEm2().getBeAttackedAnimation().getTimes(getBeAttackedTimes());
-                    getBp().getEm2().getBeAttackedAnimation().setDraw(true);
-                    getBp().getEm2().getBeAttackedAnimation().setStop(false);
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+                if (code == beAttackedCode && bp.getCurrentBeAttacked() == 6) {
+                    //ÈÃ¹ÖÎïÏÔÊ¾±»»÷Ğ§¹û
+                    bp.getEm2().setDraw(false);
+                    bp.getEm2().getBeAttackedAnimation().getTimes(beAttackedTimes);
+                    bp.getEm2().getBeAttackedAnimation().setDraw(true);
+                    bp.getEm2().getBeAttackedAnimation().setStop(false);
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 2) {
-                    //è®©æ–‡æ•æ˜¾ç¤ºè¢«å‡»æ•ˆæœ
-                    getBp().getYj().isDraw = false;
-                    getBp().getYj().beAttackedAnimation.getTimes(getBeAttackedTimes());
-                    getBp().getYj().beAttackedAnimation.setDraw(true);
-                    getBp().getYj().beAttackedAnimation.setStop(false);
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+                if (code == beAttackedCode && bp.getCurrentBeAttacked() == 2) {
+                    //ÈÃÎÄÃôÏÔÊ¾±»»÷Ğ§¹û
+                    bp.getYj().isDraw = false;
+                    bp.getYj().beAttackedAnimation.getTimes(beAttackedTimes);
+                    bp.getYj().beAttackedAnimation.setDraw(true);
+                    bp.getYj().beAttackedAnimation.setStop(false);
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() < getRunCode()) {
-                    setY(getY() - Math.round(getOffsetTo2() / getRunCode()));
+                if (code < runCode) {
+                    y -= Math.round(offsetTo2 / runCode);
                 }
-                if (getAttackCode() <= getCode() && getCode() < getWithdrawCode()) {
-                    setY(getY() + Math.round(getOffsetTo2() / (getWithdrawCode() - getAttackCode())));
+                if (attackCode <= code && code < withdrawCode) {
+                    y += Math.round(offsetTo2 / (withdrawCode - attackCode));
                 }
-                if (getCode() == getLength()) {
-                    setCode(0);
-                    setCurrentImage(null);
-                    setX(getInitialX());
-                    setY(getInitialY());
-                    //åœæ­¢åŠ¨ç”»
-                    setStopped(true);
-                    //ä¸å†ç”»å‡º
-                    setDrawn(false);
-                    //å‘å‡ºåŠ¨ç”»ç»“æŸä¿¡å·
-                    setOver(true);
+                if (code == length) {
+                    code = 0;
+                    currentImage = null;
+                    x = initialX;
+                    y = initialY;
+                    //Í£Ö¹¶¯»­
+                    isStop = true;
+                    //²»ÔÙ»­³ö
+                    isDraw = false;
+                    //·¢³ö¶¯»­½áÊøĞÅºÅ
+                    isOver = true;
                 }
-            }//æ”»å‡»æ•Œäºº2ç»“æŸ
+            }//¹¥»÷µĞÈË2½áÊø
 
-            //å¯¹è±¡ä¸ºæ•Œäººä¸‰
-            if (getBp().getCurrentBeAttacked() == 7 || getBp().getCurrentBeAttacked() == 3) {
-                if (getCode() < getLength()) {
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+            //¶ÔÏóÎªµĞÈËÈı
+            if (bp.getCurrentBeAttacked() == 7 || bp.getCurrentBeAttacked() == 3) {
+                if (code < length) {
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 7) {
-                    //MusicReader.readmusic("åˆ€å£°.wav");
-                    //è®©æ€ªç‰©æ˜¾ç¤ºè¢«å‡»æ•ˆæœ
-                    getBp().getEm3().setDraw(false);
-                    getBp().getEm3().getBeAttackedAnimation().getTimes(getBeAttackedTimes());
-                    getBp().getEm3().getBeAttackedAnimation().setDraw(true);
-                    getBp().getEm3().getBeAttackedAnimation().setStop(false);
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+                if (code == beAttackedCode && bp.getCurrentBeAttacked() == 7) {
+                    //MusicReader.readmusic("µ¶Éù.wav");
+                    //ÈÃ¹ÖÎïÏÔÊ¾±»»÷Ğ§¹û
+                    bp.getEm3().setDraw(false);
+                    bp.getEm3().getBeAttackedAnimation().getTimes(beAttackedTimes);
+                    bp.getEm3().getBeAttackedAnimation().setDraw(true);
+                    bp.getEm3().getBeAttackedAnimation().setStop(false);
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 3) {
-                    //è®©é™†é›ªçªæ˜¾ç¤ºè¢«å‡»æ•ˆæœ
-                    getBp().getLxq().setDrawn(false);
-                    getBp().getLxq().getBeAttackedAnimation().getTimes(getBeAttackedTimes());
-                    getBp().getLxq().getBeAttackedAnimation().setDraw(true);
-                    getBp().getLxq().getBeAttackedAnimation().setStop(false);
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+                if (code == beAttackedCode && bp.getCurrentBeAttacked() == 3) {
+                    //ÈÃÂ½Ñ©ç÷ÏÔÊ¾±»»÷Ğ§¹û
+                    bp.getLxq().setIsDraw(false);
+                    bp.getLxq().getBeAttackedAnimation().getTimes(beAttackedTimes);
+                    bp.getLxq().getBeAttackedAnimation().setDraw(true);
+                    bp.getLxq().getBeAttackedAnimation().setStop(false);
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() < getRunCode()) {
-                    setY(getY() - Math.round(getOffsetTo3() / getRunCode()));
+                if (code < runCode) {
+                    y -= Math.round(offsetTo3 / runCode);
                 }
-                if (getAttackCode() <= getCode() && getCode() < getWithdrawCode()) {
-                    setY(getY() + Math.round(getOffsetTo3() / (getWithdrawCode() - getAttackCode())));
+                if (attackCode <= code && code < withdrawCode) {
+                    y += Math.round(offsetTo3 / (withdrawCode - attackCode));
                 }
-                if (getCode() == getLength()) {
-                    setCode(0);
-                    setCurrentImage(null);
-                    setX(getInitialX());
-                    setY(getInitialY());
-                    //åœæ­¢åŠ¨ç”»
-                    setStopped(true);
-                    //ä¸å†ç”»å‡º
-                    setDrawn(false);
-                    //å‘å‡ºåŠ¨ç”»ç»“æŸä¿¡å·
-                    setOver(true);
+                if (code == length) {
+                    code = 0;
+                    currentImage = null;
+                    x = initialX;
+                    y = initialY;
+                    //Í£Ö¹¶¯»­
+                    isStop = true;
+                    //²»ÔÙ»­³ö
+                    isDraw = false;
+                    //·¢³ö¶¯»­½áÊøĞÅºÅ
+                    isOver = true;
                 }
-            }//æ”»å‡»æ•Œäºº3ç»“æŸ
+            }//¹¥»÷µĞÈË3½áÊø
 
-            //å¯¹è±¡ä¸ºæ•Œäººçš„å…¨ä½“
-            if (getBp().getCurrentBeAttacked() == 8) {
-                if (getCode() < getLength()) {
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+            //¶ÔÏóÎªµĞÈËµÄÈ«Ìå
+            if (bp.getCurrentBeAttacked() == 8) {
+                if (code < length) {
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() == getBeAttackedCode()) {
-                    //MusicReader.readmusic("åˆ€å£°.wav");
-                    for (Enemy enemy : getBp().getEnemies()) {
+                if (code == beAttackedCode) {
+                    //MusicReader.readmusic("µ¶Éù.wav");
+                    for (Enemy enemy : bp.getEnemies()) {
                         enemy.setDraw(false);
-                        enemy.getBeAttackedAnimation().getTimes(getBeAttackedTimes());
+                        enemy.getBeAttackedAnimation().getTimes(beAttackedTimes);
                         enemy.getBeAttackedAnimation().setDraw(true);
                         enemy.getBeAttackedAnimation().setStop(false);
                     }
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() < getRunCode()) {
-                    setY(getY() - Math.round(getOffsetTo1() / getRunCode()));
+                if (code < runCode) {
+                    y -= Math.round(offsetTo1 / runCode);
                 }
-                if (getAttackCode() <= getCode() && getCode() < getWithdrawCode()) {
-                    setY(getY() + Math.round(getOffsetTo1() / (getWithdrawCode() - getAttackCode())));
+                if (attackCode <= code && code < withdrawCode) {
+                    y += Math.round(offsetTo1 / (withdrawCode - attackCode));
                 }
-                if (getCode() == getLength()) {
-                    setCode(0);
-                    setCurrentImage(null);
-                    setX(getInitialX());
-                    setY(getInitialY());
-                    //åœæ­¢åŠ¨ç”»
-                    setStopped(true);
-                    //ä¸å†ç”»å‡º
-                    setDrawn(false);
-                    //å‘å‡ºåŠ¨ç”»ç»“æŸä¿¡å·
-                    setOver(true);
+                if (code == length) {
+                    code = 0;
+                    currentImage = null;
+                    x = initialX;
+                    y = initialY;
+                    //Í£Ö¹¶¯»­
+                    isStop = true;
+                    //²»ÔÙ»­³ö
+                    isDraw = false;
+                    //·¢³ö¶¯»­½áÊøĞÅºÅ
+                    isOver = true;
                 }
             }
 
-            //å¯¹è±¡ä¸ºæˆ‘æ–¹å…¨ä½“
-            if (getBp().getCurrentBeAttacked() == 4) {
-                if (getCode() < getLength()) {
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+            //¶ÔÏóÎªÎÒ·½È«Ìå
+            if (bp.getCurrentBeAttacked() == 4) {
+                if (code < length) {
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() == getBeAttackedCode()) {
-                    for (Hero hero : getBp().getHeroes()) {
+                if (code == beAttackedCode) {
+                    for (Hero hero : bp.getHeroes()) {
                         if (!hero.isDead()) {
                             hero.setIsDraw(false);
-                            hero.getBeAttackedAnimation().getTimes(getBeAttackedTimes());
+                            hero.getBeAttackedAnimation().getTimes(beAttackedTimes);
                             hero.getBeAttackedAnimation().setDraw(true);
                             hero.getBeAttackedAnimation().setStop(false);
                         }
                     }
-                    setCurrentImage(Reader.readImage("image/æŠ€èƒ½åŠ¨ç”»/" + getName() + "/" + (getCode() + 1) + ".png"));
-                    setCode(getCode() + 1);
+                    currentImage = Reader.readImage("image/¼¼ÄÜ¶¯»­/" + name + "/" + (code + 1) + ".png");
+                    code++;
                 }
-                if (getCode() < getRunCode()) {
-                    setY(getY() - Math.round(getOffsetTo1() / getRunCode()));
+                if (code < runCode) {
+                    y -= Math.round(offsetTo1 / runCode);
                 }
-                if (getAttackCode() <= getCode() && getCode() < getWithdrawCode()) {
-                    setY(getY() + Math.round(getOffsetTo1() / (getWithdrawCode() - getAttackCode())));
+                if (attackCode <= code && code < withdrawCode) {
+                    y += Math.round(offsetTo1 / (withdrawCode - attackCode));
                 }
-                if (getCode() == getLength()) {
-                    setCode(0);
-                    setCurrentImage(null);
-                    setX(getInitialX());
-                    setY(getInitialY());
-                    //åœæ­¢åŠ¨ç”»
-                    setStopped(true);
-                    //ä¸å†ç”»å‡º
-                    setDrawn(false);
-                    //å‘å‡ºåŠ¨ç”»ç»“æŸä¿¡å·
-                    setOver(true);
+                if (code == length) {
+                    code = 0;
+                    currentImage = null;
+                    x = initialX;
+                    y = initialY;
+                    //Í£Ö¹¶¯»­
+                    isStop = true;
+                    //²»ÔÙ»­³ö
+                    isDraw = false;
+                    //·¢³ö¶¯»­½áÊøĞÅºÅ
+                    isOver = true;
                 }
             }
         }
@@ -401,20 +402,20 @@ public class SkillAnimation {
         this.bp = bp;
     }
 
-    public boolean isDrawn() {
-        return drawn;
+    public boolean isDraw() {
+        return isDraw;
     }
 
-    public void setDrawn(boolean drawn) {
-        this.drawn = drawn;
+    public void setDraw(boolean draw) {
+        isDraw = draw;
     }
 
-    public boolean isStopped() {
-        return stopped;
+    public boolean isStop() {
+        return isStop;
     }
 
-    public void setStopped(boolean stopped) {
-        this.stopped = stopped;
+    public void setStop(boolean stop) {
+        isStop = stop;
     }
 
     public boolean isOver() {

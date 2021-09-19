@@ -96,8 +96,8 @@ public class Pet {
     public void attack() {
         isDraw = false;
         bp.getSkillAnimation().set("小精灵攻击", 22, 120, 135, 8, 1, 6, 16, 22, 90, 210, 0);
-        bp.getSkillAnimation().setDrawn(true);
-        bp.getSkillAnimation().setStopped(false);
+        bp.getSkillAnimation().setDraw(true);
+        bp.getSkillAnimation().setStop(false);
     }
 
     //载入图片

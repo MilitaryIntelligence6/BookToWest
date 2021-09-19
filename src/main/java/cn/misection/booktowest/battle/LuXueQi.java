@@ -537,8 +537,8 @@ public class LuXueQi implements Hero {
         //人物不再画出
         drawn = false;
         bp.getSkillAnimation().set("陆雪琪攻击", 24, 120, 135, 8, 1, 7, 13, 24, 90, 210, -20);
-        bp.getSkillAnimation().setDrawn(true);
-        bp.getSkillAnimation().setStopped(false);
+        bp.getSkillAnimation().setDraw(true);
+        bp.getSkillAnimation().setStop(false);
     }
 
     @Override
@@ -701,8 +701,8 @@ public class LuXueQi implements Hero {
         }
         bp.getBackgroundAnimation().setDrawn(true);
         bp.getBackgroundAnimation().setStopped(false);
-        bp.getSkillAnimation().setDrawn(true);
-        bp.getSkillAnimation().setStopped(false);
+        bp.getSkillAnimation().setDraw(true);
+        bp.getSkillAnimation().setStop(false);
     }
 
     @Override

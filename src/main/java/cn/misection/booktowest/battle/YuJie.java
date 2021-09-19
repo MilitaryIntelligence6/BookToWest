@@ -476,8 +476,8 @@ public class YuJie implements Hero {
         //人物不再画出
         isDraw = false;
         bp.getSkillAnimation().set("文敏攻击", 21, 120, -80, 8, 1, 8, 15, 21, -150, 0, -260);
-        bp.getSkillAnimation().setDrawn(true);
-        bp.getSkillAnimation().setStopped(false);
+        bp.getSkillAnimation().setDraw(true);
+        bp.getSkillAnimation().setStop(false);
     }
 
     //使用技能
@@ -511,8 +511,8 @@ public class YuJie implements Hero {
 
         bp.getBackgroundAnimation().setDrawn(true);
         bp.getBackgroundAnimation().setStopped(false);
-        bp.getSkillAnimation().setDrawn(true);
-        bp.getSkillAnimation().setStopped(false);
+        bp.getSkillAnimation().setDraw(true);
+        bp.getSkillAnimation().setStop(false);
     }
 
     @Override

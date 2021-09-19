@@ -841,8 +841,8 @@ public class Enemy {
         isDraw = false;
         bp.getSkillAnimation().set(skillName, skillLength, skillX, skillY, beAttackedCode, beAttackedTimes, runCode,
                 attackCode, withdrawCode, offsetTo1, offsetTo2, offsetTo3);
-        bp.getSkillAnimation().setDrawn(true);
-        bp.getSkillAnimation().setStopped(false);
+        bp.getSkillAnimation().setDraw(true);
+        bp.getSkillAnimation().setStop(false);
     }
 
     public int getRoleCode() {
