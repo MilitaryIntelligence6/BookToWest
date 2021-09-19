@@ -8,97 +8,97 @@ import cn.misection.booktowest.util.*;
 //敌人类
 public class Enemy {
     //角色编号
-    int roleCode;
+    private int roleCode;
     //当前图片引用
-    Image currentImage;
+    private Image currentImage;
     //头像图片
-    Image headImage;
+    private Image headImage;
     //姓名
-    String name;
+    private String name;
     //图片集合
-    ArrayList<Image> Images = new ArrayList<Image>();
+    private ArrayList<Image> Images = new ArrayList<Image>();
     //出现坐标
-    int x;
-    int y;
+    private int x;
+    private int y;
     //当前编号
-    int code;
+    private int code;
     //图片长度
-    int length;
+    private int length;
     //是否画出
-    boolean isDraw;
+    private boolean isDraw;
     //是否停止
-    boolean isStop;
+    private boolean isStop;
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
 
     //是否死亡
-    boolean isDead;
+    private boolean isDead;
 
     //速度
-    int speed;
+    private int speed;
 
     //战斗状态
-    BattleState battleState;
+    private BattleState battleState;
 
     //被击动画引用
-    BeAttackedAnimation beAttackedAnimation;
+    private BeAttackedAnimation beAttackedAnimation;
     //被击动画长度
-    int beAttackedLength;
+    private int beAttackedLength;
     //被击动画出现位置
-    int beAttackedX;
-    int beAttackedY;
+    private int beAttackedX;
+    private int beAttackedY;
 
     //被选中后的图片
-    Image selectedImage;
+    private Image selectedImage;
 
 //敌人的战斗数据
 
     //hp和mp
-    int hp;
-    int mp;
+    private int hp;
+    private int mp;
 
     //攻击力
-    int hurt;
+    private int hurt;
     //魔法攻击
-    int skillHurt;
+    private int skillHurt;
     //防御力
-    int defense;
-    int hurtMax;
-    int skillHurtMax;
-    int defenseMax;
+    private int defense;
+    private int hurtMax;
+    private int skillHurtMax;
+    private int defenseMax;
 
     //招数(默认为1)
-    int skillNum = 1;
+    private int skillNum = 1;
 
     //当前造成的伤害
-    int currentDamage;
+    private int currentDamage;
     //当前造成的伤害类型
-    int currentDamageType;
+    private int currentDamageType;
     //当前敌人
-    ArrayList<Hero> currentEnemies = new ArrayList<Hero>();
+    private ArrayList<Hero> currentEnemies = new ArrayList<Hero>();
 
 //关于等级的数据
 
     //战胜后可以获得的经验
-    int exp;
+    private int exp;
     //战胜后可以获得的物品
-    String thing;
+    private String thing;
     //战胜后可以获得的金钱
-    int money;
+    private int money;
 
     //存储技能信息
-    String skillName;
-    int skillLength;
-    int skillX;
-    int skillY;
-    int beAttackedCode;
-    int beAttackedTimes;
-    int runCode;
-    int attackCode;
-    int withdrawCode;
-    int offsetTo1;
-    int offsetTo2;
-    int offsetTo3;
+    private String skillName;
+    private int skillLength;
+    private int skillX;
+    private int skillY;
+    private int beAttackedCode;
+    private int beAttackedTimes;
+    private int runCode;
+    private int attackCode;
+    private int withdrawCode;
+    private int offsetTo1;
+    private int offsetTo2;
+    private int offsetTo3;
 
     public void setSkill(String skillName, int skillLength, int skillX, int skillY, int beAttackedCode,
                          int beAttackedTimes, int runCode, int attackCode, int withdrawCode, int offsetTo1,
@@ -843,5 +843,381 @@ public class Enemy {
                 attackCode, withdrawCode, offsetTo1, offsetTo2, offsetTo3);
         bp.getSkillAnimation().setDrawn(true);
         bp.getSkillAnimation().setStopped(false);
+    }
+
+    public int getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(int roleCode) {
+        this.roleCode = roleCode;
+    }
+
+    public Image getCurrentImage() {
+        return currentImage;
+    }
+
+    public void setCurrentImage(Image currentImage) {
+        this.currentImage = currentImage;
+    }
+
+    public Image getHeadImage() {
+        return headImage;
+    }
+
+    public void setHeadImage(Image headImage) {
+        this.headImage = headImage;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<Image> getImages() {
+        return Images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        Images = images;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public BattleState getBattleState() {
+        return battleState;
+    }
+
+    public void setBattleState(BattleState battleState) {
+        this.battleState = battleState;
+    }
+
+    public BeAttackedAnimation getBeAttackedAnimation() {
+        return beAttackedAnimation;
+    }
+
+    public void setBeAttackedAnimation(BeAttackedAnimation beAttackedAnimation) {
+        this.beAttackedAnimation = beAttackedAnimation;
+    }
+
+    public int getBeAttackedLength() {
+        return beAttackedLength;
+    }
+
+    public void setBeAttackedLength(int beAttackedLength) {
+        this.beAttackedLength = beAttackedLength;
+    }
+
+    public int getBeAttackedX() {
+        return beAttackedX;
+    }
+
+    public void setBeAttackedX(int beAttackedX) {
+        this.beAttackedX = beAttackedX;
+    }
+
+    public int getBeAttackedY() {
+        return beAttackedY;
+    }
+
+    public void setBeAttackedY(int beAttackedY) {
+        this.beAttackedY = beAttackedY;
+    }
+
+    public Image getSelectedImage() {
+        return selectedImage;
+    }
+
+    public void setSelectedImage(Image selectedImage) {
+        this.selectedImage = selectedImage;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public int getMp() {
+        return mp;
+    }
+
+    public void setMp(int mp) {
+        this.mp = mp;
+    }
+
+    public int getHurt() {
+        return hurt;
+    }
+
+    public void setHurt(int hurt) {
+        this.hurt = hurt;
+    }
+
+    public int getSkillHurt() {
+        return skillHurt;
+    }
+
+    public void setSkillHurt(int skillHurt) {
+        this.skillHurt = skillHurt;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public int getHurtMax() {
+        return hurtMax;
+    }
+
+    public void setHurtMax(int hurtMax) {
+        this.hurtMax = hurtMax;
+    }
+
+    public int getSkillHurtMax() {
+        return skillHurtMax;
+    }
+
+    public void setSkillHurtMax(int skillHurtMax) {
+        this.skillHurtMax = skillHurtMax;
+    }
+
+    public int getDefenseMax() {
+        return defenseMax;
+    }
+
+    public void setDefenseMax(int defenseMax) {
+        this.defenseMax = defenseMax;
+    }
+
+    public int getSkillNum() {
+        return skillNum;
+    }
+
+    public void setSkillNum(int skillNum) {
+        this.skillNum = skillNum;
+    }
+
+    public int getCurrentDamage() {
+        return currentDamage;
+    }
+
+    public void setCurrentDamage(int currentDamage) {
+        this.currentDamage = currentDamage;
+    }
+
+    public int getCurrentDamageType() {
+        return currentDamageType;
+    }
+
+    public void setCurrentDamageType(int currentDamageType) {
+        this.currentDamageType = currentDamageType;
+    }
+
+    public ArrayList<Hero> getCurrentEnemies() {
+        return currentEnemies;
+    }
+
+    public void setCurrentEnemies(ArrayList<Hero> currentEnemies) {
+        this.currentEnemies = currentEnemies;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    public String getThing() {
+        return thing;
+    }
+
+    public void setThing(String thing) {
+        this.thing = thing;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public String getSkillName() {
+        return skillName;
+    }
+
+    public void setSkillName(String skillName) {
+        this.skillName = skillName;
+    }
+
+    public int getSkillLength() {
+        return skillLength;
+    }
+
+    public void setSkillLength(int skillLength) {
+        this.skillLength = skillLength;
+    }
+
+    public int getSkillX() {
+        return skillX;
+    }
+
+    public void setSkillX(int skillX) {
+        this.skillX = skillX;
+    }
+
+    public int getSkillY() {
+        return skillY;
+    }
+
+    public void setSkillY(int skillY) {
+        this.skillY = skillY;
+    }
+
+    public int getBeAttackedCode() {
+        return beAttackedCode;
+    }
+
+    public void setBeAttackedCode(int beAttackedCode) {
+        this.beAttackedCode = beAttackedCode;
+    }
+
+    public int getBeAttackedTimes() {
+        return beAttackedTimes;
+    }
+
+    public void setBeAttackedTimes(int beAttackedTimes) {
+        this.beAttackedTimes = beAttackedTimes;
+    }
+
+    public int getRunCode() {
+        return runCode;
+    }
+
+    public void setRunCode(int runCode) {
+        this.runCode = runCode;
+    }
+
+    public int getAttackCode() {
+        return attackCode;
+    }
+
+    public void setAttackCode(int attackCode) {
+        this.attackCode = attackCode;
+    }
+
+    public int getWithdrawCode() {
+        return withdrawCode;
+    }
+
+    public void setWithdrawCode(int withdrawCode) {
+        this.withdrawCode = withdrawCode;
+    }
+
+    public int getOffsetTo1() {
+        return offsetTo1;
+    }
+
+    public void setOffsetTo1(int offsetTo1) {
+        this.offsetTo1 = offsetTo1;
+    }
+
+    public int getOffsetTo2() {
+        return offsetTo2;
+    }
+
+    public void setOffsetTo2(int offsetTo2) {
+        this.offsetTo2 = offsetTo2;
+    }
+
+    public int getOffsetTo3() {
+        return offsetTo3;
+    }
+
+    public void setOffsetTo3(int offsetTo3) {
+        this.offsetTo3 = offsetTo3;
     }
 }

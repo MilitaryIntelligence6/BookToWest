@@ -16,19 +16,19 @@ public class Check {
     //检查怪物是否死亡 注意要在所有的技能动画发动结束以后
     public void checkEnemyDead() {
 
-        if (bp.getEm1() != null && bp.getEm1().hp <= 0) {
+        if (bp.getEm1() != null && bp.getEm1().getHp() <= 0) {
             bp.getEnemies().remove(bp.getEnemies().indexOf(bp.getEm1()));
             bp.setEm1(null);
             bp.getProgressBar().Enemy1X = 0;
         }
 
-        if (bp.getEm2() != null && bp.getEm2().hp <= 0) {
+        if (bp.getEm2() != null && bp.getEm2().getHp() <= 0) {
             bp.getEnemies().remove(bp.getEnemies().indexOf(bp.getEm2()));
             bp.setEm2(null);
             bp.getProgressBar().Enemy2X = 0;
         }
 
-        if (bp.getEm3() != null && bp.getEm3().hp <= 0) {
+        if (bp.getEm3() != null && bp.getEm3().getHp() <= 0) {
             bp.getEnemies().remove(bp.getEnemies().indexOf(bp.getEm3()));
             bp.setEm3(null);
             bp.getProgressBar().Enemy3X = 0;

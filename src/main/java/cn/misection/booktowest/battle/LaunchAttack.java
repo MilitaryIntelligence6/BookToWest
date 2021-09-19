@@ -394,7 +394,7 @@ public class LaunchAttack {
             }
             bp.getCheck().checkHeroDead();
             //人物重新出现
-            bp.getEm1().isDraw = true;
+            bp.getEm1().setDraw(true);
             //进度条继续
             bp.getProgressBar().Enemy1X = bp.getProgressBar().BarX;
             //恢复
@@ -439,7 +439,7 @@ public class LaunchAttack {
             }
             bp.getCheck().checkHeroDead();
             //人物重新出现
-            bp.getEm2().isDraw = true;
+            bp.getEm2().setDraw(true);
             //进度条继续
             bp.getProgressBar().Enemy2X = bp.getProgressBar().BarX;
             //恢复
@@ -485,7 +485,7 @@ public class LaunchAttack {
             }
             bp.getCheck().checkHeroDead();
             //人物重新出现
-            bp.getEm3().isDraw = true;
+            bp.getEm3().setDraw(true);
             //进度条继续
             bp.getProgressBar().Enemy3X = bp.getProgressBar().BarX;
             //恢复

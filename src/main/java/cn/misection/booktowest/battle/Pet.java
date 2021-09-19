@@ -80,15 +80,15 @@ public class Pet {
                 break;
         }
 
-        currentDamage = power - currentEnemy.defense;
+        currentDamage = power - currentEnemy.getDefense();
         if (currentDamage < 0) {
             currentDamage = 0;
         }
         currentDamageType = 1;
-        currentEnemy.hp -= currentDamage;
-        currentEnemy.hp -= currentDamage;
+        currentEnemy.setHp(currentEnemy.getHp() - currentDamage);
+        currentEnemy.setHp(currentEnemy.getHp() - currentDamage);
         HurtValue hurtValue = new HurtValue(bp);
-        hurtValue.show(currentDamage, currentDamageType, currentEnemy.x, currentEnemy.y);
+        hurtValue.show(currentDamage, currentDamageType, currentEnemy.getX(), currentEnemy.getY());
         bp.getHurtValues().add(hurtValue);
     }
 

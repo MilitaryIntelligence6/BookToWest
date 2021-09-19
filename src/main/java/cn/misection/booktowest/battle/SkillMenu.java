@@ -104,7 +104,7 @@ public class SkillMenu {
         isDraw = false;
         bp.setCurrentPattern(currentPattern);
         //打开怪物选择
-        bp.getEnemySlector().isSlectable = isSlectable;
+        bp.getEnemySlector().setSlectable(isSlectable);
         bp.setCurrentBeAttacked(currentBeAttacked);
         //指示器结束
         bp.getInstruct().end();

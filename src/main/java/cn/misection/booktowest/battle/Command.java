@@ -85,7 +85,7 @@ public class Command {
             isDraw = false;
             bp.setCurrentPattern(1);
             //打开怪物选择
-            bp.getEnemySlector().isSlectable = true;
+            bp.getEnemySlector().setSlectable(true);
 
         }
 

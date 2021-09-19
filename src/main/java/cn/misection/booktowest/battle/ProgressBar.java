@@ -67,13 +67,13 @@ public class ProgressBar {
         }
         pet = Reader.readImage("image/小精灵/头像.png");
         if (bp.getEm1() != null) {
-            enemy1 = bp.getEm1().headImage;
+            enemy1 = bp.getEm1().getHeadImage();
         }
         if (bp.getEm2() != null) {
-            enemy2 = bp.getEm2().headImage;
+            enemy2 = bp.getEm2().getHeadImage();
         }
         if (bp.getEm3() != null) {
-            enemy3 = bp.getEm3().headImage;
+            enemy3 = bp.getEm3().getHeadImage();
         }
     }
 
@@ -94,13 +94,13 @@ public class ProgressBar {
                     petX += bp.getPet().speed;
                 }
                 if (bp.getEm1() != null) {
-                    Enemy1X += bp.getEm1().speed;
+                    Enemy1X += bp.getEm1().getSpeed();
                 }
                 if (bp.getEm2() != null) {
-                    Enemy2X += bp.getEm2().speed;
+                    Enemy2X += bp.getEm2().getSpeed();
                 }
                 if (bp.getEm3() != null) {
-                    Enemy3X += bp.getEm3().speed;
+                    Enemy3X += bp.getEm3().getSpeed();
                 }
             } else if (ZhangX - BarX >= 400) {
                 isStop = true;

@@ -4,7 +4,7 @@ package cn.misection.booktowest.battle;
 public class EnemyAI {
 
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
 
     //构造方法
     public EnemyAI(BattlePanel bp) {
@@ -13,7 +13,7 @@ public class EnemyAI {
 
     //选择攻击招数
     public void skillToUse(Enemy e) {
-        bp.setCurrentPattern((int) (Math.random() * e.skillNum) + 1);
+        bp.setCurrentPattern((int) (Math.random() * e.getSkillNum()) + 1);
         if (bp.getCurrentPattern() == 2) {
             bp.setCurrentBeAttacked(4);
         }
@@ -39,5 +39,13 @@ public class EnemyAI {
                 break;
             }
         }
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
     }
 }

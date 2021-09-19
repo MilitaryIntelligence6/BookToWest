@@ -188,9 +188,9 @@ public class VictoryReminder {
     public void getInformation() {
         //计算当前战斗可以获得多少经验,金钱,物品
         for (Enemy e : bp.getEnemies()) {
-            expToGet += e.exp;
-            moneyToGet += e.money;
-            things.add(e.thing);
+            expToGet += e.getExp();
+            moneyToGet += e.getMoney();
+            things.add(e.getThing());
         }
 
         //得到数据 (0--2是各个英雄当前升级所需经验 3--6是张小凡的数据 7--10是文敏

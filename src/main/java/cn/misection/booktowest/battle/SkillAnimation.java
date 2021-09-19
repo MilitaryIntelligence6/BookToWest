@@ -127,10 +127,10 @@ public class SkillAnimation {
                 }
                 if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 5) {
                     //让怪物显示被击效果
-                    getBp().getEm1().isDraw = false;
-                    getBp().getEm1().beAttackedAnimation.getTimes(getBeAttackedTimes());
-                    getBp().getEm1().beAttackedAnimation.setDraw(true);
-                    getBp().getEm1().beAttackedAnimation.setStop(false);
+                    getBp().getEm1().setDraw(false);
+                    getBp().getEm1().getBeAttackedAnimation().getTimes(getBeAttackedTimes());
+                    getBp().getEm1().getBeAttackedAnimation().setDraw(true);
+                    getBp().getEm1().getBeAttackedAnimation().setStop(false);
                     setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
                     setCode(getCode() + 1);
                 }
@@ -171,10 +171,10 @@ public class SkillAnimation {
                 }
                 if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 6) {
                     //让怪物显示被击效果
-                    getBp().getEm2().isDraw = false;
-                    getBp().getEm2().beAttackedAnimation.getTimes(getBeAttackedTimes());
-                    getBp().getEm2().beAttackedAnimation.setDraw(true);
-                    getBp().getEm2().beAttackedAnimation.setStop(false);
+                    getBp().getEm2().setDraw(false);
+                    getBp().getEm2().getBeAttackedAnimation().getTimes(getBeAttackedTimes());
+                    getBp().getEm2().getBeAttackedAnimation().setDraw(true);
+                    getBp().getEm2().getBeAttackedAnimation().setStop(false);
                     setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
                     setCode(getCode() + 1);
                 }
@@ -216,10 +216,10 @@ public class SkillAnimation {
                 if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 7) {
                     //MusicReader.readmusic("刀声.wav");
                     //让怪物显示被击效果
-                    getBp().getEm3().isDraw = false;
-                    getBp().getEm3().beAttackedAnimation.getTimes(getBeAttackedTimes());
-                    getBp().getEm3().beAttackedAnimation.setDraw(true);
-                    getBp().getEm3().beAttackedAnimation.setStop(false);
+                    getBp().getEm3().setDraw(false);
+                    getBp().getEm3().getBeAttackedAnimation().getTimes(getBeAttackedTimes());
+                    getBp().getEm3().getBeAttackedAnimation().setDraw(true);
+                    getBp().getEm3().getBeAttackedAnimation().setStop(false);
                     setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
                     setCode(getCode() + 1);
                 }
@@ -261,10 +261,10 @@ public class SkillAnimation {
                 if (getCode() == getBeAttackedCode()) {
                     //MusicReader.readmusic("刀声.wav");
                     for (Enemy enemy : getBp().getEnemies()) {
-                        enemy.isDraw = false;
-                        enemy.beAttackedAnimation.getTimes(getBeAttackedTimes());
-                        enemy.beAttackedAnimation.setDraw(true);
-                        enemy.beAttackedAnimation.setStop(false);
+                        enemy.setDraw(false);
+                        enemy.getBeAttackedAnimation().getTimes(getBeAttackedTimes());
+                        enemy.getBeAttackedAnimation().setDraw(true);
+                        enemy.getBeAttackedAnimation().setStop(false);
                     }
                     setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
                     setCode(getCode() + 1);

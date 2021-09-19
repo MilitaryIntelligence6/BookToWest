@@ -101,18 +101,18 @@ public class BeAttackedAnimation {
                     }
                 }
                 if (bp.getCurrentBeAttacked() == 5) {
-                    bp.getEm1().isDraw = true;
+                    bp.getEm1().setDraw(true);
                 }
                 if (bp.getCurrentBeAttacked() == 6) {
-                    bp.getEm2().isDraw = true;
+                    bp.getEm2().setDraw(true);
                 }
                 if (bp.getCurrentBeAttacked() == 7) {
-                    bp.getEm3().isDraw = true;
+                    bp.getEm3().setDraw(true);
                 }
 
                 if (bp.getCurrentBeAttacked() == 8) {
                     for (Enemy e : bp.getEnemies()) {
-                        e.isDraw = true;
+                        e.setDraw(true);
                     }
                 }
             } else {

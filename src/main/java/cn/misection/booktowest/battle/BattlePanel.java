@@ -333,7 +333,7 @@ public class BattlePanel extends JPanel implements Runnable {
                     drugMenu.checkPressed();
                 }
 
-                if (enemySlector.isSlectable) {
+                if (enemySlector.isSlectable()) {
                     enemySlector.checkClick(currentX, currentY);
                 }
             }
@@ -439,8 +439,8 @@ public class BattlePanel extends JPanel implements Runnable {
         }
         skillMenu.drawSkillMenu(bufferedGraphics);
         for (Enemy enemy : enemies) {
-            if (enemy.beAttackedAnimation != null) {
-                enemy.beAttackedAnimation.drawAnimation(bufferedGraphics);
+            if (enemy.getBeAttackedAnimation() != null) {
+                enemy.getBeAttackedAnimation().drawAnimation(bufferedGraphics);
             }
         }
         for (Hero hero : heroes) {
@@ -453,7 +453,7 @@ public class BattlePanel extends JPanel implements Runnable {
             hero.getBattleState().drawState(bufferedGraphics);
         }
         for (Enemy enemy : enemies) {
-            enemy.battleState.drawState(bufferedGraphics);
+            enemy.getBattleState().drawState(bufferedGraphics);
         }
         for (HurtValue hurtValue : hurtValues) {
             hurtValue.drawHurtValue(bufferedGraphics);
@@ -513,8 +513,8 @@ public class BattlePanel extends JPanel implements Runnable {
             }
             skillAnimation.update();
             for (Enemy enemy : enemies) {
-                if (enemy.beAttackedAnimation != null) {
-                    enemy.beAttackedAnimation.update();
+                if (enemy.getBeAttackedAnimation() != null) {
+                    enemy.getBeAttackedAnimation().update();
                 }
             }
             for (Hero hero : heroes) {
@@ -539,7 +539,7 @@ public class BattlePanel extends JPanel implements Runnable {
             }
             for (Enemy enemy : enemies) {
                 if (enemy != null) {
-                    enemy.battleState.check();
+                    enemy.getBattleState().check();
                 }
             }
             if (launchAttack != null) {

@@ -92,7 +92,7 @@ public class GameOver {
                 }
                 if (code == 10) {
                     //跳转回开始界面
-                    if (bp.getEm1().name.equals("罹年居士")) {
+                    if (bp.getEm1().getName().equals("罹年居士")) {
                         GameApplication.switchTo("scene");
                         bp.setEm1(null);
                         bp.getEnemies().clear();

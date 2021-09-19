@@ -156,14 +156,14 @@ public class LuXueQi implements Hero {
             //普通攻击
             case 1:
                 for (Enemy currentEnemy : currentEnemies) {
-                    currentDamage = hurt - currentEnemy.defense + (int) (Math.random() * 15);
+                    currentDamage = hurt - currentEnemy.getDefense() + (int) (Math.random() * 15);
                     if (currentDamage < 0) {
                         currentDamage = 0;
                     }
                     currentDamageType = 1;
-                    currentEnemy.hp -= currentDamage;
+                    currentEnemy.setHp(currentEnemy.getHp() - currentDamage);
                     HurtValue hurtValue = new HurtValue(bp);
-                    hurtValue.show(currentDamage, currentDamageType, currentEnemy.x, currentEnemy.y);
+                    hurtValue.show(currentDamage, currentDamageType, currentEnemy.getX(), currentEnemy.getY());
                     bp.getHurtValues().add(hurtValue);
                 }
                 break;
@@ -193,7 +193,7 @@ public class LuXueQi implements Hero {
                     bp.getProgressBar().Enemy3X = bp.getProgressBar().BarX;
                 }
                 for (Enemy enemy : bp.getEnemies()) {
-                    enemy.battleState.set(1, 5, 70, enemy.roleCode, enemy.x, enemy.y);
+                    enemy.getBattleState().set(1, 5, 70, enemy.getRoleCode(), enemy.getX(), enemy.getY());
                     enemy.checkState();
                 }
                 mp -= (int) (mpMax * 0.6);
@@ -201,14 +201,14 @@ public class LuXueQi implements Hero {
             case 4:
                 attackSkill(80, 30, 150);
                 for (Enemy enemy : bp.getEnemies()) {
-                    enemy.battleState.set(2, 9, 80, enemy.roleCode, enemy.x, enemy.y);
+                    enemy.getBattleState().set(2, 9, 80, enemy.getRoleCode(), enemy.getX(), enemy.getY());
                     enemy.checkState();
                 }
                 break;
             case 5:
                 attackSkill(200, 30, 160);
                 for (Enemy enemy : currentEnemies) {
-                    enemy.battleState.set(2, 10, 40, enemy.roleCode, enemy.x, enemy.y);
+                    enemy.getBattleState().set(2, 10, 40, enemy.getRoleCode(), enemy.getX(), enemy.getY());
                     enemy.checkState();
                 }
                 break;
@@ -216,7 +216,7 @@ public class LuXueQi implements Hero {
                 attackSkill(180, 30, 200);
                 for (Enemy enemy : bp.getEnemies()) {
                     int type = (int) (Math.random() * 6) + 5;
-                    enemy.battleState.set(2, type, 100, enemy.roleCode, enemy.x, enemy.y);
+                    enemy.getBattleState().set(2, type, 100, enemy.getRoleCode(), enemy.getX(), enemy.getY());
                     enemy.checkState();
                 }
                 for (Hero hero : bp.getHeroes()) {
@@ -233,14 +233,14 @@ public class LuXueQi implements Hero {
     //攻击型技能
     public void attackSkill(int baseHurt, int offsetHurt, int mpUse) {
         for (Enemy currentEnemy : currentEnemies) {
-            currentDamage = skillHurt - currentEnemy.defense + (int) (Math.random() * offsetHurt) + baseHurt;
+            currentDamage = skillHurt - currentEnemy.getDefense() + (int) (Math.random() * offsetHurt) + baseHurt;
             currentDamageType = 1;
             if (currentDamage < 0) {
                 currentDamage = 0;
             }
-            currentEnemy.hp -= currentDamage;
+            currentEnemy.setHp(currentEnemy.getHp() - currentDamage);
             HurtValue hurtValue = new HurtValue(bp);
-            hurtValue.show(currentDamage, currentDamageType, currentEnemy.x, currentEnemy.y);
+            hurtValue.show(currentDamage, currentDamageType, currentEnemy.getX(), currentEnemy.getY());
             bp.getHurtValues().add(hurtValue);
         }
         mp -= mpUse;

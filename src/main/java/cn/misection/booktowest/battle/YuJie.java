@@ -152,14 +152,14 @@ public class YuJie implements Hero {
             //普通攻击
             case 1:
                 for (Enemy currentEnemy : currentEnemies) {
-                    currentDamage = hurt - currentEnemy.defense + (int) (Math.random() * 15);
+                    currentDamage = hurt - currentEnemy.getDefense() + (int) (Math.random() * 15);
                     currentDamageType = 1;
                     if (currentDamage < 0) {
                         currentDamage = 0;
                     }
-                    currentEnemy.hp -= currentDamage;
+                    currentEnemy.setHp(currentEnemy.getHp() - currentDamage);
                     HurtValue hurtValue = new HurtValue(bp);
-                    hurtValue.show(currentDamage, currentDamageType, currentEnemy.x, currentEnemy.y);
+                    hurtValue.show(currentDamage, currentDamageType, currentEnemy.getX(), currentEnemy.getY());
                     bp.getHurtValues().add(hurtValue);
                 }
                 break;
@@ -168,7 +168,7 @@ public class YuJie implements Hero {
                 attackSkill(135, 15, 80);
                 //使被攻击对象80几率进入中毒状态
                 for (Enemy e : currentEnemies) {
-                    e.battleState.set(2, 9, 80, e.roleCode, e.x, e.y);
+                    e.getBattleState().set(2, 9, 80, e.getRoleCode(), e.getX(), e.getY());
                     e.checkState();
                 }
                 break;
@@ -219,14 +219,14 @@ public class YuJie implements Hero {
     //攻击型技能
     public void attackSkill(int baseHurt, int offsetHurt, int mpUse) {
         for (Enemy currentEnemy : currentEnemies) {
-            currentDamage = skillHurt - currentEnemy.defense + (int) (Math.random() * offsetHurt) + baseHurt;
+            currentDamage = skillHurt - currentEnemy.getDefense() + (int) (Math.random() * offsetHurt) + baseHurt;
             currentDamageType = 1;
             if (currentDamage < 0) {
                 currentDamage = 0;
             }
-            currentEnemy.hp -= currentDamage;
+            currentEnemy.setHp(currentEnemy.getHp() - currentDamage);
             HurtValue hurtValue = new HurtValue(bp);
-            hurtValue.show(currentDamage, currentDamageType, currentEnemy.x, currentEnemy.y);
+            hurtValue.show(currentDamage, currentDamageType, currentEnemy.getX(), currentEnemy.getY());
             bp.getHurtValues().add(hurtValue);
         }
         mp -= mpUse;
