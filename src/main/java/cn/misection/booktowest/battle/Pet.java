@@ -51,16 +51,16 @@ public class Pet {
         int i = 0;
         while (true) {
             i = (int) (Math.random() * 3) + 5;
-            if (i == 5 && bp.em1 != null) {
-                bp.currentBeAttacked = 5;
+            if (i == 5 && bp.getEm1() != null) {
+                bp.setCurrentBeAttacked(5);
                 break;
             }
-            if (i == 6 && bp.em2 != null) {
-                bp.currentBeAttacked = 6;
+            if (i == 6 && bp.getEm2() != null) {
+                bp.setCurrentBeAttacked(6);
                 break;
             }
-            if (i == 7 && bp.em3 != null) {
-                bp.currentBeAttacked = 7;
+            if (i == 7 && bp.getEm3() != null) {
+                bp.setCurrentBeAttacked(7);
                 break;
             }
         }
@@ -68,15 +68,15 @@ public class Pet {
 
     //计算伤害
     public void calDamage() {
-        switch (bp.currentBeAttacked) {
+        switch (bp.getCurrentBeAttacked()) {
             case 5:
-                currentEnemy = bp.em1;
+                currentEnemy = bp.getEm1();
                 break;
             case 6:
-                currentEnemy = bp.em2;
+                currentEnemy = bp.getEm2();
                 break;
             case 7:
-                currentEnemy = bp.em3;
+                currentEnemy = bp.getEm3();
                 break;
         }
 
@@ -89,15 +89,15 @@ public class Pet {
         currentEnemy.hp -= currentDamage;
         HurtValue hurtValue = new HurtValue(bp);
         hurtValue.show(currentDamage, currentDamageType, currentEnemy.x, currentEnemy.y);
-        bp.hurtValues.add(hurtValue);
+        bp.getHurtValues().add(hurtValue);
     }
 
     //攻击
     public void attack() {
         isDraw = false;
-        bp.skillAnimation.set("小精灵攻击", 22, 120, 135, 8, 1, 6, 16, 22, 90, 210, 0);
-        bp.skillAnimation.isDraw = true;
-        bp.skillAnimation.isStop = false;
+        bp.getSkillAnimation().set("小精灵攻击", 22, 120, 135, 8, 1, 6, 16, 22, 90, 210, 0);
+        bp.getSkillAnimation().setDrawn(true);
+        bp.getSkillAnimation().setStopped(false);
     }
 
     //载入图片

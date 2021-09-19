@@ -92,36 +92,36 @@ public class GameOver {
                 }
                 if (code == 10) {
                     //跳转回开始界面
-                    if (bp.em1.name.equals("罹年居士")) {
+                    if (bp.getEm1().name.equals("罹年居士")) {
                         GameApplication.switchTo("scene");
-                        bp.em1 = null;
-                        bp.enemies.clear();
-                        bp.zxf.deadAnimation.isDraw = false;
-                        bp.zxf.isDraw = true;
+                        bp.setEm1(null);
+                        bp.getEnemies().clear();
+                        bp.getZxf().deadAnimation.isDraw = false;
+                        bp.getZxf().isDraw = true;
                         ZhangXiaoFan.hp = ZhangXiaoFan.hpMax / 2;
-                        bp.yj.deadAnimation.isDraw = false;
-                        bp.yj.isDraw = true;
+                        bp.getYj().deadAnimation.isDraw = false;
+                        bp.getYj().isDraw = true;
                         YuJie.hp = YuJie.hpMax / 2;
-                        bp.heroes.clear();
+                        bp.getHeroes().clear();
                     } else {
                         GameApplication.switchTo("start");
-                        bp.em1 = null;
-                        bp.em2 = null;
-                        bp.em3 = null;
-                        bp.enemies.clear();
-                        if (bp.zxf != null) {
-                            bp.zxf.deadAnimation.isDraw = false;
-                            bp.zxf.isDraw = true;
+                        bp.setEm1(null);
+                        bp.setEm2(null);
+                        bp.setEm3(null);
+                        bp.getEnemies().clear();
+                        if (bp.getZxf() != null) {
+                            bp.getZxf().deadAnimation.isDraw = false;
+                            bp.getZxf().isDraw = true;
                         }
-                        if (bp.yj != null) {
-                            bp.yj.deadAnimation.isDraw = false;
-                            bp.yj.isDraw = true;
+                        if (bp.getYj() != null) {
+                            bp.getYj().deadAnimation.isDraw = false;
+                            bp.getYj().isDraw = true;
                         }
-                        if (bp.lxq != null) {
-                            bp.lxq.isDraw = true;
-                            bp.lxq.deadAnimation.isDraw = false;
+                        if (bp.getLxq() != null) {
+                            bp.getLxq().drawn = true;
+                            bp.getLxq().deadAnimation.isDraw = false;
                         }
-                        bp.heroes.clear();
+                        bp.getHeroes().clear();
                     }
                     isStop = true;
                 }

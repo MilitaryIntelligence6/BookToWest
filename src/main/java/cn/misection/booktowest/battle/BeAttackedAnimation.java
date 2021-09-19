@@ -84,34 +84,34 @@ public class BeAttackedAnimation {
                 currentTime = 1;
 
                 //重新出现
-                if (bp.currentBeAttacked == 1) {
-                    bp.zxf.isDraw = true;
+                if (bp.getCurrentBeAttacked() == 1) {
+                    bp.getZxf().isDraw = true;
                 }
-                if (bp.currentBeAttacked == 2) {
-                    bp.yj.isDraw = true;
+                if (bp.getCurrentBeAttacked() == 2) {
+                    bp.getYj().isDraw = true;
                 }
-                if (bp.currentBeAttacked == 3) {
-                    bp.lxq.isDraw = true;
+                if (bp.getCurrentBeAttacked() == 3) {
+                    bp.getLxq().drawn = true;
                 }
-                if (bp.currentBeAttacked == 4) {
-                    for (Hero h : bp.heroes) {
-                        if (!h.wheatherDead()) {
+                if (bp.getCurrentBeAttacked() == 4) {
+                    for (Hero h : bp.getHeroes()) {
+                        if (!h.isDead()) {
                             h.setIsDraw(true);
                         }
                     }
                 }
-                if (bp.currentBeAttacked == 5) {
-                    bp.em1.isDraw = true;
+                if (bp.getCurrentBeAttacked() == 5) {
+                    bp.getEm1().isDraw = true;
                 }
-                if (bp.currentBeAttacked == 6) {
-                    bp.em2.isDraw = true;
+                if (bp.getCurrentBeAttacked() == 6) {
+                    bp.getEm2().isDraw = true;
                 }
-                if (bp.currentBeAttacked == 7) {
-                    bp.em3.isDraw = true;
+                if (bp.getCurrentBeAttacked() == 7) {
+                    bp.getEm3().isDraw = true;
                 }
 
-                if (bp.currentBeAttacked == 8) {
-                    for (Enemy e : bp.enemies) {
+                if (bp.getCurrentBeAttacked() == 8) {
+                    for (Enemy e : bp.getEnemies()) {
                         e.isDraw = true;
                     }
                 }

@@ -5,6 +5,9 @@ import java.util.*;
 
 import cn.misection.booktowest.util.*;
 
+/**
+ * @author javaman
+ */
 public class LuXueQi implements Hero {
     //角色编号
     int roleCode = 3;
@@ -15,11 +18,11 @@ public class LuXueQi implements Hero {
     //角色的小头像
     Image headImage;
     //是否被画出
-    boolean isDraw;
+    boolean drawn;
     //自身动作是否停止
-    boolean isStop;
+    boolean stopped;
     //是否死亡
-    boolean isDead;
+    boolean dead;
 
     //被击动画
     BeAttackedAnimation beAttackedAnimation;
@@ -121,34 +124,35 @@ public class LuXueQi implements Hero {
     }
 
     //计算伤害
+    @Override
     public void calDamage() {
-        switch (bp.currentBeAttacked) {
+        switch (bp.getCurrentBeAttacked()) {
             case 5:
                 currentEnemies.clear();
-                currentEnemies.add(bp.em1);
+                currentEnemies.add(bp.getEm1());
                 break;
             case 6:
                 currentEnemies.clear();
-                currentEnemies.add(bp.em2);
+                currentEnemies.add(bp.getEm2());
                 break;
             case 7:
                 currentEnemies.clear();
-                currentEnemies.add(bp.em3);
+                currentEnemies.add(bp.getEm3());
                 break;
             case 8:
                 currentEnemies.clear();
-                if (bp.em1 != null) {
-                    currentEnemies.add(bp.em1);
+                if (bp.getEm1() != null) {
+                    currentEnemies.add(bp.getEm1());
                 }
-                if (bp.em2 != null) {
-                    currentEnemies.add(bp.em2);
+                if (bp.getEm2() != null) {
+                    currentEnemies.add(bp.getEm2());
                 }
-                if (bp.em3 != null) {
-                    currentEnemies.add(bp.em3);
+                if (bp.getEm3() != null) {
+                    currentEnemies.add(bp.getEm3());
                 }
                 break;
         }
-        switch (bp.currentPattern) {
+        switch (bp.getCurrentPattern()) {
             //普通攻击
             case 1:
                 for (Enemy currentEnemy : currentEnemies) {
@@ -160,12 +164,12 @@ public class LuXueQi implements Hero {
                     currentEnemy.hp -= currentDamage;
                     HurtValue hurtValue = new HurtValue(bp);
                     hurtValue.show(currentDamage, currentDamageType, currentEnemy.x, currentEnemy.y);
-                    bp.hurtValues.add(hurtValue);
+                    bp.getHurtValues().add(hurtValue);
                 }
                 break;
             case 2:
-                for (Hero hero : bp.heroes) {
-                    if (!hero.wheatherDead()) {
+                for (Hero hero : bp.getHeroes()) {
+                    if (!hero.isDead()) {
                         hero.getBattleState().set(2, 1, 100, hero.getRoleCode(), hero.getShowX(), hero.getShowY());
                         hero.checkState();
                     }
@@ -173,22 +177,22 @@ public class LuXueQi implements Hero {
                 mp -= 80;
                 break;
             case 3:
-                if (bp.zxf != null && !bp.zxf.isDead) {
-                    bp.progressBar.ZhangX = bp.progressBar.BarX + 400;
+                if (bp.getZxf() != null && !bp.getZxf().isDead) {
+                    bp.getProgressBar().ZhangX = bp.getProgressBar().BarX + 400;
                 }
-                if (bp.yj != null && !bp.yj.isDead) {
-                    bp.progressBar.YuX = bp.progressBar.BarX + 400;
+                if (bp.getYj() != null && !bp.getYj().isDead) {
+                    bp.getProgressBar().YuX = bp.getProgressBar().BarX + 400;
                 }
-                if (bp.em1 != null) {
-                    bp.progressBar.Enemy1X = bp.progressBar.BarX;
+                if (bp.getEm1() != null) {
+                    bp.getProgressBar().Enemy1X = bp.getProgressBar().BarX;
                 }
-                if (bp.em2 != null) {
-                    bp.progressBar.Enemy2X = bp.progressBar.BarX;
+                if (bp.getEm2() != null) {
+                    bp.getProgressBar().Enemy2X = bp.getProgressBar().BarX;
                 }
-                if (bp.em3 != null) {
-                    bp.progressBar.Enemy3X = bp.progressBar.BarX;
+                if (bp.getEm3() != null) {
+                    bp.getProgressBar().Enemy3X = bp.getProgressBar().BarX;
                 }
-                for (Enemy enemy : bp.enemies) {
+                for (Enemy enemy : bp.getEnemies()) {
                     enemy.battleState.set(1, 5, 70, enemy.roleCode, enemy.x, enemy.y);
                     enemy.checkState();
                 }
@@ -196,7 +200,7 @@ public class LuXueQi implements Hero {
                 break;
             case 4:
                 attackSkill(80, 30, 150);
-                for (Enemy enemy : bp.enemies) {
+                for (Enemy enemy : bp.getEnemies()) {
                     enemy.battleState.set(2, 9, 80, enemy.roleCode, enemy.x, enemy.y);
                     enemy.checkState();
                 }
@@ -210,13 +214,13 @@ public class LuXueQi implements Hero {
                 break;
             case 6:
                 attackSkill(180, 30, 200);
-                for (Enemy enemy : bp.enemies) {
+                for (Enemy enemy : bp.getEnemies()) {
                     int type = (int) (Math.random() * 6) + 5;
                     enemy.battleState.set(2, type, 100, enemy.roleCode, enemy.x, enemy.y);
                     enemy.checkState();
                 }
-                for (Hero hero : bp.heroes) {
-                    if (!hero.wheatherDead()) {
+                for (Hero hero : bp.getHeroes()) {
+                    if (!hero.isDead()) {
                         int type = (int) (Math.random() * 4) + 1;
                         hero.getBattleState().set(2, type, 100, hero.getRoleCode(), hero.getShowX(), hero.getShowY());
                         hero.checkState();
@@ -237,12 +241,13 @@ public class LuXueQi implements Hero {
             currentEnemy.hp -= currentDamage;
             HurtValue hurtValue = new HurtValue(bp);
             hurtValue.show(currentDamage, currentDamageType, currentEnemy.x, currentEnemy.y);
-            bp.hurtValues.add(hurtValue);
+            bp.getHurtValues().add(hurtValue);
         }
         mp -= mpUse;
     }
 
     //升级时调用的方法
+    @Override
     public void levelUp() {
         isLevelUp = true;
         //级别提升
@@ -281,8 +286,8 @@ public class LuXueQi implements Hero {
         this.bp = bp;
 
         getImage();
-        isDraw = true;
-        isStop = false;
+        drawn = true;
+        stopped = false;
 
         battleState = new BattleState(bp);
 
@@ -300,6 +305,7 @@ public class LuXueQi implements Hero {
     }
 
     //检查战斗的状态
+    @Override
     public void checkState() {
         switch (battleState.type) {
             //增加敏捷度
@@ -356,19 +362,20 @@ public class LuXueQi implements Hero {
         switch (battleState.type) {
             //中毒状态
             case 9:
-                bp.hurtValues.clear();
+                bp.getHurtValues().clear();
                 int damage = (int) (hp * 0.05);
                 hp -= damage;
                 HurtValue hurtValue = new HurtValue(bp);
                 hurtValue.show(damage, 1, showX, showY);
-                bp.hurtValues.add(hurtValue);
-                for (HurtValue h : bp.hurtValues) {
+                bp.getHurtValues().add(hurtValue);
+                for (HurtValue h : bp.getHurtValues()) {
                     h.start();
                 }
         }
     }
 
     //从状态中恢复
+    @Override
     public void returnFromState() {
         switch (battleState.type) {
             case 1:
@@ -443,7 +450,7 @@ public class LuXueQi implements Hero {
     @Override
     public void doAction() {
         // TODO Auto-generated method stub
-        if (!isStop && code < 6) {
+        if (!stopped && code < 6) {
             currentImage = Images.get(code);
             code++;
 
@@ -455,7 +462,7 @@ public class LuXueQi implements Hero {
     @Override
     public void drawHero(Graphics g) {
         // TODO Auto-generated method stub
-        if (isDraw) {
+        if (drawn) {
             g.drawImage(currentImage, x, y, bp);
         }
     }
@@ -464,10 +471,10 @@ public class LuXueQi implements Hero {
     public void attack() {
         // TODO Auto-generated method stub
         //人物不再画出
-        isDraw = false;
-        bp.skillAnimation.set("陆雪琪攻击", 24, 120, 135, 8, 1, 7, 13, 24, 90, 210, -20);
-        bp.skillAnimation.isDraw = true;
-        bp.skillAnimation.isStop = false;
+        drawn = false;
+        bp.getSkillAnimation().set("陆雪琪攻击", 24, 120, 135, 8, 1, 7, 13, 24, 90, 210, -20);
+        bp.getSkillAnimation().setDrawn(true);
+        bp.getSkillAnimation().setStopped(false);
     }
 
     @Override
@@ -520,7 +527,7 @@ public class LuXueQi implements Hero {
     }
 
     @Override
-    public boolean wheatherLevelUp() {
+    public boolean isLevelUp() {
         // TODO Auto-generated method stub
         return isLevelUp;
     }
@@ -556,9 +563,9 @@ public class LuXueQi implements Hero {
     }
 
     @Override
-    public boolean wheatherDead() {
+    public boolean isDead() {
         // TODO Auto-generated method stub
-        return isDead;
+        return dead;
     }
 
     @Override
@@ -601,37 +608,37 @@ public class LuXueQi implements Hero {
     public void skill(int skillCode) {
         // TODO Auto-generated method stub
         //人物不再画出
-        isDraw = false;
+        drawn = false;
 //				animation=animations.get(skillCode);
 //				animation.isDraw=true;
 //				animation.isStop=false;
 
         switch (skillCode) {
             case 1:
-                bp.backgroundAnimation.set("灵凤吐珠", 30);
-                bp.skillAnimation.set("陆雪琪技能1", 17, 120, 135, 0, 0, 0, 0, 0, 0, 0, 0);
+                bp.getBackgroundAnimation().set("灵凤吐珠", 30);
+                bp.getSkillAnimation().set("陆雪琪技能1", 17, 120, 135, 0, 0, 0, 0, 0, 0, 0, 0);
                 break;
             case 2:
-                bp.backgroundAnimation.set("踏月无痕", 68);
-                bp.skillAnimation.set("陆雪琪技能2", 23, 120, 135, 0, 0, 0, 0, 0, 0, 0, 0);
+                bp.getBackgroundAnimation().set("踏月无痕", 68);
+                bp.getSkillAnimation().set("陆雪琪技能2", 23, 120, 135, 0, 0, 0, 0, 0, 0, 0, 0);
                 break;
             case 3:
-                bp.backgroundAnimation.set("星火乾坤圈", 38);
-                bp.skillAnimation.set("陆雪琪技能3", 21, 120, 135, 8, 1, 0, 0, 0, 0, 0, 0);
+                bp.getBackgroundAnimation().set("星火乾坤圈", 38);
+                bp.getSkillAnimation().set("陆雪琪技能3", 21, 120, 135, 8, 1, 0, 0, 0, 0, 0, 0);
                 break;
             case 4:
-                bp.backgroundAnimation.set("亟电崩离", 30);
-                bp.skillAnimation.set("陆雪琪技能4", 29, 120, 135, 8, 2, 9, 18, 29, 90, 210, -20);
+                bp.getBackgroundAnimation().set("亟电崩离", 30);
+                bp.getSkillAnimation().set("陆雪琪技能4", 29, 120, 135, 8, 2, 9, 18, 29, 90, 210, -20);
                 break;
             case 5:
-                bp.backgroundAnimation.set("劈风追月", 90);
-                bp.skillAnimation.set("陆雪琪技能5", 29, 120, 135, 8, 11, 9, 22, 29, 90, 210, -20);
+                bp.getBackgroundAnimation().set("劈风追月", 90);
+                bp.getSkillAnimation().set("陆雪琪技能5", 29, 120, 135, 8, 11, 9, 22, 29, 90, 210, -20);
                 break;
         }
-        bp.backgroundAnimation.isDraw = true;
-        bp.backgroundAnimation.isStop = false;
-        bp.skillAnimation.isDraw = true;
-        bp.skillAnimation.isStop = false;
+        bp.getBackgroundAnimation().setDrawn(true);
+        bp.getBackgroundAnimation().setStopped(false);
+        bp.getSkillAnimation().setDrawn(true);
+        bp.getSkillAnimation().setStopped(false);
     }
 
     @Override
@@ -649,7 +656,7 @@ public class LuXueQi implements Hero {
     @Override
     public void setDead(boolean isDead) {
         // TODO Auto-generated method stub
-        this.isDead = isDead;
+        this.dead = isDead;
     }
 
     @Override
@@ -673,7 +680,7 @@ public class LuXueQi implements Hero {
     @Override
     public void setIsDraw(boolean isDraw) {
         // TODO Auto-generated method stub
-        this.isDraw = isDraw;
+        this.drawn = isDraw;
     }
 
     @Override
@@ -701,7 +708,7 @@ public class LuXueQi implements Hero {
     }
 
     @Override
-    public boolean wheatherAngry() {
+    public boolean isAngry() {
         // TODO Auto-generated method stub
         return isAngry;
     }
@@ -732,7 +739,7 @@ public class LuXueQi implements Hero {
         //存入当前是否达到愤怒
         roleInfo.add(isAngry + "");
         //存入当前是否死亡
-        roleInfo.add(isDead + "");
+        roleInfo.add(dead + "");
         //存入当前经验
         roleInfo.add(exp + "");
 
@@ -767,7 +774,7 @@ public class LuXueQi implements Hero {
         LuXueQi.mp = Integer.parseInt(roleInfo.get(2));
         LuXueQi.angryValue = Integer.parseInt(roleInfo.get(3));
         this.isAngry = Boolean.parseBoolean(roleInfo.get(4));
-        this.isDead = Boolean.parseBoolean(roleInfo.get(5));
+        this.dead = Boolean.parseBoolean(roleInfo.get(5));
         LuXueQi.exp = Integer.parseInt(roleInfo.get(6));
     }
 

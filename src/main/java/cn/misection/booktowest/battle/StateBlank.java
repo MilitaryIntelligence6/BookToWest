@@ -67,13 +67,13 @@ public class StateBlank {
     }
 
     public void getImage() {
-        if (bp.zxf != null) {
+        if (bp.getZxf() != null) {
             zhangBack = Reader.readImage("image/状态栏/张小凡.png");
         }
-        if (bp.yj != null) {
+        if (bp.getYj() != null) {
             wenBack = Reader.readImage("image/状态栏/文敏.png");
         }
-        if (bp.lxq != null) {
+        if (bp.getLxq() != null) {
             luBack = Reader.readImage("image/状态栏/陆雪琪.png");
         }
         hpImage = Reader.readImage("image/状态栏/生命值.png");
@@ -88,7 +88,7 @@ public class StateBlank {
             g.drawImage(luBack, x + 322 * 2, y, bp);
 
 
-            if (bp.zxf != null) {
+            if (bp.getZxf() != null) {
                 g.drawImage(hpImage, hpX, hpY, hpX + zHpWidth, hpY + height, 0, 0, zHpWidth, height, bp);
                 g.drawImage(mpImage, mpX, mpY, mpX + zMpWidth, mpY + height, 0, 0, zMpWidth, height, bp);
                 g.setColor(Color.black);
@@ -97,7 +97,7 @@ public class StateBlank {
                 g.drawString(ZhangXiaoFan.mp + "/" + ZhangXiaoFan.mpMax, mpX + 150, mpY + 10);
             }
 
-            if (bp.yj != null) {
+            if (bp.getYj() != null) {
                 g.drawImage(hpImage, hpX + 322, hpY, hpX + 322 + wHpWidth, hpY + height, 0, 0, wHpWidth, height, bp);
                 g.drawImage(mpImage, mpX + 322, mpY, mpX + 322 + wMpWidth, mpY + height, 0, 0, wMpWidth, height, bp);
                 g.setColor(Color.black);
@@ -106,7 +106,7 @@ public class StateBlank {
                 g.drawString(YuJie.mp + "/" + YuJie.mpMax, mpX + 322 + 150, mpY + 10);
             }
 
-            if (bp.lxq != null) {
+            if (bp.getLxq() != null) {
                 g.drawImage(hpImage, hpX + 322 * 2, hpY, hpX + 322 * 2 + lHpWidth, hpY + height, 0, 0, lHpWidth,
                         height, bp);
                 g.drawImage(mpImage, mpX + 322 * 2, mpY, mpX + 322 * 2 + lMpWidth, mpY + height, 0, 0, lMpWidth,

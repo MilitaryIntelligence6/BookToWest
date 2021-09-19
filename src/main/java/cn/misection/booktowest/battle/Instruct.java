@@ -45,22 +45,22 @@ public class Instruct {
 
     //开始出现
     public void start() {
-        int i = bp.currentRound;
+        int i = bp.getCurrentRound();
         switch (i) {
             //张小凡
             case 1:
-                x = bp.zxf.x + 210;
-                y = bp.zxf.y + 75;
+                x = bp.getZxf().x + 210;
+                y = bp.getZxf().y + 75;
                 break;
             //文敏
             case 2:
-                x = bp.yj.x + 85;
-                y = bp.yj.y - 20;
+                x = bp.getYj().x + 85;
+                y = bp.getYj().y - 20;
                 break;
             //陆雪琪
             case 3:
-                x = bp.lxq.x + 45;
-                y = bp.lxq.y - 20;
+                x = bp.getLxq().x + 45;
+                y = bp.getLxq().y - 20;
                 break;
         }
         isDraw = true;

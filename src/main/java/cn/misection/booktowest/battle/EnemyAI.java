@@ -13,9 +13,9 @@ public class EnemyAI {
 
     //选择攻击招数
     public void skillToUse(Enemy e) {
-        bp.currentPattern = (int) (Math.random() * e.skillNum) + 1;
-        if (bp.currentPattern == 2) {
-            bp.currentBeAttacked = 4;
+        bp.setCurrentPattern((int) (Math.random() * e.skillNum) + 1);
+        if (bp.getCurrentPattern() == 2) {
+            bp.setCurrentBeAttacked(4);
         }
     }
 
@@ -26,16 +26,16 @@ public class EnemyAI {
         while (true) {
             //生成随机数
             i = (int) (Math.random() * 3) + 1;
-            if (i == 1 && bp.zxf != null && !bp.zxf.isDead) {
-                bp.currentBeAttacked = i;
+            if (i == 1 && bp.getZxf() != null && !bp.getZxf().isDead) {
+                bp.setCurrentBeAttacked(i);
                 break;
             }
-            if (i == 2 && bp.yj != null && !bp.yj.isDead) {
-                bp.currentBeAttacked = i;
+            if (i == 2 && bp.getYj() != null && !bp.getYj().isDead) {
+                bp.setCurrentBeAttacked(i);
                 break;
             }
-            if (i == 3 && bp.lxq != null && !bp.lxq.isDead) {
-                bp.currentBeAttacked = i;
+            if (i == 3 && bp.getLxq() != null && !bp.getLxq().dead) {
+                bp.setCurrentBeAttacked(i);
                 break;
             }
         }

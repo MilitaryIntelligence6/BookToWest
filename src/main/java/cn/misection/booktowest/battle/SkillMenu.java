@@ -62,7 +62,7 @@ public class SkillMenu {
     //读入图片
     public void getImage() {
         //读入张小凡的技能按钮图片
-        if (bp.zxf != null) {
+        if (bp.getZxf() != null) {
             for (int i = 1; i <= ZhangXiaoFan.skillNumber; i++) {
                 for (int j = 1; j <= 3; j++) {
                     Image image = Reader.readImage("image/技能菜单/技能按钮/张小凡/技能" + i + "按钮" + j + ".png");
@@ -74,7 +74,7 @@ public class SkillMenu {
         }
 
 //读入文敏的技能按钮图片
-        if (bp.yj != null) {
+        if (bp.getYj() != null) {
             for (int i = 1; i <= YuJie.skillNumber; i++) {
                 for (int j = 1; j <= 3; j++) {
                     Image image = Reader.readImage("image/技能菜单/技能按钮/文敏/技能" + i + "按钮" + j + ".png");
@@ -86,7 +86,7 @@ public class SkillMenu {
         }
 
 //读入陆雪琪的技能按钮图片
-        if (bp.lxq != null) {
+        if (bp.getLxq() != null) {
             for (int i = 1; i <= LuXueQi.skillNumber; i++) {
                 for (int j = 1; j <= 3; j++) {
                     Image image = Reader.readImage("image/技能菜单/技能按钮/陆雪琪/技能" + i + "按钮" + j + ".png");
@@ -102,18 +102,18 @@ public class SkillMenu {
     public void afterClicked(int currentPattern, boolean isSlectable, int currentBeAttacked) {
         //把菜单隐藏掉
         isDraw = false;
-        bp.currentPattern = currentPattern;
+        bp.setCurrentPattern(currentPattern);
         //打开怪物选择
-        bp.enemySlector.isSlectable = isSlectable;
-        bp.currentBeAttacked = currentBeAttacked;
+        bp.getEnemySlector().isSlectable = isSlectable;
+        bp.setCurrentBeAttacked(currentBeAttacked);
         //指示器结束
-        bp.instruct.end();
+        bp.getInstruct().end();
     }
 
     //添加按钮的方法
     public void addButton() {
         //创建张小凡的按钮
-        if (bp.zxf != null) {
+        if (bp.getZxf() != null) {
             for (int i = 0; i < zhangImages.size(); i = i + 3) {
                 skillButton = new GameButton(395, 226 + i * 10, 215, 28, zhangImages.get(i), zhangImages.get(i + 1),
                         zhangImages.get(i + 2), bp);
@@ -122,7 +122,7 @@ public class SkillMenu {
         }
 
         //创建文敏的按钮
-        if (bp.yj != null) {
+        if (bp.getYj() != null) {
             for (int i = 0; i < wenImages.size(); i = i + 3) {
                 skillButton = new GameButton(395, 226 + i * 10, 215, 28, wenImages.get(i), wenImages.get(i + 1),
                         wenImages.get(i + 2), bp);
@@ -131,7 +131,7 @@ public class SkillMenu {
         }
 
         //创建陆雪琪的按钮
-        if (bp.lxq != null) {
+        if (bp.getLxq() != null) {
             for (int i = 0; i < luImages.size(); i = i + 3) {
                 skillButton = new GameButton(395, 226 + i * 10, 215, 28, luImages.get(i), luImages.get(i + 1),
                         luImages.get(i + 2), bp);
@@ -142,17 +142,17 @@ public class SkillMenu {
 
     //检查当前为谁的回合
     public void checkRound() {
-        if (bp.currentRound == 1) {
+        if (bp.getCurrentRound() == 1) {
             skillButtons = zhangButtons;
             returnButton = new GameButton(395, 226 + zhangButtons.size() * 30, 215, 28, Reader.readImage("image" +
                     "/技能菜单/技能按钮/返回/返回1.png"), Reader.readImage("image/技能菜单/技能按钮/返回/返回2.png"), Reader.readImage("image" +
                     "/技能菜单/技能按钮/返回/返回3.png"), bp);
-        } else if (bp.currentRound == 2) {
+        } else if (bp.getCurrentRound() == 2) {
             skillButtons = wenButtons;
             returnButton = new GameButton(395, 226 + wenButtons.size() * 30, 215, 28, Reader.readImage("image" +
                     "/技能菜单/技能按钮/返回/返回1.png"), Reader.readImage("image/技能菜单/技能按钮/返回/返回2.png"), Reader.readImage("image" +
                     "/技能菜单/技能按钮/返回/返回3.png"), bp);
-        } else if (bp.currentRound == 3) {
+        } else if (bp.getCurrentRound() == 3) {
             skillButtons = luButtons;
             returnButton = new GameButton(395, 226 + luButtons.size() * 30, 215, 28, Reader.readImage("image" +
                     "/技能菜单/技能按钮/返回/返回1.png"), Reader.readImage("image/技能菜单/技能按钮/返回/返回2.png"), Reader.readImage("image" +
@@ -163,14 +163,14 @@ public class SkillMenu {
     //检查是否移动鼠标进入菜单
     public void checkMoveIn() {
         for (GameButton button : skillButtons) {
-            button.isMoveIn(bp.currentX, bp.currentY);
+            button.isMoveIn(bp.getCurrentX(), bp.getCurrentY());
         }
-        returnButton.isMoveIn(bp.currentX, bp.currentY);
+        returnButton.isMoveIn(bp.getCurrentX(), bp.getCurrentY());
 
         //张小凡的回合
-        if (bp.currentRound == 1) {
+        if (bp.getCurrentRound() == 1) {
             for (int i = 0; i < zhangButtons.size(); i++) {
-                if (bp.currentX > 395 && bp.currentX < 610 && bp.currentY > 226 + i * 30 && bp.currentY < 226 + (i + 1) * 30) {
+                if (bp.getCurrentX() > 395 && bp.getCurrentX() < 610 && bp.getCurrentY() > 226 + i * 30 && bp.getCurrentY() < 226 + (i + 1) * 30) {
                     introduceImage = zhangIntros.get(i);
                     this.introY = 226 + i * 30;
                     isDrawIntro = true;
@@ -178,9 +178,9 @@ public class SkillMenu {
             }
         }
 
-        if (bp.currentRound == 2) {
+        if (bp.getCurrentRound() == 2) {
             for (int i = 0; i < wenButtons.size(); i++) {
-                if (bp.currentX > 395 && bp.currentX < 610 && bp.currentY > 226 + i * 30 && bp.currentY < 226 + (i + 1) * 30) {
+                if (bp.getCurrentX() > 395 && bp.getCurrentX() < 610 && bp.getCurrentY() > 226 + i * 30 && bp.getCurrentY() < 226 + (i + 1) * 30) {
                     introduceImage = wenIntros.get(i);
                     this.introY = 226 + i * 30;
                     isDrawIntro = true;
@@ -188,9 +188,9 @@ public class SkillMenu {
             }
         }
 
-        if (bp.currentRound == 3) {
+        if (bp.getCurrentRound() == 3) {
             for (int i = 0; i < luButtons.size(); i++) {
-                if (bp.currentX > 395 && bp.currentX < 610 && bp.currentY > 226 + i * 30 && bp.currentY < 226 + (i + 1) * 30) {
+                if (bp.getCurrentX() > 395 && bp.getCurrentX() < 610 && bp.getCurrentY() > 226 + i * 30 && bp.getCurrentY() < 226 + (i + 1) * 30) {
                     introduceImage = luIntros.get(i);
                     this.introY = 226 + i * 30;
                     isDrawIntro = true;
@@ -203,9 +203,9 @@ public class SkillMenu {
     //检查鼠标是否点击菜单
     public void checkPressed() {
         for (GameButton button : skillButtons) {
-            button.isPressedButton(bp.currentX, bp.currentY);
+            button.isPressedButton(bp.getCurrentX(), bp.getCurrentY());
         }
-        returnButton.isPressedButton(bp.currentX, bp.currentY);
+        returnButton.isPressedButton(bp.getCurrentX(), bp.getCurrentY());
     }
 
     //检查是否松开鼠标
@@ -213,10 +213,10 @@ public class SkillMenu {
 
         if (returnButton.clicked == true) {
             isDraw = false;
-            bp.command.isDraw = true;
+            bp.getCommand().isDraw = true;
         }
 
-        if (bp.currentRound == 1) {
+        if (bp.getCurrentRound() == 1) {
             if (skillButtons.get(0).clicked == true) {
                 afterClicked(2, true, 0);
             }
@@ -241,7 +241,7 @@ public class SkillMenu {
 
         }
 
-        if (bp.currentRound == 2) {
+        if (bp.getCurrentRound() == 2) {
             if (skillButtons.get(0).clicked == true) {
                 afterClicked(2, true, 0);
             }
@@ -265,7 +265,7 @@ public class SkillMenu {
             }
         }
 
-        if (bp.currentRound == 3) {
+        if (bp.getCurrentRound() == 3) {
             if (skillButtons.get(0).clicked == true) {
                 afterClicked(2, false, 8);
             }
@@ -291,9 +291,9 @@ public class SkillMenu {
 
 
         for (GameButton button : skillButtons) {
-            button.isRelesedButton(bp.currentX, bp.currentY);
+            button.isRelesedButton(bp.getCurrentX(), bp.getCurrentY());
         }
-        returnButton.isRelesedButton(bp.currentX, bp.currentY);
+        returnButton.isRelesedButton(bp.getCurrentX(), bp.getCurrentY());
     }
 
     //画出菜单

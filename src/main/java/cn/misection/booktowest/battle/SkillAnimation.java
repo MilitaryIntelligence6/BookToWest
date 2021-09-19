@@ -7,326 +7,494 @@ import cn.misection.booktowest.util.*;
 
 public class SkillAnimation {
     //当前图片引用
-    Image currentImage;
+    private Image currentImage;
     //图片集合
-    public ArrayList<Image> Images = new ArrayList<Image>();
+    private ArrayList<Image> Images = new ArrayList<Image>();
     //编号
-    int code;
+    private int code;
     //长度
-    int length;
+    private int length;
     //出现位置
-    int x;
-    int y;
+    private int x;
+    private int y;
     //初始位置
-    int initialX;
-    int initialY;
+    private int initialX;
+    private int initialY;
     //战斗面板引用
-    BattlePanel bp;
+    private BattlePanel bp;
     //是否画出
-    boolean isDraw;
+    private boolean drawn;
     //是否停止
-    boolean isStop;
+    private boolean stopped;
     //是否发动结束的信号
-    boolean isOver;
+    private boolean isOver;
 
     //被攻击方开始被击动画的编号
-    int beAttackedCode;
+    private int beAttackedCode;
     //被击动画播放的次数
-    int beAttackedTimes;
+    private int beAttackedTimes;
     //技能动画三个阶段的信号
 //跑位图
-    int runCode;
+    private int runCode;
     //攻击图
-    int attackCode;
+    private int attackCode;
     //撤回图
-    int withdrawCode;
+    private int withdrawCode;
 
     //相对于怪物1(中间)的偏移量
-    int offsetTo1;
+    private int offsetTo1;
     //相对于怪物2(上方)的偏移量
-    int offsetTo2;
+    private int offsetTo2;
     //相对于怪物3(下方)的偏移量
-    int offsetTo3;
+    private int offsetTo3;
 
-    String name;
+    private String name;
     ;
 
     //构造方法
     public SkillAnimation(String name, int length, int x, int y, BattlePanel bp, int beAttackedCode,
                           int beAttackedTimes, int runCode, int attackCode, int withdrawCode, int offsetTo1,
                           int offsetTo2, int offsetTo3) {
-        this.bp = bp;
+        this.setBp(bp);
 
-        this.name = name;
-        this.x = x;
-        this.y = y;
+        this.setName(name);
+        this.setX(x);
+        this.setY(y);
 
-        this.initialX = x;
-        this.initialY = y;
+        this.setInitialX(x);
+        this.setInitialY(y);
 
-        this.length = length;
-        this.beAttackedCode = beAttackedCode;
-        this.beAttackedTimes = beAttackedTimes;
-        this.runCode = runCode;
-        this.attackCode = attackCode;
-        this.withdrawCode = withdrawCode;
-        this.offsetTo1 = offsetTo1;
-        this.offsetTo2 = offsetTo2;
-        this.offsetTo3 = offsetTo3;
+        this.setLength(length);
+        this.setBeAttackedCode(beAttackedCode);
+        this.setBeAttackedTimes(beAttackedTimes);
+        this.setRunCode(runCode);
+        this.setAttackCode(attackCode);
+        this.setWithdrawCode(withdrawCode);
+        this.setOffsetTo1(offsetTo1);
+        this.setOffsetTo2(offsetTo2);
+        this.setOffsetTo3(offsetTo3);
 
-        isDraw = false;
-        isStop = true;
-        isOver = false;
+        setDrawn(false);
+        setStopped(true);
+        setOver(false);
     }
 
     public SkillAnimation(BattlePanel bp) {
-        this.bp = bp;
-        isDraw = false;
-        isStop = true;
-        isOver = false;
+        this.setBp(bp);
+        setDrawn(false);
+        setStopped(true);
+        setOver(false);
     }
 
     //设置方法
     public void set(String name, int length, int x, int y, int beAttackedCode, int beAttackedTimes, int runCode,
                     int attackCode, int withdrawCode, int offsetTo1, int offsetTo2, int offsetTo3) {
-        this.name = name;
-        this.x = x;
-        this.y = y;
+        this.setName(name);
+        this.setX(x);
+        this.setY(y);
 
-        this.initialX = x;
-        this.initialY = y;
+        this.setInitialX(x);
+        this.setInitialY(y);
 
-        this.length = length;
-        this.beAttackedCode = beAttackedCode;
-        this.beAttackedTimes = beAttackedTimes;
-        this.runCode = runCode;
-        this.attackCode = attackCode;
-        this.withdrawCode = withdrawCode;
-        this.offsetTo1 = offsetTo1;
-        this.offsetTo2 = offsetTo2;
-        this.offsetTo3 = offsetTo3;
+        this.setLength(length);
+        this.setBeAttackedCode(beAttackedCode);
+        this.setBeAttackedTimes(beAttackedTimes);
+        this.setRunCode(runCode);
+        this.setAttackCode(attackCode);
+        this.setWithdrawCode(withdrawCode);
+        this.setOffsetTo1(offsetTo1);
+        this.setOffsetTo2(offsetTo2);
+        this.setOffsetTo3(offsetTo3);
 
-        currentImage = Reader.readImage("image/技能动画/" + name + "/1.png");
+        setCurrentImage(Reader.readImage("image/技能动画/" + name + "/1.png"));
     }
 
     //画出动画
     public void drawAnimation(Graphics g) {
-        if (isDraw && currentImage != null) {
-            g.drawImage(currentImage, x, y, bp);
+        if (isDrawn() && getCurrentImage() != null) {
+            g.drawImage(getCurrentImage(), getX(), getY(), getBp());
         }
     }
 
     //更新
     public void update() {
-        if (!isStop) {
+        if (!isStopped()) {
             //对象为敌人一
-            if (bp.currentBeAttacked == 5 || bp.currentBeAttacked == 1) {
-                if (code < length) {
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+            if (getBp().getCurrentBeAttacked() == 5 || getBp().getCurrentBeAttacked() == 1) {
+                if (getCode() < getLength()) {
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code == beAttackedCode && bp.currentBeAttacked == 5) {
+                if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 5) {
                     //让怪物显示被击效果
-                    bp.em1.isDraw = false;
-                    bp.em1.beAttackedAnimation.getTimes(beAttackedTimes);
-                    bp.em1.beAttackedAnimation.isDraw = true;
-                    bp.em1.beAttackedAnimation.isStop = false;
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+                    getBp().getEm1().isDraw = false;
+                    getBp().getEm1().beAttackedAnimation.getTimes(getBeAttackedTimes());
+                    getBp().getEm1().beAttackedAnimation.isDraw = true;
+                    getBp().getEm1().beAttackedAnimation.isStop = false;
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code == beAttackedCode && bp.currentBeAttacked == 1) {
+                if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 1) {
                     //让张小凡显示被击效果
-                    bp.zxf.isDraw = false;
-                    bp.zxf.beAttackedAnimation.getTimes(beAttackedTimes);
-                    bp.zxf.beAttackedAnimation.isDraw = true;
-                    bp.zxf.beAttackedAnimation.isStop = false;
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+                    getBp().getZxf().isDraw = false;
+                    getBp().getZxf().beAttackedAnimation.getTimes(getBeAttackedTimes());
+                    getBp().getZxf().beAttackedAnimation.isDraw = true;
+                    getBp().getZxf().beAttackedAnimation.isStop = false;
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code < runCode) {
-                    y -= Math.round(offsetTo1 / runCode);
+                if (getCode() < getRunCode()) {
+                    setY(getY() - Math.round(getOffsetTo1() / getRunCode()));
                 }
-                if (attackCode <= code && code < withdrawCode) {
-                    y += Math.round(offsetTo1 / (withdrawCode - attackCode));
+                if (getAttackCode() <= getCode() && getCode() < getWithdrawCode()) {
+                    setY(getY() + Math.round(getOffsetTo1() / (getWithdrawCode() - getAttackCode())));
                 }
-                if (code == length) {
-                    code = 0;
-                    currentImage = null;
-                    x = initialX;
-                    y = initialY;
+                if (getCode() == getLength()) {
+                    setCode(0);
+                    setCurrentImage(null);
+                    setX(getInitialX());
+                    setY(getInitialY());
                     //停止动画
-                    isStop = true;
+                    setStopped(true);
                     //不再画出
-                    isDraw = false;
+                    setDrawn(false);
                     //发出动画结束信号
-                    isOver = true;
+                    setOver(true);
                 }
             }//攻击敌人一结束
 
             //对象为敌人二
-            if (bp.currentBeAttacked == 6 || bp.currentBeAttacked == 2) {
-                if (code < length) {
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+            if (getBp().getCurrentBeAttacked() == 6 || getBp().getCurrentBeAttacked() == 2) {
+                if (getCode() < getLength()) {
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code == beAttackedCode && bp.currentBeAttacked == 6) {
+                if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 6) {
                     //让怪物显示被击效果
-                    bp.em2.isDraw = false;
-                    bp.em2.beAttackedAnimation.getTimes(beAttackedTimes);
-                    bp.em2.beAttackedAnimation.isDraw = true;
-                    bp.em2.beAttackedAnimation.isStop = false;
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+                    getBp().getEm2().isDraw = false;
+                    getBp().getEm2().beAttackedAnimation.getTimes(getBeAttackedTimes());
+                    getBp().getEm2().beAttackedAnimation.isDraw = true;
+                    getBp().getEm2().beAttackedAnimation.isStop = false;
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code == beAttackedCode && bp.currentBeAttacked == 2) {
+                if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 2) {
                     //让文敏显示被击效果
-                    bp.yj.isDraw = false;
-                    bp.yj.beAttackedAnimation.getTimes(beAttackedTimes);
-                    bp.yj.beAttackedAnimation.isDraw = true;
-                    bp.yj.beAttackedAnimation.isStop = false;
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+                    getBp().getYj().isDraw = false;
+                    getBp().getYj().beAttackedAnimation.getTimes(getBeAttackedTimes());
+                    getBp().getYj().beAttackedAnimation.isDraw = true;
+                    getBp().getYj().beAttackedAnimation.isStop = false;
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code < runCode) {
-                    y -= Math.round(offsetTo2 / runCode);
+                if (getCode() < getRunCode()) {
+                    setY(getY() - Math.round(getOffsetTo2() / getRunCode()));
                 }
-                if (attackCode <= code && code < withdrawCode) {
-                    y += Math.round(offsetTo2 / (withdrawCode - attackCode));
+                if (getAttackCode() <= getCode() && getCode() < getWithdrawCode()) {
+                    setY(getY() + Math.round(getOffsetTo2() / (getWithdrawCode() - getAttackCode())));
                 }
-                if (code == length) {
-                    code = 0;
-                    currentImage = null;
-                    x = initialX;
-                    y = initialY;
+                if (getCode() == getLength()) {
+                    setCode(0);
+                    setCurrentImage(null);
+                    setX(getInitialX());
+                    setY(getInitialY());
                     //停止动画
-                    isStop = true;
+                    setStopped(true);
                     //不再画出
-                    isDraw = false;
+                    setDrawn(false);
                     //发出动画结束信号
-                    isOver = true;
+                    setOver(true);
                 }
             }//攻击敌人2结束
 
             //对象为敌人三
-            if (bp.currentBeAttacked == 7 || bp.currentBeAttacked == 3) {
-                if (code < length) {
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+            if (getBp().getCurrentBeAttacked() == 7 || getBp().getCurrentBeAttacked() == 3) {
+                if (getCode() < getLength()) {
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code == beAttackedCode && bp.currentBeAttacked == 7) {
+                if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 7) {
                     //MusicReader.readmusic("刀声.wav");
                     //让怪物显示被击效果
-                    bp.em3.isDraw = false;
-                    bp.em3.beAttackedAnimation.getTimes(beAttackedTimes);
-                    bp.em3.beAttackedAnimation.isDraw = true;
-                    bp.em3.beAttackedAnimation.isStop = false;
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+                    getBp().getEm3().isDraw = false;
+                    getBp().getEm3().beAttackedAnimation.getTimes(getBeAttackedTimes());
+                    getBp().getEm3().beAttackedAnimation.isDraw = true;
+                    getBp().getEm3().beAttackedAnimation.isStop = false;
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code == beAttackedCode && bp.currentBeAttacked == 3) {
+                if (getCode() == getBeAttackedCode() && getBp().getCurrentBeAttacked() == 3) {
                     //让陆雪琪显示被击效果
-                    bp.lxq.isDraw = false;
-                    bp.lxq.beAttackedAnimation.getTimes(beAttackedTimes);
-                    bp.lxq.beAttackedAnimation.isDraw = true;
-                    bp.lxq.beAttackedAnimation.isStop = false;
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+                    getBp().getLxq().drawn = false;
+                    getBp().getLxq().beAttackedAnimation.getTimes(getBeAttackedTimes());
+                    getBp().getLxq().beAttackedAnimation.isDraw = true;
+                    getBp().getLxq().beAttackedAnimation.isStop = false;
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code < runCode) {
-                    y -= Math.round(offsetTo3 / runCode);
+                if (getCode() < getRunCode()) {
+                    setY(getY() - Math.round(getOffsetTo3() / getRunCode()));
                 }
-                if (attackCode <= code && code < withdrawCode) {
-                    y += Math.round(offsetTo3 / (withdrawCode - attackCode));
+                if (getAttackCode() <= getCode() && getCode() < getWithdrawCode()) {
+                    setY(getY() + Math.round(getOffsetTo3() / (getWithdrawCode() - getAttackCode())));
                 }
-                if (code == length) {
-                    code = 0;
-                    currentImage = null;
-                    x = initialX;
-                    y = initialY;
+                if (getCode() == getLength()) {
+                    setCode(0);
+                    setCurrentImage(null);
+                    setX(getInitialX());
+                    setY(getInitialY());
                     //停止动画
-                    isStop = true;
+                    setStopped(true);
                     //不再画出
-                    isDraw = false;
+                    setDrawn(false);
                     //发出动画结束信号
-                    isOver = true;
+                    setOver(true);
                 }
             }//攻击敌人3结束
 
             //对象为敌人的全体
-            if (bp.currentBeAttacked == 8) {
-                if (code < length) {
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+            if (getBp().getCurrentBeAttacked() == 8) {
+                if (getCode() < getLength()) {
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code == beAttackedCode) {
+                if (getCode() == getBeAttackedCode()) {
                     //MusicReader.readmusic("刀声.wav");
-                    for (Enemy enemy : bp.enemies) {
+                    for (Enemy enemy : getBp().getEnemies()) {
                         enemy.isDraw = false;
-                        enemy.beAttackedAnimation.getTimes(beAttackedTimes);
+                        enemy.beAttackedAnimation.getTimes(getBeAttackedTimes());
                         enemy.beAttackedAnimation.isDraw = true;
                         enemy.beAttackedAnimation.isStop = false;
                     }
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code < runCode) {
-                    y -= Math.round(offsetTo1 / runCode);
+                if (getCode() < getRunCode()) {
+                    setY(getY() - Math.round(getOffsetTo1() / getRunCode()));
                 }
-                if (attackCode <= code && code < withdrawCode) {
-                    y += Math.round(offsetTo1 / (withdrawCode - attackCode));
+                if (getAttackCode() <= getCode() && getCode() < getWithdrawCode()) {
+                    setY(getY() + Math.round(getOffsetTo1() / (getWithdrawCode() - getAttackCode())));
                 }
-                if (code == length) {
-                    code = 0;
-                    currentImage = null;
-                    x = initialX;
-                    y = initialY;
+                if (getCode() == getLength()) {
+                    setCode(0);
+                    setCurrentImage(null);
+                    setX(getInitialX());
+                    setY(getInitialY());
                     //停止动画
-                    isStop = true;
+                    setStopped(true);
                     //不再画出
-                    isDraw = false;
+                    setDrawn(false);
                     //发出动画结束信号
-                    isOver = true;
+                    setOver(true);
                 }
             }
 
             //对象为我方全体
-            if (bp.currentBeAttacked == 4) {
-                if (code < length) {
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+            if (getBp().getCurrentBeAttacked() == 4) {
+                if (getCode() < getLength()) {
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code == beAttackedCode) {
-                    for (Hero hero : bp.heroes) {
-                        if (!hero.wheatherDead()) {
+                if (getCode() == getBeAttackedCode()) {
+                    for (Hero hero : getBp().getHeroes()) {
+                        if (!hero.isDead()) {
                             hero.setIsDraw(false);
-                            hero.getBeAttackedAnimation().getTimes(beAttackedTimes);
+                            hero.getBeAttackedAnimation().getTimes(getBeAttackedTimes());
                             hero.getBeAttackedAnimation().isDraw = true;
                             hero.getBeAttackedAnimation().isStop = false;
                         }
                     }
-                    currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
-                    code++;
+                    setCurrentImage(Reader.readImage("image/技能动画/" + getName() + "/" + (getCode() + 1) + ".png"));
+                    setCode(getCode() + 1);
                 }
-                if (code < runCode) {
-                    y -= Math.round(offsetTo1 / runCode);
+                if (getCode() < getRunCode()) {
+                    setY(getY() - Math.round(getOffsetTo1() / getRunCode()));
                 }
-                if (attackCode <= code && code < withdrawCode) {
-                    y += Math.round(offsetTo1 / (withdrawCode - attackCode));
+                if (getAttackCode() <= getCode() && getCode() < getWithdrawCode()) {
+                    setY(getY() + Math.round(getOffsetTo1() / (getWithdrawCode() - getAttackCode())));
                 }
-                if (code == length) {
-                    code = 0;
-                    currentImage = null;
-                    x = initialX;
-                    y = initialY;
+                if (getCode() == getLength()) {
+                    setCode(0);
+                    setCurrentImage(null);
+                    setX(getInitialX());
+                    setY(getInitialY());
                     //停止动画
-                    isStop = true;
+                    setStopped(true);
                     //不再画出
-                    isDraw = false;
+                    setDrawn(false);
                     //发出动画结束信号
-                    isOver = true;
+                    setOver(true);
                 }
             }
         }
+    }
+
+    public Image getCurrentImage() {
+        return currentImage;
+    }
+
+    public void setCurrentImage(Image currentImage) {
+        this.currentImage = currentImage;
+    }
+
+    public ArrayList<Image> getImages() {
+        return Images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        Images = images;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getInitialX() {
+        return initialX;
+    }
+
+    public void setInitialX(int initialX) {
+        this.initialX = initialX;
+    }
+
+    public int getInitialY() {
+        return initialY;
+    }
+
+    public void setInitialY(int initialY) {
+        this.initialY = initialY;
+    }
+
+    public BattlePanel getBp() {
+        return bp;
+    }
+
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
+    }
+
+    public boolean isDrawn() {
+        return drawn;
+    }
+
+    public void setDrawn(boolean drawn) {
+        this.drawn = drawn;
+    }
+
+    public boolean isStopped() {
+        return stopped;
+    }
+
+    public void setStopped(boolean stopped) {
+        this.stopped = stopped;
+    }
+
+    public boolean isOver() {
+        return isOver;
+    }
+
+    public void setOver(boolean over) {
+        isOver = over;
+    }
+
+    public int getBeAttackedCode() {
+        return beAttackedCode;
+    }
+
+    public void setBeAttackedCode(int beAttackedCode) {
+        this.beAttackedCode = beAttackedCode;
+    }
+
+    public int getBeAttackedTimes() {
+        return beAttackedTimes;
+    }
+
+    public void setBeAttackedTimes(int beAttackedTimes) {
+        this.beAttackedTimes = beAttackedTimes;
+    }
+
+    public int getRunCode() {
+        return runCode;
+    }
+
+    public void setRunCode(int runCode) {
+        this.runCode = runCode;
+    }
+
+    public int getAttackCode() {
+        return attackCode;
+    }
+
+    public void setAttackCode(int attackCode) {
+        this.attackCode = attackCode;
+    }
+
+    public int getWithdrawCode() {
+        return withdrawCode;
+    }
+
+    public void setWithdrawCode(int withdrawCode) {
+        this.withdrawCode = withdrawCode;
+    }
+
+    public int getOffsetTo1() {
+        return offsetTo1;
+    }
+
+    public void setOffsetTo1(int offsetTo1) {
+        this.offsetTo1 = offsetTo1;
+    }
+
+    public int getOffsetTo2() {
+        return offsetTo2;
+    }
+
+    public void setOffsetTo2(int offsetTo2) {
+        this.offsetTo2 = offsetTo2;
+    }
+
+    public int getOffsetTo3() {
+        return offsetTo3;
+    }
+
+    public void setOffsetTo3(int offsetTo3) {
+        this.offsetTo3 = offsetTo3;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
 

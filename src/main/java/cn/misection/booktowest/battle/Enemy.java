@@ -118,34 +118,34 @@ public class Enemy {
     }
 
     public void calDamage() {
-        switch (bp.currentBeAttacked) {
+        switch (bp.getCurrentBeAttacked()) {
             case 1:
                 currentEnemies.clear();
-                currentEnemies.add(bp.zxf);
+                currentEnemies.add(bp.getZxf());
                 break;
             case 2:
                 currentEnemies.clear();
-                currentEnemies.add(bp.yj);
+                currentEnemies.add(bp.getYj());
                 break;
             case 3:
                 currentEnemies.clear();
-                currentEnemies.add(bp.lxq);
+                currentEnemies.add(bp.getLxq());
                 break;
             //我方全体受到攻击
             case 4:
                 currentEnemies.clear();
-                if (bp.zxf != null && !bp.zxf.isDead) {
-                    currentEnemies.add(bp.zxf);
+                if (bp.getZxf() != null && !bp.getZxf().isDead) {
+                    currentEnemies.add(bp.getZxf());
                 }
-                if (bp.yj != null && !bp.yj.isDead) {
-                    currentEnemies.add(bp.yj);
+                if (bp.getYj() != null && !bp.getYj().isDead) {
+                    currentEnemies.add(bp.getYj());
                 }
-                if (bp.lxq != null && !bp.lxq.isDead) {
-                    currentEnemies.add(bp.lxq);
+                if (bp.getLxq() != null && !bp.getLxq().dead) {
+                    currentEnemies.add(bp.getLxq());
                 }
         }
 
-        switch (bp.currentPattern) {
+        switch (bp.getCurrentPattern()) {
             //普通攻击
             case 1:
                 for (Hero currentEnemy : currentEnemies) {
@@ -156,7 +156,7 @@ public class Enemy {
                     }
 
                     //给我方单位加上愤怒值
-                    if (!currentEnemy.wheatherAngry()) {
+                    if (!currentEnemy.isAngry()) {
                         currentEnemy.setAngryValue(currentEnemy.getAngryValue() + currentDamage);
                     }
                     //检查我方单位是否达到愤怒
@@ -171,7 +171,7 @@ public class Enemy {
                     }
                     HurtValue hurtValue = new HurtValue(bp);
                     hurtValue.show(currentDamage, currentDamageType, currentEnemy.getShowX(), currentEnemy.getShowY());
-                    bp.hurtValues.add(hurtValue);
+                    bp.getHurtValues().add(hurtValue);
                 }
                 break;
             //群体攻击
@@ -184,7 +184,7 @@ public class Enemy {
                     }
 
                     //给我方单位加上愤怒值
-                    if (!currentEnemy.wheatherAngry()) {
+                    if (!currentEnemy.isAngry()) {
                         currentEnemy.setAngryValue(currentEnemy.getAngryValue() + currentDamage);
                     }
                     //检查我方单位是否达到愤怒
@@ -199,7 +199,7 @@ public class Enemy {
                     }
                     HurtValue hurtValue = new HurtValue(bp);
                     hurtValue.show(currentDamage, currentDamageType, currentEnemy.getShowX(), currentEnemy.getShowY());
-                    bp.hurtValues.add(hurtValue);
+                    bp.getHurtValues().add(hurtValue);
                 }
                 break;
         }
@@ -789,13 +789,13 @@ public class Enemy {
         switch (battleState.type) {
             //中毒状态
             case 9:
-                bp.hurtValues.clear();
+                bp.getHurtValues().clear();
                 int damage = (int) (hp * 0.05);
                 hp -= damage;
                 HurtValue hurtValue = new HurtValue(bp);
                 hurtValue.show(damage, 1, x, y);
-                bp.hurtValues.add(hurtValue);
-                for (HurtValue h : bp.hurtValues) {
+                bp.getHurtValues().add(hurtValue);
+                for (HurtValue h : bp.getHurtValues()) {
                     h.start();
                 }
                 break;
@@ -839,9 +839,9 @@ public class Enemy {
     //攻击
     public void attack() {
         isDraw = false;
-        bp.skillAnimation.set(skillName, skillLength, skillX, skillY, beAttackedCode, beAttackedTimes, runCode,
+        bp.getSkillAnimation().set(skillName, skillLength, skillX, skillY, beAttackedCode, beAttackedTimes, runCode,
                 attackCode, withdrawCode, offsetTo1, offsetTo2, offsetTo3);
-        bp.skillAnimation.isDraw = true;
-        bp.skillAnimation.isStop = false;
+        bp.getSkillAnimation().setDrawn(true);
+        bp.getSkillAnimation().setStopped(false);
     }
 }

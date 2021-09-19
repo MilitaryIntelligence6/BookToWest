@@ -120,34 +120,35 @@ public class ZhangXiaoFan implements Hero {
     }
 
     //计算伤害
+    @Override
     public void calDamage() {
-        switch (bp.currentBeAttacked) {
+        switch (bp.getCurrentBeAttacked()) {
             case 5:
                 currentEnemies.clear();
-                currentEnemies.add(bp.em1);
+                currentEnemies.add(bp.getEm1());
                 break;
             case 6:
                 currentEnemies.clear();
-                currentEnemies.add(bp.em2);
+                currentEnemies.add(bp.getEm2());
                 break;
             case 7:
                 currentEnemies.clear();
-                currentEnemies.add(bp.em3);
+                currentEnemies.add(bp.getEm3());
                 break;
             case 8:
                 currentEnemies.clear();
-                if (bp.em1 != null) {
-                    currentEnemies.add(bp.em1);
+                if (bp.getEm1() != null) {
+                    currentEnemies.add(bp.getEm1());
                 }
-                if (bp.em2 != null) {
-                    currentEnemies.add(bp.em2);
+                if (bp.getEm2() != null) {
+                    currentEnemies.add(bp.getEm2());
                 }
-                if (bp.em3 != null) {
-                    currentEnemies.add(bp.em3);
+                if (bp.getEm3() != null) {
+                    currentEnemies.add(bp.getEm3());
                 }
                 break;
         }
-        switch (bp.currentPattern) {
+        switch (bp.getCurrentPattern()) {
             //普通攻击
             case 1:
                 for (Enemy currentEnemy : currentEnemies) {
@@ -159,7 +160,7 @@ public class ZhangXiaoFan implements Hero {
                     currentEnemy.hp -= currentDamage;
                     HurtValue hurtValue = new HurtValue(bp);
                     hurtValue.show(currentDamage, currentDamageType, currentEnemy.x, currentEnemy.y);
-                    bp.hurtValues.add(hurtValue);
+                    bp.getHurtValues().add(hurtValue);
                 }
                 break;
             //横剑摆渡
@@ -180,7 +181,7 @@ public class ZhangXiaoFan implements Hero {
                 attackSkill(300, 100, 150);
                 //自身进入武力上升的状态
                 battleState.set(2, 2, 100, 1, showX, showY);
-                bp.zxf.checkState();
+                bp.getZxf().checkState();
                 break;
             //龙翔九天
             case 5:
@@ -204,12 +205,13 @@ public class ZhangXiaoFan implements Hero {
             currentEnemy.hp -= currentDamage;
             HurtValue hurtValue = new HurtValue(bp);
             hurtValue.show(currentDamage, currentDamageType, currentEnemy.x, currentEnemy.y);
-            bp.hurtValues.add(hurtValue);
+            bp.getHurtValues().add(hurtValue);
         }
         mp -= mpUse;
     }
 
     //升级时调用的方法
+    @Override
     public void levelUp() {
         isLevelUp = true;
         //级别提升
@@ -268,6 +270,7 @@ public class ZhangXiaoFan implements Hero {
     }
 
     //检查战斗的状态
+    @Override
     public void checkState() {
         switch (battleState.type) {
             //增加敏捷度
@@ -324,13 +327,13 @@ public class ZhangXiaoFan implements Hero {
         switch (battleState.type) {
             //中毒状态
             case 9:
-                bp.hurtValues.clear();
+                bp.getHurtValues().clear();
                 int damage = (int) (hp * 0.05);
                 hp -= damage;
                 HurtValue hurtValue = new HurtValue(bp);
                 hurtValue.show(damage, 1, showX, showY);
-                bp.hurtValues.add(hurtValue);
-                for (HurtValue h : bp.hurtValues) {
+                bp.getHurtValues().add(hurtValue);
+                for (HurtValue h : bp.getHurtValues()) {
                     h.start();
                 }
                 break;
@@ -338,6 +341,7 @@ public class ZhangXiaoFan implements Hero {
     }
 
     //从状态中恢复
+    @Override
     public void returnFromState() {
         switch (battleState.type) {
             case 1:
@@ -434,260 +438,229 @@ public class ZhangXiaoFan implements Hero {
         // TODO Auto-generated method stub
         //人物不再画出
         isDraw = false;
-        bp.skillAnimation.set("张小凡攻击", 25, 150, 90, 8, 1, 10, 20, 25, 0, 180, -120);
-        bp.skillAnimation.isDraw = true;
-        bp.skillAnimation.isStop = false;
+        bp.getSkillAnimation().set("张小凡攻击", 25, 150, 90, 8, 1, 10, 20, 25, 0, 180, -120);
+        bp.getSkillAnimation().setDrawn(true);
+        bp.getSkillAnimation().setStopped(false);
     }
 
     //使用技能
+    @Override
     public void skill(int i) {
         //人物不再画出
         isDraw = false;
 
         switch (i) {
             case 1:
-                bp.backgroundAnimation.set("横剑摆渡", 38);
-                bp.skillAnimation.set("张小凡技能1", 37, 150, 90, 8, 3, 10, 32, 37, 0, 180, -120);
+                bp.getBackgroundAnimation().set("横剑摆渡", 38);
+                bp.getSkillAnimation().set("张小凡技能1", 37, 150, 90, 8, 3, 10, 32, 37, 0, 180, -120);
                 break;
             case 2:
-                bp.backgroundAnimation.set("浪里寻花", 61);
-                bp.skillAnimation.set("张小凡技能2", 31, 150, 90, 8, 2, 10, 26, 31, 0, 180, -120);
+                bp.getBackgroundAnimation().set("浪里寻花", 61);
+                bp.getSkillAnimation().set("张小凡技能2", 31, 150, 90, 8, 2, 10, 26, 31, 0, 180, -120);
                 break;
             case 3:
-                bp.backgroundAnimation.set("银鹰掠地", 50);
-                bp.skillAnimation.set("张小凡技能3", 31, 150, 90, 8, 2, 7, 28, 31, 0, 180, -120);
+                bp.getBackgroundAnimation().set("银鹰掠地", 50);
+                bp.getSkillAnimation().set("张小凡技能3", 31, 150, 90, 8, 2, 7, 28, 31, 0, 180, -120);
                 break;
             case 4:
-                bp.backgroundAnimation.set("龙翔九天", 47);
-                bp.skillAnimation.set("张小凡技能4", 44, 150, 90, 8, 4, 10, 39, 44, 0, 180, -120);
+                bp.getBackgroundAnimation().set("龙翔九天", 47);
+                bp.getSkillAnimation().set("张小凡技能4", 44, 150, 90, 8, 4, 10, 39, 44, 0, 180, -120);
                 break;
             case 5:
-                bp.backgroundAnimation.set("神剑傲州", 51);
-                bp.skillAnimation.set("张小凡技能5", 42, 150, 90, 8, 4, 10, 37, 42, 0, 180, -120);
+                bp.getBackgroundAnimation().set("神剑傲州", 51);
+                bp.getSkillAnimation().set("张小凡技能5", 42, 150, 90, 8, 4, 10, 37, 42, 0, 180, -120);
                 break;
         }
 
-        bp.backgroundAnimation.isDraw = true;
-        bp.backgroundAnimation.isStop = false;
-        bp.skillAnimation.isDraw = true;
-        bp.skillAnimation.isStop = false;
+        bp.getBackgroundAnimation().setDrawn(true);
+        bp.getBackgroundAnimation().setStopped(false);
+        bp.getSkillAnimation().setDrawn(true);
+        bp.getSkillAnimation().setStopped(false);
 
     }
 
 
     @Override
     public SkillAnimation getCurrentAnimation() {
-        // TODO Auto-generated method stub
         return null;
     }
 
 
     @Override
     public int getDefense() {
-        // TODO Auto-generated method stub
         return defense;
     }
 
     @Override
     public int getSkillDefense() {
-        // TODO Auto-generated method stub
         return skillDefense;
     }
 
     @Override
     public int getHp() {
-        // TODO Auto-generated method stub
         return hp;
     }
 
     @Override
     public void setHp(int hp) {
-        // TODO Auto-generated method stub
         ZhangXiaoFan.hp = hp;
     }
 
     @Override
-    public boolean wheatherDead() {
-        // TODO Auto-generated method stub
+    public boolean isDead() {
         return isDead;
     }
 
     @Override
     public int getExp() {
-        // TODO Auto-generated method stub
         return exp;
     }
 
     @Override
     public void setExp(int exp) {
-        // TODO Auto-generated method stub
         ZhangXiaoFan.exp = exp;
     }
 
     @Override
     public int getExpToLevelUp() {
-        // TODO Auto-generated method stub
         return expToLevelUp;
     }
 
     @Override
-    public boolean wheatherLevelUp() {
-        // TODO Auto-generated method stub
+    public boolean isLevelUp() {
         return isLevelUp;
     }
 
     @Override
     public int getPhysicalPower() {
-        // TODO Auto-generated method stub
         return physicalPower;
     }
 
     @Override
     public int getSprit() {
-        // TODO Auto-generated method stub
         return sprit;
     }
 
     @Override
     public int getAgile() {
-        // TODO Auto-generated method stub
         return agile;
     }
 
     @Override
     public int getStrength() {
-        // TODO Auto-generated method stub
         return strength;
     }
 
     @Override
     public void setLevelUp(boolean isLevelUp) {
-        // TODO Auto-generated method stub
         this.isLevelUp = isLevelUp;
     }
 
     @Override
     public int getHpMax() {
-        // TODO Auto-generated method stub
         return hpMax;
     }
 
     @Override
     public int getMpMax() {
-        // TODO Auto-generated method stub
         return mpMax;
     }
 
     @Override
     public int getX() {
-        // TODO Auto-generated method stub
         return x;
     }
 
     @Override
     public int getY() {
-        // TODO Auto-generated method stub
         return y;
     }
 
     @Override
     public int getShowX() {
-        // TODO Auto-generated method stub
         return showX;
     }
 
     @Override
     public int getShowY() {
-        // TODO Auto-generated method stub
         return showY;
     }
 
     @Override
     public int getMp() {
-        // TODO Auto-generated method stub
         return mp;
     }
 
     @Override
     public void setMp(int mp) {
-        // TODO Auto-generated method stub
         ZhangXiaoFan.mp = mp;
     }
 
     @Override
     public void setDead(boolean isDead) {
-        // TODO Auto-generated method stub
         this.isDead = isDead;
     }
 
     @Override
     public BattleState getBattleState() {
-        // TODO Auto-generated method stub
         return battleState;
     }
 
     @Override
     public int getRoleCode() {
-        // TODO Auto-generated method stub
         return roleCode;
     }
 
     @Override
     public void setExpToLevelUp(int e) {
-        // TODO Auto-generated method stub
         expToLevelUp = e;
     }
 
     @Override
     public void setIsDraw(boolean isDraw) {
-        // TODO Auto-generated method stub
         this.isDraw = isDraw;
 
     }
 
     @Override
     public VictoryAnimation getVictoryAnimation() {
-        // TODO Auto-generated method stub
         return victoryAnimation;
     }
 
     @Override
     public DeadAnimation getDeadAnimation() {
-        // TODO Auto-generated method stub
         return deadAnimation;
     }
 
     @Override
     public int getAngryValue() {
-        // TODO Auto-generated method stub
         return angryValue;
     }
 
     @Override
     public void setAngryValue(int a) {
-        // TODO Auto-generated method stub
         angryValue = a;
     }
 
     @Override
-    public boolean wheatherAngry() {
-        // TODO Auto-generated method stub
+    public boolean isAngry() {
         return isAngry;
     }
 
     @Override
     public void setAngry(boolean isAngry) {
-        // TODO Auto-generated method stub
         this.isAngry = isAngry;
     }
 
     @Override
     public BeAttackedAnimation getBeAttackedAnimation() {
-        // TODO Auto-generated method stub
         return beAttackedAnimation;
     }
 
-    //存档方法
+    /**
+     * 存档方法;
+     * @return
+     */
     public ArrayList<String> saveRoleInfo() {
         //先清空
         roleInfo.clear();
@@ -705,17 +678,21 @@ public class ZhangXiaoFan implements Hero {
         roleInfo.add(isDead + "");
         //存入当前经验
         roleInfo.add(exp + "");
-
         return roleInfo;
     }
 
-    //读档方法
+    /**
+     * 读档方法;
+     * @param roleInfo
+     */
     public void loadRoleInfo(ArrayList<String> roleInfo) {
         this.roleInfo = roleInfo;
         intialFromInfo();
     }
 
-    //根据信息初始化人物属性
+    /**
+     * 根据信息初始化人物属性;
+     */
     public void intialFromInfo() {
         ZhangXiaoFan.level = Integer.parseInt(roleInfo.get(0));
         if (level >= 2) {
@@ -741,21 +718,23 @@ public class ZhangXiaoFan implements Hero {
         ZhangXiaoFan.exp = Integer.parseInt(roleInfo.get(6));
     }
 
+    @Override
     public void setPhysicalPower(int physicalPower) {
         ZhangXiaoFan.physicalPower = physicalPower;
     }
 
+    @Override
     public void setSprit(int sprit) {
         ZhangXiaoFan.sprit = sprit;
     }
 
+    @Override
     public void setAgile(int agile) {
         ZhangXiaoFan.agile = agile;
     }
 
+    @Override
     public void setStrength(int strength) {
         ZhangXiaoFan.strength = strength;
     }
-
-
 }

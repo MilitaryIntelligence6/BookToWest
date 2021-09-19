@@ -83,11 +83,11 @@ public class DrugMenu {
     //检查是否移动鼠标进入菜单
     public void checkMoveIn() {
         for (GameButton button : drugButtons) {
-            button.isMoveIn(bp.currentX, bp.currentY);
+            button.isMoveIn(bp.getCurrentX(), bp.getCurrentY());
         }
 
         for (int i = 0; i < 6; i++) {
-            if (bp.currentX > 395 && bp.currentX < 610 && bp.currentY > 226 + i * 30 && bp.currentY < 226 + (i + 1) * 30) {
+            if (bp.getCurrentX() > 395 && bp.getCurrentX() < 610 && bp.getCurrentY() > 226 + i * 30 && bp.getCurrentY() < 226 + (i + 1) * 30) {
                 introduceImage = DrugPack.drugList.get(i).getPicture();
                 introString =
                         "hp " + DrugPack.drugList.get(i).getAddHp() + " mp " + DrugPack.drugList.get(i).getAddMp();
@@ -101,7 +101,7 @@ public class DrugMenu {
     //检查鼠标是否点击菜单
     public void checkPressed() {
         for (GameButton button : drugButtons) {
-            button.isPressedButton(bp.currentX, bp.currentY);
+            button.isPressedButton(bp.getCurrentX(), bp.getCurrentY());
         }
     }
 
@@ -135,18 +135,18 @@ public class DrugMenu {
         //按下返回按钮
         if (drugButtons.get(6).clicked == true) {
             isDraw = false;
-            bp.command.isDraw = true;
+            bp.getCommand().isDraw = true;
         }
 
         for (GameButton button : drugButtons) {
-            button.isRelesedButton(bp.currentX, bp.currentY);
+            button.isRelesedButton(bp.getCurrentX(), bp.getCurrentY());
         }
     }
 
     //检查药品数目
     public void checkDrugNumber(Drug drug, int type) {
         if (drug.getNumberGOT() > 0) {
-            bp.hurtValues.clear();
+            bp.getHurtValues().clear();
             HurtValue hurtValue = new HurtValue(bp);
             if (type == 1) {
                 hurtValue.show(drug.getAddHp(), 2, currentHero.getShowX(), currentHero.getShowY());
@@ -164,48 +164,48 @@ public class DrugMenu {
                 }
             }
 
-            bp.hurtValues.add(hurtValue);
+            bp.getHurtValues().add(hurtValue);
             //显示伤害值
-            for (HurtValue hurt : bp.hurtValues) {
+            for (HurtValue hurt : bp.getHurtValues()) {
                 hurt.start();
             }
             drug.setNumberGOT(drug.getNumberGOT() - 1);
             progressGo();
         } else {
-            bp.reminder.show(19);
+            bp.getReminder().show(19);
         }
     }
 
     //进度继续
     public void progressGo() {
-        switch (bp.currentRound) {
+        switch (bp.getCurrentRound()) {
             case 1:
-                bp.progressBar.ZhangX = bp.progressBar.BarX;
+                bp.getProgressBar().ZhangX = bp.getProgressBar().BarX;
                 break;
             case 2:
-                bp.progressBar.YuX = bp.progressBar.BarX;
+                bp.getProgressBar().YuX = bp.getProgressBar().BarX;
                 break;
             case 3:
-                bp.progressBar.LuX = bp.progressBar.BarX;
+                bp.getProgressBar().LuX = bp.getProgressBar().BarX;
                 break;
         }
-        bp.currentRound = 0;
+        bp.setCurrentRound(0);
         isDraw = false;
-        bp.progressBar.isStop = false;
+        bp.getProgressBar().isStop = false;
     }
 
 
     //确定当前英雄
     public void checkHero() {
-        switch (bp.currentRound) {
+        switch (bp.getCurrentRound()) {
             case 1:
-                currentHero = bp.zxf;
+                currentHero = bp.getZxf();
                 break;
             case 2:
-                currentHero = bp.yj;
+                currentHero = bp.getYj();
                 break;
             case 3:
-                currentHero = bp.lxq;
+                currentHero = bp.getLxq();
                 break;
         }
     }

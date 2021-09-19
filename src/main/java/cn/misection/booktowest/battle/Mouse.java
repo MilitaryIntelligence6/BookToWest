@@ -29,8 +29,8 @@ public class Mouse {
     //构造方法
     public Mouse(BattlePanel bp) {
         this.bp = bp;
-        x = bp.currentX;
-        y = bp.currentY;
+        x = bp.getCurrentX();
+        y = bp.getCurrentY();
         getImage();
         isDraw = true;
         isStop = false;
@@ -53,8 +53,8 @@ public class Mouse {
 
     //更新方法
     public void update() {
-        x = bp.currentX;
-        y = bp.currentY;
+        x = bp.getCurrentX();
+        y = bp.getCurrentY();
         if (!isStop && code < 8) {
             currentImage = images.get(code);
             code++;

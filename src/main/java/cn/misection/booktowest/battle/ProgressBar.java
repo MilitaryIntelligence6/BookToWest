@@ -56,24 +56,24 @@ public class ProgressBar {
     //获取图片
     public void getImage() {
         Bar = Reader.readImage("image/进度条/进度条.png");
-        if (bp.zxf != null) {
-            zhang = bp.zxf.headImage;
+        if (bp.getZxf() != null) {
+            zhang = bp.getZxf().headImage;
         }
-        if (bp.yj != null) {
-            yujie = bp.yj.headImage;
+        if (bp.getYj() != null) {
+            yujie = bp.getYj().headImage;
         }
-        if (bp.lxq != null) {
-            luxueqi = bp.lxq.headImage;
+        if (bp.getLxq() != null) {
+            luxueqi = bp.getLxq().headImage;
         }
         pet = Reader.readImage("image/小精灵/头像.png");
-        if (bp.em1 != null) {
-            enemy1 = bp.em1.headImage;
+        if (bp.getEm1() != null) {
+            enemy1 = bp.getEm1().headImage;
         }
-        if (bp.em2 != null) {
-            enemy2 = bp.em2.headImage;
+        if (bp.getEm2() != null) {
+            enemy2 = bp.getEm2().headImage;
         }
-        if (bp.em3 != null) {
-            enemy3 = bp.em3.headImage;
+        if (bp.getEm3() != null) {
+            enemy3 = bp.getEm3().headImage;
         }
     }
 
@@ -81,85 +81,85 @@ public class ProgressBar {
     public void updateProgress() {
         if (!isStop && isDraw) {
             if (ZhangX - BarX < 400 && YuX - BarX < 400 && LuX - BarX < 400 && Enemy1X - BarX < 400 && Enemy2X - BarX < 400 && Enemy3X - BarX < 400 && petX - BarX < 400) {
-                if (bp.zxf != null && !bp.zxf.isDead) {
+                if (bp.getZxf() != null && !bp.getZxf().isDead) {
                     ZhangX += ZhangXiaoFan.speed;
                 }
-                if (bp.yj != null && !bp.yj.isDead) {
+                if (bp.getYj() != null && !bp.getYj().isDead) {
                     YuX += YuJie.speed;
                 }
-                if (bp.lxq != null && !bp.lxq.isDead) {
+                if (bp.getLxq() != null && !bp.getLxq().dead) {
                     LuX += LuXueQi.speed;
                 }
-                if (bp.pet != null) {
-                    petX += bp.pet.speed;
+                if (bp.getPet() != null) {
+                    petX += bp.getPet().speed;
                 }
-                if (bp.em1 != null) {
-                    Enemy1X += bp.em1.speed;
+                if (bp.getEm1() != null) {
+                    Enemy1X += bp.getEm1().speed;
                 }
-                if (bp.em2 != null) {
-                    Enemy2X += bp.em2.speed;
+                if (bp.getEm2() != null) {
+                    Enemy2X += bp.getEm2().speed;
                 }
-                if (bp.em3 != null) {
-                    Enemy3X += bp.em3.speed;
+                if (bp.getEm3() != null) {
+                    Enemy3X += bp.getEm3().speed;
                 }
             } else if (ZhangX - BarX >= 400) {
                 isStop = true;
-                bp.currentRound = 1;
+                bp.setCurrentRound(1);
                 //将控制器绘制出来
-                bp.command.isDraw = true;
+                bp.getCommand().isDraw = true;
 
                 //指示器画出;
-                bp.instruct.start();
+                bp.getInstruct().start();
 
             } else if (YuX - BarX >= 400) {
                 isStop = true;
-                bp.currentRound = 2;
+                bp.setCurrentRound(2);
                 //将控制器绘制出来
-                bp.command.isDraw = true;
+                bp.getCommand().isDraw = true;
 
                 //指示器画出;
-                bp.instruct.start();
+                bp.getInstruct().start();
             } else if (LuX - BarX >= 400) {
                 isStop = true;
-                bp.currentRound = 3;
+                bp.setCurrentRound(3);
                 //将控制器绘制出来
-                bp.command.isDraw = true;
+                bp.getCommand().isDraw = true;
 
                 //指示器画出;
-                bp.instruct.start();
+                bp.getInstruct().start();
             } else if (petX - BarX >= 400) {
                 isStop = true;
-                bp.currentRound = 4;
-                bp.currentPattern = 1;
+                bp.setCurrentRound(4);
+                bp.setCurrentPattern(1);
 
                 //选择攻击对象
-                bp.pet.enemyToAttack();
-            } else if (bp.em1 != null && Enemy1X - BarX >= 400) {
+                bp.getPet().enemyToAttack();
+            } else if (bp.getEm1() != null && Enemy1X - BarX >= 400) {
                 isStop = true;
-                bp.currentRound = 5;
+                bp.setCurrentRound(5);
                 //暂时设定攻击模式为普通攻击
-                bp.enemyAI.skillToUse(bp.em1);
+                bp.getEnemyAI().skillToUse(bp.getEm1());
                 //选择攻击对象
-                if (bp.currentBeAttacked != 4) {
-                    bp.enemyAI.heroToAttack();
+                if (bp.getCurrentBeAttacked() != 4) {
+                    bp.getEnemyAI().heroToAttack();
                 }
-            } else if (bp.em2 != null && Enemy2X - BarX >= 400) {
+            } else if (bp.getEm2() != null && Enemy2X - BarX >= 400) {
                 isStop = true;
-                bp.currentRound = 6;
+                bp.setCurrentRound(6);
                 //暂时设定攻击模式为普通攻击
-                bp.enemyAI.skillToUse(bp.em2);
+                bp.getEnemyAI().skillToUse(bp.getEm2());
                 //选择攻击对象
-                if (bp.currentBeAttacked != 4) {
-                    bp.enemyAI.heroToAttack();
+                if (bp.getCurrentBeAttacked() != 4) {
+                    bp.getEnemyAI().heroToAttack();
                 }
-            } else if (bp.em3 != null && Enemy3X - BarX >= 400) {
+            } else if (bp.getEm3() != null && Enemy3X - BarX >= 400) {
                 isStop = true;
-                bp.currentRound = 7;
+                bp.setCurrentRound(7);
                 //暂时设定攻击模式为普通攻击
-                bp.enemyAI.skillToUse(bp.em3);
+                bp.getEnemyAI().skillToUse(bp.getEm3());
                 //选择攻击对象
-                if (bp.currentBeAttacked != 4) {
-                    bp.enemyAI.heroToAttack();
+                if (bp.getCurrentBeAttacked() != 4) {
+                    bp.getEnemyAI().heroToAttack();
                 }
             }
         }
@@ -169,25 +169,25 @@ public class ProgressBar {
     public void drawProgressBar(Graphics g) {
         if (isDraw) {
             g.drawImage(Bar, BarX, BarY, bp);
-            if (bp.zxf != null) {
+            if (bp.getZxf() != null) {
                 g.drawImage(zhang, ZhangX, BarY, bp);
             }
-            if (bp.yj != null) {
+            if (bp.getYj() != null) {
                 g.drawImage(yujie, YuX, BarY, bp);
             }
-            if (bp.lxq != null) {
+            if (bp.getLxq() != null) {
                 g.drawImage(luxueqi, LuX, BarY, bp);
             }
-            if (bp.pet != null) {
+            if (bp.getPet() != null) {
                 g.drawImage(pet, petX, BarY, bp);
             }
-            if (bp.em1 != null) {
+            if (bp.getEm1() != null) {
                 g.drawImage(enemy1, Enemy1X, BarY, bp);
             }
-            if (bp.em2 != null) {
+            if (bp.getEm2() != null) {
                 g.drawImage(enemy2, Enemy2X, BarY, bp);
             }
-            if (bp.em3 != null) {
+            if (bp.getEm3() != null) {
                 g.drawImage(enemy3, Enemy3X, BarY, bp);
             }
         }

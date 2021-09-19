@@ -103,7 +103,7 @@ public class BattleState {
     //检查
     public void check() {
         if (isUsable) {
-            if (bp.currentRound == roleCode && isCheck) {
+            if (bp.getCurrentRound() == roleCode && isCheck) {
                 isCheck = false;
                 if (roundNum > 0) {
                     roundNum--;
@@ -113,7 +113,7 @@ public class BattleState {
                     clear();
                 }
             }
-            if (bp.currentRound != roleCode) {
+            if (bp.getCurrentRound() != roleCode) {
                 isCheck = true;
             }
         }
@@ -123,22 +123,22 @@ public class BattleState {
     public void Excute() {
         switch (roleCode) {
             case 1:
-                bp.zxf.excuteState();
+                bp.getZxf().excuteState();
                 break;
             case 2:
-                bp.yj.excuteState();
+                bp.getYj().excuteState();
                 break;
             case 3:
-                bp.lxq.excuteState();
+                bp.getLxq().excuteState();
                 break;
             case 5:
-                bp.em1.excuteState();
+                bp.getEm1().excuteState();
                 break;
             case 6:
-                bp.em2.excuteState();
+                bp.getEm2().excuteState();
                 break;
             case 7:
-                bp.em3.excuteState();
+                bp.getEm3().excuteState();
                 break;
         }
     }
@@ -147,22 +147,22 @@ public class BattleState {
     public void Return() {
         switch (roleCode) {
             case 1:
-                bp.zxf.returnFromState();
+                bp.getZxf().returnFromState();
                 break;
             case 2:
-                bp.yj.returnFromState();
+                bp.getYj().returnFromState();
                 break;
             case 3:
-                bp.lxq.returnFromState();
+                bp.getLxq().returnFromState();
                 break;
             case 5:
-                bp.em1.returnFromState();
+                bp.getEm1().returnFromState();
                 break;
             case 6:
-                bp.em2.returnFromState();
+                bp.getEm2().returnFromState();
                 break;
             case 7:
-                bp.em3.returnFromState();
+                bp.getEm3().returnFromState();
                 break;
         }
     }

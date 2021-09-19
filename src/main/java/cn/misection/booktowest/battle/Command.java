@@ -66,14 +66,14 @@ public class Command {
     //检查是否移动鼠标进入控制台
     public void checkMoveIn() {
         for (GameButton button : gameButtons) {
-            button.isMoveIn(bp.currentX, bp.currentY);
+            button.isMoveIn(bp.getCurrentX(), bp.getCurrentY());
         }
     }
 
     //检查鼠标是否点击控制台
     public void checkPressed() {
         for (GameButton button : gameButtons) {
-            button.isPressedButton(bp.currentX, bp.currentY);
+            button.isPressedButton(bp.getCurrentX(), bp.getCurrentY());
         }
     }
 
@@ -83,62 +83,62 @@ public class Command {
         if (attack.clicked == true) {
             //把控制台隐藏掉
             isDraw = false;
-            bp.currentPattern = 1;
+            bp.setCurrentPattern(1);
             //打开怪物选择
-            bp.enemySlector.isSlectable = true;
+            bp.getEnemySlector().isSlectable = true;
 
         }
 
         if (skill.clicked == true) {
             //把控制台隐藏掉
             isDraw = false;
-            bp.skillMenu.checkRound();
-            bp.skillMenu.isDraw = true;
+            bp.getSkillMenu().checkRound();
+            bp.getSkillMenu().isDraw = true;
         }
 
         if (thing.clicked == true) {
             //把控制台隐藏掉
             isDraw = false;
-            bp.drugMenu.checkHero();
-            bp.drugMenu.isDraw = true;
+            bp.getDrugMenu().checkHero();
+            bp.getDrugMenu().isDraw = true;
         }
 
         if (defend.clicked == true) {
-            switch (bp.currentRound) {
+            switch (bp.getCurrentRound()) {
                 case 1:
-                    if (bp.zxf.isAngry) {
+                    if (bp.getZxf().isAngry) {
                         //把控制台隐藏掉
                         isDraw = false;
                         //选定攻击对象
-                        bp.currentBeAttacked = 8;
+                        bp.setCurrentBeAttacked(8);
                         //攻击模式
-                        bp.currentPattern = 7;
+                        bp.setCurrentPattern(7);
                     } else {
-                        bp.reminder.show(21);
+                        bp.getReminder().show(21);
                     }
                     break;
                 case 2:
-                    if (bp.yj.isAngry) {
+                    if (bp.getYj().isAngry) {
                         //把控制台隐藏掉
                         isDraw = false;
                         //选定攻击对象
-                        bp.currentBeAttacked = 8;
+                        bp.setCurrentBeAttacked(8);
                         //攻击模式
-                        bp.currentPattern = 7;
+                        bp.setCurrentPattern(7);
                     } else {
-                        bp.reminder.show(21);
+                        bp.getReminder().show(21);
                     }
                     break;
                 case 3:
-                    if (bp.lxq.isAngry) {
+                    if (bp.getLxq().isAngry) {
                         //把控制台隐藏掉
                         isDraw = false;
                         //选定攻击对象
-                        bp.currentBeAttacked = 8;
+                        bp.setCurrentBeAttacked(8);
                         //攻击模式
-                        bp.currentPattern = 7;
+                        bp.setCurrentPattern(7);
                     } else {
-                        bp.reminder.show(21);
+                        bp.getReminder().show(21);
                     }
                     break;
             }
@@ -147,7 +147,7 @@ public class Command {
 
 
         for (GameButton button : gameButtons) {
-            button.isRelesedButton(bp.currentX, bp.currentY);
+            button.isRelesedButton(bp.getCurrentX(), bp.getCurrentY());
         }
     }
 

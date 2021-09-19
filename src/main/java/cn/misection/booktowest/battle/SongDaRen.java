@@ -104,7 +104,7 @@ public class SongDaRen implements Hero {
     }
 
     @Override
-    public boolean wheatherLevelUp() {
+    public boolean isLevelUp() {
         // TODO Auto-generated method stub
         return false;
     }
@@ -170,7 +170,7 @@ public class SongDaRen implements Hero {
     }
 
     @Override
-    public boolean wheatherDead() {
+    public boolean isDead() {
         // TODO Auto-generated method stub
         return false;
     }
@@ -282,7 +282,7 @@ public class SongDaRen implements Hero {
     }
 
     @Override
-    public boolean wheatherAngry() {
+    public boolean isAngry() {
         // TODO Auto-generated method stub
         return false;
     }
@@ -299,6 +299,7 @@ public class SongDaRen implements Hero {
         return null;
     }
 
+    @Override
     public void setPhysicalPower(int physicalPower) {
         // TODO Auto-generated method stub
         SongDaRen.physicalPower = physicalPower;

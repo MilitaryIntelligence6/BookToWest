@@ -22,146 +22,158 @@ public class BattlePanel extends JPanel implements Runnable {
     private static final int HEIGHT = 20 * 32;
 
     //战斗图片背景
-    Image background;
+    private Image backgroundImage;
     //缓冲图片
-    Image bufferedPic;
+    private Image bufferedPic;
     //缓冲画笔
-    Graphics bufferedGraphics;
+    private Graphics bufferedGraphics;
     //字体
-    Font font;
+    private Font font;
     //游标对象
-    Mouse mouse;
+    private Mouse mouse;
 
     //游标当前位置
-    int currentX;
-    int currentY;
+    private int currentX;
+    private int currentY;
 
     //控制台
-    Command command;
+    private Command command;
 
     //技能菜单
-    SkillMenu skillMenu;
+    private SkillMenu skillMenu;
 
     //药品菜单
-    DrugMenu drugMenu;
+    private DrugMenu drugMenu;
 
     //状态栏
-    StateBlank stateBlank;
+    private StateBlank stateBlank;
 
     //指示标志
-    Instruct instruct;
+    private Instruct instruct;
 
     //怪物选择器
-    EnemySlector enemySlector;
+    private EnemySlector enemySlector;
 
     //攻击发动器
-    LaunchAttack launchAttack;
+    private LaunchAttack launchAttack;
 
     //检查器
-    Check check;
+    private Check check;
 
     //伤害值显示
-    ArrayList<HurtValue> hurtValues;
+    private ArrayList<HurtValue> hurtValues;
 
     //开始动画
-    StartAnimation startAnimation;
+    private StartAnimation startAnimation;
 
     //背景动画
-    BackgroundAnimation backgroundAnimation;
+    private BackgroundAnimation backgroundAnimation;
 
     //技能动画
-    SkillAnimation skillAnimation;
+    private SkillAnimation skillAnimation;
 
     //提示
-    Reminder reminder;
+    private Reminder reminder;
 
     //战斗胜利提示
-    VictoryReminder victoryReminder;
+    private VictoryReminder victoryReminder;
 
     //怒气槽
-    ArrayList<AngryBar> angryBars = new ArrayList<AngryBar>();
+    private ArrayList<AngryBar> angryBars = new ArrayList<>();
 
     //我方战斗单位引用
-    ZhangXiaoFan zxf;
-    YuJie yj;
-    LuXueQi lxq;
+    private ZhangXiaoFan zxf;
+    private YuJie yj;
+    private LuXueQi lxq;
     //我方战斗单位集合
-    ArrayList<Hero> heroes = new ArrayList<Hero>();
+    private ArrayList<Hero> heroes = new ArrayList<>();
 
     //敌人引用
-    Enemy em1;
-    Enemy em2;
-    Enemy em3;
-    ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    private Enemy em1;
+    private Enemy em2;
+    private Enemy em3;
+    private ArrayList<Enemy> enemies = new ArrayList<>();
 
     //怪物智能
-    EnemyAI enemyAI;
+    private EnemyAI enemyAI;
 
     //进度条
-    ProgressBar progressBar;
+    private ProgressBar progressBar;
 
     //小精灵
-    Pet pet;
+    private Pet pet;
 
     //游戏结束画面
-    GameOver gameOver;
+    private GameOver gameOver;
 
     //当前回合 1.张小凡 2.文敏 3.陆雪琪 4.宋大仁 5.怪物1 6.怪物2 7.怪物3
-    int currentRound;
+    private int currentRound;
 
     //当前被攻击对象 1.张小凡 2.文敏 3.陆雪琪 4.宋大仁 5.怪物1 6.怪物2 7.怪物3
-    int currentBeAttacked;
+    private int currentBeAttacked;
 
     //当前攻击模式  1.普通攻击 2.技能1 3.技能2 4.技能3 5.技能4 6.技能5
-    int currentPattern;
+    private int currentPattern;
 
     //构造方法
     public BattlePanel() {
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setPreferredSize(new Dimension(getWIDTH(), getHEIGHT()));
         //双缓冲准备
-        bufferedPic = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
-        bufferedGraphics = bufferedPic.getGraphics();
-        font = new Font("文鼎粗钢笔行楷", Font.BOLD, 15);
-        bufferedGraphics.setFont(font);
+        setBufferedPic(new BufferedImage(getWIDTH(), getHEIGHT(), BufferedImage.TYPE_INT_ARGB));
+        setBufferedGraphics(getBufferedPic().getGraphics());
+        setFont(new Font("文鼎粗钢笔行楷", Font.BOLD, 15));
+        getBufferedGraphics().setFont(getFont());
 
         //创建游标
-        mouse = new Mouse(this);
+        setMouse(new Mouse(this));
         setMouse();
         requestFocus();
 
 
         //创建控制台
-        command = new Command(this);
+        setCommand(new Command(this));
 
         //创建指示图标
-        instruct = new Instruct(this);
+        setInstruct(new Instruct(this));
 
         //创建药品菜单
-        drugMenu = new DrugMenu(this);
+        setDrugMenu(new DrugMenu(this));
 
         //创建伤害值显示
-        hurtValues = new ArrayList<HurtValue>();
+        setHurtValues(new ArrayList<>());
 
         //创建背景动画
-        backgroundAnimation = new BackgroundAnimation(this);
+        setBackgroundAnimation(new BackgroundAnimation(this));
 
         //创建技能动画
-        skillAnimation = new SkillAnimation(this);
+        setSkillAnimation(new SkillAnimation(this));
 
         //创建提示
-        reminder = new Reminder(this, 500, 120);
+        setReminder(new Reminder(this, 500, 120));
 
         //创建检查器
-        check = new Check(this);
+        setCheck(new Check(this));
 
         //开启线程
         Thread t = new Thread(this);
         t.start();
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public static int getWIDTH() {
+        return WIDTH;
+    }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
+    }
+
     //初始化方法
     public void initial(String s, ZhangXiaoFan z, YuJie y, LuXueQi l, Enemy e1, Enemy e2, Enemy e3) {
-        background = Reader.readImage(s);
+        setBackgroundImage(Reader.readImage(s));
         //根据背景加入音乐
         switch (s) {
             case "image/背景图/伏魔山树林.png":
@@ -204,76 +216,76 @@ public class BattlePanel extends JPanel implements Runnable {
 
 
         //添加我方的战斗单位
-        zxf = z;
-        yj = y;
-        lxq = l;
-        if (zxf != null) {
-            heroes.add(z);
+        setZxf(z);
+        setYj(y);
+        setLxq(l);
+        if (getZxf() != null) {
+            getHeroes().add(z);
         }
-        if (yj != null) {
-            heroes.add(y);
+        if (getYj() != null) {
+            getHeroes().add(y);
         }
-        if (lxq != null) {
-            heroes.add(l);
+        if (getLxq() != null) {
+            getHeroes().add(l);
         }
         //添加敌人
-        em1 = e1;
-        em2 = e2;
-        em3 = e3;
+        setEm1(e1);
+        setEm2(e2);
+        setEm3(e3);
 
         //怪物智能
-        enemyAI = new EnemyAI(this);
+        setEnemyAI(new EnemyAI(this));
         //添加怪物 注意顺序 解决遮掩性问题
-        if (em2 != null) {
-            enemies.add(em2);
+        if (getEm2() != null) {
+            getEnemies().add(getEm2());
         }
-        if (em1 != null) {
-            enemies.add(em1);
+        if (getEm1() != null) {
+            getEnemies().add(getEm1());
         }
-        if (em3 != null) {
-            enemies.add(em3);
+        if (getEm3() != null) {
+            getEnemies().add(getEm3());
         }
 
         //创建小精灵
-        pet = null;
+        setPet(null);
 
-        progressBar = new ProgressBar(300, 50, this);
-        stateBlank = new StateBlank(this);
+        setProgressBar(new ProgressBar(300, 50, this));
+        setStateBlank(new StateBlank(this));
 
         //创建怒气槽
-        angryBars.clear();
-        for (Hero hero : heroes) {
+        getAngryBars().clear();
+        for (Hero hero : getHeroes()) {
             AngryBar an = new AngryBar(this, hero);
-            angryBars.add(an);
+            getAngryBars().add(an);
         }
 
         //创建技能菜单
-        skillMenu = new SkillMenu(this);
+        setSkillMenu(new SkillMenu(this));
 
         //创建怪物选择器
-        enemySlector = new EnemySlector(this);
+        setEnemySlector(new EnemySlector(this));
 
         //创建攻击发动器
-        launchAttack = new LaunchAttack(this);
+        setLaunchAttack(new LaunchAttack(this));
 
         //创建胜利提示
-        victoryReminder = new VictoryReminder(this);
+        setVictoryReminder(new VictoryReminder(this));
 
         //创建游戏结束画面
-        gameOver = new GameOver(this);
+        setGameOver(new GameOver(this));
 
         //创建开始动画
-        startAnimation = new StartAnimation(this);
+        setStartAnimation(new StartAnimation(this));
 
         //进度条开始
-        progressBar.isStop = false;
-        command.isDraw = false;
-        drugMenu.isDraw = false;
-        instruct.isDraw = false;
+        getProgressBar().isStop = false;
+        getCommand().isDraw = false;
+        getDrugMenu().isDraw = false;
+        getInstruct().isDraw = false;
 
         //检查上场战斗时候有人死亡,若有,每人回复10%的hp
-        for (Hero hero : heroes) {
-            if (hero.wheatherDead()) {
+        for (Hero hero : getHeroes()) {
+            if (hero.isDead()) {
                 hero.setDead(false);
                 //如果hp为0
                 if (hero.getHp() == 0) {
@@ -286,11 +298,11 @@ public class BattlePanel extends JPanel implements Runnable {
     //设置一个键盘监听(外挂)
     public void keyPressed(int keyCode) {
         if (keyCode == KeyEvent.VK_J) {
-            enemies.clear();
-            em1 = null;
-            em2 = null;
-            em3 = null;
-            check.checkEnemyDead();
+            getEnemies().clear();
+            setEm1(null);
+            setEm2(null);
+            setEm3(null);
+            getCheck().checkEnemyDead();
         }
     }
 
@@ -304,157 +316,161 @@ public class BattlePanel extends JPanel implements Runnable {
         // 插入透明游标，以此模拟无游标状态
         setCursor(transparentCursor);
         addMouseListener(new MouseAdapter() {
+            @Override
             public void mousePressed(MouseEvent e) {
-                currentX = e.getX();
-                currentY = e.getY();
+                setCurrentX(e.getX());
+                setCurrentY(e.getY());
 
-                if (command.isDraw) {
-                    command.checkPressed();
+                if (getCommand().isDraw) {
+                    getCommand().checkPressed();
                 }
 
-                if (skillMenu.isDraw) {
-                    skillMenu.checkPressed();
+                if (getSkillMenu().isDraw) {
+                    getSkillMenu().checkPressed();
                 }
 
-                if (drugMenu.isDraw) {
-                    drugMenu.checkPressed();
+                if (getDrugMenu().isDraw) {
+                    getDrugMenu().checkPressed();
                 }
 
-                if (enemySlector.isSlectable) {
-                    enemySlector.checkClick(currentX, currentY);
+                if (getEnemySlector().isSlectable) {
+                    getEnemySlector().checkClick(getCurrentX(), getCurrentY());
                 }
             }
 
+            @Override
             public void mouseReleased(MouseEvent e) {
-                currentX = e.getX();
-                currentY = e.getY();
+                setCurrentX(e.getX());
+                setCurrentY(e.getY());
 
-                if (command.isDraw) {
-                    command.checkReleased();
+                if (getCommand().isDraw) {
+                    getCommand().checkReleased();
                 }
 
-                if (skillMenu.isDraw) {
-                    skillMenu.checkReleased();
+                if (getSkillMenu().isDraw) {
+                    getSkillMenu().checkReleased();
                 }
 
-                if (drugMenu.isDraw) {
-                    drugMenu.checkReleased();
+                if (getDrugMenu().isDraw) {
+                    getDrugMenu().checkReleased();
                 }
             }
         });
 
         addMouseMotionListener(new MouseMotionAdapter() {
-            public void mouseMoved(MouseEvent ex) {
-                currentX = ex.getX();
-                currentY = ex.getY();
+                                   @Override
+                                   public void mouseMoved(MouseEvent ex) {
+                                       currentX = ex.getX();
+                                       currentY = ex.getY();
 
-                if (command.isDraw) {
-                    command.checkMoveIn();
-                }
+                                       if (getCommand().isDraw) {
+                                           getCommand().checkMoveIn();
+                                       }
 
-                if (skillMenu.isDraw) {
-                    skillMenu.checkMoveIn();
-                }
+                                       if (getSkillMenu().isDraw) {
+                                           getSkillMenu().checkMoveIn();
+                                       }
 
-                if (drugMenu.isDraw) {
-                    drugMenu.checkMoveIn();
-                }
+                                       if (getDrugMenu().isDraw) {
+                                           getDrugMenu().checkMoveIn();
+                                       }
 
-                enemySlector.checkMoveIn(currentX, currentY);
-            }
+                                       getEnemySlector().checkMoveIn(getCurrentX(), getCurrentY());
+                                   }
 
-            public void mouseDragged(MouseEvent ex) {
-                currentX = ex.getX();
-                currentY = ex.getY();
+                                   @Override
+                                   public void mouseDragged(MouseEvent ex) {
+                                       setCurrentX(ex.getX());
+                                       setCurrentY(ex.getY());
 
-                if (command.isDraw) {
-                    command.checkMoveIn();
-                }
+                                       if (getCommand().isDraw) {
+                                           getCommand().checkMoveIn();
+                                       }
 
-                if (skillMenu.isDraw) {
-                    skillMenu.checkMoveIn();
-                }
+                                       if (getSkillMenu().isDraw) {
+                                           getSkillMenu().checkMoveIn();
+                                       }
 
-                if (drugMenu.isDraw) {
-                    drugMenu.checkMoveIn();
-                }
-            }
-        });
-
-
+                                       if (getDrugMenu().isDraw) {
+                                           getDrugMenu().checkMoveIn();
+                                       }
+                                   }
+                               }
+        );
     }
 
+    @Override
     public void paint(Graphics g) {
-        bufferedGraphics.drawImage(background, 0, 0, this);
-        backgroundAnimation.drawBackAnimation(bufferedGraphics);
-        stateBlank.drawStateBlank(bufferedGraphics);
-        for (AngryBar angryBar : angryBars) {
-            angryBar.drawAngryBar(bufferedGraphics);
+        getBufferedGraphics().drawImage(backgroundImage, 0, 0, this);
+        getBackgroundAnimation().drawBackAnimation(getBufferedGraphics());
+        getStateBlank().drawStateBlank(getBufferedGraphics());
+        for (AngryBar angryBar : getAngryBars()) {
+            angryBar.drawAngryBar(getBufferedGraphics());
         }
-        if (command != null) {
-            command.drawCommand(bufferedGraphics);
+        if (getCommand() != null) {
+            getCommand().drawCommand(getBufferedGraphics());
         }
 
-        drugMenu.drawDrugMenu(bufferedGraphics);
-        for (Hero hero : heroes) {
+        getDrugMenu().drawDrugMenu(getBufferedGraphics());
+        for (Hero hero : getHeroes()) {
             if (hero != null) {
-                hero.drawHero(bufferedGraphics);
+                hero.drawHero(getBufferedGraphics());
             }
         }
-        for (Hero hero : heroes) {
+        for (Hero hero : getHeroes()) {
             if (hero != null) {
-                hero.getDeadAnimation().drawDeadAniamtion(bufferedGraphics);
+                hero.getDeadAnimation().drawDeadAniamtion(getBufferedGraphics());
             }
         }
-        for (Hero hero : heroes) {
+        for (Hero hero : getHeroes()) {
             if (hero != null) {
-                hero.getVictoryAnimation().drawVictoryAnimation(bufferedGraphics);
+                hero.getVictoryAnimation().drawVictoryAnimation(getBufferedGraphics());
             }
         }
-        for (Enemy enemy : enemies) {
+        for (Enemy enemy : getEnemies()) {
             if (enemy != null) {
-                enemy.drawEnemy(bufferedGraphics);
+                enemy.drawEnemy(getBufferedGraphics());
             }
         }
-        if (pet != null) {
-            pet.drawPet(bufferedGraphics);
+        if (getPet() != null) {
+            getPet().drawPet(getBufferedGraphics());
         }
-        if (progressBar != null) {
-            progressBar.drawProgressBar(bufferedGraphics);
+        if (getProgressBar() != null) {
+            getProgressBar().drawProgressBar(getBufferedGraphics());
         }
-        skillMenu.drawSkillMenu(bufferedGraphics);
-        for (Enemy enemy : enemies) {
+        getSkillMenu().drawSkillMenu(getBufferedGraphics());
+        for (Enemy enemy : getEnemies()) {
             if (enemy.beAttackedAnimation != null) {
-                enemy.beAttackedAnimation.drawAnimation(bufferedGraphics);
+                enemy.beAttackedAnimation.drawAnimation(getBufferedGraphics());
             }
         }
-        for (Hero hero : heroes) {
+        for (Hero hero : getHeroes()) {
             if (hero.getBeAttackedAnimation() != null) {
-                hero.getBeAttackedAnimation().drawAnimation(bufferedGraphics);
+                hero.getBeAttackedAnimation().drawAnimation(getBufferedGraphics());
             }
         }
-        skillAnimation.drawAnimation(bufferedGraphics);
-        for (Hero hero : heroes) {
-            hero.getBattleState().drawState(bufferedGraphics);
+        getSkillAnimation().drawAnimation(getBufferedGraphics());
+        for (Hero hero : getHeroes()) {
+            hero.getBattleState().drawState(getBufferedGraphics());
         }
-        for (Enemy enemy : enemies) {
-            enemy.battleState.drawState(bufferedGraphics);
+        for (Enemy enemy : getEnemies()) {
+            enemy.battleState.drawState(getBufferedGraphics());
         }
-        for (HurtValue hurtValue : hurtValues) {
-            hurtValue.drawHurtValue(bufferedGraphics);
+        for (HurtValue hurtValue : getHurtValues()) {
+            hurtValue.drawHurtValue(getBufferedGraphics());
         }
-        instruct.drawInstruct(bufferedGraphics);
+        getInstruct().drawInstruct(getBufferedGraphics());
 
-        reminder.drawReminder(bufferedGraphics);
-        victoryReminder.drawVictoryReminder(bufferedGraphics);
-        mouse.drawMouse(bufferedGraphics);
-        if (gameOver != null) {
-            gameOver.drawGameOver(bufferedGraphics);
+        getReminder().drawReminder(getBufferedGraphics());
+        getVictoryReminder().drawVictoryReminder(getBufferedGraphics());
+        getMouse().drawMouse(getBufferedGraphics());
+        if (getGameOver() != null) {
+            getGameOver().drawGameOver(getBufferedGraphics());
         }
-        if (startAnimation != null) {
-            startAnimation.drawStartAnimation(bufferedGraphics);
+        if (getStartAnimation() != null) {
+            getStartAnimation().drawStartAnimation(getBufferedGraphics());
         }
-        g.drawImage(bufferedPic, 0, 0, this);
+        g.drawImage(getBufferedPic(), 0, 0, this);
     }
 
     @Override
@@ -467,95 +483,393 @@ public class BattlePanel extends JPanel implements Runnable {
                 // TODO: handle exception
                 e.printStackTrace();
             }
-            if (mouse != null) {
-                mouse.update();
+            if (getMouse() != null) {
+                getMouse().update();
             }
-            if (backgroundAnimation != null) {
-                backgroundAnimation.update();
+            if (getBackgroundAnimation() != null) {
+                getBackgroundAnimation().update();
             }
-            for (Hero hero : heroes) {
+            for (Hero hero : getHeroes()) {
                 if (hero != null) {
                     hero.doAction();
                 }
             }
-            for (Hero hero : heroes) {
+            for (Hero hero : getHeroes()) {
                 if (hero != null) {
                     hero.getVictoryAnimation().update();
                 }
             }
-            for (Hero hero : heroes) {
+            for (Hero hero : getHeroes()) {
                 if (hero != null) {
                     hero.getDeadAnimation().update();
                 }
             }
-            for (Enemy enemy : enemies) {
+            for (Enemy enemy : getEnemies()) {
                 if (enemy != null) {
                     enemy.doAction();
                 }
             }
-            if (progressBar != null) {
-                progressBar.updateProgress();
+            if (getProgressBar() != null) {
+                getProgressBar().updateProgress();
             }
-            skillAnimation.update();
-            for (Enemy enemy : enemies) {
+            getSkillAnimation().update();
+            for (Enemy enemy : getEnemies()) {
                 if (enemy.beAttackedAnimation != null) {
                     enemy.beAttackedAnimation.update();
                 }
             }
-            for (Hero hero : heroes) {
+            for (Hero hero : getHeroes()) {
                 if (hero.getBeAttackedAnimation() != null) {
                     hero.getBeAttackedAnimation().update();
                 }
             }
-            if (pet != null) {
-                pet.update();
+            if (getPet() != null) {
+                getPet().update();
             }
-            for (HurtValue hurtValue : hurtValues) {
+            for (HurtValue hurtValue : getHurtValues()) {
                 if (hurtValue != null) {
                     hurtValue.update();
                 }
             }
-            if (instruct != null) {
-                instruct.update();
+            if (getInstruct() != null) {
+                getInstruct().update();
 
             }
-            if (reminder != null) {
-                reminder.update();
+            if (getReminder() != null) {
+                getReminder().update();
             }
-            for (Enemy enemy : enemies) {
+            for (Enemy enemy : getEnemies()) {
                 if (enemy != null) {
                     enemy.battleState.check();
                 }
             }
-            if (launchAttack != null) {
-                launchAttack.check();
+            if (getLaunchAttack() != null) {
+                getLaunchAttack().check();
             }
 
-            if (stateBlank != null) {
-                stateBlank.update();
+            if (getStateBlank() != null) {
+                getStateBlank().update();
             }
-            if (angryBars.size() != 0) {
-                for (AngryBar angryBar : angryBars) {
+            if (getAngryBars().size() != 0) {
+                for (AngryBar angryBar : getAngryBars()) {
                     if (angryBar != null) {
                         angryBar.update();
                     }
                 }
             }
-            if (victoryReminder != null) {
-                victoryReminder.update();
+            if (getVictoryReminder() != null) {
+                getVictoryReminder().update();
             }
-            for (Hero hero : heroes) {
+            for (Hero hero : getHeroes()) {
                 if (hero != null) {
                     hero.getBattleState().check();
                 }
             }
-            if (gameOver != null) {
-                gameOver.update();
+            if (getGameOver() != null) {
+                getGameOver().update();
             }
-            if (startAnimation != null) {
-                startAnimation.update();
+            if (getStartAnimation() != null) {
+                getStartAnimation().update();
             }
             repaint();
         }
+    }
+
+    public Image getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(Image backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
+
+    public Image getBufferedPic() {
+        return bufferedPic;
+    }
+
+    public void setBufferedPic(Image bufferedPic) {
+        this.bufferedPic = bufferedPic;
+    }
+
+    public Graphics getBufferedGraphics() {
+        return bufferedGraphics;
+    }
+
+    public void setBufferedGraphics(Graphics bufferedGraphics) {
+        this.bufferedGraphics = bufferedGraphics;
+    }
+
+    @Override
+    public Font getFont() {
+        return font;
+    }
+
+    @Override
+    public void setFont(Font font) {
+        this.font = font;
+    }
+
+    public Mouse getMouse() {
+        return mouse;
+    }
+
+    public void setMouse(Mouse mouse) {
+        this.mouse = mouse;
+    }
+
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public void setCurrentX(int currentX) {
+        this.currentX = currentX;
+    }
+
+    public int getCurrentY() {
+        return currentY;
+    }
+
+    public void setCurrentY(int currentY) {
+        this.currentY = currentY;
+    }
+
+    public Command getCommand() {
+        return command;
+    }
+
+    public void setCommand(Command command) {
+        this.command = command;
+    }
+
+    public SkillMenu getSkillMenu() {
+        return skillMenu;
+    }
+
+    public void setSkillMenu(SkillMenu skillMenu) {
+        this.skillMenu = skillMenu;
+    }
+
+    public DrugMenu getDrugMenu() {
+        return drugMenu;
+    }
+
+    public void setDrugMenu(DrugMenu drugMenu) {
+        this.drugMenu = drugMenu;
+    }
+
+    public StateBlank getStateBlank() {
+        return stateBlank;
+    }
+
+    public void setStateBlank(StateBlank stateBlank) {
+        this.stateBlank = stateBlank;
+    }
+
+    public Instruct getInstruct() {
+        return instruct;
+    }
+
+    public void setInstruct(Instruct instruct) {
+        this.instruct = instruct;
+    }
+
+    public EnemySlector getEnemySlector() {
+        return enemySlector;
+    }
+
+    public void setEnemySlector(EnemySlector enemySlector) {
+        this.enemySlector = enemySlector;
+    }
+
+    public LaunchAttack getLaunchAttack() {
+        return launchAttack;
+    }
+
+    public void setLaunchAttack(LaunchAttack launchAttack) {
+        this.launchAttack = launchAttack;
+    }
+
+    public Check getCheck() {
+        return check;
+    }
+
+    public void setCheck(Check check) {
+        this.check = check;
+    }
+
+    public ArrayList<HurtValue> getHurtValues() {
+        return hurtValues;
+    }
+
+    public void setHurtValues(ArrayList<HurtValue> hurtValues) {
+        this.hurtValues = hurtValues;
+    }
+
+    public StartAnimation getStartAnimation() {
+        return startAnimation;
+    }
+
+    public void setStartAnimation(StartAnimation startAnimation) {
+        this.startAnimation = startAnimation;
+    }
+
+    public BackgroundAnimation getBackgroundAnimation() {
+        return backgroundAnimation;
+    }
+
+    public void setBackgroundAnimation(BackgroundAnimation backgroundAnimation) {
+        this.backgroundAnimation = backgroundAnimation;
+    }
+
+    public SkillAnimation getSkillAnimation() {
+        return skillAnimation;
+    }
+
+    public void setSkillAnimation(SkillAnimation skillAnimation) {
+        this.skillAnimation = skillAnimation;
+    }
+
+    public Reminder getReminder() {
+        return reminder;
+    }
+
+    public void setReminder(Reminder reminder) {
+        this.reminder = reminder;
+    }
+
+    public VictoryReminder getVictoryReminder() {
+        return victoryReminder;
+    }
+
+    public void setVictoryReminder(VictoryReminder victoryReminder) {
+        this.victoryReminder = victoryReminder;
+    }
+
+    public ArrayList<AngryBar> getAngryBars() {
+        return angryBars;
+    }
+
+    public void setAngryBars(ArrayList<AngryBar> angryBars) {
+        this.angryBars = angryBars;
+    }
+
+    public ZhangXiaoFan getZxf() {
+        return zxf;
+    }
+
+    public void setZxf(ZhangXiaoFan zxf) {
+        this.zxf = zxf;
+    }
+
+    public YuJie getYj() {
+        return yj;
+    }
+
+    public void setYj(YuJie yj) {
+        this.yj = yj;
+    }
+
+    public LuXueQi getLxq() {
+        return lxq;
+    }
+
+    public void setLxq(LuXueQi lxq) {
+        this.lxq = lxq;
+    }
+
+    public ArrayList<Hero> getHeroes() {
+        return heroes;
+    }
+
+    public void setHeroes(ArrayList<Hero> heroes) {
+        this.heroes = heroes;
+    }
+
+    public Enemy getEm1() {
+        return em1;
+    }
+
+    public void setEm1(Enemy em1) {
+        this.em1 = em1;
+    }
+
+    public Enemy getEm2() {
+        return em2;
+    }
+
+    public void setEm2(Enemy em2) {
+        this.em2 = em2;
+    }
+
+    public Enemy getEm3() {
+        return em3;
+    }
+
+    public void setEm3(Enemy em3) {
+        this.em3 = em3;
+    }
+
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public void setEnemies(ArrayList<Enemy> enemies) {
+        this.enemies = enemies;
+    }
+
+    public EnemyAI getEnemyAI() {
+        return enemyAI;
+    }
+
+    public void setEnemyAI(EnemyAI enemyAI) {
+        this.enemyAI = enemyAI;
+    }
+
+    public ProgressBar getProgressBar() {
+        return progressBar;
+    }
+
+    public void setProgressBar(ProgressBar progressBar) {
+        this.progressBar = progressBar;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
+    public GameOver getGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(GameOver gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public int getCurrentRound() {
+        return currentRound;
+    }
+
+    public void setCurrentRound(int currentRound) {
+        this.currentRound = currentRound;
+    }
+
+    public int getCurrentBeAttacked() {
+        return currentBeAttacked;
+    }
+
+    public void setCurrentBeAttacked(int currentBeAttacked) {
+        this.currentBeAttacked = currentBeAttacked;
+    }
+
+    public int getCurrentPattern() {
+        return currentPattern;
+    }
+
+    public void setCurrentPattern(int currentPattern) {
+        this.currentPattern = currentPattern;
     }
 }

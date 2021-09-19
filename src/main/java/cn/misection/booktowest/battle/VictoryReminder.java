@@ -187,7 +187,7 @@ public class VictoryReminder {
     //得到战斗信息
     public void getInformation() {
         //计算当前战斗可以获得多少经验,金钱,物品
-        for (Enemy e : bp.enemies) {
+        for (Enemy e : bp.getEnemies()) {
             expToGet += e.exp;
             moneyToGet += e.money;
             things.add(e.thing);
@@ -262,56 +262,56 @@ public class VictoryReminder {
             g.drawImage(thingBack, thing_dx1, thing_dy1, thing_dx2, thing_dy2, thing_sx1, thing_sy1, thing_sx2,
                     thing_sy2, bp);
             if (firstIsDraw) {
-                if (bp.zxf != null) {
+                if (bp.getZxf() != null) {
                     g.drawImage(zhang1, firstX, firstY, bp);
                 }
-                if (bp.yj != null) {
+                if (bp.getYj() != null) {
                     g.drawImage(wen1, firstX, firstY + 100, bp);
                 }
-                if (bp.lxq != null) {
+                if (bp.getLxq() != null) {
                     g.drawImage(lu1, firstX, firstY + 100 * 2, bp);
                 }
             }
             if (secondIsDraw) {
-                if (bp.zxf != null && bp.zxf.isLevelUp == true) {
+                if (bp.getZxf() != null && bp.getZxf().isLevelUp == true) {
                     g.drawImage(zhang2, firstX, firstY, bp);
                 }
-                if (bp.yj != null && bp.yj.isLevelUp == true) {
+                if (bp.getYj() != null && bp.getYj().isLevelUp == true) {
                     g.drawImage(wen2, firstX, firstY + 100, bp);
                 }
-                if (bp.lxq != null && bp.lxq.isLevelUp == true) {
+                if (bp.getLxq() != null && bp.getLxq().isLevelUp == true) {
                     g.drawImage(lu2, firstX, firstY + 100 * 2, bp);
                 }
             }
             if (firstString) {
-                if (bp.zxf != null) {
+                if (bp.getZxf() != null) {
                     g.drawString(expToGet + "", firstStringX, firstStringY);
                     g.drawString(showNums.get(0) + "", firstStringX, firstStringY + 30);
                 }
-                if (bp.yj != null) {
+                if (bp.getYj() != null) {
                     g.drawString(expToGet + "", firstStringX, firstStringY + 100);
                     g.drawString(showNums.get(1) + "", firstStringX, firstStringY + 100 + 30);
                 }
-                if (bp.lxq != null) {
+                if (bp.getLxq() != null) {
                     g.drawString(expToGet + "", firstStringX, firstStringY + 100 * 2);
                     g.drawString(showNums.get(2) + "", firstStringX, firstStringY + 100 * 2 + 30);
                 }
             }
 
             if (secondString) {
-                if (bp.zxf != null && bp.zxf.isLevelUp == true) {
+                if (bp.getZxf() != null && bp.getZxf().isLevelUp == true) {
                     for (int i = 3; i <= 6; i++) {
                         g.drawString(showNums.get(i) + "", secondStringX, secondStringY + (i - 3) * 20);
                     }
                 }
 
-                if (bp.yj != null && bp.yj.isLevelUp == true) {
+                if (bp.getYj() != null && bp.getYj().isLevelUp == true) {
                     for (int i = 7; i <= 10; i++) {
                         g.drawString(showNums.get(i) + "", secondStringX, secondStringY + (i - 7) * 20 + 100);
                     }
                 }
 
-                if (bp.lxq != null && bp.lxq.isLevelUp == true) {
+                if (bp.getLxq() != null && bp.getLxq().isLevelUp == true) {
                     for (int i = 11; i <= 14; i++) {
                         g.drawString(showNums.get(i) + "", secondStringX, secondStringY + (i - 11) * 20 + 100 * 2);
                     }
@@ -395,8 +395,8 @@ public class VictoryReminder {
                     timeCode++;
                 }
                 if (timeCode == 15) {
-                    for (Hero hero : bp.heroes) {
-                        if (hero.wheatherLevelUp() == true) {
+                    for (Hero hero : bp.getHeroes()) {
+                        if (hero.isLevelUp() == true) {
                             levelUpIsDraw = true;
                         }
                     }
@@ -406,7 +406,7 @@ public class VictoryReminder {
                         GameApplication.zhangXiaoFan.isLevelUp = false;
                         GameApplication.yuJie.isLevelUp = false;
                         GameApplication.luXueQi.isLevelUp = false;
-                        bp.heroes.clear();
+                        bp.getHeroes().clear();
                         GameApplication.switchTo("scene");
                     }
                 }
@@ -419,14 +419,14 @@ public class VictoryReminder {
                 }
                 if (timeCode >= 35 && timeCode < 55) {
                     //开始属性增加的动画效果
-                    if (bp.zxf != null) {
-                        addValue(3, bp.zxf);
+                    if (bp.getZxf() != null) {
+                        addValue(3, bp.getZxf());
                     }
-                    if (bp.yj != null) {
-                        addValue(7, bp.yj);
+                    if (bp.getYj() != null) {
+                        addValue(7, bp.getYj());
                     }
-                    if (bp.lxq != null) {
-                        addValue(11, bp.lxq);
+                    if (bp.getLxq() != null) {
+                        addValue(11, bp.getLxq());
                     }
                 }
                 if (timeCode == 55) {
@@ -436,7 +436,7 @@ public class VictoryReminder {
                     GameApplication.zhangXiaoFan.isLevelUp = false;
                     GameApplication.yuJie.isLevelUp = false;
                     GameApplication.luXueQi.isLevelUp = false;
-                    bp.heroes.clear();
+                    bp.getHeroes().clear();
                     GameApplication.switchTo("scene");
                 }
             }
