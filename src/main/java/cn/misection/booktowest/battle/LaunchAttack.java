@@ -131,7 +131,7 @@ public class LaunchAttack {
         }
 
         //技能发动结束后的恢复
-        if (bp.getSkillAnimation().isOver() == true) {
+        if (bp.getSkillAnimation().isOver()) {
             //为了使这个判断只做一次
             bp.getSkillAnimation().setOver(false);
             //人物重新出现
@@ -150,8 +150,8 @@ public class LaunchAttack {
                 resume();
             }
         }
-        if (bp.getBackgroundAnimation().isOver()) {
-            bp.getBackgroundAnimation().setOver(false);
+        if (bp.getBackgroundAnimation().isOvered()) {
+            bp.getBackgroundAnimation().setOvered(false);
             //显示伤害值
             for (HurtValue hurtValue : bp.getHurtValues()) {
                 hurtValue.start();
@@ -250,8 +250,8 @@ public class LaunchAttack {
                 resume();
             }
         }
-        if (bp.getBackgroundAnimation().isOver()) {
-            bp.getBackgroundAnimation().setOver(false);
+        if (bp.getBackgroundAnimation().isOvered()) {
+            bp.getBackgroundAnimation().setOvered(false);
             //显示伤害值
             for (HurtValue hurtValue : bp.getHurtValues()) {
                 hurtValue.start();
@@ -323,7 +323,7 @@ public class LaunchAttack {
         }
 
         //技能发动结束后的恢复
-        if (bp.getSkillAnimation().isOver() == true) {
+        if (bp.getSkillAnimation().isOver()) {
             //为了使这个判断只做一次
             bp.getSkillAnimation().setOver(false);
             //人物重新出现
@@ -342,8 +342,8 @@ public class LaunchAttack {
                 resume();
             }
         }
-        if (bp.getBackgroundAnimation().isOver()) {
-            bp.getBackgroundAnimation().setOver(false);
+        if (bp.getBackgroundAnimation().isOvered()) {
+            bp.getBackgroundAnimation().setOvered(false);
             //显示伤害值
             for (HurtValue hurtValue : bp.getHurtValues()) {
                 hurtValue.start();
@@ -384,7 +384,7 @@ public class LaunchAttack {
             }
         }
         //技能发动结束后的恢复
-        if (bp.getSkillAnimation().isOver() == true) {
+        if (bp.getSkillAnimation().isOver()) {
             //为了使这个判断只做一次
             bp.getSkillAnimation().setOver(false);
 
@@ -429,7 +429,7 @@ public class LaunchAttack {
             }
         }
         //技能发动结束后的恢复
-        if (bp.getSkillAnimation().isOver() == true) {
+        if (bp.getSkillAnimation().isOver()) {
             //为了使这个判断只做一次
             bp.getSkillAnimation().setOver(false);
 
@@ -475,7 +475,7 @@ public class LaunchAttack {
         }
 
         //技能发动结束后的恢复
-        if (bp.getSkillAnimation().isOver() == true) {
+        if (bp.getSkillAnimation().isOver()) {
             //为了使这个判断只做一次
             bp.getSkillAnimation().setOver(false);
 
@@ -509,7 +509,7 @@ public class LaunchAttack {
         }
 
         //技能发动结束后的恢复
-        if (bp.getSkillAnimation().isOver() == true) {
+        if (bp.getSkillAnimation().isOver()) {
             //为了使这个判断只做一次
             bp.getSkillAnimation().setOver(false);
 

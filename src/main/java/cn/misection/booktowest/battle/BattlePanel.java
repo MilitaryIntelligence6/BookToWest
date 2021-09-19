@@ -1,9 +1,9 @@
 package cn.misection.booktowest.battle;
 
-import javax.swing.*;
-
+import cn.misection.booktowest.media.MusicReader;
 import cn.misection.booktowest.util.Reader;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -11,10 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.awt.image.MemoryImageSource;
-import java.util.List;
 import java.util.ArrayList;
-
-import cn.misection.booktowest.media.*;
 
 public class BattlePanel extends JPanel implements Runnable {
     private static final long serialVersionUID = 4L;
@@ -62,7 +59,7 @@ public class BattlePanel extends JPanel implements Runnable {
     private Check check;
 
     //伤害值显示
-    private List<HurtValue> hurtValues;
+    private ArrayList<HurtValue> hurtValues;
 
     //开始动画
     private StartAnimation startAnimation;
@@ -80,20 +77,20 @@ public class BattlePanel extends JPanel implements Runnable {
     private VictoryReminder victoryReminder;
 
     //怒气槽
-    private ArrayList<AngryBar> angryBars = new ArrayList<>();
+    private ArrayList<AngryBar> angryBars = new ArrayList<AngryBar>();
 
     //我方战斗单位引用
     private ZhangXiaoFan zxf;
     private YuJie yj;
     private LuXueQi lxq;
     //我方战斗单位集合
-    private ArrayList<Hero> heroes = new ArrayList<>();
+    private ArrayList<Hero> heroes = new ArrayList<Hero>();
 
     //敌人引用
     private Enemy em1;
     private Enemy em2;
     private Enemy em3;
-    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
     //怪物智能
     private EnemyAI enemyAI;
@@ -116,43 +113,44 @@ public class BattlePanel extends JPanel implements Runnable {
     //当前攻击模式  1.普通攻击 2.技能1 3.技能2 4.技能3 5.技能4 6.技能5
     private int currentPattern;
 
+    //构造方法
     public BattlePanel() {
-        setPreferredSize(new Dimension(getWIDTH(), getHEIGHT()));
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
         //双缓冲准备
-        setBufferedPic(new BufferedImage(getWIDTH(), getHEIGHT(), BufferedImage.TYPE_INT_ARGB));
-        setBufferedGraphics(getBufferedPic().getGraphics());
-        setFont(new Font("文鼎粗钢笔行楷", Font.BOLD, 15));
-        getBufferedGraphics().setFont(getFont());
+        bufferedPic = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+        bufferedGraphics = bufferedPic.getGraphics();
+        font = new Font("文鼎粗钢笔行楷", Font.BOLD, 15);
+        bufferedGraphics.setFont(font);
 
         //创建游标
-        setMouse(new Mouse(this));
+        mouse = new Mouse(this);
         setMouse();
         requestFocus();
 
 
         //创建控制台
-        setCommand(new Command(this));
+        command = new Command(this);
 
         //创建指示图标
-        setInstruct(new Instruct(this));
+        instruct = new Instruct(this);
 
         //创建药品菜单
-        setDrugMenu(new DrugMenu(this));
+        drugMenu = new DrugMenu(this);
 
         //创建伤害值显示
-        setHurtValues(new ArrayList<>());
+        hurtValues = new ArrayList<HurtValue>();
 
         //创建背景动画
-        setBackgroundAnimation(new BackgroundAnimation(this));
+        backgroundAnimation = new BackgroundAnimation(this);
 
         //创建技能动画
-        setSkillAnimation(new SkillAnimation(this));
+        skillAnimation = new SkillAnimation(this);
 
         //创建提示
-        setReminder(new Reminder(this, 500, 120));
+        reminder = new Reminder(this, 500, 120);
 
         //创建检查器
-        setCheck(new Check(this));
+        check = new Check(this);
 
         //开启线程
         Thread t = new Thread(this);
@@ -173,7 +171,7 @@ public class BattlePanel extends JPanel implements Runnable {
 
     //初始化方法
     public void initial(String s, ZhangXiaoFan z, YuJie y, LuXueQi l, Enemy e1, Enemy e2, Enemy e3) {
-        setBackgroundImage(Reader.readImage(s));
+        backgroundImage = Reader.readImage(s);
         //根据背景加入音乐
         switch (s) {
             case "image/背景图/伏魔山树林.png":
@@ -192,7 +190,7 @@ public class BattlePanel extends JPanel implements Runnable {
                 MusicReader.readBgm("会心一击.mp3");
                 break;
             case "image/背景图/仙二教学楼.png":
-                MusicReader.readBgm("浣花洗剑・变奏.mp3");
+                MusicReader.readBgm("浣花洗剑·变奏.mp3");
                 break;
             case "image/背景图/藏经阁一层.png":
                 MusicReader.readBgm("文学谷第一战.mp3");
@@ -212,79 +210,81 @@ public class BattlePanel extends JPanel implements Runnable {
             case "image/背景图/比武场.png":
                 MusicReader.readBgm("肆涌暗云.mp3");
                 break;
+            default:
+                break;
         }
 
 
         //添加我方的战斗单位
-        setZxf(z);
-        setYj(y);
-        setLxq(l);
-        if (getZxf() != null) {
-            getHeroes().add(z);
+        zxf = z;
+        yj = y;
+        lxq = l;
+        if (zxf != null) {
+            heroes.add(z);
         }
-        if (getYj() != null) {
-            getHeroes().add(y);
+        if (yj != null) {
+            heroes.add(y);
         }
-        if (getLxq() != null) {
-            getHeroes().add(l);
+        if (lxq != null) {
+            heroes.add(l);
         }
         //添加敌人
-        setEm1(e1);
-        setEm2(e2);
-        setEm3(e3);
+        em1 = e1;
+        em2 = e2;
+        em3 = e3;
 
         //怪物智能
-        setEnemyAI(new EnemyAI(this));
+        enemyAI = new EnemyAI(this);
         //添加怪物 注意顺序 解决遮掩性问题
-        if (getEm2() != null) {
-            getEnemies().add(getEm2());
+        if (em2 != null) {
+            enemies.add(em2);
         }
-        if (getEm1() != null) {
-            getEnemies().add(getEm1());
+        if (em1 != null) {
+            enemies.add(em1);
         }
-        if (getEm3() != null) {
-            getEnemies().add(getEm3());
+        if (em3 != null) {
+            enemies.add(em3);
         }
 
         //创建小精灵
-        setPet(null);
+        pet = null;
 
-        setProgressBar(new ProgressBar(300, 50, this));
-        setStateBlank(new StateBlank(this));
+        progressBar = new ProgressBar(300, 50, this);
+        stateBlank = new StateBlank(this);
 
         //创建怒气槽
-        getAngryBars().clear();
-        for (Hero hero : getHeroes()) {
+        angryBars.clear();
+        for (Hero hero : heroes) {
             AngryBar an = new AngryBar(this, hero);
-            getAngryBars().add(an);
+            angryBars.add(an);
         }
 
         //创建技能菜单
-        setSkillMenu(new SkillMenu(this));
+        skillMenu = new SkillMenu(this);
 
         //创建怪物选择器
-        setEnemySlector(new EnemySlector(this));
+        enemySlector = new EnemySlector(this);
 
         //创建攻击发动器
-        setLaunchAttack(new LaunchAttack(this));
+        launchAttack = new LaunchAttack(this);
 
         //创建胜利提示
-        setVictoryReminder(new VictoryReminder(this));
+        victoryReminder = new VictoryReminder(this);
 
         //创建游戏结束画面
-        setGameOver(new GameOver(this));
+        gameOver = new GameOver(this);
 
         //创建开始动画
-        setStartAnimation(new StartAnimation(this));
+        startAnimation = new StartAnimation(this);
 
         //进度条开始
-        getProgressBar().isStop = false;
-        getCommand().isDraw = false;
-        getDrugMenu().isDraw = false;
-        getInstruct().isDraw = false;
+        progressBar.isStop = false;
+        command.isDraw = false;
+        drugMenu.isDraw = false;
+        instruct.isDraw = false;
 
         //检查上场战斗时候有人死亡,若有,每人回复10%的hp
-        for (Hero hero : getHeroes()) {
+        for (Hero hero : heroes) {
             if (hero.isDead()) {
                 hero.setDead(false);
                 //如果hp为0
@@ -298,11 +298,11 @@ public class BattlePanel extends JPanel implements Runnable {
     //设置一个键盘监听(外挂)
     public void keyPressed(int keyCode) {
         if (keyCode == KeyEvent.VK_J) {
-            getEnemies().clear();
-            setEm1(null);
-            setEm2(null);
-            setEm3(null);
-            getCheck().checkEnemyDead();
+            enemies.clear();
+            em1 = null;
+            em2 = null;
+            em3 = null;
+            check.checkEnemyDead();
         }
     }
 
@@ -318,159 +318,158 @@ public class BattlePanel extends JPanel implements Runnable {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                setCurrentX(e.getX());
-                setCurrentY(e.getY());
+                currentX = e.getX();
+                currentY = e.getY();
 
-                if (getCommand().isDraw) {
-                    getCommand().checkPressed();
+                if (command.isDraw) {
+                    command.checkPressed();
                 }
 
-                if (getSkillMenu().isDraw) {
-                    getSkillMenu().checkPressed();
+                if (skillMenu.isDraw) {
+                    skillMenu.checkPressed();
                 }
 
-                if (getDrugMenu().isDraw) {
-                    getDrugMenu().checkPressed();
+                if (drugMenu.isDraw) {
+                    drugMenu.checkPressed();
                 }
 
-                if (getEnemySlector().isSlectable) {
-                    getEnemySlector().checkClick(getCurrentX(), getCurrentY());
+                if (enemySlector.isSlectable) {
+                    enemySlector.checkClick(currentX, currentY);
                 }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                setCurrentX(e.getX());
-                setCurrentY(e.getY());
+                currentX = e.getX();
+                currentY = e.getY();
 
-                if (getCommand().isDraw) {
-                    getCommand().checkReleased();
+                if (command.isDraw) {
+                    command.checkReleased();
                 }
 
-                if (getSkillMenu().isDraw) {
-                    getSkillMenu().checkReleased();
+                if (skillMenu.isDraw) {
+                    skillMenu.checkReleased();
                 }
 
-                if (getDrugMenu().isDraw) {
-                    getDrugMenu().checkReleased();
+                if (drugMenu.isDraw) {
+                    drugMenu.checkReleased();
                 }
             }
         });
 
         addMouseMotionListener(new MouseMotionAdapter() {
-                                   @Override
-                                   public void mouseMoved(MouseEvent ex) {
-                                       currentX = ex.getX();
-                                       currentY = ex.getY();
+            @Override
+            public void mouseMoved(MouseEvent ex) {
+                currentX = ex.getX();
+                currentY = ex.getY();
 
-                                       if (getCommand().isDraw) {
-                                           getCommand().checkMoveIn();
-                                       }
+                if (command.isDraw) {
+                    command.checkMoveIn();
+                }
 
-                                       if (getSkillMenu().isDraw) {
-                                           getSkillMenu().checkMoveIn();
-                                       }
+                if (skillMenu.isDraw) {
+                    skillMenu.checkMoveIn();
+                }
 
-                                       if (getDrugMenu().isDraw) {
-                                           getDrugMenu().checkMoveIn();
-                                       }
+                if (drugMenu.isDraw) {
+                    drugMenu.checkMoveIn();
+                }
 
-                                       getEnemySlector().checkMoveIn(getCurrentX(), getCurrentY());
-                                   }
+                enemySlector.checkMoveIn(currentX, currentY);
+            }
 
-                                   @Override
-                                   public void mouseDragged(MouseEvent ex) {
-                                       setCurrentX(ex.getX());
-                                       setCurrentY(ex.getY());
+            @Override
+            public void mouseDragged(MouseEvent ex) {
+                currentX = ex.getX();
+                currentY = ex.getY();
 
-                                       if (getCommand().isDraw) {
-                                           getCommand().checkMoveIn();
-                                       }
+                if (command.isDraw) {
+                    command.checkMoveIn();
+                }
 
-                                       if (getSkillMenu().isDraw) {
-                                           getSkillMenu().checkMoveIn();
-                                       }
+                if (skillMenu.isDraw) {
+                    skillMenu.checkMoveIn();
+                }
 
-                                       if (getDrugMenu().isDraw) {
-                                           getDrugMenu().checkMoveIn();
-                                       }
-                                   }
-                               }
-        );
+                if (drugMenu.isDraw) {
+                    drugMenu.checkMoveIn();
+                }
+            }
+        });
     }
 
     @Override
     public void paint(Graphics g) {
-        getBufferedGraphics().drawImage(backgroundImage, 0, 0, this);
-        getBackgroundAnimation().drawBackAnimation(getBufferedGraphics());
-        getStateBlank().drawStateBlank(getBufferedGraphics());
-        for (AngryBar angryBar : getAngryBars()) {
-            angryBar.drawAngryBar(getBufferedGraphics());
+        bufferedGraphics.drawImage(backgroundImage, 0, 0, this);
+        backgroundAnimation.drawBackAnimation(bufferedGraphics);
+        stateBlank.drawStateBlank(bufferedGraphics);
+        for (AngryBar angryBar : angryBars) {
+            angryBar.drawAngryBar(bufferedGraphics);
         }
-        if (getCommand() != null) {
-            getCommand().drawCommand(getBufferedGraphics());
+        if (command != null) {
+            command.drawCommand(bufferedGraphics);
         }
 
-        getDrugMenu().drawDrugMenu(getBufferedGraphics());
-        for (Hero hero : getHeroes()) {
+        drugMenu.drawDrugMenu(bufferedGraphics);
+        for (Hero hero : heroes) {
             if (hero != null) {
-                hero.drawHero(getBufferedGraphics());
+                hero.drawHero(bufferedGraphics);
             }
         }
-        for (Hero hero : getHeroes()) {
+        for (Hero hero : heroes) {
             if (hero != null) {
-                hero.getDeadAnimation().drawDeadAniamtion(getBufferedGraphics());
+                hero.getDeadAnimation().drawDeadAniamtion(bufferedGraphics);
             }
         }
-        for (Hero hero : getHeroes()) {
+        for (Hero hero : heroes) {
             if (hero != null) {
-                hero.getVictoryAnimation().drawVictoryAnimation(getBufferedGraphics());
+                hero.getVictoryAnimation().drawVictoryAnimation(bufferedGraphics);
             }
         }
-        for (Enemy enemy : getEnemies()) {
+        for (Enemy enemy : enemies) {
             if (enemy != null) {
-                enemy.drawEnemy(getBufferedGraphics());
+                enemy.drawEnemy(bufferedGraphics);
             }
         }
-        if (getPet() != null) {
-            getPet().drawPet(getBufferedGraphics());
+        if (pet != null) {
+            pet.drawPet(bufferedGraphics);
         }
-        if (getProgressBar() != null) {
-            getProgressBar().drawProgressBar(getBufferedGraphics());
+        if (progressBar != null) {
+            progressBar.drawProgressBar(bufferedGraphics);
         }
-        getSkillMenu().drawSkillMenu(getBufferedGraphics());
-        for (Enemy enemy : getEnemies()) {
+        skillMenu.drawSkillMenu(bufferedGraphics);
+        for (Enemy enemy : enemies) {
             if (enemy.beAttackedAnimation != null) {
-                enemy.beAttackedAnimation.drawAnimation(getBufferedGraphics());
+                enemy.beAttackedAnimation.drawAnimation(bufferedGraphics);
             }
         }
-        for (Hero hero : getHeroes()) {
+        for (Hero hero : heroes) {
             if (hero.getBeAttackedAnimation() != null) {
-                hero.getBeAttackedAnimation().drawAnimation(getBufferedGraphics());
+                hero.getBeAttackedAnimation().drawAnimation(bufferedGraphics);
             }
         }
-        getSkillAnimation().drawAnimation(getBufferedGraphics());
-        for (Hero hero : getHeroes()) {
-            hero.getBattleState().drawState(getBufferedGraphics());
+        skillAnimation.drawAnimation(bufferedGraphics);
+        for (Hero hero : heroes) {
+            hero.getBattleState().drawState(bufferedGraphics);
         }
-        for (Enemy enemy : getEnemies()) {
-            enemy.battleState.drawState(getBufferedGraphics());
+        for (Enemy enemy : enemies) {
+            enemy.battleState.drawState(bufferedGraphics);
         }
         for (HurtValue hurtValue : hurtValues) {
-            hurtValue.drawHurtValue(getBufferedGraphics());
+            hurtValue.drawHurtValue(bufferedGraphics);
         }
-        getInstruct().drawInstruct(getBufferedGraphics());
+        instruct.drawInstruct(bufferedGraphics);
 
-        getReminder().drawReminder(getBufferedGraphics());
-        getVictoryReminder().drawVictoryReminder(getBufferedGraphics());
-        getMouse().drawMouse(getBufferedGraphics());
-        if (getGameOver() != null) {
-            getGameOver().drawGameOver(getBufferedGraphics());
+        reminder.drawReminder(bufferedGraphics);
+        victoryReminder.drawVictoryReminder(bufferedGraphics);
+        mouse.drawMouse(bufferedGraphics);
+        if (gameOver != null) {
+            gameOver.drawGameOver(bufferedGraphics);
         }
-        if (getStartAnimation() != null) {
-            getStartAnimation().drawStartAnimation(getBufferedGraphics());
+        if (startAnimation != null) {
+            startAnimation.drawStartAnimation(bufferedGraphics);
         }
-        g.drawImage(getBufferedPic(), 0, 0, this);
+        g.drawImage(bufferedPic, 0, 0, this);
     }
 
     @Override
@@ -483,93 +482,93 @@ public class BattlePanel extends JPanel implements Runnable {
                 // TODO: handle exception
                 e.printStackTrace();
             }
-            if (getMouse() != null) {
-                getMouse().update();
+            if (mouse != null) {
+                mouse.update();
             }
-            if (getBackgroundAnimation() != null) {
-                getBackgroundAnimation().update();
+            if (backgroundAnimation != null) {
+                backgroundAnimation.update();
             }
-            for (Hero hero : getHeroes()) {
+            for (Hero hero : heroes) {
                 if (hero != null) {
                     hero.doAction();
                 }
             }
-            for (Hero hero : getHeroes()) {
+            for (Hero hero : heroes) {
                 if (hero != null) {
                     hero.getVictoryAnimation().update();
                 }
             }
-            for (Hero hero : getHeroes()) {
+            for (Hero hero : heroes) {
                 if (hero != null) {
                     hero.getDeadAnimation().update();
                 }
             }
-            for (Enemy enemy : getEnemies()) {
+            for (Enemy enemy : enemies) {
                 if (enemy != null) {
                     enemy.doAction();
                 }
             }
-            if (getProgressBar() != null) {
-                getProgressBar().updateProgress();
+            if (progressBar != null) {
+                progressBar.updateProgress();
             }
-            getSkillAnimation().update();
-            for (Enemy enemy : getEnemies()) {
+            skillAnimation.update();
+            for (Enemy enemy : enemies) {
                 if (enemy.beAttackedAnimation != null) {
                     enemy.beAttackedAnimation.update();
                 }
             }
-            for (Hero hero : getHeroes()) {
+            for (Hero hero : heroes) {
                 if (hero.getBeAttackedAnimation() != null) {
                     hero.getBeAttackedAnimation().update();
                 }
             }
-            if (getPet() != null) {
-                getPet().update();
+            if (pet != null) {
+                pet.update();
             }
-            for (HurtValue hurtValue : getHurtValues()) {
+            for (HurtValue hurtValue : hurtValues) {
                 if (hurtValue != null) {
                     hurtValue.update();
                 }
             }
-            if (getInstruct() != null) {
-                getInstruct().update();
+            if (instruct != null) {
+                instruct.update();
 
             }
-            if (getReminder() != null) {
-                getReminder().update();
+            if (reminder != null) {
+                reminder.update();
             }
-            for (Enemy enemy : getEnemies()) {
+            for (Enemy enemy : enemies) {
                 if (enemy != null) {
                     enemy.battleState.check();
                 }
             }
-            if (getLaunchAttack() != null) {
-                getLaunchAttack().check();
+            if (launchAttack != null) {
+                launchAttack.check();
             }
 
-            if (getStateBlank() != null) {
-                getStateBlank().update();
+            if (stateBlank != null) {
+                stateBlank.update();
             }
-            if (getAngryBars().size() != 0) {
-                for (AngryBar angryBar : getAngryBars()) {
+            if (angryBars.size() != 0) {
+                for (AngryBar angryBar : angryBars) {
                     if (angryBar != null) {
                         angryBar.update();
                     }
                 }
             }
-            if (getVictoryReminder() != null) {
-                getVictoryReminder().update();
+            if (victoryReminder != null) {
+                victoryReminder.update();
             }
-            for (Hero hero : getHeroes()) {
+            for (Hero hero : heroes) {
                 if (hero != null) {
                     hero.getBattleState().check();
                 }
             }
-            if (getGameOver() != null) {
-                getGameOver().update();
+            if (gameOver != null) {
+                gameOver.update();
             }
-            if (getStartAnimation() != null) {
-                getStartAnimation().update();
+            if (startAnimation != null) {
+                startAnimation.update();
             }
             repaint();
         }
@@ -697,7 +696,7 @@ public class BattlePanel extends JPanel implements Runnable {
         this.check = check;
     }
 
-    public List<HurtValue> getHurtValues() {
+    public ArrayList<HurtValue> getHurtValues() {
         return hurtValues;
     }
 

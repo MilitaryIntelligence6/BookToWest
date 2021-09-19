@@ -1,8 +1,8 @@
 package cn.misection.booktowest.battle;
 
-import java.awt.*;
+import cn.misection.booktowest.util.Reader;
 
-import cn.misection.booktowest.util.*;
+import java.awt.*;
 
 /**
  * 背景动画类;
@@ -10,89 +10,73 @@ import cn.misection.booktowest.util.*;
  */
 public class BackgroundAnimation {
 
+    //当前图片
     private Image currentImage;
-
+    //坐标
     private int x;
-
     private int y;
-
+    //是否画出
     private boolean drawn;
-
+    //是否停止
     private boolean stopped;
-
-    private boolean over;
-
+    //是否完毕
+    private boolean overed;
+    //编号
     private int code;
-
+    //长度
     private int length;
-
+    //名称
     private String name;
+    //战斗面板引用
+    private BattlePanel bp;
 
-    private BattlePanel battlePanel;
-
-    public BackgroundAnimation(BattlePanel battlePanel, String name, int length) {
-        this.setBattlePanel(battlePanel);
-        setDrawn(false);
-        setStopped(true);
-        this.setLength(length);
-        this.setName(name);
-        setX(0);
-        setY(0);
+    public BackgroundAnimation(BattlePanel bp, String name, int length) {
+        this.bp = bp;
+        drawn = false;
+        stopped = true;
+        this.length = length;
+        this.name = name;
+        x = 0;
+        y = 0;
     }
 
-    public BackgroundAnimation(BattlePanel battlePanel) {
-        this.setBattlePanel(battlePanel);
-        setDrawn(false);
-        setStopped(true);
-        setX(0);
-        setY(0);
+    public BackgroundAnimation(BattlePanel bp) {
+        this.bp = bp;
+        drawn = false;
+        stopped = true;
+        x = 0;
+        y = 0;
     }
 
     public void set(String name, int length) {
-        this.setLength(length);
-        this.setName(name);
+        this.length = length;
+        this.name = name;
     }
 
-    /**
-     * 画出背景动画;
-     * @param g
-     */
+    //画出背景动画
     public void drawBackAnimation(Graphics g) {
-        if (isDrawn()) {
-            g.drawImage(getCurrentImage(), getX(), getY(), getBattlePanel());
+        if (drawn) {
+            g.drawImage(currentImage, x, y, bp);
         }
     }
 
-    /**
-     * 更新;
-     */
+    //更新
     public void update() {
-        if (!isStopped()) {
-            if (getCode() < getLength()) {
-                setCurrentImage(Reader.readImage("image/背景动画/" + getName() + "/" + (getCode() + 1) + ".jpg"));
-                setCode(getCode() + 1);
+        if (!stopped) {
+            if (code < length) {
+                currentImage = Reader.readImage("image/背景动画/" + name + "/" + (code + 1) + ".jpg");
+                code++;
             }
-            if (getCode() == getLength()) {
-                setCode(0);
-                setCurrentImage(null);
-                setDrawn(false);
-                setStopped(true);
-                setOver(true);
+            if (code == length) {
+                code = 0;
+                currentImage = null;
+                drawn = false;
+                stopped = true;
+                overed = true;
             }
         }
     }
 
-    public void setDrawn(boolean drawn) {
-        this.drawn = drawn;
-    }
-
-    public void setStopped(boolean stopped) {
-        this.stopped = stopped;
-    }
-
-    /**
-     * 当前图片
-     */
     public Image getCurrentImage() {
         return currentImage;
     }
@@ -101,9 +85,6 @@ public class BackgroundAnimation {
         this.currentImage = currentImage;
     }
 
-    /**
-     * 坐标
-     */
     public int getX() {
         return x;
     }
@@ -120,34 +101,30 @@ public class BackgroundAnimation {
         this.y = y;
     }
 
-    /**
-     * 是否画出
-     */
     public boolean isDrawn() {
         return drawn;
     }
 
-    /**
-     * 是否停止
-     */
+    public void setDrawn(boolean drawn) {
+        this.drawn = drawn;
+    }
+
     public boolean isStopped() {
         return stopped;
     }
 
-    /**
-     * 是否完毕
-     */
-    public boolean isOver() {
-        return over;
+    public void setStopped(boolean stopped) {
+        this.stopped = stopped;
     }
 
-    public void setOver(boolean over) {
-        this.over = over;
+    public boolean isOvered() {
+        return overed;
     }
 
-    /**
-     * 编号
-     */
+    public void setOvered(boolean overed) {
+        this.overed = overed;
+    }
+
     public int getCode() {
         return code;
     }
@@ -156,9 +133,6 @@ public class BackgroundAnimation {
         this.code = code;
     }
 
-    /**
-     * 长度
-     */
     public int getLength() {
         return length;
     }
@@ -167,9 +141,6 @@ public class BackgroundAnimation {
         this.length = length;
     }
 
-    /**
-     * 名称
-     */
     public String getName() {
         return name;
     }
@@ -178,14 +149,11 @@ public class BackgroundAnimation {
         this.name = name;
     }
 
-    /**
-     * 战斗面板引用
-     */
-    public BattlePanel getBattlePanel() {
-        return battlePanel;
+    public BattlePanel getBp() {
+        return bp;
     }
 
-    public void setBattlePanel(BattlePanel battlePanel) {
-        this.battlePanel = battlePanel;
+    public void setBp(BattlePanel bp) {
+        this.bp = bp;
     }
 }
