@@ -2,6 +2,7 @@ package cn.misection.booktowest.battle;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 import cn.misection.booktowest.util.*;
 
@@ -24,7 +25,7 @@ public class AngryBar {
     /**
      * 图片集合
      */
-    private ArrayList<Image> images = new ArrayList<Image>();
+    private List<Image> images = new ArrayList<>();
 
     /**
      * 计时用编号
@@ -34,12 +35,12 @@ public class AngryBar {
     /**
      * 是否画出
      */
-    private boolean isDraw;
+    private boolean drawed;
 
     /**
      * 是否停止
      */
-    private boolean isStop;
+    private boolean stoped;
 
     /**
      * 底图的坐标
@@ -69,15 +70,15 @@ public class AngryBar {
     /**
      * 战斗面板引用
      */
-    private BattlePanel bp;
+    private BattlePanel battlePanel;
 
     /**
      * 当前英雄
      */
     private Hero hero;
 
-    public AngryBar(BattlePanel bp, Hero hero) {
-        this.bp = bp;
+    public AngryBar(BattlePanel battlePanel, Hero hero) {
+        this.battlePanel = battlePanel;
         this.hero = hero;
 
         switch (hero.getRoleCode()) {
@@ -119,8 +120,8 @@ public class AngryBar {
         loadImage();
         currentImage = images.get(0);
 
-        isDraw = true;
-        isStop = false;
+        drawed = true;
+        stoped = false;
 
     }
 
@@ -140,9 +141,9 @@ public class AngryBar {
      * @param g
      */
     public void drawAngryBar(Graphics g) {
-        if (isDraw) {
-            g.drawImage(back, backX, backY, bp);
-            g.drawImage(currentImage, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, bp);
+        if (drawed) {
+            g.drawImage(back, backX, backY, battlePanel);
+            g.drawImage(currentImage, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, battlePanel);
         }
     }
 
@@ -150,7 +151,7 @@ public class AngryBar {
      * 更新;
      */
     public void update() {
-        if (!isStop) {
+        if (!stoped) {
             int height = (int) (((double) hero.getAngryValue() / hero.getHpMax()) * 100);
             dy1 = backY + 8 + 80 - height;
             sy1 = 80 - height;
