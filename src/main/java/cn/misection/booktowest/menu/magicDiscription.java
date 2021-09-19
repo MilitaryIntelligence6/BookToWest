@@ -1,8 +1,6 @@
 package cn.misection.booktowest.menu;
 
-/*
- *
- *
+/**
  * 纯描述类
  */
 public class magicDiscription {
