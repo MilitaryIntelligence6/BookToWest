@@ -279,7 +279,7 @@ public class VictoryReminder {
                 if (bp.getYj() != null && bp.getYj().isLevelUp == true) {
                     g.drawImage(wen2, firstX, firstY + 100, bp);
                 }
-                if (bp.getLxq() != null && bp.getLxq().isLevelUp() == true) {
+                if (bp.getLxq() != null && bp.getLxq().isLevelUpped() == true) {
                     g.drawImage(lu2, firstX, firstY + 100 * 2, bp);
                 }
             }
@@ -311,7 +311,7 @@ public class VictoryReminder {
                     }
                 }
 
-                if (bp.getLxq() != null && bp.getLxq().isLevelUp() == true) {
+                if (bp.getLxq() != null && bp.getLxq().isLevelUpped() == true) {
                     for (int i = 11; i <= 14; i++) {
                         g.drawString(showNums.get(i) + "", secondStringX, secondStringY + (i - 11) * 20 + 100 * 2);
                     }
@@ -396,7 +396,7 @@ public class VictoryReminder {
                 }
                 if (timeCode == 15) {
                     for (Hero hero : bp.getHeroes()) {
-                        if (hero.isLevelUp() == true) {
+                        if (hero.isLevelUpped() == true) {
                             levelUpIsDraw = true;
                         }
                     }
@@ -405,7 +405,7 @@ public class VictoryReminder {
                         //levelUpIsDraw=false;
                         GameApplication.zhangXiaoFan.isLevelUp = false;
                         GameApplication.yuJie.isLevelUp = false;
-                        GameApplication.luXueQi.setLevelUp(false);
+                        GameApplication.luXueQi.setLevelUpped(false);
                         bp.getHeroes().clear();
                         GameApplication.switchTo("scene");
                     }
@@ -435,7 +435,7 @@ public class VictoryReminder {
                     levelUpIsDraw = false;
                     GameApplication.zhangXiaoFan.isLevelUp = false;
                     GameApplication.yuJie.isLevelUp = false;
-                    GameApplication.luXueQi.setLevelUp(false);
+                    GameApplication.luXueQi.setLevelUpped(false);
                     bp.getHeroes().clear();
                     GameApplication.switchTo("scene");
                 }

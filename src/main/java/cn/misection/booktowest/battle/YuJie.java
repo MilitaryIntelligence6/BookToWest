@@ -561,7 +561,7 @@ public class YuJie implements Hero {
     }
 
     @Override
-    public boolean isLevelUp() {
+    public boolean isLevelUpped() {
         return isLevelUp;
     }
 
@@ -586,7 +586,7 @@ public class YuJie implements Hero {
     }
 
     @Override
-    public void setLevelUp(boolean isLevelUp) {
+    public void setLevelUpped(boolean isLevelUp) {
         this.isLevelUp = isLevelUp;
     }
 

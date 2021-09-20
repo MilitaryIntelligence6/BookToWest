@@ -345,7 +345,7 @@ public class BattlePanel extends JPanel implements Runnable {
         progressBar.setStop(false);
         command.setDrawn(false);
         drugMenu.setDrawn(false);
-        instruct.setDraw(false);
+        instruct.setDrawn(false);
 
         //检查上场战斗时候有人死亡,若有,每人回复10%的hp
         for (Hero hero : heroes) {

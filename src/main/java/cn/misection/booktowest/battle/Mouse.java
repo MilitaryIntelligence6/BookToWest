@@ -4,33 +4,60 @@ import cn.misection.booktowest.util.*;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
-//游标类
+/**
+ * @author javaman
+ * 游标类;
+ */
 public class Mouse {
-    //图片引用
-    private Image mouseImage;
-    //当前的图片
-    private Image currentImage;
-    //图片集合
-    private ArrayList<Image> images = new ArrayList<Image>();
-    //坐标
-    private int x;
-    private int y;
-    //是否画出
-    private boolean isDraw;
-    //是否停止
-    private boolean isStop;
-    //战斗面板引用
-    private BattlePanel bp;
 
-    //编号
+    /**
+     * 图片引用
+     */
+    private Image mouseImage;
+
+    /**
+     * 当前的图片
+     */
+    private Image currentImage;
+
+    /**
+     * 图片集合
+     */
+    private List<Image> images = new ArrayList<>();
+
+    /**
+     * 坐标
+     */
+    private int x;
+
+    private int y;
+
+    /**
+     * 是否画出
+     */
+    private boolean isDraw;
+
+    /**
+     * 是否停止
+     */
+    private boolean isStop;
+
+    /**
+     * 战斗面板引用
+     */
+    private BattlePanel battlePanel;
+
+    /**
+     * 编号
+     */
     private int code;
 
-    //构造方法
-    public Mouse(BattlePanel bp) {
-        this.bp = bp;
-        x = bp.getCurrentX();
-        y = bp.getCurrentY();
+    public Mouse(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
+        x = battlePanel.getCurrentX();
+        y = battlePanel.getCurrentY();
         getImage();
         isDraw = true;
         isStop = false;
@@ -47,14 +74,16 @@ public class Mouse {
     //画出游标
     public void drawMouse(Graphics g) {
         if (isDraw) {
-            g.drawImage(currentImage, x, y, bp);
+            g.drawImage(currentImage, x, y, battlePanel);
         }
     }
 
-    //更新方法
+    /**
+     * 更新方法;
+     */
     public void update() {
-        x = bp.getCurrentX();
-        y = bp.getCurrentY();
+        x = battlePanel.getCurrentX();
+        y = battlePanel.getCurrentY();
         if (!isStop && code < 8) {
             currentImage = images.get(code);
             code++;
@@ -79,11 +108,11 @@ public class Mouse {
         this.currentImage = currentImage;
     }
 
-    public ArrayList<Image> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<Image> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 
@@ -119,12 +148,12 @@ public class Mouse {
         isStop = stop;
     }
 
-    public BattlePanel getBp() {
-        return bp;
+    public BattlePanel getBattlePanel() {
+        return battlePanel;
     }
 
-    public void setBp(BattlePanel bp) {
-        this.bp = bp;
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 
     public int getCode() {

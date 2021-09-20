@@ -527,7 +527,7 @@ public class ZhangXiaoFan implements Hero {
     }
 
     @Override
-    public boolean isLevelUp() {
+    public boolean isLevelUpped() {
         return isLevelUp;
     }
 
@@ -552,7 +552,7 @@ public class ZhangXiaoFan implements Hero {
     }
 
     @Override
-    public void setLevelUp(boolean isLevelUp) {
+    public void setLevelUpped(boolean isLevelUp) {
         this.isLevelUp = isLevelUp;
     }
 

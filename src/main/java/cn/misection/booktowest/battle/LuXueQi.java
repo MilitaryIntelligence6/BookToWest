@@ -9,97 +9,195 @@ import cn.misection.booktowest.util.*;
  * @author javaman
  */
 public class LuXueQi implements Hero {
-    //角色编号
+
+    /**
+     * 角色编号
+     */
     private int roleCode = 3;
-    //角色当前的图片引用
+
+    /**
+     * 角色当前的图片引用
+     */
     private Image currentImage;
-    //角色的图片集
+
+    /**
+     * 角色的图片集
+     */
     private ArrayList<Image> Images = new ArrayList<Image>();
-    //角色的小头像
+
+    /**
+     * 角色的小头像
+     */
     private Image headImage;
-    //是否被画出
+
+    /**
+     * 是否被画出
+     */
     private boolean drawn;
-    //自身动作是否停止
+
+    /**
+     * 自身动作是否停止
+     */
     private boolean stopped;
-    //是否死亡
+
+    /**
+     * 是否死亡
+     */
     private boolean dead;
 
-    //被击动画
+    /**
+     * 被击动画
+     */
     private BeAttackedAnimation beAttackedAnimation;
-    //胜利动画
+
+    /**
+     * 胜利动画
+     */
     private VictoryAnimation victoryAnimation;
-    //死亡动画
+
+    /**
+     * 死亡动画
+     */
     private DeadAnimation deadAnimation;
 
-    //位置坐标
-    private int x;
-    private int y;
-    //伤害值显示坐标
-    public static int showX;
-    public static int showY;
-    //战斗面板
+    /**
+     * 位置坐标
+     */
+    private int x;private int y;
+
+    // FIXME: 2021/9/20 
+    /**
+     * 伤害值显示坐标
+     */
+    public static int showX;public static int showY;
+
+    /**
+     * 战斗面板
+     */
     private BattlePanel bp;
-    //编号
+
+    /**
+     * 编号
+     */
     private int code = 0;
-    //当前技能数量
-    private static int skillNumber = 2;
-    private BattleState battleState;
 
-    //人物战斗数据
+    /**
+     * 当前技能数量
+     */
+    private static int skillNumber = 2;private BattleState battleState;
 
-    //hp和mp
-    public static int hp;
-    public static int mp;
+/**
+ * 人物战斗数据
+ */
 
-    //怒气值
+
+    /**
+     * hp和mp
+     */
+    public static int hp;public static int mp;
+
+    /**
+     * 怒气值
+     */
     public static int angryValue = 0;
-    //是否愤怒
+
+    /**
+     * 是否愤怒
+     */
     private boolean isAngry = false;
 
-    //hp和mp上限
-    public static int hpMax;
-    public static int mpMax;
+    /**
+     * hp和mp上限
+     */
+    public static int hpMax;public static int mpMax;
 
-    //体力
+    /**
+     * 体力
+     */
     public static int physicalPower = 10;
-    //精气
+
+    /**
+     * 精气
+     */
     public static int sprit = 12;
-    //敏捷
+
+    /**
+     * 敏捷
+     */
     public static int agile = 14;
-    //武力
+
+    /**
+     * 武力
+     */
     public static int strength = 8;
 
-    //速度
+    /**
+     * 速度
+     */
     private static int speed;
-    //攻击力
+
+    /**
+     * 攻击力
+     */
     private static int hurt;
-    //技能攻击力
+
+    /**
+     * 技能攻击力
+     */
     private static int skillHurt;
-    //防御力
+
+    /**
+     * 防御力
+     */
     private static int defense;
-    //技能防御
+
+    /**
+     * 技能防御
+     */
     private static int skillDefense;
 
-    //当前造成的伤害值
+    /**
+     * 当前造成的伤害值
+     */
     private int currentDamage;
-    //当前造成的伤害类型 1.伤害 2.回复
+
+    /**
+     * 当前造成的伤害类型 1.伤害 2.回复
+     */
     private int currentDamageType;
-    //当前攻击的对象集合
+
+    /**
+     * 当前攻击的对象集合
+     */
     private ArrayList<Enemy> currentEnemies = new ArrayList<>();
 
-
-    //有关于人物级别的数据
-
-    //等级
+    /*
+     * 有关于人物级别的数据
+     */
+    /**
+     * 等级
+     */
     private static int level = 1;
-    //距离升下级还需要的经验
+
+    /**
+     * 距离升下级还需要的经验
+     */
     public static int expToLevelUp;
-    //当前经验
+
+    /**
+     * 当前经验
+     */
     public static int exp = 0;
-    //是否升级
-    private boolean isLevelUp;
-    //是否习得技能
-    private boolean isGetSkill;
+
+    /**
+     * 是否升级
+     */
+    private boolean levelUpped;
+
+    /**
+     * 是否习得技能
+     */
+    private boolean skillFetched;
 
     private ArrayList<String> roleInfo = new ArrayList<String>();
 
@@ -313,7 +411,7 @@ public class LuXueQi implements Hero {
     //升级时调用的方法
     @Override
     public void levelUp() {
-        isLevelUp = true;
+        levelUpped = true;
         //级别提升
         level++;
         //属性提升
@@ -325,7 +423,7 @@ public class LuXueQi implements Hero {
         //在这些级别时获得新的技能
         if (level == 2 || level == 5 || level == 10) {
             skillNumber++;
-            isGetSkill = true;
+            skillFetched = true;
         }
 
         //经验计算
@@ -591,15 +689,15 @@ public class LuXueQi implements Hero {
     }
 
     @Override
-    public boolean isLevelUp() {
+    public boolean isLevelUpped() {
         // TODO Auto-generated method stub
-        return isLevelUp;
+        return levelUpped;
     }
 
     @Override
-    public void setLevelUp(boolean isLevelUp) {
+    public void setLevelUpped(boolean isLevelUp) {
         // TODO Auto-generated method stub
-        this.isLevelUp = isLevelUp;
+        this.levelUpped = isLevelUp;
     }
 
     @Override
@@ -974,12 +1072,12 @@ public class LuXueQi implements Hero {
         this.currentEnemies = currentEnemies;
     }
 
-    public boolean isGetSkill() {
-        return isGetSkill;
+    public boolean isSkillFetched() {
+        return skillFetched;
     }
 
-    public void setGetSkill(boolean getSkill) {
-        isGetSkill = getSkill;
+    public void setSkillFetched(boolean skillFetched) {
+        this.skillFetched = skillFetched;
     }
 
     public ArrayList<String> getRoleInfo() {

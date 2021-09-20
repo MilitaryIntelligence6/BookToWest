@@ -104,13 +104,13 @@ public class SongDaRen implements Hero {
     }
 
     @Override
-    public boolean isLevelUp() {
+    public boolean isLevelUpped() {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public void setLevelUp(boolean isLevelUp) {
+    public void setLevelUpped(boolean isLevelUp) {
         // TODO Auto-generated method stub
 
     }

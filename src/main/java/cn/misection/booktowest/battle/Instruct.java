@@ -2,27 +2,54 @@ package cn.misection.booktowest.battle;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 import cn.misection.booktowest.util.*;
 
-//战斗标记指示类
+/**
+ * @author javaman
+ * 战斗标记指示类;
+ */
 public class Instruct {
-    //当前图片
+
+    /**
+     * 当前图片
+     */
     private Image currentImage;
-    private ArrayList<Image> images = new ArrayList<Image>();
-    //编号
+
+    private List<Image> images = new ArrayList<>();
+
+    /**
+     * 编号
+     */
     private int code;
-    //长度
+
+    /**
+     * 长度
+     */
     private int length;
-    //出现位置
+
+    /**
+     * 出现位置
+     */
     private int x;
+
     private int y;
-    //战斗面板
-    private BattlePanel bp;
-    //是否画出
-    private boolean isDraw;
-    //是否停止
-    private boolean isStop;
+
+    /**
+     * 战斗面板
+     */
+    private BattlePanel battlePanel;
+
+    /**
+     * 是否画出
+     */
+    private boolean drawn;
+
+    /**
+     * 是否停止
+     */
+    private boolean stopped;
 
     public void getImage() {
         for (int i = 1; i <= length; i++) {
@@ -34,56 +61,56 @@ public class Instruct {
     }
 
     //构造方法
-    public Instruct(BattlePanel bp) {
-        this.bp = bp;
+    public Instruct(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
         this.length = 5;
-        isDraw = false;
-        isStop = true;
+        drawn = false;
+        stopped = true;
 
         getImage();
     }
 
     //开始出现
     public void start() {
-        int i = bp.getCurrentRound();
+        int i = battlePanel.getCurrentRound();
         switch (i) {
             //张小凡
             case 1:
-                x = bp.getZxf().x + 210;
-                y = bp.getZxf().y + 75;
+                x = battlePanel.getZxf().x + 210;
+                y = battlePanel.getZxf().y + 75;
                 break;
             //文敏
             case 2:
-                x = bp.getYj().x + 85;
-                y = bp.getYj().y - 20;
+                x = battlePanel.getYj().x + 85;
+                y = battlePanel.getYj().y - 20;
                 break;
             //陆雪琪
             case 3:
-                x = bp.getLxq().getX() + 45;
-                y = bp.getLxq().getY() - 20;
+                x = battlePanel.getLxq().getX() + 45;
+                y = battlePanel.getLxq().getY() - 20;
                 break;
         }
-        isDraw = true;
-        isStop = false;
+        drawn = true;
+        stopped = false;
     }
 
     //结束
     public void end() {
-        isDraw = false;
-        isStop = true;
+        drawn = false;
+        stopped = true;
     }
 
     //画出
     public void drawInstruct(Graphics g) {
 
-        if (isDraw) {
-            g.drawImage(currentImage, x, y, bp);
+        if (drawn) {
+            g.drawImage(currentImage, x, y, battlePanel);
         }
     }
 
     //更新
     public void update() {
-        if (!isStop && code < 5) {
+        if (!stopped && code < 5) {
             currentImage = images.get(code);
             code++;
         } else if (code == 5) {
@@ -99,11 +126,11 @@ public class Instruct {
         this.currentImage = currentImage;
     }
 
-    public ArrayList<Image> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<Image> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 
@@ -139,27 +166,27 @@ public class Instruct {
         this.y = y;
     }
 
-    public BattlePanel getBp() {
-        return bp;
+    public BattlePanel getBattlePanel() {
+        return battlePanel;
     }
 
-    public void setBp(BattlePanel bp) {
-        this.bp = bp;
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 
-    public boolean isDraw() {
-        return isDraw;
+    public boolean isDrawn() {
+        return drawn;
     }
 
-    public void setDraw(boolean draw) {
-        isDraw = draw;
+    public void setDrawn(boolean drawn) {
+        this.drawn = drawn;
     }
 
-    public boolean isStop() {
-        return isStop;
+    public boolean isStopped() {
+        return stopped;
     }
 
-    public void setStop(boolean stop) {
-        isStop = stop;
+    public void setStopped(boolean stopped) {
+        this.stopped = stopped;
     }
 }

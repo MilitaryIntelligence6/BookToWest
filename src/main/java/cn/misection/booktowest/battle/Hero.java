@@ -133,12 +133,12 @@ public interface Hero {
     /**
      * 是否升级
      */
-    boolean isLevelUp();
+    boolean isLevelUpped();
 
     /**
      * 设置是否升级
      */
-    void setLevelUp(boolean isLevelUp);
+    void setLevelUpped(boolean isLevelUp);
 
     /**
      * 升级时调用的方法
