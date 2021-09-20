@@ -1,9 +1,9 @@
 package cn.misection.booktowest.start;
 
 public class StartTimer {
-    int timeLeft;
-    boolean isCompleted;
-    boolean isStarted;
+    private int timeLeft;
+    private boolean isCompleted;
+    private boolean isStarted;
 
     public StartTimer() {
         timeLeft = 0;
@@ -39,4 +39,23 @@ public class StartTimer {
         return timeLeft;
     }
 
+    public void setTimeLeft(int timeLeft) {
+        this.timeLeft = timeLeft;
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
+    }
+
+    public boolean isStarted() {
+        return isStarted;
+    }
+
+    public void setStarted(boolean started) {
+        isStarted = started;
+    }
 }

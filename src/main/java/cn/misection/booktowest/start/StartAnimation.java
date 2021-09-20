@@ -9,19 +9,20 @@ import cn.misection.booktowest.util.Reader;
 
 public class StartAnimation {
     //动画的图片集合
-    Image[] array;
+    private Image[] array;
     //当前显示的动画图片
-    Image currentImage;
+    private Image currentImage;
     //记录当前播放包第几张图片
-    int i;
+    private int i;
     //设置是否允许播放动画的信号
-    boolean isStop;
+    private boolean isStop;
     //设置判断动画是否播放一个循环的判断
-    boolean isLoop;
+    private boolean isLoop;
     //设置动画出现的位置
-    int x, y;
+    private int x;
+    private int y;
     //设置动画出现的面板
-    JPanel panel;
+    private JPanel panel;
 
     public StartAnimation(int length, String s, JPanel panel, int x, int y) {
         array = new Image[length];
@@ -92,5 +93,45 @@ public class StartAnimation {
 
     public void setLoop(boolean isLoop) {
         this.isLoop = isLoop;
+    }
+
+    public Image[] getArray() {
+        return array;
+    }
+
+    public void setArray(Image[] array) {
+        this.array = array;
+    }
+
+    public Image getCurrentImage() {
+        return currentImage;
+    }
+
+    public void setCurrentImage(Image currentImage) {
+        this.currentImage = currentImage;
+    }
+
+    public int getI() {
+        return i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
     }
 }

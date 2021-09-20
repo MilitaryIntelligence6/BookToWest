@@ -23,48 +23,48 @@ public class StartPanel extends JPanel {
     private final static int HEIGHT = 32 * 20;
 
     // 缓冲图
-    final Image background;
-    Graphics backgroundGraphics;
+    private final Image backgroundBufferImage;
+    private Graphics backgroundGraphics;
 
     // 背景
-    final Image backgroundImage;
+    private final Image backgroundImage;
 
     // 初始化当前 游标的当前位置
-    int currentX = 0;
-    int currentY = 0;
+    private int currentX = 0;
+    private int currentY = 0;
 
     // 设置应有的动画
     // 按钮动画
-    ArrayList<StartAnimation> buttonAnimations = new ArrayList<StartAnimation>();
+    private ArrayList<StartAnimation> buttonAnimations = new ArrayList<StartAnimation>();
     // 鼠标动画
-    Mouse mouse;
+    private Mouse mouse;
     // 卷轴动画
-    StartAnimation scroll;
+    private StartAnimation scroll;
     // 反向卷轴动画
-    StartAnimation backScroll;
+    private StartAnimation backScroll;
     // 云彩的动画
-    CloudAnimation upCloud;
-    CloudAnimation rightCloud;
+    private CloudAnimation upCloud;
+    private CloudAnimation rightCloud;
     // 载入的动画
-    StartAnimation loadAnimation;
-    StartAnimation loadAnimation2;
+    private StartAnimation loadAnimation;
+    private StartAnimation loadAnimation2;
     // 设置应有的按钮
-    StartButton start;
-    StartButton load;
-    StartButton about;
-    StartButton end;
-    StartButton back;
-    ArrayList<StartButton> buttons = new ArrayList<StartButton>();
+    private StartButton start;
+    private StartButton load;
+    private StartButton about;
+    private StartButton end;
+    private StartButton back;
+    private ArrayList<StartButton> buttons = new ArrayList<StartButton>();
 
     // 设置卷轴是否展开的状态
-    boolean isUnfolded = false;
+    private boolean isUnfolded = false;
 
     // 设置按钮的信号,0为开始，1为load，2为about
     int BUTTON_SIGNAL;
 
     // 判断aboutpanel何时出现的timer
-    StartTimer aboutTimer;
-    StartTimer loadTimer;
+    private StartTimer aboutTimer;
+    private StartTimer loadTimer;
 
     public StartPanel() {
         // 初始化计时器
@@ -72,12 +72,12 @@ public class StartPanel extends JPanel {
         aboutTimer = new StartTimer();
         // 初始化背景的缓冲图片
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        background = new BufferedImage(WIDTH, HEIGHT,
+        backgroundBufferImage = new BufferedImage(WIDTH, HEIGHT,
                 BufferedImage.TYPE_INT_ARGB);
 
         // 初始背景为黑色
         setBackground(new Color(0, 0, 0));
-        backgroundGraphics = background.getGraphics();
+        backgroundGraphics = backgroundBufferImage.getGraphics();
 
         // 设置鼠标监听
         setMouse();
@@ -283,10 +283,10 @@ public class StartPanel extends JPanel {
         // 卷轴
         drawScroll();
         // 载入动画
-        if (!loadAnimation.isStop) {
+        if (!loadAnimation.isStop()) {
             loadAnimation.drawAnimation(backgroundGraphics);
         }
-        if (!loadAnimation2.isStop) {
+        if (!loadAnimation2.isStop()) {
             loadAnimation2.drawAnimation(backgroundGraphics);
         }
         // 按钮
@@ -298,7 +298,7 @@ public class StartPanel extends JPanel {
         mouse.getMouseAnimation().setY(currentY);
         mouse.getMouseAnimation().drawAnimation(backgroundGraphics);
         // 加载缓存图
-        g.drawImage(background, 0, 0, this);
+        g.drawImage(backgroundBufferImage, 0, 0, this);
     }
 
     private void drawScroll() {
@@ -373,5 +373,173 @@ public class StartPanel extends JPanel {
             default:
                 break;
         }
+    }
+
+    public Image getBackgroundBufferImage() {
+        return backgroundBufferImage;
+    }
+
+    public Graphics getBackgroundGraphics() {
+        return backgroundGraphics;
+    }
+
+    public void setBackgroundGraphics(Graphics backgroundGraphics) {
+        this.backgroundGraphics = backgroundGraphics;
+    }
+
+    public Image getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public void setCurrentX(int currentX) {
+        this.currentX = currentX;
+    }
+
+    public int getCurrentY() {
+        return currentY;
+    }
+
+    public void setCurrentY(int currentY) {
+        this.currentY = currentY;
+    }
+
+    public ArrayList<StartAnimation> getButtonAnimations() {
+        return buttonAnimations;
+    }
+
+    public void setButtonAnimations(ArrayList<StartAnimation> buttonAnimations) {
+        this.buttonAnimations = buttonAnimations;
+    }
+
+    public Mouse getMouse() {
+        return mouse;
+    }
+
+    public void setMouse(Mouse mouse) {
+        this.mouse = mouse;
+    }
+
+    public StartAnimation getScroll() {
+        return scroll;
+    }
+
+    public void setScroll(StartAnimation scroll) {
+        this.scroll = scroll;
+    }
+
+    public StartAnimation getBackScroll() {
+        return backScroll;
+    }
+
+    public void setBackScroll(StartAnimation backScroll) {
+        this.backScroll = backScroll;
+    }
+
+    public CloudAnimation getUpCloud() {
+        return upCloud;
+    }
+
+    public void setUpCloud(CloudAnimation upCloud) {
+        this.upCloud = upCloud;
+    }
+
+    public CloudAnimation getRightCloud() {
+        return rightCloud;
+    }
+
+    public void setRightCloud(CloudAnimation rightCloud) {
+        this.rightCloud = rightCloud;
+    }
+
+    public StartAnimation getLoadAnimation() {
+        return loadAnimation;
+    }
+
+    public void setLoadAnimation(StartAnimation loadAnimation) {
+        this.loadAnimation = loadAnimation;
+    }
+
+    public StartAnimation getLoadAnimation2() {
+        return loadAnimation2;
+    }
+
+    public void setLoadAnimation2(StartAnimation loadAnimation2) {
+        this.loadAnimation2 = loadAnimation2;
+    }
+
+    public StartButton getStart() {
+        return start;
+    }
+
+    public void setStart(StartButton start) {
+        this.start = start;
+    }
+
+    public StartButton getLoad() {
+        return load;
+    }
+
+    public void setLoad(StartButton load) {
+        this.load = load;
+    }
+
+    public StartButton getAbout() {
+        return about;
+    }
+
+    public void setAbout(StartButton about) {
+        this.about = about;
+    }
+
+    public StartButton getEnd() {
+        return end;
+    }
+
+    public void setEnd(StartButton end) {
+        this.end = end;
+    }
+
+    public StartButton getBack() {
+        return back;
+    }
+
+    public void setBack(StartButton back) {
+        this.back = back;
+    }
+
+    public ArrayList<StartButton> getButtons() {
+        return buttons;
+    }
+
+    public void setButtons(ArrayList<StartButton> buttons) {
+        this.buttons = buttons;
+    }
+
+    public boolean isUnfolded() {
+        return isUnfolded;
+    }
+
+    public void setUnfolded(boolean unfolded) {
+        isUnfolded = unfolded;
+    }
+
+    public StartTimer getAboutTimer() {
+        return aboutTimer;
+    }
+
+    public void setAboutTimer(StartTimer aboutTimer) {
+        this.aboutTimer = aboutTimer;
+    }
+
+    public StartTimer getLoadTimer() {
+        return loadTimer;
+    }
+
+    public void setLoadTimer(StartTimer loadTimer) {
+        this.loadTimer = loadTimer;
     }
 }
