@@ -9,7 +9,7 @@ public class Drug {
     private String name;
     private int addHp;
     private int addMp;
-    public int number;
+    private int number;
     private int numberGOT;
     private Image picture;
     private int reduceMoney;

@@ -2,20 +2,21 @@ package cn.misection.booktowest.shop;
 
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JPanel;
 
 import cn.misection.booktowest.util.*;
 
 public class ShopAnimation {
     //图片集合
-    Image image;
-    ArrayList<Image> images = new ArrayList<Image>();
+    private Image image;
+    private List<Image> images = new ArrayList<>();
 
     //动画出现的坐标
     private int AnimationX;
     private int AnimationY;
 
-    JPanel mp;
+    private JPanel mp;
 
     public ShopAnimation(String s, int x, int y, int length, JPanel panel) {
         this.setAnimationX(x);
@@ -44,4 +45,27 @@ public class ShopAnimation {
         AnimationY = animationY;
     }
 
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public JPanel getMp() {
+        return mp;
+    }
+
+    public void setMp(JPanel mp) {
+        this.mp = mp;
+    }
 }

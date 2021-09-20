@@ -29,57 +29,57 @@ public class ShopPanel extends JPanel {
     private final static int HEIGHT = 32 * 20;
 
     // 缓冲图
-    final Image background;
-    Graphics backgroundGraphics;
+    private final Image backgroundBufferImage;
+    private Graphics backgroundGraphics;
     // 鼠标指针的图形
-    final Image[] mouses = new Image[8];
+    private final Image[] mouses = new Image[8];
 
     // 按钮的图片
-    List<Image> icons = new ArrayList<>();
-    Image image1;
-    Image drugImage;
+    private List<Image> icons = new ArrayList<>();
+    private Image image1;
+    private Image drugImage;
 
     // 背景
-    final Image backgroundImage;
-    Image mouse;
+    private final Image backgroundImage;
+    private Image mouse;
 
     // 游标的当前位置
-    int currentX = 0;
-    int currentY = 0;
+    private int currentX = 0;
+    private int currentY = 0;
     // 偏移量
-    int move = 5;
+    private int move = 5;
     // 药店专属属性
-    List<Drug> drugList;
+    private List<Drug> drugList;
     //店主说的话
-    String message = "欢迎来到金陵大学医院";
-    String messageplus;
+    private String message = "欢迎来到金陵大学医院";
+    private String messageplus;
     //创建动画
-    List<ShopAnimation> ani = new ArrayList<>();
+    private List<ShopAnimation> ani = new ArrayList<>();
 
 
     // 各种按钮
-    GameButton buy = new GameButton(445, 75, 149, 40,
+    private GameButton buy = new GameButton(445, 75, 149, 40,
             Reader.readImage("sources/Shop/购买1.png"),
             Reader.readImage("sources/Shop/购买2.png"),
             Reader.readImage("sources/Shop/购买3.png"), this);
-    GameButton sell = new GameButton(594, 75, 149, 40,
+    private GameButton sell = new GameButton(594, 75, 149, 40,
             Reader.readImage("sources/Shop/卖出1.png"),
             Reader.readImage("sources/Shop/卖出2.png"),
             Reader.readImage("sources/Shop/卖出3.png"), this);
-    GameButton back = new GameButton(880, 20, 149, 40,
+    private GameButton back = new GameButton(880, 20, 149, 40,
             Reader.readImage("sources/Shop/返回游戏 (1).png"),
             Reader.readImage("sources/Shop/返回游戏 (2).png"),
             Reader.readImage("sources/Shop/返回游戏 (3).png"), this);
 
 
-    List<GameButton> buttonlist = new ArrayList<>();
+    private List<GameButton> buttonlist = new ArrayList<>();
 
 
     public ShopPanel() {
         // 设定大小
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         // 背景缓冲
-        background = new BufferedImage(WIDTH, HEIGHT,
+        backgroundBufferImage = new BufferedImage(WIDTH, HEIGHT,
                 BufferedImage.TYPE_INT_ARGB);
         // 读入图片
         backgroundImage = Reader.readImage("sources/Shop/shopback.png");
@@ -90,7 +90,7 @@ public class ShopPanel extends JPanel {
         // 初始背景为黑色
         setBackground(new Color(0, 0, 0));
 
-        backgroundGraphics = background.getGraphics();
+        backgroundGraphics = backgroundBufferImage.getGraphics();
         //设置人物动画
         ani.add(new ShopAnimation("张小凡", 0, 0, 8, this));
         ani.add(new ShopAnimation("陆雪琪", 0, 160, 8, this));
@@ -106,7 +106,7 @@ public class ShopPanel extends JPanel {
                     for (int i = 0; i < 8; i++) {
                         mouse = mouses[i];
                         for (ShopAnimation animation : ani) {
-                            animation.image = animation.images.get(i);
+                            animation.setImage(animation.getImages().get(i));
                         }
                         try {
                             Thread.sleep(120);
@@ -225,7 +225,7 @@ public class ShopPanel extends JPanel {
                 //计算剩余的钱
                 Money.setCoins(Money.coins - drugList.get(i).getReduceMoney() * temp);
                 //还剩的东西减少
-                drugList.get(i).setNumber(drugList.get(i).number - temp);
+                drugList.get(i).setNumber(drugList.get(i).getNumber() - temp);
             }
             if (Money.getCoins() < 0) {
                 for (int i = 0; i < 6; i++) {
@@ -234,7 +234,7 @@ public class ShopPanel extends JPanel {
                     //计算剩余的钱
                     Money.setCoins(Money.coins + drugList.get(i).getReduceMoney() * temp);
                     //还剩的东西减少
-                    drugList.get(i).setNumber(drugList.get(i).number + temp);
+                    drugList.get(i).setNumber(drugList.get(i).getNumber() + temp);
                 }
                 message = "哎呀,小兄弟,你的钱不顾了,要省着点花啊";
                 messageplus = null;
@@ -252,7 +252,7 @@ public class ShopPanel extends JPanel {
                 //计算剩余的钱
                 Money.setCoins(Money.coins + drugList.get(i).getReduceMoney() * temp);
                 //还剩的东西减少
-                drugList.get(i).setNumber(drugList.get(i).number + temp);
+                drugList.get(i).setNumber(drugList.get(i).getNumber() + temp);
                 drugList.get(i).setPurchaseNumber(0);
             }
         }
@@ -300,7 +300,7 @@ public class ShopPanel extends JPanel {
             i++;
         }
         if (SaveAndLoad.isZhang()) {
-            backgroundGraphics.drawImage(ani.get(0).image,
+            backgroundGraphics.drawImage(ani.get(0).getImage(),
                     ani.get(0).getAnimationX(), ani.get(0).getAnimationY(), this);
             g.drawString("体", 55, 30 + 0 * 150);
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/体力.png"), 60, 30 + 0 * 150, this);
@@ -312,7 +312,7 @@ public class ShopPanel extends JPanel {
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/精气.png"), 60, 30 + 0 * 150 + 60, this);
         }
         if (SaveAndLoad.isLu()) {
-            backgroundGraphics.drawImage(ani.get(1).image,
+            backgroundGraphics.drawImage(ani.get(1).getImage(),
                     ani.get(1).getAnimationX(), ani.get(1).getAnimationY(), this);
             g.drawString("体", 55, 30 + 1 * 150);
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/体力.png"), 60, 30 + 1 * 150, this);
@@ -324,7 +324,7 @@ public class ShopPanel extends JPanel {
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/精气.png"), 60, 30 + 1 * 150 + 60, this);
         }
         if (SaveAndLoad.isWen()) {
-            backgroundGraphics.drawImage(ani.get(2).image,
+            backgroundGraphics.drawImage(ani.get(2).getImage(),
                     ani.get(2).getAnimationX(), ani.get(2).getAnimationY(), this);
             g.drawString("体", 55, 30 + 2 * 150);
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/体力.png"), 60, 30 + 2 * 150, this);
@@ -335,7 +335,7 @@ public class ShopPanel extends JPanel {
             g.drawString("精", 55, 30 + 2 * 150 + 60);
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/精气.png"), 60, 30 + 2 * 150 + 60, this);
         }
-        backgroundGraphics.drawImage(ani.get(3).image,
+        backgroundGraphics.drawImage(ani.get(3).getImage(),
                 ani.get(3).getAnimationX(), ani.get(3).getAnimationY(), this);
         g.drawImage(Reader.readImage("sources/Shop/按钮组件/招牌.png"), 200, 0, this);
         if (message != null) {
@@ -361,7 +361,7 @@ public class ShopPanel extends JPanel {
         }
         backgroundGraphics.drawImage(mouse, currentX, currentY, this);
         // 加载缓存图
-        g.drawImage(background, 0, 0, this);
+        g.drawImage(backgroundBufferImage, 0, 0, this);
     }
 
     /**
@@ -384,4 +384,143 @@ public class ShopPanel extends JPanel {
         Money.setCoins(Integer.parseInt(shopInfo.get(drugList.size())));
     }
 
+    public Image getBackgroundBufferImage() {
+        return backgroundBufferImage;
+    }
+
+    public Graphics getBackgroundGraphics() {
+        return backgroundGraphics;
+    }
+
+    public void setBackgroundGraphics(Graphics backgroundGraphics) {
+        this.backgroundGraphics = backgroundGraphics;
+    }
+
+    public Image[] getMouses() {
+        return mouses;
+    }
+
+    public List<Image> getIcons() {
+        return icons;
+    }
+
+    public void setIcons(List<Image> icons) {
+        this.icons = icons;
+    }
+
+    public Image getImage1() {
+        return image1;
+    }
+
+    public void setImage1(Image image1) {
+        this.image1 = image1;
+    }
+
+    public Image getDrugImage() {
+        return drugImage;
+    }
+
+    public void setDrugImage(Image drugImage) {
+        this.drugImage = drugImage;
+    }
+
+    public Image getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public Image getMouse() {
+        return mouse;
+    }
+
+    public void setMouse(Image mouse) {
+        this.mouse = mouse;
+    }
+
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public void setCurrentX(int currentX) {
+        this.currentX = currentX;
+    }
+
+    public int getCurrentY() {
+        return currentY;
+    }
+
+    public void setCurrentY(int currentY) {
+        this.currentY = currentY;
+    }
+
+    public int getMove() {
+        return move;
+    }
+
+    public void setMove(int move) {
+        this.move = move;
+    }
+
+    public List<Drug> getDrugList() {
+        return drugList;
+    }
+
+    public void setDrugList(List<Drug> drugList) {
+        this.drugList = drugList;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessageplus() {
+        return messageplus;
+    }
+
+    public void setMessageplus(String messageplus) {
+        this.messageplus = messageplus;
+    }
+
+    public List<ShopAnimation> getAni() {
+        return ani;
+    }
+
+    public void setAni(List<ShopAnimation> ani) {
+        this.ani = ani;
+    }
+
+    public GameButton getBuy() {
+        return buy;
+    }
+
+    public void setBuy(GameButton buy) {
+        this.buy = buy;
+    }
+
+    public GameButton getSell() {
+        return sell;
+    }
+
+    public void setSell(GameButton sell) {
+        this.sell = sell;
+    }
+
+    public GameButton getBack() {
+        return back;
+    }
+
+    public void setBack(GameButton back) {
+        this.back = back;
+    }
+
+    public List<GameButton> getButtonlist() {
+        return buttonlist;
+    }
+
+    public void setButtonlist(List<GameButton> buttonlist) {
+        this.buttonlist = buttonlist;
+    }
 }

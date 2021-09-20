@@ -35,87 +35,88 @@ public class EquipmentShopPanel extends JPanel {
     private final static int HEIGHT = 32 * 20;
 
     // 缓冲图
-    final Image background;
-    Graphics backgroundGraphics;
+    private final Image backgroundBufferImage;
+    private Graphics backgroundGraphics;
     // 鼠标指针的图形
-    final Image[] mouses = new Image[8];
+    private final Image[] mouses = new Image[8];
 
     // 背景
-    final Image backgroundImage;
-    Image mouse;
+    private final Image backgroundImage;
+    private Image mouse;
     //装备的图画
-    Image equipmentImage;
+    private Image equipmentImage;
 
     // 游标的当前位置
-    int currentX = 0;
-    int currentY = 0;
+    private int currentX = 0;
+    private int currentY = 0;
     // 偏移量
-    int move = 5;
+    private int move = 5;
 
     // 装备店专属属性
-    List<Equipment> helmetList;
-    List<Equipment> armorList;
-    List<Equipment> weaponList;
-    List<Equipment> gloveList;
-    List<Equipment> shoeList;
-    List<Equipment> decorationList;
+    private List<Equipment> helmetList;
+    private List<Equipment> armorList;
+    private List<Equipment> weaponList;
+    private List<Equipment> gloveList;
+    private List<Equipment> shoeList;
+    private List<Equipment> decorationList;
 
     //决定先出现哪个栏目的重要字符串
-    String equipment = "weapon";
+    private String equipment = "weapon";
 
     //店主说的话
-    String message = "欢迎来到金陵大学装备自选超市";
-    String messageplus;
-    String messageremark;
+    private String message = "欢迎来到金陵大学装备自选超市";
+    private String messageplus;
+    private String messageremark;
     //创建动画
-    List<ShopAnimation> ani = new ArrayList<>();
+    private List<ShopAnimation> ani = new ArrayList<>();
 
     // 各种按钮
-    GameButton buy = new GameButton(445, 75, 149, 40,
+    private GameButton buy = new GameButton(445, 75, 149, 40,
             Reader.readImage("sources/Shop/购买1.png"),
             Reader.readImage("sources/Shop/购买2.png"),
             Reader.readImage("sources/Shop/购买3.png"), this);
-    GameButton sell = new GameButton(594, 75, 149, 40,
+    private GameButton sell = new GameButton(594, 75, 149, 40,
             Reader.readImage("sources/Shop/卖出1.png"),
             Reader.readImage("sources/Shop/卖出2.png"),
             Reader.readImage("sources/Shop/卖出3.png"), this);
-    GameButton back = new GameButton(880, 20, 149, 40,
+    private GameButton back = new GameButton(880, 20, 149, 40,
             Reader.readImage("sources/Shop/返回游戏 (1).png"),
             Reader.readImage("sources/Shop/返回游戏 (2).png"),
             Reader.readImage("sources/Shop/返回游戏 (3).png"), this);
-    int x = 448, y = 133;
-    GameButton weapon = new GameButton(x, y, 47, 20,
+    private int x = 448;
+    private int y = 133;
+    private GameButton weapon = new GameButton(x, y, 47, 20,
             Reader.readImage("sources/Shop/按钮组件/武器1.png"),
             Reader.readImage("sources/Shop/按钮组件/武器1.png"),
             Reader.readImage("sources/Shop/按钮组件/武器2.png"), this);
-    GameButton helmet = new GameButton(x + 47 * 1, y, 47, 20,
+    private GameButton helmet = new GameButton(x + 47 * 1, y, 47, 20,
             Reader.readImage("sources/Shop/按钮组件/头盔1.png"),
             Reader.readImage("sources/Shop/按钮组件/头盔1.png"),
             Reader.readImage("sources/Shop/按钮组件/头盔2.png"), this);
-    GameButton armor = new GameButton(x + 47 * 2, y, 47, 20,
+    private GameButton armor = new GameButton(x + 47 * 2, y, 47, 20,
             Reader.readImage("sources/Shop/按钮组件/盔甲1.png"),
             Reader.readImage("sources/Shop/按钮组件/盔甲1.png"),
             Reader.readImage("sources/Shop/按钮组件/盔甲2.png"), this);
-    GameButton glove = new GameButton(x + 47 * 3, y, 47, 20,
+    private GameButton glove = new GameButton(x + 47 * 3, y, 47, 20,
             Reader.readImage("sources/Shop/按钮组件/护臂1.png"),
             Reader.readImage("sources/Shop/按钮组件/护臂1.png"),
             Reader.readImage("sources/Shop/按钮组件/护臂2.png"), this);
-    GameButton shoe = new GameButton(x + 47 * 4, y, 47, 20,
+    private GameButton shoe = new GameButton(x + 47 * 4, y, 47, 20,
             Reader.readImage("sources/Shop/按钮组件/靴子1.png"),
             Reader.readImage("sources/Shop/按钮组件/靴子1.png"),
             Reader.readImage("sources/Shop/按钮组件/靴子2.png"), this);
-    GameButton decoration = new GameButton(x + 47 * 5, y, 47, 20,
+    private GameButton decoration = new GameButton(x + 47 * 5, y, 47, 20,
             Reader.readImage("sources/Shop/按钮组件/饰品1.png"),
             Reader.readImage("sources/Shop/按钮组件/饰品1.png"),
             Reader.readImage("sources/Shop/按钮组件/饰品2.png"), this);
     //创建保存按钮的arraylist
-    List<GameButton> buttonList = new ArrayList<>();
+    private List<GameButton> buttonList = new ArrayList<>();
 
     public EquipmentShopPanel() {
         // 设定大小
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         // 背景缓冲
-        background = new BufferedImage(WIDTH, HEIGHT,
+        backgroundBufferImage = new BufferedImage(WIDTH, HEIGHT,
                 BufferedImage.TYPE_INT_ARGB);
         // 读入图片
         backgroundImage = Reader.readImage("sources/Shop/shopback.png");
@@ -126,7 +127,7 @@ public class EquipmentShopPanel extends JPanel {
         // 初始背景为黑色
         setBackground(new Color(0, 0, 0));
 
-        backgroundGraphics = background.getGraphics();
+        backgroundGraphics = backgroundBufferImage.getGraphics();
 
         // 设定鼠标监听
         setMouse();
@@ -146,7 +147,7 @@ public class EquipmentShopPanel extends JPanel {
                     for (int i = 0; i < 8; i++) {
                         mouse = mouses[i];
                         for (ShopAnimation animation : ani) {
-                            animation.image = animation.images.get(i);
+                            animation.setImage(animation.getImages().get(i));
                         }
                         try {
                             Thread.sleep(120);
@@ -490,7 +491,7 @@ public class EquipmentShopPanel extends JPanel {
             i++;
         }
         if (SaveAndLoad.isZhang()) {
-            g.drawImage(ani.get(0).image,
+            g.drawImage(ani.get(0).getImage(),
                     ani.get(0).getAnimationX(), ani.get(0).getAnimationY(), this);
             g.drawString("体", 55, 30 + 0 * 150);
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/体力.png"), 60, 30 + 0 * 150, this);
@@ -502,7 +503,7 @@ public class EquipmentShopPanel extends JPanel {
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/精气.png"), 60, 30 + 0 * 150 + 60, this);
         }
         if (SaveAndLoad.isLu()) {
-            g.drawImage(ani.get(1).image,
+            g.drawImage(ani.get(1).getImage(),
                     ani.get(1).getAnimationX(), ani.get(1).getAnimationY(), this);
             g.drawString("体", 55, 30 + 1 * 150);
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/体力.png"), 60, 30 + 1 * 150, this);
@@ -514,7 +515,7 @@ public class EquipmentShopPanel extends JPanel {
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/精气.png"), 60, 30 + 1 * 150 + 60, this);
         }
         if (SaveAndLoad.isWen()) {
-            g.drawImage(ani.get(2).image,
+            g.drawImage(ani.get(2).getImage(),
                     ani.get(2).getAnimationX(), ani.get(2).getAnimationY(), this);
             g.drawString("体", 55, 30 + 2 * 150);
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/体力.png"), 60, 30 + 2 * 150, this);
@@ -525,7 +526,7 @@ public class EquipmentShopPanel extends JPanel {
             g.drawString("精", 55, 30 + 2 * 150 + 60);
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/精气.png"), 60, 30 + 2 * 150 + 60, this);
         }
-        backgroundGraphics.drawImage(ani.get(3).image,
+        backgroundGraphics.drawImage(ani.get(3).getImage(),
                 ani.get(3).getAnimationX(), ani.get(3).getAnimationY(), this);
 
         g.drawImage(Reader.readImage("sources/Shop/按钮组件/招牌_副本.png"), 200, 0, this);
@@ -555,7 +556,7 @@ public class EquipmentShopPanel extends JPanel {
         }
         backgroundGraphics.drawImage(mouse, currentX, currentY, this);
         // 加载缓存图
-        g.drawImage(background, 0, 0, this);
+        g.drawImage(backgroundBufferImage, 0, 0, this);
     }
 
     public List<String> saveEquipmentShopInfo() {
@@ -607,5 +608,251 @@ public class EquipmentShopPanel extends JPanel {
             decorationList.get(i).setNumberGOT(Integer.parseInt(equipmentShopInfo.get(i + counter)));
             counter++;
         }
+    }
+
+    public Image getBackgroundBufferImage() {
+        return backgroundBufferImage;
+    }
+
+    public Graphics getBackgroundGraphics() {
+        return backgroundGraphics;
+    }
+
+    public void setBackgroundGraphics(Graphics backgroundGraphics) {
+        this.backgroundGraphics = backgroundGraphics;
+    }
+
+    public Image[] getMouses() {
+        return mouses;
+    }
+
+    public Image getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public Image getMouse() {
+        return mouse;
+    }
+
+    public void setMouse(Image mouse) {
+        this.mouse = mouse;
+    }
+
+    public Image getEquipmentImage() {
+        return equipmentImage;
+    }
+
+    public void setEquipmentImage(Image equipmentImage) {
+        this.equipmentImage = equipmentImage;
+    }
+
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public void setCurrentX(int currentX) {
+        this.currentX = currentX;
+    }
+
+    public int getCurrentY() {
+        return currentY;
+    }
+
+    public void setCurrentY(int currentY) {
+        this.currentY = currentY;
+    }
+
+    public int getMove() {
+        return move;
+    }
+
+    public void setMove(int move) {
+        this.move = move;
+    }
+
+    public List<Equipment> getHelmetList() {
+        return helmetList;
+    }
+
+    public void setHelmetList(List<Equipment> helmetList) {
+        this.helmetList = helmetList;
+    }
+
+    public List<Equipment> getArmorList() {
+        return armorList;
+    }
+
+    public void setArmorList(List<Equipment> armorList) {
+        this.armorList = armorList;
+    }
+
+    public List<Equipment> getWeaponList() {
+        return weaponList;
+    }
+
+    public void setWeaponList(List<Equipment> weaponList) {
+        this.weaponList = weaponList;
+    }
+
+    public List<Equipment> getGloveList() {
+        return gloveList;
+    }
+
+    public void setGloveList(List<Equipment> gloveList) {
+        this.gloveList = gloveList;
+    }
+
+    public List<Equipment> getShoeList() {
+        return shoeList;
+    }
+
+    public void setShoeList(List<Equipment> shoeList) {
+        this.shoeList = shoeList;
+    }
+
+    public List<Equipment> getDecorationList() {
+        return decorationList;
+    }
+
+    public void setDecorationList(List<Equipment> decorationList) {
+        this.decorationList = decorationList;
+    }
+
+    public String getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(String equipment) {
+        this.equipment = equipment;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessageplus() {
+        return messageplus;
+    }
+
+    public void setMessageplus(String messageplus) {
+        this.messageplus = messageplus;
+    }
+
+    public String getMessageremark() {
+        return messageremark;
+    }
+
+    public void setMessageremark(String messageremark) {
+        this.messageremark = messageremark;
+    }
+
+    public List<ShopAnimation> getAni() {
+        return ani;
+    }
+
+    public void setAni(List<ShopAnimation> ani) {
+        this.ani = ani;
+    }
+
+    public GameButton getBuy() {
+        return buy;
+    }
+
+    public void setBuy(GameButton buy) {
+        this.buy = buy;
+    }
+
+    public GameButton getSell() {
+        return sell;
+    }
+
+    public void setSell(GameButton sell) {
+        this.sell = sell;
+    }
+
+    public GameButton getBack() {
+        return back;
+    }
+
+    public void setBack(GameButton back) {
+        this.back = back;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public GameButton getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(GameButton weapon) {
+        this.weapon = weapon;
+    }
+
+    public GameButton getHelmet() {
+        return helmet;
+    }
+
+    public void setHelmet(GameButton helmet) {
+        this.helmet = helmet;
+    }
+
+    public GameButton getArmor() {
+        return armor;
+    }
+
+    public void setArmor(GameButton armor) {
+        this.armor = armor;
+    }
+
+    public GameButton getGlove() {
+        return glove;
+    }
+
+    public void setGlove(GameButton glove) {
+        this.glove = glove;
+    }
+
+    public GameButton getShoe() {
+        return shoe;
+    }
+
+    public void setShoe(GameButton shoe) {
+        this.shoe = shoe;
+    }
+
+    public GameButton getDecoration() {
+        return decoration;
+    }
+
+    public void setDecoration(GameButton decoration) {
+        this.decoration = decoration;
+    }
+
+    public List<GameButton> getButtonList() {
+        return buttonList;
+    }
+
+    public void setButtonList(List<GameButton> buttonList) {
+        this.buttonList = buttonList;
     }
 }
