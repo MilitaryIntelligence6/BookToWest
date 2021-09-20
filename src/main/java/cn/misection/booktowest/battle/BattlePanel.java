@@ -343,8 +343,8 @@ public class BattlePanel extends JPanel implements Runnable {
 
         //进度条开始
         progressBar.setStop(false);
-        command.setDraw(false);
-        drugMenu.setDraw(false);
+        command.setDrawn(false);
+        drugMenu.setDrawn(false);
         instruct.setDraw(false);
 
         //检查上场战斗时候有人死亡,若有,每人回复10%的hp
@@ -387,7 +387,7 @@ public class BattlePanel extends JPanel implements Runnable {
                 currentX = e.getX();
                 currentY = e.getY();
 
-                if (command.isDraw()) {
+                if (command.isDrawn()) {
                     command.checkPressed();
                 }
 
@@ -395,7 +395,7 @@ public class BattlePanel extends JPanel implements Runnable {
                     skillMenu.checkPressed();
                 }
 
-                if (drugMenu.isDraw()) {
+                if (drugMenu.isDrawn()) {
                     drugMenu.checkPressed();
                 }
 
@@ -409,7 +409,7 @@ public class BattlePanel extends JPanel implements Runnable {
                 currentX = e.getX();
                 currentY = e.getY();
 
-                if (command.isDraw()) {
+                if (command.isDrawn()) {
                     command.checkReleased();
                 }
 
@@ -417,7 +417,7 @@ public class BattlePanel extends JPanel implements Runnable {
                     skillMenu.checkReleased();
                 }
 
-                if (drugMenu.isDraw()) {
+                if (drugMenu.isDrawn()) {
                     drugMenu.checkReleased();
                 }
             }
@@ -429,7 +429,7 @@ public class BattlePanel extends JPanel implements Runnable {
                 currentX = ex.getX();
                 currentY = ex.getY();
 
-                if (command.isDraw()) {
+                if (command.isDrawn()) {
                     command.checkMoveIn();
                 }
 
@@ -437,7 +437,7 @@ public class BattlePanel extends JPanel implements Runnable {
                     skillMenu.checkMoveIn();
                 }
 
-                if (drugMenu.isDraw()) {
+                if (drugMenu.isDrawn()) {
                     drugMenu.checkMoveIn();
                 }
 
@@ -449,7 +449,7 @@ public class BattlePanel extends JPanel implements Runnable {
                 currentX = ex.getX();
                 currentY = ex.getY();
 
-                if (command.isDraw()) {
+                if (command.isDrawn()) {
                     command.checkMoveIn();
                 }
 
@@ -457,7 +457,7 @@ public class BattlePanel extends JPanel implements Runnable {
                     skillMenu.checkMoveIn();
                 }
 
-                if (drugMenu.isDraw()) {
+                if (drugMenu.isDrawn()) {
                     drugMenu.checkMoveIn();
                 }
             }

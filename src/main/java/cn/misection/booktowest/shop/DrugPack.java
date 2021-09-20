@@ -7,7 +7,7 @@ import java.util.List;
  * @author javaman
  */
 public class DrugPack {
-    public static List<Drug> drugList = new ArrayList<Drug>();
+    public static List<Drug> drugList = new ArrayList<>();
 
     public DrugPack() {
         drugList = ShopReader.readDrug();

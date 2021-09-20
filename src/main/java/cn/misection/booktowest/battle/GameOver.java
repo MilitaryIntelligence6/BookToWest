@@ -96,10 +96,10 @@ public class GameOver {
                         GameApplication.switchTo("scene");
                         bp.setEnemyOne(null);
                         bp.getEnemyList().clear();
-                        bp.getZxf().deadAnimation.setDraw(false);
+                        bp.getZxf().deadAnimation.setDrawn(false);
                         bp.getZxf().isDraw = true;
                         ZhangXiaoFan.hp = ZhangXiaoFan.hpMax / 2;
-                        bp.getYj().deadAnimation.setDraw(false);
+                        bp.getYj().deadAnimation.setDrawn(false);
                         bp.getYj().isDraw = true;
                         YuJie.hp = YuJie.hpMax / 2;
                         bp.getHeroes().clear();
@@ -110,16 +110,16 @@ public class GameOver {
                         bp.setEnemyThree(null);
                         bp.getEnemyList().clear();
                         if (bp.getZxf() != null) {
-                            bp.getZxf().deadAnimation.setDraw(false);
+                            bp.getZxf().deadAnimation.setDrawn(false);
                             bp.getZxf().isDraw = true;
                         }
                         if (bp.getYj() != null) {
-                            bp.getYj().deadAnimation.setDraw(false);
+                            bp.getYj().deadAnimation.setDrawn(false);
                             bp.getYj().isDraw = true;
                         }
                         if (bp.getLxq() != null) {
                             bp.getLxq().setDrawn(true);
-                            bp.getLxq().getDeadAnimation().setDraw(false);
+                            bp.getLxq().getDeadAnimation().setDrawn(false);
                         }
                         bp.getHeroes().clear();
                     }

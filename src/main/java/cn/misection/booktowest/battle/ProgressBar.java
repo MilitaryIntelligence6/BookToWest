@@ -106,7 +106,7 @@ public class ProgressBar {
                 isStop = true;
                 bp.setCurrentRound(1);
                 //将控制器绘制出来
-                bp.getCommand().setDraw(true);
+                bp.getCommand().setDrawn(true);
 
                 //指示器画出;
                 bp.getInstruct().start();
@@ -115,7 +115,7 @@ public class ProgressBar {
                 isStop = true;
                 bp.setCurrentRound(2);
                 //将控制器绘制出来
-                bp.getCommand().setDraw(true);
+                bp.getCommand().setDrawn(true);
 
                 //指示器画出;
                 bp.getInstruct().start();
@@ -123,7 +123,7 @@ public class ProgressBar {
                 isStop = true;
                 bp.setCurrentRound(3);
                 //将控制器绘制出来
-                bp.getCommand().setDraw(true);
+                bp.getCommand().setDrawn(true);
 
                 //指示器画出;
                 bp.getInstruct().start();

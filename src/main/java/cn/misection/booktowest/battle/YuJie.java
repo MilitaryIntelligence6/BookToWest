@@ -195,8 +195,8 @@ public class YuJie implements Hero {
 
                     //使死亡的人物复活
                     hero.setDead(false);
-                    hero.getDeadAnimation().setDraw(false);
-                    hero.getDeadAnimation().setStop(true);
+                    hero.getDeadAnimation().setDrawn(false);
+                    hero.getDeadAnimation().setStopped(true);
                     hero.setIsDraw(true);
 
 

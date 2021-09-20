@@ -4,76 +4,101 @@ import cn.misection.booktowest.util.*;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
-//控制台类
+/**
+ * 控制台类;
+ */
 public class Command {
-    //按钮引用
+
+    /**
+     * 按钮引用
+     */
     private GameButton attack;
+
     private GameButton skill;
+
     private GameButton defend;
+
     private GameButton thing;
-    //按钮集合
-    private ArrayList<GameButton> gameButtons = new ArrayList<GameButton>();
-    //图片引用
+
+    /**
+     * 按钮集合
+     */
+    private List<GameButton> gameButtons = new ArrayList<>();
+
+    /**
+     * 图片引用
+     */
     private Image normalImage;
-    private Image waitclickImage;
+
+    private Image waitClickImage;
+
     private Image pressedImage;
-    //击按钮的位置
+
+    /**
+     * 击按钮的位置
+     */
     private int x;
+
     private int y;
-    //是否被画出
-    private boolean isDraw;
-    //战斗面板引用
-    private BattlePanel bp;
 
-    //构造方法
-    public Command(BattlePanel bp) {
+    /**
+     * 是否被画出
+     */
+    private boolean drawn;
 
+    /**
+     * 战斗面板引用
+     */
+    private BattlePanel battlePanel;
+
+    public Command(BattlePanel battlePanel) {
         //创建击按钮
         normalImage = Reader.readImage("image/按钮图/击1.png");
-        waitclickImage = Reader.readImage("image/按钮图/击2.png");
+        waitClickImage = Reader.readImage("image/按钮图/击2.png");
         pressedImage = Reader.readImage("image/按钮图/击3.png");
         this.x = 500;
         this.y = 300;
-        this.bp = bp;
-        attack = new GameButton(x, y, 58, 62, normalImage, waitclickImage, pressedImage, bp);
+        this.battlePanel = battlePanel;
+        attack = new GameButton(x, y, 58, 62, normalImage, waitClickImage, pressedImage, battlePanel);
         gameButtons.add(attack);
 
         //创建技按钮
         normalImage = Reader.readImage("image/按钮图/技1.png");
-        waitclickImage = Reader.readImage("image/按钮图/技2.png");
+        waitClickImage = Reader.readImage("image/按钮图/技2.png");
         pressedImage = Reader.readImage("image/按钮图/技3.png");
-        skill = new GameButton(x, y - 62, 58, 62, normalImage, waitclickImage, pressedImage, bp);
+        skill = new GameButton(x, y - 62, 58, 62, normalImage, waitClickImage, pressedImage, battlePanel);
         gameButtons.add(skill);
 
         //创建防按钮
         normalImage = Reader.readImage("image/按钮图/防1.png");
-        waitclickImage = Reader.readImage("image/按钮图/防2.png");
+        waitClickImage = Reader.readImage("image/按钮图/防2.png");
         pressedImage = Reader.readImage("image/按钮图/防3.png");
-        defend = new GameButton(x - 58, y + 40, 58, 62, normalImage, waitclickImage, pressedImage, bp);
+        defend = new GameButton(x - 58, y + 40, 58, 62, normalImage, waitClickImage, pressedImage, battlePanel);
         gameButtons.add(defend);
 
         //创建物按钮
         normalImage = Reader.readImage("image/按钮图/物1.png");
-        waitclickImage = Reader.readImage("image/按钮图/物2.png");
+        waitClickImage = Reader.readImage("image/按钮图/物2.png");
         pressedImage = Reader.readImage("image/按钮图/物3.png");
-        thing = new GameButton(x + 58, y + 40, 58, 62, normalImage, waitclickImage, pressedImage, bp);
+        thing = new GameButton(x + 58, y + 40, 58, 62, normalImage, waitClickImage, pressedImage, battlePanel);
         gameButtons.add(thing);
 
-        isDraw = false;
+        drawn = false;
     }
 
     //检查是否移动鼠标进入控制台
     public void checkMoveIn() {
         for (GameButton button : gameButtons) {
-            button.isMoveIn(bp.getCurrentX(), bp.getCurrentY());
+            button.isMoveIn(battlePanel.getCurrentX(), battlePanel.getCurrentY());
         }
     }
 
     //检查鼠标是否点击控制台
     public void checkPressed() {
         for (GameButton button : gameButtons) {
-            button.isPressedButton(bp.getCurrentX(), bp.getCurrentY());
+            button.isPressedButton(battlePanel.getCurrentX(), battlePanel.getCurrentY());
         }
     }
 
@@ -82,63 +107,63 @@ public class Command {
         //检验 击 按钮是否被按下
         if (attack.clicked == true) {
             //把控制台隐藏掉
-            isDraw = false;
-            bp.setCurrentPattern(1);
+            drawn = false;
+            battlePanel.setCurrentPattern(1);
             //打开怪物选择
-            bp.getEnemySlector().setSlectable(true);
+            battlePanel.getEnemySlector().setSlectable(true);
 
         }
 
         if (skill.clicked == true) {
             //把控制台隐藏掉
-            isDraw = false;
-            bp.getSkillMenu().checkRound();
-            bp.getSkillMenu().setDraw(true);
+            drawn = false;
+            battlePanel.getSkillMenu().checkRound();
+            battlePanel.getSkillMenu().setDraw(true);
         }
 
         if (thing.clicked == true) {
             //把控制台隐藏掉
-            isDraw = false;
-            bp.getDrugMenu().checkHero();
-            bp.getDrugMenu().setDraw(true);
+            drawn = false;
+            battlePanel.getDrugMenu().checkHero();
+            battlePanel.getDrugMenu().setDrawn(true);
         }
 
         if (defend.clicked == true) {
-            switch (bp.getCurrentRound()) {
+            switch (battlePanel.getCurrentRound()) {
                 case 1:
-                    if (bp.getZxf().isAngry) {
+                    if (battlePanel.getZxf().isAngry) {
                         //把控制台隐藏掉
-                        isDraw = false;
+                        drawn = false;
                         //选定攻击对象
-                        bp.setCurrentBeAttacked(8);
+                        battlePanel.setCurrentBeAttacked(8);
                         //攻击模式
-                        bp.setCurrentPattern(7);
+                        battlePanel.setCurrentPattern(7);
                     } else {
-                        bp.getReminder().show(21);
+                        battlePanel.getReminder().show(21);
                     }
                     break;
                 case 2:
-                    if (bp.getYj().isAngry) {
+                    if (battlePanel.getYj().isAngry) {
                         //把控制台隐藏掉
-                        isDraw = false;
+                        drawn = false;
                         //选定攻击对象
-                        bp.setCurrentBeAttacked(8);
+                        battlePanel.setCurrentBeAttacked(8);
                         //攻击模式
-                        bp.setCurrentPattern(7);
+                        battlePanel.setCurrentPattern(7);
                     } else {
-                        bp.getReminder().show(21);
+                        battlePanel.getReminder().show(21);
                     }
                     break;
                 case 3:
-                    if (bp.getLxq().isAngry()) {
+                    if (battlePanel.getLxq().isAngry()) {
                         //把控制台隐藏掉
-                        isDraw = false;
+                        drawn = false;
                         //选定攻击对象
-                        bp.setCurrentBeAttacked(8);
+                        battlePanel.setCurrentBeAttacked(8);
                         //攻击模式
-                        bp.setCurrentPattern(7);
+                        battlePanel.setCurrentPattern(7);
                     } else {
-                        bp.getReminder().show(21);
+                        battlePanel.getReminder().show(21);
                     }
                     break;
             }
@@ -147,13 +172,13 @@ public class Command {
 
 
         for (GameButton button : gameButtons) {
-            button.isRelesedButton(bp.getCurrentX(), bp.getCurrentY());
+            button.isRelesedButton(battlePanel.getCurrentX(), battlePanel.getCurrentY());
         }
     }
 
     //画出控制台
     public void drawCommand(Graphics g) {
-        if (isDraw) {
+        if (drawn) {
             for (GameButton button : gameButtons) {
                 button.drawButton(g);
             }
@@ -192,11 +217,11 @@ public class Command {
         this.thing = thing;
     }
 
-    public ArrayList<GameButton> getGameButtons() {
+    public List<GameButton> getGameButtons() {
         return gameButtons;
     }
 
-    public void setGameButtons(ArrayList<GameButton> gameButtons) {
+    public void setGameButtons(List<GameButton> gameButtons) {
         this.gameButtons = gameButtons;
     }
 
@@ -208,12 +233,12 @@ public class Command {
         this.normalImage = normalImage;
     }
 
-    public Image getWaitclickImage() {
-        return waitclickImage;
+    public Image getWaitClickImage() {
+        return waitClickImage;
     }
 
-    public void setWaitclickImage(Image waitclickImage) {
-        this.waitclickImage = waitclickImage;
+    public void setWaitClickImage(Image waitClickImage) {
+        this.waitClickImage = waitClickImage;
     }
 
     public Image getPressedImage() {
@@ -240,19 +265,19 @@ public class Command {
         this.y = y;
     }
 
-    public boolean isDraw() {
-        return isDraw;
+    public boolean isDrawn() {
+        return drawn;
     }
 
-    public void setDraw(boolean draw) {
-        isDraw = draw;
+    public void setDrawn(boolean drawn) {
+        this.drawn = drawn;
     }
 
-    public BattlePanel getBp() {
-        return bp;
+    public BattlePanel getBattlePanel() {
+        return battlePanel;
     }
 
-    public void setBp(BattlePanel bp) {
-        this.bp = bp;
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 }

@@ -4,41 +4,72 @@ import cn.misection.booktowest.util.*;
 
 import java.util.*;
 import java.awt.*;
+import java.util.List;
 
-//我方战斗单位死亡之后播放的动画
+/**
+ * @author javaman
+ * 我方战斗单位死亡之后播放的动画;
+ */
 public class DeadAnimation {
-    //当前图片
+
+    /**
+     * 当前图片
+     */
     private Image currentImage;
-    //图片集合
-    private ArrayList<Image> images = new ArrayList<Image>();
-    //画出的坐标
+
+    /**
+     * 图片集合
+     */
+    private List<Image> images = new ArrayList<>();
+
+    /**
+     * 画出的坐标
+     */
     private int x;
+
     private int y;
-    //长度
+
+    /**
+     * 长度
+     */
     private int length;
-    //编号..计时器
+
+    /**
+     * 编号..计时器
+     */
     private int code;
-    //是否画出
-    private boolean isDraw;
-    //是否停止
-    private boolean isStop;
-    //战斗面板引用
-    private BattlePanel bp;
-    //英雄引用
+
+    /**
+     * 是否画出
+     */
+    private boolean drawn;
+
+    /**
+     * 是否停止
+     */
+    private boolean stopped;
+
+    /**
+     * 战斗面板引用
+     */
+    private BattlePanel battlePanel;
+
+    /**
+     * 英雄引用
+     */
     private Hero hero;
 
-    //构造方法
-    public DeadAnimation(int x, int y, int length, String name, BattlePanel bp, Hero hero) {
+    public DeadAnimation(int x, int y, int length, String name, BattlePanel battlePanel, Hero hero) {
         this.x = x;
         this.y = y;
         loadImage(length, name);
-        this.bp = bp;
+        this.battlePanel = battlePanel;
         this.hero = hero;
         this.length = length;
         this.currentImage = images.get(0);
 
-        isDraw = false;
-        isStop = true;
+        this.drawn = false;
+        this.stopped = true;
     }
 
     //载入图片
@@ -51,21 +82,21 @@ public class DeadAnimation {
 
     //画出
     public void drawDeadAniamtion(Graphics g) {
-        if (isDraw) {
-            g.drawImage(currentImage, x, y, bp);
+        if (drawn) {
+            g.drawImage(currentImage, x, y, battlePanel);
         }
     }
 
     //开始
     public void start() {
         hero.setIsDraw(false);
-        isDraw = true;
-        isStop = false;
+        drawn = true;
+        stopped = false;
     }
 
     //更新
     public void update() {
-        if (!isStop) {
+        if (!stopped) {
             if (code < length) {
                 currentImage = images.get(code);
                 code++;
@@ -85,11 +116,11 @@ public class DeadAnimation {
         this.currentImage = currentImage;
     }
 
-    public ArrayList<Image> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<Image> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 
@@ -125,28 +156,28 @@ public class DeadAnimation {
         this.code = code;
     }
 
-    public boolean isDraw() {
-        return isDraw;
+    public boolean isDrawn() {
+        return drawn;
     }
 
-    public void setDraw(boolean draw) {
-        isDraw = draw;
+    public void setDrawn(boolean drawn) {
+        this.drawn = drawn;
     }
 
-    public boolean isStop() {
-        return isStop;
+    public boolean isStopped() {
+        return stopped;
     }
 
-    public void setStop(boolean stop) {
-        isStop = stop;
+    public void setStopped(boolean stopped) {
+        this.stopped = stopped;
     }
 
-    public BattlePanel getBp() {
-        return bp;
+    public BattlePanel getBattlePanel() {
+        return battlePanel;
     }
 
-    public void setBp(BattlePanel bp) {
-        this.bp = bp;
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 
     public Hero getHero() {

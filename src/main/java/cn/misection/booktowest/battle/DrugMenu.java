@@ -1,64 +1,102 @@
 package cn.misection.booktowest.battle;
 
 import java.awt.*;
+import java.util.List;
 import java.util.ArrayList;
 
 import cn.misection.booktowest.util.*;
 import cn.misection.booktowest.shop.*;
 
-//使用药品的菜单
+/**
+ * @author javaman
+ * 使用药品的菜单;
+ */
 public class DrugMenu {
-    //背景图
+
+    /**
+     * 背景图
+     */
     private Image backImage;
 
-    //按钮
+    /**
+     * 按钮
+     */
     private GameButton drugButton;
-    private ArrayList<GameButton> drugButtons = new ArrayList<GameButton>();
-    //按钮图片
-    private ArrayList<Image> buttonImages = new ArrayList<Image>();
-    //菜单出现的位置
-    private int x;
-    private int y;
-    //是否画出
-    private boolean isDraw;
 
-    //介绍性图片
+    private List<GameButton> drugButtons = new ArrayList<>();
+
+    /**
+     * 按钮图片
+     */
+    private List<Image> buttonImages = new ArrayList<>();
+
+    /**
+     * 菜单出现的位置
+     */
+    private int x;
+
+    private int y;
+
+    /**
+     * 是否画出
+     */
+    private boolean drawn;
+
+    /**
+     * 介绍性图片
+     */
     private Image introduceImage;
-    //介绍图位置
+
+    /**
+     * 介绍图位置
+     */
     private int introX;
+
     private int introY;
-    //介绍图是否画出
-    private boolean isDrawIntro;
-    //介绍文字
+
+    /**
+     * 介绍图是否画出
+     */
+    private boolean introDrawn;
+
+    /**
+     * 介绍文字
+     */
     private String introString;
 
-    //战斗面板引用
-    private BattlePanel bp;
+    /**
+     * 战斗面板引用
+     */
+    private BattlePanel battlePanel;
 
     private DrugPack drugPack;
-    //当前英雄
+
+    /**
+     * 当前英雄
+     */
     private Hero currentHero;
 
-    public DrugMenu(BattlePanel bp) {
+    public DrugMenu(BattlePanel battlePanel) {
         this.x = 340;
         this.y = 200;
 
         this.introX = 220;
 
         backImage = Reader.readImage("image/药品菜单/药品显示框.png");
-        this.bp = bp;
-        isDraw = false;
+        this.battlePanel = battlePanel;
+        drawn = false;
 
         if (DrugPack.drugList.size() == 0) {
             drugPack = new DrugPack();
         }
-
-        getImage();
+        loadImage();
         addButton();
     }
 
-    //读入图片
-    public void getImage() {
+    /**
+     * 读入图片;
+     */
+    public void loadImage() {
         for (int i = 1; i <= 6; i++) {
             for (int j = 1; j <= 3; j++) {
                 Image image = Reader.readImage("image/药品菜单/药品" + i + "按钮" + j + ".png");
@@ -75,7 +113,7 @@ public class DrugMenu {
     public void addButton() {
         for (int i = 0; i < buttonImages.size(); i = i + 3) {
             drugButton = new GameButton(395, 226 + i * 10, 215, 28, buttonImages.get(i), buttonImages.get(i + 1),
-                    buttonImages.get(i + 2), bp);
+                    buttonImages.get(i + 2), battlePanel);
             drugButtons.add(drugButton);
         }
     }
@@ -83,16 +121,16 @@ public class DrugMenu {
     //检查是否移动鼠标进入菜单
     public void checkMoveIn() {
         for (GameButton button : drugButtons) {
-            button.isMoveIn(bp.getCurrentX(), bp.getCurrentY());
+            button.isMoveIn(battlePanel.getCurrentX(), battlePanel.getCurrentY());
         }
 
         for (int i = 0; i < 6; i++) {
-            if (bp.getCurrentX() > 395 && bp.getCurrentX() < 610 && bp.getCurrentY() > 226 + i * 30 && bp.getCurrentY() < 226 + (i + 1) * 30) {
+            if (battlePanel.getCurrentX() > 395 && battlePanel.getCurrentX() < 610 && battlePanel.getCurrentY() > 226 + i * 30 && battlePanel.getCurrentY() < 226 + (i + 1) * 30) {
                 introduceImage = DrugPack.drugList.get(i).getPicture();
                 introString =
                         "hp " + DrugPack.drugList.get(i).getAddHp() + " mp " + DrugPack.drugList.get(i).getAddMp();
                 this.introY = 226 + i * 30;
-                isDrawIntro = true;
+                introDrawn = true;
             }
         }
     }
@@ -101,53 +139,50 @@ public class DrugMenu {
     //检查鼠标是否点击菜单
     public void checkPressed() {
         for (GameButton button : drugButtons) {
-            button.isPressedButton(bp.getCurrentX(), bp.getCurrentY());
+            button.isPressedButton(battlePanel.getCurrentX(), battlePanel.getCurrentY());
         }
     }
 
     //检查是否松开鼠标
     public void checkReleased() {
         //按下金创药
-        if (drugButtons.get(0).clicked == true) {
+        if (drugButtons.get(0).clicked) {
             checkDrugNumber(DrugPack.drugList.get(0), 1);
         }
-
-        if (drugButtons.get(1).clicked == true) {
+        if (drugButtons.get(1).clicked) {
             checkDrugNumber(DrugPack.drugList.get(1), 2);
         }
-
-        if (drugButtons.get(2).clicked == true) {
+        if (drugButtons.get(2).clicked) {
             checkDrugNumber(DrugPack.drugList.get(2), 1);
         }
-
-        if (drugButtons.get(3).clicked == true) {
+        if (drugButtons.get(3).clicked) {
             checkDrugNumber(DrugPack.drugList.get(3), 2);
         }
-
-        if (drugButtons.get(4).clicked == true) {
+        if (drugButtons.get(4).clicked) {
             checkDrugNumber(DrugPack.drugList.get(4), 1);
         }
-
-        if (drugButtons.get(5).clicked == true) {
+        if (drugButtons.get(5).clicked) {
             checkDrugNumber(DrugPack.drugList.get(5), 2);
         }
-
         //按下返回按钮
-        if (drugButtons.get(6).clicked == true) {
-            isDraw = false;
-            bp.getCommand().setDraw(true);
+        if (drugButtons.get(6).clicked) {
+            drawn = false;
+            battlePanel.getCommand().setDrawn(true);
         }
-
         for (GameButton button : drugButtons) {
-            button.isRelesedButton(bp.getCurrentX(), bp.getCurrentY());
+            button.isRelesedButton(battlePanel.getCurrentX(), battlePanel.getCurrentY());
         }
     }
 
-    //检查药品数目
+    /**
+     * 检查药品数目;
+     * @param drug
+     * @param type
+     */
     public void checkDrugNumber(Drug drug, int type) {
         if (drug.getNumberGOT() > 0) {
-            bp.getHurtValues().clear();
-            HurtValue hurtValue = new HurtValue(bp);
+            battlePanel.getHurtValues().clear();
+            HurtValue hurtValue = new HurtValue(battlePanel);
             if (type == 1) {
                 hurtValue.show(drug.getAddHp(), 2, currentHero.getShowX(), currentHero.getShowY());
                 if (drug.getAddHp() + currentHero.getHp() > currentHero.getHpMax()) {
@@ -164,56 +199,64 @@ public class DrugMenu {
                 }
             }
 
-            bp.getHurtValues().add(hurtValue);
+            battlePanel.getHurtValues().add(hurtValue);
             //显示伤害值
-            for (HurtValue hurt : bp.getHurtValues()) {
+            for (HurtValue hurt : battlePanel.getHurtValues()) {
                 hurt.start();
             }
             drug.setNumberGOT(drug.getNumberGOT() - 1);
             progressGo();
         } else {
-            bp.getReminder().show(19);
+            battlePanel.getReminder().show(19);
         }
     }
 
-    //进度继续
+    /**
+     * 进度继续;
+     */
     public void progressGo() {
-        switch (bp.getCurrentRound()) {
+        switch (battlePanel.getCurrentRound()) {
             case 1:
-                bp.getProgressBar().setZhangX(bp.getProgressBar().getBarX());
+                battlePanel.getProgressBar().setZhangX(battlePanel.getProgressBar().getBarX());
                 break;
             case 2:
-                bp.getProgressBar().setYuX(bp.getProgressBar().getBarX());
+                battlePanel.getProgressBar().setYuX(battlePanel.getProgressBar().getBarX());
                 break;
             case 3:
-                bp.getProgressBar().setLuX(bp.getProgressBar().getBarX());
+                battlePanel.getProgressBar().setLuX(battlePanel.getProgressBar().getBarX());
+                break;
+            default:
                 break;
         }
-        bp.setCurrentRound(0);
-        isDraw = false;
-        bp.getProgressBar().setStop(false);
+        battlePanel.setCurrentRound(0);
+        drawn = false;
+        battlePanel.getProgressBar().setStop(false);
     }
 
-
-    //确定当前英雄
+    /**
+     * 确定当前英雄;
+     */
     public void checkHero() {
-        switch (bp.getCurrentRound()) {
+        switch (battlePanel.getCurrentRound()) {
             case 1:
-                currentHero = bp.getZxf();
+                currentHero = battlePanel.getZxf();
                 break;
             case 2:
-                currentHero = bp.getYj();
+                currentHero = battlePanel.getYj();
                 break;
             case 3:
-                currentHero = bp.getLxq();
+                currentHero = battlePanel.getLxq();
                 break;
         }
     }
 
-    //画出菜单
+    /**
+     * 画出菜单;
+     * @param g
+     */
     public void drawDrugMenu(Graphics g) {
-        if (isDraw) {
-            g.drawImage(backImage, x, y, bp);
+        if (drawn) {
+            g.drawImage(backImage, x, y, battlePanel);
             for (GameButton button : drugButtons) {
                 button.drawButton(g);
             }
@@ -222,8 +265,8 @@ public class DrugMenu {
                 g.drawString(DrugPack.drugList.get(i).getNumberGOT() + "", 575, 246 + i * 30);
             }
 
-            if (isDrawIntro) {
-                g.drawImage(introduceImage, introX, introY, bp);
+            if (introDrawn) {
+                g.drawImage(introduceImage, introX, introY, battlePanel);
                 g.drawString(introString, introX + 10, introY + 20);
             }
         }
@@ -245,19 +288,19 @@ public class DrugMenu {
         this.drugButton = drugButton;
     }
 
-    public ArrayList<GameButton> getDrugButtons() {
+    public List<GameButton> getDrugButtons() {
         return drugButtons;
     }
 
-    public void setDrugButtons(ArrayList<GameButton> drugButtons) {
+    public void setDrugButtons(List<GameButton> drugButtons) {
         this.drugButtons = drugButtons;
     }
 
-    public ArrayList<Image> getButtonImages() {
+    public List<Image> getButtonImages() {
         return buttonImages;
     }
 
-    public void setButtonImages(ArrayList<Image> buttonImages) {
+    public void setButtonImages(List<Image> buttonImages) {
         this.buttonImages = buttonImages;
     }
 
@@ -277,12 +320,12 @@ public class DrugMenu {
         this.y = y;
     }
 
-    public boolean isDraw() {
-        return isDraw;
+    public boolean isDrawn() {
+        return drawn;
     }
 
-    public void setDraw(boolean draw) {
-        isDraw = draw;
+    public void setDrawn(boolean drawn) {
+        this.drawn = drawn;
     }
 
     public Image getIntroduceImage() {
@@ -309,12 +352,12 @@ public class DrugMenu {
         this.introY = introY;
     }
 
-    public boolean isDrawIntro() {
-        return isDrawIntro;
+    public boolean isIntroDrawn() {
+        return introDrawn;
     }
 
-    public void setDrawIntro(boolean drawIntro) {
-        isDrawIntro = drawIntro;
+    public void setIntroDrawn(boolean introDrawn) {
+        this.introDrawn = introDrawn;
     }
 
     public String getIntroString() {
@@ -325,12 +368,12 @@ public class DrugMenu {
         this.introString = introString;
     }
 
-    public BattlePanel getBp() {
-        return bp;
+    public BattlePanel getBattlePanel() {
+        return battlePanel;
     }
 
-    public void setBp(BattlePanel bp) {
-        this.bp = bp;
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 
     public DrugPack getDrugPack() {

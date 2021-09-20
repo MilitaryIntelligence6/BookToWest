@@ -59,8 +59,8 @@ public class VictoryAnimation {
     //开始
     public void start() {
         hero.setIsDraw(false);
-        hero.getDeadAnimation().setDraw(false);
-        hero.getDeadAnimation().setStop(true);
+        hero.getDeadAnimation().setDrawn(false);
+        hero.getDeadAnimation().setStopped(true);
         isDraw = true;
         isStop = false;
     }

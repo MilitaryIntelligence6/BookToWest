@@ -213,7 +213,7 @@ public class SkillMenu {
 
         if (returnButton.clicked == true) {
             isDraw = false;
-            bp.getCommand().setDraw(true);
+            bp.getCommand().setDrawn(true);
         }
 
         if (bp.getCurrentRound() == 1) {
