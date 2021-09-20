@@ -270,75 +270,75 @@ public class SkillMenu {
      * 检查是否松开鼠标;
      */
     public void checkReleased() {
-        if (returnButton.clicked) {
+        if (returnButton.isClicked()) {
             isDraw = false;
             battlePanel.getCommand().setDrawn(true);
         }
         if (battlePanel.getCurrentRound() == 1) {
-            if (skillButtons.get(0).clicked) {
+            if (skillButtons.get(0).isClicked()) {
                 afterClicked(2, true, 0);
             }
-            if (skillButtons.get(1).clicked) {
+            if (skillButtons.get(1).isClicked()) {
                 afterClicked(3, true, 0);
             }
             if (ZhangXiaoFan.skillNumber >= 3) {
-                if (skillButtons.get(2).clicked) {
+                if (skillButtons.get(2).isClicked()) {
                     afterClicked(4, true, 0);
                 }
             }
             if (ZhangXiaoFan.skillNumber >= 4) {
-                if (skillButtons.get(3).clicked) {
+                if (skillButtons.get(3).isClicked()) {
                     afterClicked(5, false, 8);
                 }
             }
             if (ZhangXiaoFan.skillNumber >= 5) {
-                if (skillButtons.get(4).clicked) {
+                if (skillButtons.get(4).isClicked()) {
                     afterClicked(6, false, 8);
                 }
             }
         }
         if (battlePanel.getCurrentRound() == 2) {
-            if (skillButtons.get(0).clicked) {
+            if (skillButtons.get(0).isClicked()) {
                 afterClicked(2, true, 0);
             }
-            if (skillButtons.get(1).clicked) {
+            if (skillButtons.get(1).isClicked()) {
                 afterClicked(3, true, 0);
             }
             if (YuJie.skillNumber >= 3) {
-                if (skillButtons.get(2).clicked) {
+                if (skillButtons.get(2).isClicked()) {
                     afterClicked(4, false, 8);
                 }
             }
             if (YuJie.skillNumber >= 4) {
-                if (skillButtons.get(3).clicked) {
+                if (skillButtons.get(3).isClicked()) {
                     afterClicked(5, false, 4);
                 }
             }
             if (YuJie.skillNumber >= 5) {
-                if (skillButtons.get(4).clicked) {
+                if (skillButtons.get(4).isClicked()) {
                     afterClicked(6, true, 0);
                 }
             }
         }
         if (battlePanel.getCurrentRound() == 3) {
-            if (skillButtons.get(0).clicked) {
+            if (skillButtons.get(0).isClicked()) {
                 afterClicked(2, false, 8);
             }
-            if (skillButtons.get(1).clicked) {
+            if (skillButtons.get(1).isClicked()) {
                 afterClicked(3, false, 8);
             }
             if (LuXueQi.getSkillNumber() >= 3) {
-                if (skillButtons.get(2).clicked) {
+                if (skillButtons.get(2).isClicked()) {
                     afterClicked(4, false, 8);
                 }
             }
             if (LuXueQi.getSkillNumber() >= 4) {
-                if (skillButtons.get(3).clicked) {
+                if (skillButtons.get(3).isClicked()) {
                     afterClicked(5, true, 0);
                 }
             }
             if (LuXueQi.getSkillNumber() >= 5) {
-                if (skillButtons.get(4).clicked) {
+                if (skillButtons.get(4).isClicked()) {
                     afterClicked(6, false, 8);
                 }
             }

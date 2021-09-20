@@ -627,7 +627,7 @@ public class EquipPanel extends FatherPanel {
         // TODO Auto-generated method stub
 
         getScoll().checkPressed();
-        if (getScoll().getHero1().clicked) {
+        if (getScoll().getHero1().isClicked()) {
 
             heroEquipment = equipPack_hero1.getWeapon();
             if (heroEquipment != null) {
@@ -656,7 +656,7 @@ public class EquipPanel extends FatherPanel {
 
 
         }
-        if (getScoll().getHero2().clicked) {
+        if (getScoll().getHero2().isClicked()) {
             heroEquipment = equipPack_hero2.getWeapon();
             if (heroEquipment != null) {
                 abandon_button.setIsDraw(1);
@@ -685,7 +685,7 @@ public class EquipPanel extends FatherPanel {
 
         }
 
-        if (getScoll().getHero4().clicked) {
+        if (getScoll().getHero4().isClicked()) {
             heroEquipment = equipPack_hero4.getWeapon();
             if (heroEquipment != null) {
                 abandon_button.setIsDraw(1);

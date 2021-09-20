@@ -42,7 +42,7 @@ public class MenuButton extends GameButton {
     @Override
     public void drawButton(Graphics g) {
         if (this.isDraw == MenuButton.Yes) {
-            g.drawImage(buttonImage, x, y, mp);
+            g.drawImage(getButtonImage(), getX(), getY(), getMp());
         }
         if (this.isDraw == MenuButton.No) {
 
@@ -53,11 +53,11 @@ public class MenuButton extends GameButton {
     public void isPressedButton(int currentX, int currentY) {
 
         if (this.isDraw == MenuButton.Yes) {
-            if (currentX > x - 15 && currentX < (x + width - 15) && currentY > (y - 6) && currentY < (y + height - 6)) {
-                buttonImage = pressedImage;
-                clicked = true;
+            if (currentX > getX() - 15 && currentX < (getX() + getWidth() - 15) && currentY > (getY() - 6) && currentY < (getY() + getHeight() - 6)) {
+                setButtonImage(getPressedImage());
+                setClicked(true);
             } else {
-                buttonImage = normalImage;
+                setButtonImage(getNormalImage());
             }
         } else {
 
@@ -65,7 +65,7 @@ public class MenuButton extends GameButton {
     }
 
     public boolean isIsMoveIn() {
-        return moveIn;
+        return isMoveIn();
     }
 
     public int getIsDraw() {

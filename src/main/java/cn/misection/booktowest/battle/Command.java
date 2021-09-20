@@ -105,7 +105,7 @@ public class Command {
     //检查是否松开鼠标
     public void checkReleased() {
         //检验 击 按钮是否被按下
-        if (attack.clicked == true) {
+        if (attack.isClicked() == true) {
             //把控制台隐藏掉
             drawn = false;
             battlePanel.setCurrentPattern(1);
@@ -114,21 +114,21 @@ public class Command {
 
         }
 
-        if (skill.clicked == true) {
+        if (skill.isClicked() == true) {
             //把控制台隐藏掉
             drawn = false;
             battlePanel.getSkillMenu().checkRound();
             battlePanel.getSkillMenu().setDraw(true);
         }
 
-        if (thing.clicked == true) {
+        if (thing.isClicked() == true) {
             //把控制台隐藏掉
             drawn = false;
             battlePanel.getDrugMenu().checkHero();
             battlePanel.getDrugMenu().setDrawn(true);
         }
 
-        if (defend.clicked == true) {
+        if (defend.isClicked() == true) {
             switch (battlePanel.getCurrentRound()) {
                 case 1:
                     if (battlePanel.getZxf().isAngry) {

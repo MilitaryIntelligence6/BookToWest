@@ -146,26 +146,26 @@ public class DrugMenu {
     //检查是否松开鼠标
     public void checkReleased() {
         //按下金创药
-        if (drugButtons.get(0).clicked) {
+        if (drugButtons.get(0).isClicked()) {
             checkDrugNumber(DrugPack.drugList.get(0), 1);
         }
-        if (drugButtons.get(1).clicked) {
+        if (drugButtons.get(1).isClicked()) {
             checkDrugNumber(DrugPack.drugList.get(1), 2);
         }
-        if (drugButtons.get(2).clicked) {
+        if (drugButtons.get(2).isClicked()) {
             checkDrugNumber(DrugPack.drugList.get(2), 1);
         }
-        if (drugButtons.get(3).clicked) {
+        if (drugButtons.get(3).isClicked()) {
             checkDrugNumber(DrugPack.drugList.get(3), 2);
         }
-        if (drugButtons.get(4).clicked) {
+        if (drugButtons.get(4).isClicked()) {
             checkDrugNumber(DrugPack.drugList.get(4), 1);
         }
-        if (drugButtons.get(5).clicked) {
+        if (drugButtons.get(5).isClicked()) {
             checkDrugNumber(DrugPack.drugList.get(5), 2);
         }
         //按下返回按钮
-        if (drugButtons.get(6).clicked) {
+        if (drugButtons.get(6).isClicked()) {
             drawn = false;
             battlePanel.getCommand().setDrawn(true);
         }

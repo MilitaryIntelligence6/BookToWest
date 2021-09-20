@@ -10,17 +10,17 @@ import javax.swing.JPanel;
 public class GameButton {
     private int currentX;
     private int currentY;
-    protected int x;
-    protected int y;
-    protected int width;
-    protected int height;
-    protected Image normalImage;
-    protected Image waitClickImage;
-    protected Image pressedImage;
-    public Image buttonImage;
-    protected JPanel mp;
-    public boolean clicked = false;
-    public boolean moveIn = false;
+    private int x;
+    private int y;
+    private int width;
+    private int height;
+    private Image normalImage;
+    private Image waitClickImage;
+    private Image pressedImage;
+    private Image buttonImage;
+    private JPanel mp;
+    private boolean clicked = false;
+    private boolean moveIn = false;
 
 
     public GameButton(int x, int y, int width, int height, Image normalImage, Image waitClickImage, Image pressedImage,
@@ -75,5 +75,101 @@ public class GameButton {
 
     public void setClicked(boolean clicked) {
         this.clicked = clicked;
+    }
+
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public void setCurrentX(int currentX) {
+        this.currentX = currentX;
+    }
+
+    public int getCurrentY() {
+        return currentY;
+    }
+
+    public void setCurrentY(int currentY) {
+        this.currentY = currentY;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public Image getNormalImage() {
+        return normalImage;
+    }
+
+    public void setNormalImage(Image normalImage) {
+        this.normalImage = normalImage;
+    }
+
+    public Image getWaitClickImage() {
+        return waitClickImage;
+    }
+
+    public void setWaitClickImage(Image waitClickImage) {
+        this.waitClickImage = waitClickImage;
+    }
+
+    public Image getPressedImage() {
+        return pressedImage;
+    }
+
+    public void setPressedImage(Image pressedImage) {
+        this.pressedImage = pressedImage;
+    }
+
+    public Image getButtonImage() {
+        return buttonImage;
+    }
+
+    public void setButtonImage(Image buttonImage) {
+        this.buttonImage = buttonImage;
+    }
+
+    public JPanel getMp() {
+        return mp;
+    }
+
+    public void setMp(JPanel mp) {
+        this.mp = mp;
+    }
+
+    public boolean isMoveIn() {
+        return moveIn;
+    }
+
+    public void setMoveIn(boolean moveIn) {
+        this.moveIn = moveIn;
     }
 }

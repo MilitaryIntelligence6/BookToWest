@@ -223,7 +223,7 @@ public class DrugPanel extends FatherPanel {
         getScoll().checkPressed();
         use_button.isPressedButton(getCurrentX(), getCurrentY());
 
-        if (use_button.clicked) {
+        if (use_button.isClicked()) {
             if (currentDrug != null) {
                 currentDrug.setNumberGOT((currentDrug.getNumberGOT() - 1));
                 playMusic();

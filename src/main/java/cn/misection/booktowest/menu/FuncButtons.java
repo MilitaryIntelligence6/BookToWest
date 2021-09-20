@@ -196,7 +196,7 @@ public class FuncButtons {
     public void checkPressed() {
 
         for (MenuButton button : this.fatherPanel.getMenuPanel().getCommand().getButtonList()) {
-            if (button.clicked) {
+            if (button.isClicked()) {
                 for (int i = 1; i < 5; i++) {
                     for (MenuButton b : subButtonList[i]) {
                         b.setIsDraw(MenuButton.getNo());
@@ -209,7 +209,7 @@ public class FuncButtons {
         for (MenuButton button : buttonList) {
             button.isPressedButton(fatherPanel.getCurrentX(), fatherPanel.getCurrentY());
         }
-        if (saveButton.clicked) {
+        if (saveButton.isClicked()) {
             MusicReader.readMusic("换list.wav");
             for (int i = 1; i < 5; i++) {
                 for (MenuButton b : subButtonList[i]) {
@@ -222,7 +222,7 @@ public class FuncButtons {
             GameApplication.lsPanel.changeStateTo(LoadAndSavePanel.isSAVE());
             GameApplication.switchTo("ls");
 
-        } else if (readButton.clicked) {
+        } else if (readButton.isClicked()) {
             MusicReader.readMusic("换list.wav");
             for (int i = 1; i < 5; i++) {
                 for (MenuButton b : subButtonList[i]) {
@@ -233,7 +233,7 @@ public class FuncButtons {
             GameApplication.lsPanel.setLastPanel("menu");
             GameApplication.lsPanel.changeStateTo(LoadAndSavePanel.isLOAD());
             GameApplication.switchTo("ls");
-        } else if (setButton.clicked) {
+        } else if (setButton.isClicked()) {
             MusicReader.readMusic("换list.wav");
             for (int i = 1; i < 5; i++) {
                 for (MenuButton b : subButtonList[i]) {
@@ -245,7 +245,7 @@ public class FuncButtons {
                 button.setIsDraw(MenuButton.getYes());
             }
 
-        } else if (returnButton.clicked) {
+        } else if (returnButton.isClicked()) {
             MusicReader.readMusic("换list.wav");
             for (int i = 1; i < 5; i++) {
                 for (MenuButton b : subButtonList[i]) {
@@ -255,7 +255,7 @@ public class FuncButtons {
 
             }
 
-        } else if (exitButton.clicked) {
+        } else if (exitButton.isClicked()) {
             MusicReader.readMusic("换list.wav");
             for (int i = 1; i < 5; i++) {
                 for (MenuButton b : subButtonList[i]) {
@@ -277,7 +277,7 @@ public class FuncButtons {
 
 
         //3
-        if (setBGM.clicked) {
+        if (setBGM.isClicked()) {
             MusicReader.readMusic("换list.wav");
             for (int i = 1; i < 5; i++) {
                 for (MenuButton b : subButtonList[i]) {
@@ -292,7 +292,7 @@ public class FuncButtons {
             }
         }
         //4
-        if (setClick.clicked) {
+        if (setClick.isClicked()) {
             MusicReader.readMusic("换list.wav");
 
             for (MenuButton button : subButtonList[1]) {
