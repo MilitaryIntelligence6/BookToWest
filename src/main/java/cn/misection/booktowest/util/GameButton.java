@@ -50,7 +50,6 @@ public class GameButton {
     public void isPressedButton(int currentX, int currentY) {
         if (currentX > x - 15 && currentX < (x + width - 15) && currentY > (y - 6) && currentY < (y + height - 6)) {
             buttonImage = pressedImage;
-
             clicked = true;
         } else {
             buttonImage = normalImage;
@@ -59,7 +58,6 @@ public class GameButton {
 
     public void isRelesedButton(int currentX, int currentY) {
         if (currentX > x - 15 && currentX < (x + width - 15) && currentY > (y - 6) && currentY < (y + height - 6)) {
-
             buttonImage = waitclickImage;
             clicked = false;
         } else {

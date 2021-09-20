@@ -14,6 +14,7 @@ public class ShopAnimation {
 
     //动画出现的坐标
     private int AnimationX;
+
     private int AnimationY;
 
     private JPanel mp;

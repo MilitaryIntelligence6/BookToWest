@@ -10,6 +10,9 @@ import javax.swing.ImageIcon;
 import cn.misection.booktowest.scene.NPC;
 import cn.misection.booktowest.scene.SaveAndLoad;
 
+/**
+ * @author javaman
+ */
 public class Reader {
     // 文件流，缓冲流
     private BufferedReader br;

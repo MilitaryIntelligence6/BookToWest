@@ -45,6 +45,8 @@ public class CloudAnimation {
                     }
                 }
                 break;
+            default:
+                break;
         }
     }
 
