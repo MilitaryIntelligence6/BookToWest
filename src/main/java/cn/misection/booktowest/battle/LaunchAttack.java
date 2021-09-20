@@ -546,7 +546,7 @@ public class LaunchAttack {
             }
             battlePanel.getCheck().checkEnemyDead();
             //人物重新出现
-            battlePanel.getPet().setDraw(true);
+            battlePanel.getPet().setDrawn(true);
             //进度条继续
             battlePanel.getProgressBar().setPetX(battlePanel.getProgressBar().getBarX());
             //恢复
@@ -561,7 +561,7 @@ public class LaunchAttack {
         battlePanel.setCurrentRound(0);
         battlePanel.setCurrentBeAttacked(0);
         battlePanel.setCurrentPattern(0);
-        battlePanel.getProgressBar().setStop(false);
+        battlePanel.getProgressBar().setStopped(false);
     }
 
     public BattlePanel getBattlePanel() {

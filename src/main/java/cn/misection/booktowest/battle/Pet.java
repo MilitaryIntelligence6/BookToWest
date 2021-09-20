@@ -4,79 +4,119 @@ import java.awt.*;
 
 import cn.misection.booktowest.util.*;
 
-//陆雪琪召唤出的小精灵类
+/**
+ * 陆雪琪召唤出的小精灵类;
+ * @author javaman
+ */
 public class Pet {
+
     private Image petImage;
-    //小头像
+
+    /**
+     * 小头像
+     */
     private Image headImage;
-    //攻击力
+
+    /**
+     * 攻击力
+     */
     private int power;
-    //速度
+
+    /**
+     * 速度
+     */
     private int speed;
-    //位置坐标
-    private int x;
-    private int y;
-    //战斗面板引用
-    private BattlePanel bp;
-    //当前攻击对象
+
+    /**
+     * 位置坐标
+     */
+    private int x;private int y;
+
+    /**
+     * 战斗面板引用
+     */
+    private BattlePanel battlePanel;
+
+    /**
+     * 当前攻击对象
+     */
     private Enemy currentEnemy;
-    //当前造成的伤害
+
+    /**
+     * 当前造成的伤害
+     */
     private int currentDamage;
-    //当前造成的伤害类型
+
+    /**
+     * 当前造成的伤害类型
+     */
     private int currentDamageType;
 
-    //是否画出
-    private boolean isDraw;
-    //是否停止
-    private boolean isStop;
-    //计时器
+    /**
+     * 是否画出
+     */
+    private boolean drawn;
+
+    /**
+     * 是否停止
+     */
+    private boolean stopped;
+
+    /**
+     * 计时器
+     */
     private int code;
 
-    //构造方法
-    public Pet(BattlePanel bp) {
-        this.bp = bp;
+    public Pet(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
         x = 700;
         y = 400;
         loadImage();
         loadAnimation();
-        isDraw = true;
-        isStop = false;
+        drawn = true;
+        stopped = false;
 
         speed = (int) ((ZhangXiaoFan.speed + LuXueQi.getSpeed() + YuJie.speed) / 3);
         power = (int) ((ZhangXiaoFan.hurt + LuXueQi.getHurt() + YuJie.hurt) / 3);
     }
 
-    //选择攻击对象
+    /**
+     * 选择攻击对象;
+     */
     public void enemyToAttack() {
         int i = 0;
         while (true) {
             i = (int) (Math.random() * 3) + 5;
-            if (i == 5 && bp.getEnemyOne() != null) {
-                bp.setCurrentBeAttacked(5);
+            if (i == 5 && battlePanel.getEnemyOne() != null) {
+                battlePanel.setCurrentBeAttacked(5);
                 break;
             }
-            if (i == 6 && bp.getEnemyTwo() != null) {
-                bp.setCurrentBeAttacked(6);
+            if (i == 6 && battlePanel.getEnemyTwo() != null) {
+                battlePanel.setCurrentBeAttacked(6);
                 break;
             }
-            if (i == 7 && bp.getEnemyThree() != null) {
-                bp.setCurrentBeAttacked(7);
+            if (i == 7 && battlePanel.getEnemyThree() != null) {
+                battlePanel.setCurrentBeAttacked(7);
                 break;
             }
         }
     }
 
-    //计算伤害
+    /**
+     * 计算伤害;
+     */
     public void calDamage() {
-        switch (bp.getCurrentBeAttacked()) {
+        switch (battlePanel.getCurrentBeAttacked()) {
             case 5:
-                currentEnemy = bp.getEnemyOne();
+                currentEnemy = battlePanel.getEnemyOne();
                 break;
             case 6:
-                currentEnemy = bp.getEnemyTwo();
+                currentEnemy = battlePanel.getEnemyTwo();
                 break;
             case 7:
-                currentEnemy = bp.getEnemyThree();
+                currentEnemy = battlePanel.getEnemyThree();
+                break;
+            default:
                 break;
         }
 
@@ -87,39 +127,50 @@ public class Pet {
         currentDamageType = 1;
         currentEnemy.setHp(currentEnemy.getHp() - currentDamage);
         currentEnemy.setHp(currentEnemy.getHp() - currentDamage);
-        HurtValue hurtValue = new HurtValue(bp);
+        HurtValue hurtValue = new HurtValue(battlePanel);
         hurtValue.show(currentDamage, currentDamageType, currentEnemy.getX(), currentEnemy.getY());
-        bp.getHurtValues().add(hurtValue);
+        battlePanel.getHurtValues().add(hurtValue);
     }
 
-    //攻击
+    /**
+     * 攻击;
+     */
     public void attack() {
-        isDraw = false;
-        bp.getSkillAnimation().set("小精灵攻击", 22, 120, 135, 8, 1, 6, 16, 22, 90, 210, 0);
-        bp.getSkillAnimation().setDraw(true);
-        bp.getSkillAnimation().setStop(false);
+        drawn = false;
+        battlePanel.getSkillAnimation().set("小精灵攻击", 22, 120, 135, 8, 1, 6, 16, 22, 90, 210, 0);
+        battlePanel.getSkillAnimation().setDraw(true);
+        battlePanel.getSkillAnimation().setStop(false);
     }
 
-    //载入图片
+    /**
+     * 载入图片;
+     */
     public void loadImage() {
         petImage = Reader.readImage("image/小精灵/小精灵.png");
         headImage = Reader.readImage("image/小精灵/头像.png");
     }
 
-    //载入动画
+    /**
+     * 载入动画;
+     */
     public void loadAnimation() {
     }
 
-    //画出
+    /**
+     * 画出;
+     * @param g
+     */
     public void drawPet(Graphics g) {
-        if (isDraw) {
-            g.drawImage(petImage, x, y, bp);
+        if (drawn) {
+            g.drawImage(petImage, x, y, battlePanel);
         }
     }
 
-    //更新
+    /**
+     * 更新;
+     */
     public void update() {
-        if (!isStop) {
+        if (!stopped) {
             if (code < 5) {
                 y--;
                 code++;
@@ -182,12 +233,12 @@ public class Pet {
         this.y = y;
     }
 
-    public BattlePanel getBp() {
-        return bp;
+    public BattlePanel getBattlePanel() {
+        return battlePanel;
     }
 
-    public void setBp(BattlePanel bp) {
-        this.bp = bp;
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 
     public Enemy getCurrentEnemy() {
@@ -214,20 +265,20 @@ public class Pet {
         this.currentDamageType = currentDamageType;
     }
 
-    public boolean isDraw() {
-        return isDraw;
+    public boolean isDrawn() {
+        return drawn;
     }
 
-    public void setDraw(boolean draw) {
-        isDraw = draw;
+    public void setDrawn(boolean drawn) {
+        this.drawn = drawn;
     }
 
-    public boolean isStop() {
-        return isStop;
+    public boolean isStopped() {
+        return stopped;
     }
 
-    public void setStop(boolean stop) {
-        isStop = stop;
+    public void setStopped(boolean stopped) {
+        this.stopped = stopped;
     }
 
     public int getCode() {

@@ -342,7 +342,7 @@ public class BattlePanel extends JPanel implements Runnable {
         startAnimation = new StartAnimation(this);
 
         //进度条开始
-        progressBar.setStop(false);
+        progressBar.setStopped(false);
         command.setDrawn(false);
         drugMenu.setDrawn(false);
         instruct.setDrawn(false);

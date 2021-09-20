@@ -64,7 +64,7 @@ public class Check {
             }
 
             //进度条停止
-            battlePanel.getProgressBar().setDraw(false);
+            battlePanel.getProgressBar().setDrawn(false);
 
             battlePanel.getVictoryReminder().setDraw(true);
             battlePanel.getVictoryReminder().setStop(false);
@@ -97,7 +97,7 @@ public class Check {
         }
         if (isAllDead) {
             MusicReader.readMusic("战斗失败.wav");
-            battlePanel.getProgressBar().setDraw(false);
+            battlePanel.getProgressBar().setDrawn(false);
             battlePanel.getGameOver().setDrawn(true);
             battlePanel.getGameOver().setStopped(false);
         }

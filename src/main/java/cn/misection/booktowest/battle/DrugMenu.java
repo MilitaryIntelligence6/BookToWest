@@ -230,7 +230,7 @@ public class DrugMenu {
         }
         battlePanel.setCurrentRound(0);
         drawn = false;
-        battlePanel.getProgressBar().setStop(false);
+        battlePanel.getProgressBar().setStopped(false);
     }
 
     /**
