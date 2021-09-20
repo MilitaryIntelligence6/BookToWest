@@ -4,55 +4,109 @@ package cn.misection.booktowest.battle;
 import cn.misection.booktowest.util.Reader;
 
 import java.awt.*;
+import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * @author javaman
+ */
 public class SkillAnimation {
-    //当前图片引用
+
+    /**
+     * 当前图片引用
+     */
     private Image currentImage;
-    //图片集合
-    private ArrayList<Image> Images = new ArrayList<Image>();
-    //编号
+
+    /**
+     * 图片集合
+     */
+    private List<Image> Images = new ArrayList<Image>();
+
+    /**
+     * 编号
+     */
     private int code;
-    //长度
+
+    /**
+     * 长度
+     */
     private int length;
-    //出现位置
+
+    /**
+     * 出现位置
+     */
     private int x;
+
     private int y;
-    //初始位置
-    private int initialX;
-    private int initialY;
-    //战斗面板引用
+
+    /**
+     * 初始位置
+     */
+    private int initialX;private int initialY;
+
+    /**
+     * 战斗面板引用
+     */
     private BattlePanel bp;
-    //是否画出
+
+    /**
+     * 是否画出
+     */
     private boolean isDraw;
-    //是否停止
+
+    /**
+     * 是否停止
+     */
     private boolean isStop;
-    //是否发动结束的信号
+
+    /**
+     * 是否发动结束的信号
+     */
     private boolean isOver;
 
-    //被攻击方开始被击动画的编号
+    /**
+     * 被攻击方开始被击动画的编号
+     */
     private int beAttackedCode;
-    //被击动画播放的次数
+
+    /**
+     * 被击动画播放的次数
+     */
     private int beAttackedTimes;
-    //技能动画三个阶段的信号
-//跑位图
+
+    /*
+     * 技能动画三个阶段的信号
+     */
+    /**
+     * 跑位图
+     */
     private int runCode;
-    //攻击图
+
+    /**
+     * 攻击图
+     */
     private int attackCode;
-    //撤回图
+
+    /**
+     * 撤回图
+     */
     private int withdrawCode;
 
-    //相对于怪物1(中间)的偏移量
+    /**
+     * 相对于怪物1(中间)的偏移量
+     */
     private int offsetTo1;
-    //相对于怪物2(上方)的偏移量
+
+    /**
+     * 相对于怪物2(上方)的偏移量
+     */
     private int offsetTo2;
-    //相对于怪物3(下方)的偏移量
-    private int offsetTo3;
 
-    private String name;
-    ;
+    /**
+     * 相对于怪物3(下方)的偏移量
+     */
+    private int offsetTo3;private String name;
 
-    //构造方法
     public SkillAnimation(String name, int length, int x, int y, BattlePanel bp, int beAttackedCode,
                           int beAttackedTimes, int runCode, int attackCode, int withdrawCode, int offsetTo1,
                           int offsetTo2, int offsetTo3) {
@@ -87,7 +141,21 @@ public class SkillAnimation {
         isOver = false;
     }
 
-    //设置方法
+    /**
+     * 设置方法;
+     * @param name
+     * @param length
+     * @param x
+     * @param y
+     * @param beAttackedCode
+     * @param beAttackedTimes
+     * @param runCode
+     * @param attackCode
+     * @param withdrawCode
+     * @param offsetTo1
+     * @param offsetTo2
+     * @param offsetTo3
+     */
     public void set(String name, int length, int x, int y, int beAttackedCode, int beAttackedTimes, int runCode,
                     int attackCode, int withdrawCode, int offsetTo1, int offsetTo2, int offsetTo3) {
         this.name = name;
@@ -110,14 +178,19 @@ public class SkillAnimation {
         currentImage = Reader.readImage("image/技能动画/" + name + "/1.png");
     }
 
-    //画出动画
+    /**
+     * 画出动画;
+     * @param g
+     */
     public void drawAnimation(Graphics g) {
         if (isDraw && currentImage != null) {
             g.drawImage(currentImage, x, y, bp);
         }
     }
 
-    //更新
+    /**
+     * 更新;
+     */
     public void update() {
         if (!isStop) {
             //对象为敌人一
@@ -338,11 +411,11 @@ public class SkillAnimation {
         this.currentImage = currentImage;
     }
 
-    public ArrayList<Image> getImages() {
+    public List<Image> getImages() {
         return Images;
     }
 
-    public void setImages(ArrayList<Image> images) {
+    public void setImages(List<Image> images) {
         Images = images;
     }
 

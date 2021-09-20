@@ -5,39 +5,69 @@ import java.util.*;
 
 import cn.misection.booktowest.util.*;
 
-//战斗提示类
+/**
+ * @author javaman
+ * 战斗提示类;
+ */
 public class Reminder {
-    //图片引用
-    private Image currentImage;
-    //图片集合
-    private ArrayList<Image> images = new ArrayList<Image>();
-    //是否显示
-    private boolean isDraw;
-    //是否停止
-    private boolean isStop;
-    //中心
-    private int centreX;
-    private int centreY;
-    //编号
-    private int code;
-    //目标矩形第一个角的坐标
-    private int dx1;
-    private int dy1;
-    //目标矩形第二个角的坐标
-    private int dx2;
-    private int dy2;
-    //源矩形第一个角的坐标
-    private int sx1;
-    private int sy1;
-    //源矩形第二个角的坐标
-    private int sx2;
-    private int sy2;
-    //战斗面板引用
-    private BattlePanel bp;
 
-    //构造方法
-    public Reminder(BattlePanel bp, int centreX, int centreY) {
-        this.bp = bp;
+    /**
+     * 图片引用
+     */
+    private Image currentImage;
+
+    /**
+     * 图片集合
+     */
+    private ArrayList<Image> images = new ArrayList<Image>();
+
+    /**
+     * 是否显示
+     */
+    private boolean isDraw;
+
+    /**
+     * 是否停止
+     */
+    private boolean isStop;
+
+    /**
+     * 中心
+     */
+    private int centreX;private int centreY;
+
+    /**
+     * 编号
+     */
+    private int code;
+
+    /**
+     * 目标矩形第一个角的坐标
+     */
+    private int dx1;private int dy1;
+
+    /**
+     * 目标矩形第二个角的坐标
+     */
+    private int dx2;private int dy2;
+
+    /**
+     * 源矩形第一个角的坐标
+     */
+    private int sx1;private int sy1;
+
+    /**
+     * 源矩形第二个角的坐标
+     */
+    private int sx2;private int sy2;
+
+    /**
+     * 战斗面板引用
+     */
+    private BattlePanel battlePanel;
+
+    public Reminder(BattlePanel battlePanel, int centreX, int centreY) {
+        this.battlePanel = battlePanel;
 
         isDraw = false;
         isStop = true;
@@ -68,7 +98,7 @@ public class Reminder {
     //画出
     public void drawReminder(Graphics g) {
         if (isDraw) {
-            g.drawImage(currentImage, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, bp);
+            g.drawImage(currentImage, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, battlePanel);
         }
     }
 
@@ -222,11 +252,11 @@ public class Reminder {
         this.sy2 = sy2;
     }
 
-    public BattlePanel getBp() {
-        return bp;
+    public BattlePanel getBattlePanel() {
+        return battlePanel;
     }
 
-    public void setBp(BattlePanel bp) {
-        this.bp = bp;
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 }

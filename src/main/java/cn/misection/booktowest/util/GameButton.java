@@ -15,7 +15,7 @@ public class GameButton {
     protected int width;
     protected int height;
     protected Image normalImage;
-    protected Image waitclickImage;
+    protected Image waitClickImage;
     protected Image pressedImage;
     public Image buttonImage;
     protected JPanel mp;
@@ -23,14 +23,14 @@ public class GameButton {
     public boolean moveIn = false;
 
 
-    public GameButton(int x, int y, int width, int height, Image normalImage, Image waitclickImage, Image pressedImage,
+    public GameButton(int x, int y, int width, int height, Image normalImage, Image waitClickImage, Image pressedImage,
                       JPanel mp) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.normalImage = normalImage;
-        this.waitclickImage = waitclickImage;
+        this.waitClickImage = waitClickImage;
         this.pressedImage = pressedImage;
         this.buttonImage = normalImage;
         this.mp = mp;
@@ -39,7 +39,7 @@ public class GameButton {
 
     public void isMoveIn(int currentX, int currentY) {
         if (currentX > x - 15 && currentX < (x + width - 15) && currentY > (y - 6) && currentY < (y + height - 6)) {
-            buttonImage = waitclickImage;
+            buttonImage = waitClickImage;
             moveIn = true;
         } else {
             buttonImage = normalImage;
@@ -58,7 +58,7 @@ public class GameButton {
 
     public void isRelesedButton(int currentX, int currentY) {
         if (currentX > x - 15 && currentX < (x + width - 15) && currentY > (y - 6) && currentY < (y + height - 6)) {
-            buttonImage = waitclickImage;
+            buttonImage = waitClickImage;
             clicked = false;
         } else {
             buttonImage = normalImage;
