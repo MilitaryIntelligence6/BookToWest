@@ -10,27 +10,27 @@ import cn.misection.booktowest.util.*;
 public class EndPanel extends JPanel implements Runnable {
     private static final long serialVersionUID = 1L;
     //背景图
-    Image back;
-    Image currentImage;
-    Image word;
-    Image blank;
+    private Image back;
+    private Image currentImage;
+    private Image word;
+    private Image blank;
 
-    int Width;
-    int Height;
+    private int Width;
+    private int Height;
 
-    BufferedImage bufferedImage;
-    Graphics bufferGraphics;
+    private BufferedImage bufferedImage;
+    private Graphics bufferGraphics;
 
-    boolean isDraw;
-    boolean isStop;
+    private boolean isDraw;
+    private boolean isStop;
 
-    int wordX;
-    int wordY;
+    private int wordX;
+    private int wordY;
 
-    int blankX;
-    int blankY;
+    private int blankX;
+    private int blankY;
 
-    int code;
+    private int code;
 
     public EndPanel() {
         Width = 1024;
@@ -101,5 +101,127 @@ public class EndPanel extends JPanel implements Runnable {
             }
             update();
         }
+    }
+
+    public Image getBack() {
+        return back;
+    }
+
+    public void setBack(Image back) {
+        this.back = back;
+    }
+
+    public Image getCurrentImage() {
+        return currentImage;
+    }
+
+    public void setCurrentImage(Image currentImage) {
+        this.currentImage = currentImage;
+    }
+
+    public Image getWord() {
+        return word;
+    }
+
+    public void setWord(Image word) {
+        this.word = word;
+    }
+
+    public Image getBlank() {
+        return blank;
+    }
+
+    public void setBlank(Image blank) {
+        this.blank = blank;
+    }
+
+    @Override
+    public int getWidth() {
+        return Width;
+    }
+
+    public void setWidth(int width) {
+        Width = width;
+    }
+
+    @Override
+    public int getHeight() {
+        return Height;
+    }
+
+    public void setHeight(int height) {
+        Height = height;
+    }
+
+    public BufferedImage getBufferedImage() {
+        return bufferedImage;
+    }
+
+    public void setBufferedImage(BufferedImage bufferedImage) {
+        this.bufferedImage = bufferedImage;
+    }
+
+    public Graphics getBufferGraphics() {
+        return bufferGraphics;
+    }
+
+    public void setBufferGraphics(Graphics bufferGraphics) {
+        this.bufferGraphics = bufferGraphics;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public void setDraw(boolean draw) {
+        isDraw = draw;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
+    }
+
+    public int getWordX() {
+        return wordX;
+    }
+
+    public void setWordX(int wordX) {
+        this.wordX = wordX;
+    }
+
+    public int getWordY() {
+        return wordY;
+    }
+
+    public void setWordY(int wordY) {
+        this.wordY = wordY;
+    }
+
+    public int getBlankX() {
+        return blankX;
+    }
+
+    public void setBlankX(int blankX) {
+        this.blankX = blankX;
+    }
+
+    public int getBlankY() {
+        return blankY;
+    }
+
+    public void setBlankY(int blankY) {
+        this.blankY = blankY;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 }

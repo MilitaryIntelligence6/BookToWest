@@ -6,17 +6,18 @@ import java.awt.Image;
 
 public class CloudAnimation {
     //云出现的坐标
-    int x, y;
+    private int x;
+    private int y;
     //云的图片
-    Image cloudImage;
+    private Image cloudImage;
     //云一次移动的偏移量
-    int move;
+    private int move;
     //是否改变初始方向
-    boolean isChange;
+    private boolean isChange;
     //云移动的方向
-    int direction;
+    private int direction;
     //所化的panel
-    StartPanel panel;
+    private StartPanel panel;
 
     public CloudAnimation(int x, int y, Image cloudImage, int direction, StartPanel panel) {
         //此x，y为初始位置
@@ -60,5 +61,61 @@ public class CloudAnimation {
                 g.drawImage(cloudImage, -x, y, panel);
                 break;
         }
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public Image getCloudImage() {
+        return cloudImage;
+    }
+
+    public void setCloudImage(Image cloudImage) {
+        this.cloudImage = cloudImage;
+    }
+
+    public int getMove() {
+        return move;
+    }
+
+    public void setMove(int move) {
+        this.move = move;
+    }
+
+    public boolean isChange() {
+        return isChange;
+    }
+
+    public void setChange(boolean change) {
+        isChange = change;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public StartPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(StartPanel panel) {
+        this.panel = panel;
     }
 }

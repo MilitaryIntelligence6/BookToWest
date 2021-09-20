@@ -12,11 +12,11 @@ import javax.swing.JPanel;
  */
 public class Mouse {
     //鼠标的动画
-    StartAnimation mouseAnimation;
-    int[] pixels;
-    Image image;
-    Cursor transparentCursor;
-    JPanel panel;
+    private StartAnimation mouseAnimation;
+    private int[] pixels;
+    private Image image;
+    private Cursor transparentCursor;
+    private JPanel panel;
 
 
     public Mouse(StartAnimation animation, JPanel panel) {
@@ -41,5 +41,37 @@ public class Mouse {
 
     public void setMouseAnimation(StartAnimation mouseAnimation) {
         this.mouseAnimation = mouseAnimation;
+    }
+
+    public int[] getPixels() {
+        return pixels;
+    }
+
+    public void setPixels(int[] pixels) {
+        this.pixels = pixels;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public Cursor getTransparentCursor() {
+        return transparentCursor;
+    }
+
+    public void setTransparentCursor(Cursor transparentCursor) {
+        this.transparentCursor = transparentCursor;
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
     }
 }

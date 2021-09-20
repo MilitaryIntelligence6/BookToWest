@@ -21,44 +21,44 @@ public class LoadAndSavePanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private final static int WIDTH = 32 * 32;
     private final static int HEIGHT = 32 * 20;
-    Thread t = new Thread(GameApplication.scenePanel);
+    private Thread t = new Thread(GameApplication.scenePanel);
     // 缓冲图
-    final Image background;
-    Graphics backgroundGraphics;
+    private final Image backgroundBufferImage;
+    private Graphics backgroundGraphics;
 
     // 背景
-    Image backgroundImage;
+    private Image backgroundImage;
 
     // 初始化当前 游标的当前位置
-    int currentX = 0;
-    int currentY = 0;
+    private int currentX = 0;
+    private int currentY = 0;
 
     // 设置应有的动画
     // 按钮动画
-    ArrayList<StartAnimation> buttonAnimations = new ArrayList<StartAnimation>();
+    private ArrayList<StartAnimation> buttonAnimations = new ArrayList<StartAnimation>();
     // 人物动画
-    ArrayList<StartAnimation> zhangXiaoFan = new ArrayList<StartAnimation>();
-    ArrayList<StartAnimation> luXueQi = new ArrayList<StartAnimation>();
-    ArrayList<StartAnimation> wenMin = new ArrayList<StartAnimation>();
+    private ArrayList<StartAnimation> zhangXiaoFan = new ArrayList<StartAnimation>();
+    private ArrayList<StartAnimation> luXueQi = new ArrayList<StartAnimation>();
+    private ArrayList<StartAnimation> wenMin = new ArrayList<StartAnimation>();
     // 鼠标动画
-    Mouse mouse;
+    private Mouse mouse;
 
     // 设置应有的Button
-    ArrayList<StartButton> buttons = new ArrayList<StartButton>();
+    private ArrayList<StartButton> buttons = new ArrayList<StartButton>();
 
     // 创建读取和存档的装置
-    Loader loader;
-    Recorder recorder;
+    private Loader loader;
+    private Recorder recorder;
 
     // 判断画什么的数组
-    int[][] isRoleExist;
-    ArrayList<String> maps;
-    ArrayList<String> tasks;
+    private int[][] isRoleExist;
+    private ArrayList<String> maps;
+    private ArrayList<String> tasks;
 
     // 判断应该实现什么样的功能
-    public static boolean PanelState = false;
-    public static boolean SAVE = true;
-    public static boolean LOAD = false;
+    private static boolean PanelState = false;
+    private static boolean SAVE = true;
+    private static boolean LOAD = false;
 
     //记忆上一个panel是什么
     private String lastPanel;
@@ -66,12 +66,12 @@ public class LoadAndSavePanel extends JPanel {
     public LoadAndSavePanel() {
         // 初始化背景的缓冲图片
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        background = new BufferedImage(WIDTH, HEIGHT,
+        backgroundBufferImage = new BufferedImage(WIDTH, HEIGHT,
                 BufferedImage.TYPE_INT_ARGB);
 
         // 初始背景为黑色
         setBackground(new Color(0, 0, 0));
-        backgroundGraphics = background.getGraphics();
+        backgroundGraphics = backgroundBufferImage.getGraphics();
 
         // 设置鼠标监听
         setMouse();
@@ -89,6 +89,30 @@ public class LoadAndSavePanel extends JPanel {
         tasks = new ArrayList<String>();
 
         prepareScenes();
+    }
+
+    public static boolean isPanelState() {
+        return PanelState;
+    }
+
+    public static void setPanelState(boolean panelState) {
+        PanelState = panelState;
+    }
+
+    public static boolean isSAVE() {
+        return SAVE;
+    }
+
+    public static void setSAVE(boolean SAVE) {
+        LoadAndSavePanel.SAVE = SAVE;
+    }
+
+    public static boolean isLOAD() {
+        return LOAD;
+    }
+
+    public static void setLOAD(boolean LOAD) {
+        LoadAndSavePanel.LOAD = LOAD;
     }
 
     private void initialAnimations() {
@@ -303,7 +327,7 @@ public class LoadAndSavePanel extends JPanel {
         mouse.getMouseAnimation().setY(currentY);
         mouse.getMouseAnimation().drawAnimation(backgroundGraphics);
         // 加载缓存图
-        g.drawImage(background, 0, 0, this);
+        g.drawImage(backgroundBufferImage, 0, 0, this);
     }
 
     public void setLastPanel(String lastPanel) {
@@ -322,4 +346,139 @@ public class LoadAndSavePanel extends JPanel {
     }
 
 
+    public Thread getT() {
+        return t;
+    }
+
+    public void setT(Thread t) {
+        this.t = t;
+    }
+
+    public Image getBackgroundBufferImage() {
+        return backgroundBufferImage;
+    }
+
+    public Graphics getBackgroundGraphics() {
+        return backgroundGraphics;
+    }
+
+    public void setBackgroundGraphics(Graphics backgroundGraphics) {
+        this.backgroundGraphics = backgroundGraphics;
+    }
+
+    public Image getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(Image backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
+
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public void setCurrentX(int currentX) {
+        this.currentX = currentX;
+    }
+
+    public int getCurrentY() {
+        return currentY;
+    }
+
+    public void setCurrentY(int currentY) {
+        this.currentY = currentY;
+    }
+
+    public ArrayList<StartAnimation> getButtonAnimations() {
+        return buttonAnimations;
+    }
+
+    public void setButtonAnimations(ArrayList<StartAnimation> buttonAnimations) {
+        this.buttonAnimations = buttonAnimations;
+    }
+
+    public ArrayList<StartAnimation> getZhangXiaoFan() {
+        return zhangXiaoFan;
+    }
+
+    public void setZhangXiaoFan(ArrayList<StartAnimation> zhangXiaoFan) {
+        this.zhangXiaoFan = zhangXiaoFan;
+    }
+
+    public ArrayList<StartAnimation> getLuXueQi() {
+        return luXueQi;
+    }
+
+    public void setLuXueQi(ArrayList<StartAnimation> luXueQi) {
+        this.luXueQi = luXueQi;
+    }
+
+    public ArrayList<StartAnimation> getWenMin() {
+        return wenMin;
+    }
+
+    public void setWenMin(ArrayList<StartAnimation> wenMin) {
+        this.wenMin = wenMin;
+    }
+
+    public Mouse getMouse() {
+        return mouse;
+    }
+
+    public void setMouse(Mouse mouse) {
+        this.mouse = mouse;
+    }
+
+    public ArrayList<StartButton> getButtons() {
+        return buttons;
+    }
+
+    public void setButtons(ArrayList<StartButton> buttons) {
+        this.buttons = buttons;
+    }
+
+    public Loader getLoader() {
+        return loader;
+    }
+
+    public void setLoader(Loader loader) {
+        this.loader = loader;
+    }
+
+    public Recorder getRecorder() {
+        return recorder;
+    }
+
+    public void setRecorder(Recorder recorder) {
+        this.recorder = recorder;
+    }
+
+    public int[][] getIsRoleExist() {
+        return isRoleExist;
+    }
+
+    public void setIsRoleExist(int[][] isRoleExist) {
+        this.isRoleExist = isRoleExist;
+    }
+
+    public ArrayList<String> getMaps() {
+        return maps;
+    }
+
+    public void setMaps(ArrayList<String> maps) {
+        this.maps = maps;
+    }
+
+    public ArrayList<String> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(ArrayList<String> tasks) {
+        this.tasks = tasks;
+    }
+
+    public String getLastPanel() {
+        return lastPanel;
+    }
 }

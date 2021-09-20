@@ -219,7 +219,7 @@ public class FuncButtons {
             }
 
             GameApplication.lsPanel.setLastPanel("menu");
-            GameApplication.lsPanel.changeStateTo(LoadAndSavePanel.SAVE);
+            GameApplication.lsPanel.changeStateTo(LoadAndSavePanel.isSAVE());
             GameApplication.switchTo("ls");
 
         } else if (readButton.clicked) {
@@ -231,7 +231,7 @@ public class FuncButtons {
 
             }
             GameApplication.lsPanel.setLastPanel("menu");
-            GameApplication.lsPanel.changeStateTo(LoadAndSavePanel.LOAD);
+            GameApplication.lsPanel.changeStateTo(LoadAndSavePanel.isLOAD());
             GameApplication.switchTo("ls");
         } else if (setButton.clicked) {
             MusicReader.readMusic("换list.wav");

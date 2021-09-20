@@ -362,7 +362,7 @@ public class StartPanel extends JPanel {
             case 1:
                 if (loadTimer.stop()) {
                     GameApplication.lsPanel.setLastPanel("start");
-                    GameApplication.lsPanel.changeStateTo(LoadAndSavePanel.LOAD);
+                    GameApplication.lsPanel.changeStateTo(LoadAndSavePanel.isLOAD());
                     GameApplication.switchTo("ls");
                     loadAnimation.stopButtonAnimation();
                     loadAnimation2.stopButtonAnimation();
