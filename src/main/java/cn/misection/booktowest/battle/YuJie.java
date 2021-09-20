@@ -693,9 +693,9 @@ public class YuJie implements Hero {
     }
 
     @Override
-    public void setAngry(boolean isAngry) {
+    public void setAngry(boolean angry) {
 
-        this.isAngry = isAngry;
+        this.isAngry = angry;
     }
 
     @Override

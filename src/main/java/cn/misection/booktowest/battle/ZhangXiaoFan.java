@@ -648,8 +648,8 @@ public class ZhangXiaoFan implements Hero {
     }
 
     @Override
-    public void setAngry(boolean isAngry) {
-        this.isAngry = isAngry;
+    public void setAngry(boolean angry) {
+        this.isAngry = angry;
     }
 
     @Override

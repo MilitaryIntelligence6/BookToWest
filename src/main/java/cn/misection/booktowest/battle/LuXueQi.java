@@ -778,9 +778,9 @@ public class LuXueQi implements Hero {
     }
 
     @Override
-    public void setAngry(boolean isAngry) {
+    public void setAngry(boolean angry) {
         // TODO Auto-generated method stub
-        this.isAngry = isAngry;
+        this.isAngry = angry;
     }
 
     @Override

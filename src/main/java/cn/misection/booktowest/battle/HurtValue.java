@@ -5,53 +5,96 @@ import java.util.*;
 import cn.misection.booktowest.util.*;
 
 import java.awt.*;
+import java.util.List;
 
-//用于显示伤害值的类
+/**
+ * @author javaman
+ * 用于显示伤害值的类;
+ */
 public class HurtValue {
-    //图片引用
+
+    /**
+     * 图片引用
+     */
     private Image image;
-    //图片集合
-    private ArrayList<Image> images = new ArrayList<Image>();
-    //当前显示的图片集合
-    private ArrayList<Image> currentImages = new ArrayList<Image>();
-    //出现位置
+
+    /**
+     * 图片集合
+     */
+    private List<Image> images = new ArrayList<>();
+
+    /**
+     * 当前显示的图片集合
+     */
+    private List<Image> currentImages = new ArrayList<>();
+
+    /**
+     * 出现位置
+     */
     private int x;
     private int y;
-    //伤害值
+
+    /**
+     * 伤害值
+     */
     private int hurt;
-    //类型 1.伤害 2.回复
+
+    /**
+     * 类型 1.伤害 2.回复
+     */
     private int type;
-    //个位
+
+    /**
+     * 个位
+     */
     private int unit;
-    //十位
+
+    /**
+     * 十位
+     */
     private int ten;
-    //百位
+
+    /**
+     * 百位
+     */
     private int hundred;
-    //千位
+
+    /**
+     * 千位
+     */
     private int thousand;
-    //编号
+
+    /**
+     * 编号
+     */
     private int code;
 
-    //是否画出
-    private boolean isDraw;
-    //是否停止
-    private boolean isStop;
+    /**
+     * 是否画出
+     */
+    private boolean drawn;
 
-    //战斗面板引用
-    private BattlePanel bp;
+    /**
+     * 是否停止
+     */
+    private boolean stopped;
 
-    //构造函数
-    public HurtValue(BattlePanel bp) {
-        this.bp = bp;
+    /**
+     * 战斗面板引用
+     */
+    private BattlePanel battlePanel;
 
-        code = 1;
-        isDraw = false;
-        isStop = true;
-
+    public HurtValue(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
+        this.code = 1;
+        this.drawn = false;
+        this.stopped = true;
         loadImage();
     }
 
-    //读入图片
+    /**
+     * 读入图片;
+     */
     public void loadImage() {
         for (int i = 0; i <= 9; i++) {
             image = Reader.readImage("image/伤害值数字/伤害/" + i + ".png");
@@ -147,9 +190,9 @@ public class HurtValue {
 
     //画出
     public void drawHurtValue(Graphics g) {
-        if (isDraw) {
+        if (drawn) {
             for (int i = 0; i < currentImages.size(); i++) {
-                g.drawImage(currentImages.get(i), x + 16 * i, y, bp);
+                g.drawImage(currentImages.get(i), x + 16 * i, y, battlePanel);
             }
         }
     }
@@ -167,13 +210,13 @@ public class HurtValue {
 
     //开始
     public void start() {
-        isDraw = true;
-        isStop = false;
+        drawn = true;
+        stopped = false;
     }
 
     //更新
     public void update() {
-        if (!isStop) {
+        if (!stopped) {
             if (code <= 5) {
                 this.y -= 2;
                 code++;
@@ -181,8 +224,8 @@ public class HurtValue {
                 this.y += 1;
                 code++;
             } else {
-                isStop = true;
-                isDraw = false;
+                stopped = true;
+                drawn = false;
                 code = 1;
                 //清空
                 currentImages.clear();
@@ -234,19 +277,19 @@ public class HurtValue {
         this.image = image;
     }
 
-    public ArrayList<Image> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<Image> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 
-    public ArrayList<Image> getCurrentImages() {
+    public List<Image> getCurrentImages() {
         return currentImages;
     }
 
-    public void setCurrentImages(ArrayList<Image> currentImages) {
+    public void setCurrentImages(List<Image> currentImages) {
         this.currentImages = currentImages;
     }
 
@@ -322,27 +365,27 @@ public class HurtValue {
         this.code = code;
     }
 
-    public boolean isDraw() {
-        return isDraw;
+    public boolean isDrawn() {
+        return drawn;
     }
 
-    public void setDraw(boolean draw) {
-        isDraw = draw;
+    public void setDrawn(boolean drawn) {
+        this.drawn = drawn;
     }
 
-    public boolean isStop() {
-        return isStop;
+    public boolean isStopped() {
+        return stopped;
     }
 
-    public void setStop(boolean stop) {
-        isStop = stop;
+    public void setStopped(boolean stopped) {
+        this.stopped = stopped;
     }
 
-    public BattlePanel getBp() {
-        return bp;
+    public BattlePanel getBattlePanel() {
+        return battlePanel;
     }
 
-    public void setBp(BattlePanel bp) {
-        this.bp = bp;
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 }

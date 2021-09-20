@@ -23,7 +23,7 @@ public interface Hero {
     /**
      * 设置是否愤怒
      */
-    void setAngry(boolean isAngry);
+    void setAngry(boolean angry);
 
     /**
      * 得到怒气值
@@ -224,12 +224,28 @@ public interface Hero {
      */
     void setDead(boolean isDead);
 
+    /**
+     * set 体力;
+     * @param physicalPower
+     */
     void setPhysicalPower(int physicalPower);
 
+    /**
+     * set 精神;
+     * @param sprit
+     */
     void setSprit(int sprit);
 
+    /**
+     * set 敏捷
+     * @param agile
+     */
     void setAgile(int agile);
 
+    /**
+     * set 体力;
+     * @param strength
+     */
     void setStrength(int strength);
 
 }

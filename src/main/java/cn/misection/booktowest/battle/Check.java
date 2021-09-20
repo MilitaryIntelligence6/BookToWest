@@ -98,8 +98,8 @@ public class Check {
         if (isAllDead) {
             MusicReader.readMusic("战斗失败.wav");
             battlePanel.getProgressBar().setDraw(false);
-            battlePanel.getGameOver().setDraw(true);
-            battlePanel.getGameOver().setStop(false);
+            battlePanel.getGameOver().setDrawn(true);
+            battlePanel.getGameOver().setStopped(false);
         }
     }
 

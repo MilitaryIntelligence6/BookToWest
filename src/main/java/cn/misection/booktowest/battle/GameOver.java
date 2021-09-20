@@ -5,81 +5,122 @@ import java.awt.*;
 import cn.misection.booktowest.app.GameApplication;
 import cn.misection.booktowest.util.*;
 
-//我方全灭之后的图案
+/**
+ * @author javaman
+ * 我方全灭之后的图案;
+ */
 public class GameOver {
+
     private Image image1;
+
     private Image image2;
 
-    //左图的八个坐标
+    /**
+     * 左图的八个坐标;
+     */
     private int ldx1;
+
     private int ldy1;
+
     private int ldx2;
+
     private int ldy2;
+
     private int lsx1;
+
     private int lsy1;
+
     private int lsx2;
+
     private int lsy2;
 
-    //右图的八个坐标
+    /**
+     * 右图的八个坐标;
+     */
     private int rdx1;
+
     private int rdy1;
+
     private int rdx2;
+
     private int rdy2;
+
     private int rsx1;
+
     private int rsy1;
+
     private int rsx2;
+
     private int rsy2;
 
-    //计数器
+    /**
+     * 计数器;
+     */
     private int code;
-    //是否画出
-    private boolean isDraw;
-    //是否停止
-    private boolean isStop;
-    //战斗面板引用
-    private BattlePanel bp;
 
-    public GameOver(BattlePanel bp) {
-        this.bp = bp;
+    /**
+     * 是否画出;
+     */
+    private boolean drawn;
+
+    /**
+     * 是否停止;
+     */
+    private boolean stopped;
+
+    /**
+     * 战斗面板引用;
+     */
+    private BattlePanel battlePanel;
+
+    public GameOver(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
         loadImage();
-        this.isDraw = false;
-        this.isStop = true;
-        ldx1 = 0;
-        ldy1 = 0;
-        ldx2 = 0;
-        ldy2 = 640;
-        lsx1 = 0;
-        lsy1 = 0;
-        lsx2 = 0;
-        lsy2 = 640;
+        this.drawn = false;
+        this.stopped = true;
+        this.ldx1 = 0;
+        this.ldy1 = 0;
+        this.ldx2 = 0;
+        this.ldy2 = 640;
+        this.lsx1 = 0;
+        this.lsy1 = 0;
+        this.lsx2 = 0;
+        this.lsy2 = 640;
 
-        rdx1 = 1024;
-        rdy1 = 0;
-        rdx2 = 1024;
-        rdy2 = 640;
-        rsx1 = 512;
-        rsy1 = 0;
-        rsx2 = 512;
-        rsy2 = 640;
+        this.rdx1 = 1024;
+        this.rdy1 = 0;
+        this.rdx2 = 1024;
+        this.rdy2 = 640;
+        this.rsx1 = 512;
+        this.rsy1 = 0;
+        this.rsx2 = 512;
+        this.rsy2 = 640;
     }
 
-    //载入图片
+    /**
+     * 载入图片;
+     */
     public void loadImage() {
         image1 = Reader.readImage("image/全灭图/全灭图1.png");
         image2 = Reader.readImage("image/全灭图/全灭图2.png");
     }
 
-    //画出
+    /**
+     * 画出;
+     * @param g
+     */
     public void drawGameOver(Graphics g) {
-        if (isDraw) {
-            g.drawImage(image1, ldx1, ldy1, ldx2, ldy2, lsx1, lsy1, lsx2, lsy2, bp);
-            g.drawImage(image2, rdx1, rdy1, rdx2, rdy2, rsx1, rsy1, rsx2, rsy2, bp);
+        if (drawn) {
+            g.drawImage(image1, ldx1, ldy1, ldx2, ldy2, lsx1, lsy1, lsx2, lsy2, battlePanel);
+            g.drawImage(image2, rdx1, rdy1, rdx2, rdy2, rsx1, rsy1, rsx2, rsy2, battlePanel);
         }
     }
 
-    //更新
+    /**
+     * 更新;
+     */
     public void update() {
-        if (!isStop) {
+        if (!stopped) {
             if (lsx2 < 512) {
                 lsx2 += 8;
                 ldx2 += 8;
@@ -92,38 +133,38 @@ public class GameOver {
                 }
                 if (code == 10) {
                     //跳转回开始界面
-                    if (bp.getEnemyOne().getName().equals("罹年居士")) {
+                    if (battlePanel.getEnemyOne().getName().equals("罹年居士")) {
                         GameApplication.switchTo("scene");
-                        bp.setEnemyOne(null);
-                        bp.getEnemyList().clear();
-                        bp.getZxf().deadAnimation.setDrawn(false);
-                        bp.getZxf().isDraw = true;
+                        battlePanel.setEnemyOne(null);
+                        battlePanel.getEnemyList().clear();
+                        battlePanel.getZxf().deadAnimation.setDrawn(false);
+                        battlePanel.getZxf().isDraw = true;
                         ZhangXiaoFan.hp = ZhangXiaoFan.hpMax / 2;
-                        bp.getYj().deadAnimation.setDrawn(false);
-                        bp.getYj().isDraw = true;
+                        battlePanel.getYj().deadAnimation.setDrawn(false);
+                        battlePanel.getYj().isDraw = true;
                         YuJie.hp = YuJie.hpMax / 2;
-                        bp.getHeroes().clear();
+                        battlePanel.getHeroes().clear();
                     } else {
                         GameApplication.switchTo("start");
-                        bp.setEnemyOne(null);
-                        bp.setEnemyTwo(null);
-                        bp.setEnemyThree(null);
-                        bp.getEnemyList().clear();
-                        if (bp.getZxf() != null) {
-                            bp.getZxf().deadAnimation.setDrawn(false);
-                            bp.getZxf().isDraw = true;
+                        battlePanel.setEnemyOne(null);
+                        battlePanel.setEnemyTwo(null);
+                        battlePanel.setEnemyThree(null);
+                        battlePanel.getEnemyList().clear();
+                        if (battlePanel.getZxf() != null) {
+                            battlePanel.getZxf().deadAnimation.setDrawn(false);
+                            battlePanel.getZxf().isDraw = true;
                         }
-                        if (bp.getYj() != null) {
-                            bp.getYj().deadAnimation.setDrawn(false);
-                            bp.getYj().isDraw = true;
+                        if (battlePanel.getYj() != null) {
+                            battlePanel.getYj().deadAnimation.setDrawn(false);
+                            battlePanel.getYj().isDraw = true;
                         }
-                        if (bp.getLxq() != null) {
-                            bp.getLxq().setDrawn(true);
-                            bp.getLxq().getDeadAnimation().setDrawn(false);
+                        if (battlePanel.getLxq() != null) {
+                            battlePanel.getLxq().setDrawn(true);
+                            battlePanel.getLxq().getDeadAnimation().setDrawn(false);
                         }
-                        bp.getHeroes().clear();
+                        battlePanel.getHeroes().clear();
                     }
-                    isStop = true;
+                    stopped = true;
                 }
             }
         }
@@ -281,27 +322,27 @@ public class GameOver {
         this.code = code;
     }
 
-    public boolean isDraw() {
-        return isDraw;
+    public boolean isDrawn() {
+        return drawn;
     }
 
-    public void setDraw(boolean draw) {
-        isDraw = draw;
+    public void setDrawn(boolean drawn) {
+        this.drawn = drawn;
     }
 
-    public boolean isStop() {
-        return isStop;
+    public boolean isStopped() {
+        return stopped;
     }
 
-    public void setStop(boolean stop) {
-        isStop = stop;
+    public void setStopped(boolean stopped) {
+        this.stopped = stopped;
     }
 
-    public BattlePanel getBp() {
-        return bp;
+    public BattlePanel getBattlePanel() {
+        return battlePanel;
     }
 
-    public void setBp(BattlePanel bp) {
-        this.bp = bp;
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 }
