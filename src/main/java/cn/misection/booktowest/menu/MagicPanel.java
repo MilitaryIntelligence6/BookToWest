@@ -1,6 +1,7 @@
 package cn.misection.booktowest.menu;
 
 import java.awt.*;
+import java.util.List;
 import java.util.ArrayList;
 
 import cn.misection.booktowest.media.MusicReader;
@@ -9,24 +10,21 @@ import cn.misection.booktowest.util.Reader;
 
 public class MagicPanel extends FatherPanel {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 6674008507522389308L;
     private magicDiscription discription;
     private MagicAnimation currentAnimation;
     //MagicAnimation animationDiscription;
-    private ArrayList<MagicAnimation> zhang_animation = new ArrayList<MagicAnimation>();
-    private ArrayList<MagicAnimation> lu_animation = new ArrayList<MagicAnimation>();
-    private ArrayList<MagicAnimation> song_animation = new ArrayList<MagicAnimation>();
-    private ArrayList<MagicAnimation> yu_animation = new ArrayList<MagicAnimation>();
+    private List<MagicAnimation> zhang_animation = new ArrayList<>();
+    private List<MagicAnimation> lu_animation = new ArrayList<>();
+    private List<MagicAnimation> song_animation = new ArrayList<>();
+    private List<MagicAnimation> yu_animation = new ArrayList<>();
 
 
-    private ArrayList<MenuButton> buttonList1 = new ArrayList<MenuButton>();
-    private ArrayList<MenuButton> buttonList2 = new ArrayList<MenuButton>();
-    private ArrayList<MenuButton> buttonList3 = new ArrayList<MenuButton>();
-    private ArrayList<MenuButton> buttonList4 = new ArrayList<MenuButton>();
-    private ArrayList<ArrayList<MenuButton>> buttonList = new ArrayList<ArrayList<MenuButton>>();
+    private List<MenuButton> buttonList1 = new ArrayList<>();
+    private List<MenuButton> buttonList2 = new ArrayList<>();
+    private List<MenuButton> buttonList3 = new ArrayList<>();
+    private List<MenuButton> buttonList4 = new ArrayList<>();
+    private List<List<MenuButton>> buttonList = new ArrayList<>();
     private MenuButton button_lu_1;
     private MenuButton button_lu_2;
     private MenuButton button_lu_3;
@@ -59,8 +57,6 @@ public class MagicPanel extends FatherPanel {
         discription = new magicDiscription();
         addMagicButton();
         addMagicAnimation();
-
-
     }
 
     private void addMagicButton() {
@@ -332,7 +328,7 @@ public class MagicPanel extends FatherPanel {
                 break;
         }
 
-        for (ArrayList<MenuButton> list : buttonList) {
+        for (List<MenuButton> list : buttonList) {
             for (MenuButton button : list) {
                 button.drawButton(g);
             }
@@ -344,6 +340,7 @@ public class MagicPanel extends FatherPanel {
 
     }
 
+    @Override
     public void update() {
         // TODO Auto-generated method stub
         if (currentAnimation != null) {
@@ -369,7 +366,7 @@ public class MagicPanel extends FatherPanel {
         // TODO Auto-generated method stub
 
         getScoll().checkReleased();
-        for (ArrayList<MenuButton> list : buttonList) {
+        for (List<MenuButton> list : buttonList) {
             for (MenuButton button : list) {
                 button.isRelesedButton(getCurrentX(), getCurrentY());
             }
@@ -472,15 +469,14 @@ public class MagicPanel extends FatherPanel {
     }
 
     @Override
-    public ArrayList<String> saveEquipInfo() {
+    public List<String> saveEquipInfo() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void initialEquipInfo(ArrayList<String> menuInfo) {
+    public void initialEquipInfo(List<String> menuInfo) {
         // TODO Auto-generated method stub
-
     }
 
 
@@ -500,75 +496,75 @@ public class MagicPanel extends FatherPanel {
         this.currentAnimation = currentAnimation;
     }
 
-    public ArrayList<MagicAnimation> getZhang_animation() {
+    public List<MagicAnimation> getZhang_animation() {
         return zhang_animation;
     }
 
-    public void setZhang_animation(ArrayList<MagicAnimation> zhang_animation) {
+    public void setZhang_animation(List<MagicAnimation> zhang_animation) {
         this.zhang_animation = zhang_animation;
     }
 
-    public ArrayList<MagicAnimation> getLu_animation() {
+    public List<MagicAnimation> getLu_animation() {
         return lu_animation;
     }
 
-    public void setLu_animation(ArrayList<MagicAnimation> lu_animation) {
+    public void setLu_animation(List<MagicAnimation> lu_animation) {
         this.lu_animation = lu_animation;
     }
 
-    public ArrayList<MagicAnimation> getSong_animation() {
+    public List<MagicAnimation> getSong_animation() {
         return song_animation;
     }
 
-    public void setSong_animation(ArrayList<MagicAnimation> song_animation) {
+    public void setSong_animation(List<MagicAnimation> song_animation) {
         this.song_animation = song_animation;
     }
 
-    public ArrayList<MagicAnimation> getYu_animation() {
+    public List<MagicAnimation> getYu_animation() {
         return yu_animation;
     }
 
-    public void setYu_animation(ArrayList<MagicAnimation> yu_animation) {
+    public void setYu_animation(List<MagicAnimation> yu_animation) {
         this.yu_animation = yu_animation;
     }
 
-    public ArrayList<MenuButton> getButtonList1() {
+    public List<MenuButton> getButtonList1() {
         return buttonList1;
     }
 
-    public void setButtonList1(ArrayList<MenuButton> buttonList1) {
+    public void setButtonList1(List<MenuButton> buttonList1) {
         this.buttonList1 = buttonList1;
     }
 
-    public ArrayList<MenuButton> getButtonList2() {
+    public List<MenuButton> getButtonList2() {
         return buttonList2;
     }
 
-    public void setButtonList2(ArrayList<MenuButton> buttonList2) {
+    public void setButtonList2(List<MenuButton> buttonList2) {
         this.buttonList2 = buttonList2;
     }
 
-    public ArrayList<MenuButton> getButtonList3() {
+    public List<MenuButton> getButtonList3() {
         return buttonList3;
     }
 
-    public void setButtonList3(ArrayList<MenuButton> buttonList3) {
+    public void setButtonList3(List<MenuButton> buttonList3) {
         this.buttonList3 = buttonList3;
     }
 
-    public ArrayList<MenuButton> getButtonList4() {
+    public List<MenuButton> getButtonList4() {
         return buttonList4;
     }
 
-    public void setButtonList4(ArrayList<MenuButton> buttonList4) {
+    public void setButtonList4(List<MenuButton> buttonList4) {
         this.buttonList4 = buttonList4;
     }
 
-    public ArrayList<ArrayList<MenuButton>> getButtonList() {
+    public List<List<MenuButton>> getButtonList() {
         return buttonList;
     }
 
-    public void setButtonList(ArrayList<ArrayList<MenuButton>> buttonList) {
+    public void setButtonList(List<List<MenuButton>> buttonList) {
         this.buttonList = buttonList;
     }
 

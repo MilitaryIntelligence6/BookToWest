@@ -14,6 +14,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.awt.image.MemoryImageSource;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -24,10 +25,11 @@ import cn.misection.booktowest.scene.SaveAndLoad;
 import cn.misection.booktowest.util.GameButton;
 import cn.misection.booktowest.util.Reader;
 
+/**
+ * @author javaman
+ */
 public class EquipmentShopPanel extends JPanel {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = -1930609849857145580L;
     private final static int WIDTH = 32 * 32;
     private final static int HEIGHT = 32 * 20;
@@ -50,14 +52,13 @@ public class EquipmentShopPanel extends JPanel {
     // 偏移量
     int move = 5;
 
-
     // 装备店专属属性
-    ArrayList<Equipment> helmetList = new ArrayList<Equipment>();
-    ArrayList<Equipment> armorList = new ArrayList<Equipment>();
-    ArrayList<Equipment> weaponList = new ArrayList<Equipment>();
-    ArrayList<Equipment> gloveList = new ArrayList<Equipment>();
-    ArrayList<Equipment> shoeList = new ArrayList<Equipment>();
-    ArrayList<Equipment> decorationList = new ArrayList<Equipment>();
+    List<Equipment> helmetList;
+    List<Equipment> armorList;
+    List<Equipment> weaponList;
+    List<Equipment> gloveList;
+    List<Equipment> shoeList;
+    List<Equipment> decorationList;
 
     //决定先出现哪个栏目的重要字符串
     String equipment = "weapon";
@@ -67,7 +68,7 @@ public class EquipmentShopPanel extends JPanel {
     String messageplus;
     String messageremark;
     //创建动画
-    ArrayList<ShopAnimation> ani = new ArrayList<ShopAnimation>();
+    List<ShopAnimation> ani = new ArrayList<>();
 
     // 各种按钮
     GameButton buy = new GameButton(445, 75, 149, 40,
@@ -108,7 +109,7 @@ public class EquipmentShopPanel extends JPanel {
             Reader.readImage("sources/Shop/按钮组件/饰品1.png"),
             Reader.readImage("sources/Shop/按钮组件/饰品2.png"), this);
     //创建保存按钮的arraylist
-    ArrayList<GameButton> buttonList = new ArrayList<GameButton>();
+    List<GameButton> buttonList = new ArrayList<>();
 
     public EquipmentShopPanel() {
         // 设定大小
@@ -139,6 +140,7 @@ public class EquipmentShopPanel extends JPanel {
         // 鼠标动画
         Thread mouseAnimation = new Thread() {
 
+            @Override
             public void run() {
                 while (true) {
                     for (int i = 0; i < 8; i++) {
@@ -260,6 +262,7 @@ public class EquipmentShopPanel extends JPanel {
         // 插入透明游标，以此模拟无游标状态
         setCursor(transparentCursor);
         addMouseListener(new MouseAdapter() {
+            @Override
             public void mousePressed(MouseEvent e) {
                 currentX = e.getX();
                 currentY = e.getY();
@@ -269,6 +272,7 @@ public class EquipmentShopPanel extends JPanel {
                 repaint();
             }
 
+            @Override
             public void mouseReleased(MouseEvent e) {
                 currentX = e.getX();
                 currentY = e.getY();
@@ -277,6 +281,7 @@ public class EquipmentShopPanel extends JPanel {
         });
 
         addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
             public void mouseMoved(MouseEvent ex) {
                 currentX = ex.getX();
                 currentY = ex.getY();
@@ -288,6 +293,7 @@ public class EquipmentShopPanel extends JPanel {
                 repaint();
             }
 
+            @Override
             public void mouseDragged(MouseEvent ex) {
                 currentX = ex.getX();
                 currentY = ex.getY();
@@ -424,7 +430,7 @@ public class EquipmentShopPanel extends JPanel {
         repaint();
     }
 
-    public ArrayList<Equipment> listTable(String s) {
+    public List<Equipment> listTable(String s) {
         switch (s) {
             case "armor":
                 return armorList;
@@ -535,8 +541,8 @@ public class EquipmentShopPanel extends JPanel {
         g.drawImage(Reader.readImage("sources/Shop/按钮组件/钱.png"), 880, 0, this);
     }
 
+    @Override
     public void paint(Graphics g) {
-
         super.paint(g);
         // 画背景
         backgroundGraphics.drawImage(backgroundImage, 0, 0, this);
@@ -552,8 +558,8 @@ public class EquipmentShopPanel extends JPanel {
         g.drawImage(background, 0, 0, this);
     }
 
-    public ArrayList<String> saveEquipmentShopInfo() {
-        ArrayList<String> equipmentShopInfo = new ArrayList<String>();
+    public List<String> saveEquipmentShopInfo() {
+        List<String> equipmentShopInfo = new ArrayList<>();
         for (Equipment e : EquipmentPack.helmetList) {
             equipmentShopInfo.add(Integer.toString(e.getNumberGOT()));
         }
@@ -575,7 +581,7 @@ public class EquipmentShopPanel extends JPanel {
         return equipmentShopInfo;
     }
 
-    public void initialEquipmentShopInfo(ArrayList<String> equipmentShopInfo) {
+    public void initialEquipmentShopInfo(List<String> equipmentShopInfo) {
         int counter = 0;
         for (int i = 0 + counter; i < helmetList.size(); i++) {
             helmetList.get(i).setNumberGOT(Integer.parseInt(equipmentShopInfo.get(i + counter)));

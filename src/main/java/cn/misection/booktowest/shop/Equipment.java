@@ -2,6 +2,9 @@ package cn.misection.booktowest.shop;
 
 import java.awt.Image;
 
+/**
+ * @author javaman
+ */
 public class Equipment {
     private String name;
     private int addPhysicalPower;

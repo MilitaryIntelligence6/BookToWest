@@ -4,18 +4,25 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 
 import cn.misection.booktowest.util.Reader;
 
+/**
+ * @author javaman
+ */
 public class ShopReader {
 
-    static BufferedReader br;
+    private static BufferedReader br;
 
-    // 读取收shop的方法
-    public static ArrayList<Drug> readDrug() {
-        ArrayList<Drug> druglist = new ArrayList<Drug>();
+    /**
+     * 读取收shop的方法;
+     * @return
+     */
+    public static List<Drug> readDrug() {
+        List<Drug> druglist = new ArrayList<>();
         File file = new File("sources/Shop/drug.txt");
         try {
             br = new BufferedReader(new FileReader(file));
@@ -40,8 +47,8 @@ public class ShopReader {
         return druglist;
     }
 
-    public static ArrayList<Equipment> readEquipment(String s) {
-        ArrayList<Equipment> equipmentList = new ArrayList<Equipment>();
+    public static List<Equipment> readEquipment(String s) {
+        List<Equipment> equipmentList = new ArrayList<>();
         File file = new File("sources/Shop/" + s + ".txt");
         try {
             br = new BufferedReader(new FileReader(file));

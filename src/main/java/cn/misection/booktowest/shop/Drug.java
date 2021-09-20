@@ -2,6 +2,9 @@ package cn.misection.booktowest.shop;
 
 import java.awt.Image;
 
+/**
+ * @author javaman
+ */
 public class Drug {
     private String name;
     private int addHp;

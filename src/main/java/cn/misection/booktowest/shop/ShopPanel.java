@@ -14,6 +14,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.awt.image.MemoryImageSource;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JPanel;
 
 import cn.misection.booktowest.scene.SaveAndLoad;
@@ -34,7 +35,7 @@ public class ShopPanel extends JPanel {
     final Image[] mouses = new Image[8];
 
     // 按钮的图片
-    ArrayList<Image> icons = new ArrayList<Image>();
+    List<Image> icons = new ArrayList<>();
     Image image1;
     Image drugImage;
 
@@ -48,12 +49,12 @@ public class ShopPanel extends JPanel {
     // 偏移量
     int move = 5;
     // 药店专属属性
-    ArrayList<Drug> drugList = new ArrayList<Drug>();
+    List<Drug> drugList;
     //店主说的话
     String message = "欢迎来到金陵大学医院";
     String messageplus;
     //创建动画
-    ArrayList<ShopAnimation> ani = new ArrayList<ShopAnimation>();
+    List<ShopAnimation> ani = new ArrayList<>();
 
 
     // 各种按钮
@@ -71,7 +72,7 @@ public class ShopPanel extends JPanel {
             Reader.readImage("sources/Shop/返回游戏 (3).png"), this);
 
 
-    ArrayList<GameButton> buttonlist = new ArrayList<GameButton>();
+    List<GameButton> buttonlist = new ArrayList<>();
 
 
     public ShopPanel() {
@@ -99,6 +100,7 @@ public class ShopPanel extends JPanel {
         setMouse();
         // 鼠标动画
         Thread mouseAnimation = new Thread() {
+            @Override
             public void run() {
                 while (true) {
                     for (int i = 0; i < 8; i++) {
@@ -172,6 +174,7 @@ public class ShopPanel extends JPanel {
         // 插入透明游标，以此模拟无游标状态
         setCursor(transparentCursor);
         addMouseListener(new MouseAdapter() {
+            @Override
             public void mousePressed(MouseEvent e) {
                 currentX = e.getX();
                 currentY = e.getY();
@@ -181,6 +184,7 @@ public class ShopPanel extends JPanel {
                 repaint();
             }
 
+            @Override
             public void mouseReleased(MouseEvent e) {
                 currentX = e.getX();
                 currentY = e.getY();
@@ -189,6 +193,7 @@ public class ShopPanel extends JPanel {
         });
 
         addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
             public void mouseMoved(MouseEvent ex) {
                 currentX = ex.getX();
                 currentY = ex.getY();
@@ -200,6 +205,7 @@ public class ShopPanel extends JPanel {
                 repaint();
             }
 
+            @Override
             public void mouseDragged(MouseEvent ex) {
                 currentX = ex.getX();
                 currentY = ex.getY();
@@ -341,8 +347,8 @@ public class ShopPanel extends JPanel {
         g.drawImage(Reader.readImage("sources/Shop/按钮组件/钱.png"), 880, 0, this);
     }
 
+    @Override
     public void paint(Graphics g) {
-
         super.paint(g);
         // 画背景
         backgroundGraphics.drawImage(backgroundImage, 0, 0, this);
@@ -358,9 +364,12 @@ public class ShopPanel extends JPanel {
         g.drawImage(background, 0, 0, this);
     }
 
-    //提供接口给Recorder和loader
-    public ArrayList<String> saveShopInfo() {
-        ArrayList<String> shopInfo = new ArrayList<String>();
+    /**
+     * 提供接口给Recorder和loader;
+     * @return
+     */
+    public List<String> saveShopInfo() {
+        List<String> shopInfo = new ArrayList<>();
         for (Drug drug : DrugPack.drugList) {
             shopInfo.add(Integer.toString(drug.getNumberGOT()));
         }
@@ -368,7 +377,7 @@ public class ShopPanel extends JPanel {
         return shopInfo;
     }
 
-    public void initialShopInfo(ArrayList<String> shopInfo) {
+    public void initialShopInfo(List<String> shopInfo) {
         for (int i = 0; i < DrugPack.drugList.size(); i++) {
             DrugPack.drugList.get(i).setNumberGOT(Integer.parseInt(shopInfo.get(i)));
         }

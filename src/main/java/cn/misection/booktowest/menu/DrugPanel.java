@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 
@@ -14,6 +15,9 @@ import cn.misection.booktowest.battle.*;
 import cn.misection.booktowest.shop.*;
 import cn.misection.booktowest.util.*;
 
+/**
+ * @author javaman
+ */
 public class DrugPanel extends FatherPanel {
 
     private static final long serialVersionUID = -1886842159260678221L;
@@ -48,7 +52,7 @@ public class DrugPanel extends FatherPanel {
     private int x_value = 107;
     private int y_value = 320;
     private int signal = 0;//一些标志 此为 物品包是否为空;
-    private ArrayList<Drug> list = new ArrayList<Drug>();
+    private List<Drug> list = new ArrayList<>();
     private int hp;
     private int mp;
 
@@ -318,13 +322,13 @@ public class DrugPanel extends FatherPanel {
     }
 
     @Override
-    public ArrayList<String> saveEquipInfo() {
+    public List<String> saveEquipInfo() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void initialEquipInfo(ArrayList<String> menuInfo) {
+    public void initialEquipInfo(List<String> menuInfo) {
         // TODO Auto-generated method stub
 
     }
@@ -529,11 +533,11 @@ public class DrugPanel extends FatherPanel {
         this.signal = signal;
     }
 
-    public ArrayList<Drug> getList() {
+    public List<Drug> getList() {
         return list;
     }
 
-    public void setList(ArrayList<Drug> list) {
+    public void setList(List<Drug> list) {
         this.list = list;
     }
 

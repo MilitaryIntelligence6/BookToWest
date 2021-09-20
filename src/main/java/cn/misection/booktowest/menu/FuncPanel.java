@@ -3,18 +3,18 @@ package cn.misection.booktowest.menu;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 
 import cn.misection.booktowest.battle.*;
 import cn.misection.booktowest.util.*;
 
-
+/**
+ * @author javaman
+ */
 public class FuncPanel extends FatherPanel {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 3823920650738643403L;
     FuncButtons fb;
 
@@ -76,13 +76,13 @@ public class FuncPanel extends FatherPanel {
     }
 
     @Override
-    public ArrayList<String> saveEquipInfo() {
+    public List<String> saveEquipInfo() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void initialEquipInfo(ArrayList<String> menuInfo) {
+    public void initialEquipInfo(List<String> menuInfo) {
         // TODO Auto-generated method stub
 
     }

@@ -1,15 +1,16 @@
 package cn.misection.booktowest.shop;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EquipmentPack {
     //设置不同种装备的list
-    public static ArrayList<Equipment> helmetList = new ArrayList<Equipment>();
-    public static ArrayList<Equipment> armorList = new ArrayList<Equipment>();
-    public static ArrayList<Equipment> weaponList = new ArrayList<Equipment>();
-    public static ArrayList<Equipment> gloveList = new ArrayList<Equipment>();
-    public static ArrayList<Equipment> shoeList = new ArrayList<Equipment>();
-    public static ArrayList<Equipment> decorationList = new ArrayList<Equipment>();
+    public static List<Equipment> helmetList = new ArrayList<>();
+    public static List<Equipment> armorList = new ArrayList<>();
+    public static List<Equipment> weaponList = new ArrayList<>();
+    public static List<Equipment> gloveList = new ArrayList<>();
+    public static List<Equipment> shoeList = new ArrayList<>();
+    public static List<Equipment> decorationList = new ArrayList<>();
 
     public EquipmentPack() {
         helmetList = ShopReader.readEquipment("头");
@@ -20,7 +21,7 @@ public class EquipmentPack {
         weaponList = ShopReader.readEquipment("武器");
     }
 
-    public static ArrayList<Equipment> listTable(String s) {
+    public static List<Equipment> listTable(String s) {
         switch (s) {
             case "armor":
                 return armorList;
@@ -39,7 +40,11 @@ public class EquipmentPack {
         }
     }
 
-    //对装备栏中的装备数量进行操作
+    /**
+     * 对装备栏中的装备数量进行操作
+     * @param name
+     * @param number
+     */
     public static void addEqupment(String name, int number) {
         for (Equipment e1 : helmetList) {
             if (e1.getName().equals(name)) {

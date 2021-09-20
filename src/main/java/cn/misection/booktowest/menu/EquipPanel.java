@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 
@@ -19,15 +20,11 @@ import cn.misection.booktowest.util.*;
 
 public class EquipPanel extends FatherPanel {
 
-
-    /**
-     *
-     */
     private static final long serialVersionUID = 679068773868529283L;
     //所有的装备
     private EquipmentPack allEquipment;
     //当前的list
-    private ArrayList<Equipment> currentList;
+    private List<Equipment> currentList;
     int CURRENTLIST = 1;
     //1 weapon 2 armor 3 helmet 4 shoe 5 glove 6 decoration
     final int WEAPON = 1;
@@ -37,8 +34,8 @@ public class EquipPanel extends FatherPanel {
     final int GLOVE = 5;
     final int DECORATION = 6;
     //每个英雄的装备包
-    private ArrayList<EquipPack> heroEquipPack;
-    private ArrayList<Hero> hero;
+    private List<EquipPack> heroEquipPack;
+    private List<Hero> hero;
     private EquipPack equipPack_hero1;
     private EquipPack equipPack_hero2;
     //	EquipPack equipPack_hero3;
@@ -90,7 +87,7 @@ public class EquipPanel extends FatherPanel {
     private String s4;
     private int x_value = 125;
     private int y_value = 410;
-    private ArrayList<Equipment> list = new ArrayList<Equipment>();
+    private List<Equipment> list = new ArrayList<>();
     private Image Equiped;
     private Image can_not_use;
 
@@ -115,11 +112,11 @@ public class EquipPanel extends FatherPanel {
 
         //初始化 武器包
         addPack();
-        heroEquipPack = new ArrayList<EquipPack>();
+        heroEquipPack = new ArrayList<>();
         heroEquipPack.add(equipPack_hero1);
         heroEquipPack.add(equipPack_hero2);
         heroEquipPack.add(equipPack_hero4);
-        hero = new ArrayList<Hero>();
+        hero = new ArrayList<>();
         hero.add(h1);
         hero.add(h2);
         hero.add(h4);
@@ -999,8 +996,8 @@ public class EquipPanel extends FatherPanel {
     }
 
     @Override
-    public ArrayList<String> saveEquipInfo() {
-        ArrayList<String> equipInfo = new ArrayList<String>();
+    public List<String> saveEquipInfo() {
+        List<String> equipInfo = new ArrayList<>();
         EquipPack ep;
 
         for (int i = 0; i < 3; i++) {
@@ -1045,7 +1042,7 @@ public class EquipPanel extends FatherPanel {
     }
 
     @Override
-    public void initialEquipInfo(ArrayList<String> equipInfo) {
+    public void initialEquipInfo(List<String> equipInfo) {
         EquipPack ep;
         Hero he;
         for (int i = 0; i < 3; i++) {
@@ -1158,27 +1155,27 @@ public class EquipPanel extends FatherPanel {
         this.allEquipment = allEquipment;
     }
 
-    public ArrayList<Equipment> getCurrentList() {
+    public List<Equipment> getCurrentList() {
         return currentList;
     }
 
-    public void setCurrentList(ArrayList<Equipment> currentList) {
+    public void setCurrentList(List<Equipment> currentList) {
         this.currentList = currentList;
     }
 
-    public ArrayList<EquipPack> getHeroEquipPack() {
+    public List<EquipPack> getHeroEquipPack() {
         return heroEquipPack;
     }
 
-    public void setHeroEquipPack(ArrayList<EquipPack> heroEquipPack) {
+    public void setHeroEquipPack(List<EquipPack> heroEquipPack) {
         this.heroEquipPack = heroEquipPack;
     }
 
-    public ArrayList<Hero> getHero() {
+    public List<Hero> getHero() {
         return hero;
     }
 
-    public void setHero(ArrayList<Hero> hero) {
+    public void setHero(List<Hero> hero) {
         this.hero = hero;
     }
 
@@ -1462,11 +1459,11 @@ public class EquipPanel extends FatherPanel {
         this.y_value = y_value;
     }
 
-    public ArrayList<Equipment> getList() {
+    public List<Equipment> getList() {
         return list;
     }
 
-    public void setList(ArrayList<Equipment> list) {
+    public void setList(List<Equipment> list) {
         this.list = list;
     }
 

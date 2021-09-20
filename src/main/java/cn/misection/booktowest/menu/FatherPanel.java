@@ -4,7 +4,7 @@ import cn.misection.booktowest.battle.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -99,6 +99,7 @@ public abstract class FatherPanel extends JPanel implements Runnable {
 
     public abstract void checkAllButtonPressed();
 
+    @Override
     public void paint(Graphics g) {
 
         super.paint(g);
@@ -120,6 +121,7 @@ public abstract class FatherPanel extends JPanel implements Runnable {
 
     public abstract void drawThisPanel(Graphics g);
 
+    @Override
     public void run() {
         // TODO Auto-generated method stub
         while (true) {
@@ -138,9 +140,9 @@ public abstract class FatherPanel extends JPanel implements Runnable {
 
     public abstract void update();
 
-    public abstract ArrayList<String> saveEquipInfo();
+    public abstract List<String> saveEquipInfo();
 
-    public abstract void initialEquipInfo(ArrayList<String> menuInfo);
+    public abstract void initialEquipInfo(List<String> menuInfo);
 
     public ZhangXiaoFan getHero1() {
         return hero1;
