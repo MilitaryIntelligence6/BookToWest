@@ -11,16 +11,16 @@ import cn.misection.booktowest.battle.ZhangXiaoFan;
 
 public class FightEvent {
 
-    public static boolean fight;
-    ScenePanel scene;
-    public List<String[]> battle0;
-    public List<String[]> battle1;
-    public int countOfBattle1;
-    public int count;
+    private static boolean fight;
+    private ScenePanel scene;
+    private List<String[]> battle0;
+    private List<String[]> battle1;
+    private int countOfBattle1;
+    private int count;
     private int x;
     private int y;
     private int count_battle0;
-    public boolean battle1Over;
+    private boolean battle1Over;
 
     public FightEvent(ScenePanel scene, List<String[]> battle0,
                       List<String[]> battle1) {
@@ -35,6 +35,14 @@ public class FightEvent {
         }
         // 与对话剧情相对应的战斗需要保存-----------
         this.battle1 = battle1;
+    }
+
+    public static boolean isFight() {
+        return fight;
+    }
+
+    public static void setFight(boolean fight) {
+        FightEvent.fight = fight;
     }
 
     public void startBattle1() {
@@ -122,5 +130,77 @@ public class FightEvent {
             startBattle0();
             count = 0;
         }
+    }
+
+    public ScenePanel getScene() {
+        return scene;
+    }
+
+    public void setScene(ScenePanel scene) {
+        this.scene = scene;
+    }
+
+    public List<String[]> getBattle0() {
+        return battle0;
+    }
+
+    public void setBattle0(List<String[]> battle0) {
+        this.battle0 = battle0;
+    }
+
+    public List<String[]> getBattle1() {
+        return battle1;
+    }
+
+    public void setBattle1(List<String[]> battle1) {
+        this.battle1 = battle1;
+    }
+
+    public int getCountOfBattle1() {
+        return countOfBattle1;
+    }
+
+    public void setCountOfBattle1(int countOfBattle1) {
+        this.countOfBattle1 = countOfBattle1;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getCount_battle0() {
+        return count_battle0;
+    }
+
+    public void setCount_battle0(int count_battle0) {
+        this.count_battle0 = count_battle0;
+    }
+
+    public boolean isBattle1Over() {
+        return battle1Over;
+    }
+
+    public void setBattle1Over(boolean battle1Over) {
+        this.battle1Over = battle1Over;
     }
 }

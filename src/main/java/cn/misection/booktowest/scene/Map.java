@@ -13,7 +13,7 @@ public class Map {
     // 地图图片
     private Image image = null;
     // 面板
-    ScenePanel scene = null;
+    private ScenePanel scene = null;
     // 地图种类（是静止还是卷动）
     private boolean isStatic;
 
@@ -64,5 +64,29 @@ public class Map {
 
     public void setCol(int col) {
         this.col = col;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public ScenePanel getScene() {
+        return scene;
+    }
+
+    public void setScene(ScenePanel scene) {
+        this.scene = scene;
+    }
+
+    public boolean isStatic() {
+        return isStatic;
+    }
+
+    public void setStatic(boolean aStatic) {
+        isStatic = aStatic;
     }
 }

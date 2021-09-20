@@ -29,10 +29,10 @@ public class NPCEvent {
     public void keyPress(int keyCode) {
         if (keyCode == KeyEvent.VK_SPACE) {
 
-            if (scene.dialogue.isBufferedTextOver) {
+            if (scene.dialogue.isBufferedTextOver()) {
                 scene.dialogue.begin();
-            } else if (scene.dialogue.isSentenceOver) {
-                scene.dialogue.icon1Run.stop();
+            } else if (scene.dialogue.isSentenceOver()) {
+                scene.dialogue.getIcon1Run().stop();
                 if (oralCount >= oral.length) {
                     oralOver = true;
                     oralCount = 0;

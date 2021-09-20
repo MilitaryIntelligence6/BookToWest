@@ -24,7 +24,7 @@ public class SaveAndLoad {
          */
         sceneInfo.add(scene.isScript + "");
         sceneInfo.add(scene.fileName);
-        sceneInfo.add(scene.dialogueEvent.dialogueEventOver + "");
+        sceneInfo.add(scene.dialogueEvent.isDialogueEventOver() + "");
         sceneInfo.add(scene.dialogueEvent.getDialogueOrder() + "");
         sceneInfo.add(scene.role.getX() + "");
         sceneInfo.add(scene.role.getY() + "");
@@ -32,8 +32,8 @@ public class SaveAndLoad {
                 + " " + scene.currentScript[2]);
         sceneInfo.add(scene.nextScript[0] + " " + scene.nextScript[1] + " "
                 + scene.nextScript[2]);
-        sceneInfo.add(scene.fightEvent.battle1Over + "");
-        sceneInfo.add(scene.fightEvent.countOfBattle1 + "");
+        sceneInfo.add(scene.fightEvent.isBattle1Over() + "");
+        sceneInfo.add(scene.fightEvent.getCountOfBattle1() + "");
         return sceneInfo;
     }
 
@@ -88,9 +88,9 @@ public class SaveAndLoad {
         scene.initiation(sceneInfo.get(1));
         scene.narratage.narratageOver = true;
         if (sceneInfo.get(2).equals("true")) {
-            scene.dialogueEvent.dialogueEventOver = true;
+            scene.dialogueEvent.setDialogueEventOver(true);
         } else {
-            scene.dialogueEvent.dialogueEventOver = false;
+            scene.dialogueEvent.setDialogueEventOver(false);
         }
         scene.dialogueEvent
                 .setDialogueOrder(Integer.parseInt(sceneInfo.get(3)));
@@ -99,10 +99,10 @@ public class SaveAndLoad {
         scene.currentScript = sceneInfo.get(6).split(" ");
         scene.nextScript = sceneInfo.get(7).split(" ");
         if (sceneInfo.get(8).equals("true")) {
-            scene.fightEvent.battle1Over = true;
+            scene.fightEvent.setBattle1Over(true);
         } else {
-            scene.fightEvent.battle1Over = false;
+            scene.fightEvent.setBattle1Over(false);
         }
-        scene.fightEvent.countOfBattle1 = Integer.parseInt(sceneInfo.get(9));
+        scene.fightEvent.setCountOfBattle1(Integer.parseInt(sceneInfo.get(9)));
     }
 }

@@ -67,7 +67,6 @@ public class Command {
         Image image2 = new ImageIcon("sources/菜单/菜单/标题物品2.png").getImage();
         Image image3 = new ImageIcon("sources/菜单/菜单/标题物品3.png").getImage();
 
-
         thingButton = new MenuButton(xOfGameButton, yOfGameButton, widthOfGameButton, heightOfGameButton,
                 image1, image2, image3, menupanel);
         buttonList.add(thingButton);

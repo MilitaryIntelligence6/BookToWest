@@ -1,7 +1,6 @@
 package cn.misection.booktowest.scene;
 
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.misection.booktowest.app.GameApplication;
@@ -13,22 +12,16 @@ public class DialogueEvent {
 
     private ScenePanel scene;
 
-    /**
-     * 有无主线对话;
-     */
-    public boolean dialogueEventOver;
+    private boolean dialogueEventOver;
 
-    /**
-     * 是否正在进行主线对话;
-     */
-    public boolean isSpeaking;
+    private boolean isSpeaking;
     private int dialogueOrder = 0;
     private int sentenceOrder = 0;
     private boolean dialogueOver;
-    public boolean dialogueFight;
-    public boolean gameOver;
-    public List<String> dialogueCode;
-    public List<List<String[]>> dialogues;
+    private boolean dialogueFight;
+    private boolean gameOver;
+    private List<String> dialogueCode;
+    private List<List<String[]>> dialogues;
 
     public DialogueEvent(ScenePanel scene,
                          List<String> dialogueCode,
@@ -142,16 +135,16 @@ public class DialogueEvent {
                     gameOver = false;
                 }
             } else {
-                if (scene.dialogue.isBufferedTextOver) {
+                if (scene.dialogue.isBufferedTextOver()) {
                     scene.dialogue.begin();
-                } else if (scene.dialogue.isSentenceOver) {
+                } else if (scene.dialogue.isSentenceOver()) {
                     scene.dialogue.showSentence(dialogues
                             .get(dialogueOrder - 1).get(sentenceOrder));
                     sentenceOrder++;
-                    scene.dialogue.icon1Run.stop();
+                    scene.dialogue.getIcon1Run().stop();
                     if (sentenceOrder >= dialogues.get(dialogueOrder - 1)
                             .size()) {
-                        scene.dialogue.icon1Run.stop();
+                        scene.dialogue.getIcon1Run().stop();
                         dialogueOver = true;
                     }
                 }
@@ -165,5 +158,83 @@ public class DialogueEvent {
 
     public void setDialogueOrder(int dialogueOrder) {
         this.dialogueOrder = dialogueOrder;
+    }
+
+    public ScenePanel getScene() {
+        return scene;
+    }
+
+    public void setScene(ScenePanel scene) {
+        this.scene = scene;
+    }
+
+    /**
+     * 有无主线对话;
+     */
+    public boolean isDialogueEventOver() {
+        return dialogueEventOver;
+    }
+
+    public void setDialogueEventOver(boolean dialogueEventOver) {
+        this.dialogueEventOver = dialogueEventOver;
+    }
+
+    /**
+     * 是否正在进行主线对话;
+     */
+    public boolean isSpeaking() {
+        return isSpeaking;
+    }
+
+    public void setSpeaking(boolean speaking) {
+        isSpeaking = speaking;
+    }
+
+    public int getSentenceOrder() {
+        return sentenceOrder;
+    }
+
+    public void setSentenceOrder(int sentenceOrder) {
+        this.sentenceOrder = sentenceOrder;
+    }
+
+    public boolean isDialogueOver() {
+        return dialogueOver;
+    }
+
+    public void setDialogueOver(boolean dialogueOver) {
+        this.dialogueOver = dialogueOver;
+    }
+
+    public boolean isDialogueFight() {
+        return dialogueFight;
+    }
+
+    public void setDialogueFight(boolean dialogueFight) {
+        this.dialogueFight = dialogueFight;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public List<String> getDialogueCode() {
+        return dialogueCode;
+    }
+
+    public void setDialogueCode(List<String> dialogueCode) {
+        this.dialogueCode = dialogueCode;
+    }
+
+    public List<List<String[]>> getDialogues() {
+        return dialogues;
+    }
+
+    public void setDialogues(List<List<String[]>> dialogues) {
+        this.dialogues = dialogues;
     }
 }

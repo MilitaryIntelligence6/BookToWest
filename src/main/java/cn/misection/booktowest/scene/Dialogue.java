@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Dialogue {
-    ScenePanel scene;
+    private ScenePanel scene;
     // 对话框图片
     private Image dialogueImage;
     // 对话框的坐标
@@ -23,9 +23,9 @@ public class Dialogue {
     private int x_icon1 = 0;
     private int y_icon1 = 0;
     // 是否打印对话
-    public boolean isPrint;
+    private boolean isPrint;
     // 头像图片集合
-    List<Image> heads = new ArrayList<>();
+    private List<Image> heads = new ArrayList<>();
     private int x_head;
     private int y_head;
     // 名字、
@@ -44,17 +44,17 @@ public class Dialogue {
     private int maxRow = 4;
     private int maxCol = 20;
     private char[][] bufferedText = new char[maxRow][maxCol];
-    public boolean isSentenceOver;
-    public boolean isBufferedTextOver;
+    private boolean isSentenceOver;
+    private boolean isBufferedTextOver;
     private int count_row;
     private int count_col;
     private int count_sentence;
-    Timer dialogueMoveLeft;
-    Timer dialogueMoveRight;
-    Timer wordsRun;
-    Timer icon1Run;
-    Timer headRun;
-    Timer nameRun;
+    private Timer dialogueMoveLeft;
+    private Timer dialogueMoveRight;
+    private Timer wordsRun;
+    private Timer icon1Run;
+    private Timer headRun;
+    private Timer nameRun;
 
     // 构造函数
     public Dialogue(ScenePanel scene) {
@@ -108,10 +108,10 @@ public class Dialogue {
                 for (int j = 0; j < maxCol; j++) {
                     if (bufferedText[i][j] != 0) {
                         if (bufferedText[i][j] == '@') {
-                            scene.dialogueEvent.dialogueFight = true;
+                            scene.dialogueEvent.setDialogueFight(true);
                             continue;
                         } else if (bufferedText[i][j] == '$') {
-                            scene.dialogueEvent.gameOver = true;
+                            scene.dialogueEvent.setGameOver(true);
                             continue;
                         }
                         if (bufferedText[i][j] == '【') {
@@ -203,6 +203,286 @@ public class Dialogue {
         count_row = 0;
         count_col = 0;
         icon1Run.stop();
+    }
+
+    public ScenePanel getScene() {
+        return scene;
+    }
+
+    public void setScene(ScenePanel scene) {
+        this.scene = scene;
+    }
+
+    public Image getDialogueImage() {
+        return dialogueImage;
+    }
+
+    public void setDialogueImage(Image dialogueImage) {
+        this.dialogueImage = dialogueImage;
+    }
+
+    public int getX_dialogueImage() {
+        return x_dialogueImage;
+    }
+
+    public void setX_dialogueImage(int x_dialogueImage) {
+        this.x_dialogueImage = x_dialogueImage;
+    }
+
+    public int getY_dialogueImage() {
+        return y_dialogueImage;
+    }
+
+    public void setY_dialogueImage(int y_dialogueImage) {
+        this.y_dialogueImage = y_dialogueImage;
+    }
+
+    public Image[] getIcon1() {
+        return icon1;
+    }
+
+    public void setIcon1(Image[] icon1) {
+        this.icon1 = icon1;
+    }
+
+    public int getCount_icon1() {
+        return count_icon1;
+    }
+
+    public void setCount_icon1(int count_icon1) {
+        this.count_icon1 = count_icon1;
+    }
+
+    public int getX_icon1() {
+        return x_icon1;
+    }
+
+    public void setX_icon1(int x_icon1) {
+        this.x_icon1 = x_icon1;
+    }
+
+    public int getY_icon1() {
+        return y_icon1;
+    }
+
+    public void setY_icon1(int y_icon1) {
+        this.y_icon1 = y_icon1;
+    }
+
+    public boolean isPrint() {
+        return isPrint;
+    }
+
+    public void setPrint(boolean print) {
+        isPrint = print;
+    }
+
+    public List<Image> getHeads() {
+        return heads;
+    }
+
+    public void setHeads(List<Image> heads) {
+        this.heads = heads;
+    }
+
+    public int getX_head() {
+        return x_head;
+    }
+
+    public void setX_head(int x_head) {
+        this.x_head = x_head;
+    }
+
+    public int getY_head() {
+        return y_head;
+    }
+
+    public void setY_head(int y_head) {
+        this.y_head = y_head;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Image getNameImage() {
+        return nameImage;
+    }
+
+    public void setNameImage(Image nameImage) {
+        this.nameImage = nameImage;
+    }
+
+    public int getX_name() {
+        return x_name;
+    }
+
+    public void setX_name(int x_name) {
+        this.x_name = x_name;
+    }
+
+    public int getY_name() {
+        return y_name;
+    }
+
+    public void setY_name(int y_name) {
+        this.y_name = y_name;
+    }
+
+    public int getFontSize_dialogue() {
+        return fontSize_dialogue;
+    }
+
+    public void setFontSize_dialogue(int fontSize_dialogue) {
+        this.fontSize_dialogue = fontSize_dialogue;
+    }
+
+    public int getFontSize_name() {
+        return fontSize_name;
+    }
+
+    public void setFontSize_name(int fontSize_name) {
+        this.fontSize_name = fontSize_name;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getHeadNo() {
+        return headNo;
+    }
+
+    public void setHeadNo(int headNo) {
+        this.headNo = headNo;
+    }
+
+    public String getCurrentSentence() {
+        return currentSentence;
+    }
+
+    public void setCurrentSentence(String currentSentence) {
+        this.currentSentence = currentSentence;
+    }
+
+    public int getMaxRow() {
+        return maxRow;
+    }
+
+    public void setMaxRow(int maxRow) {
+        this.maxRow = maxRow;
+    }
+
+    public int getMaxCol() {
+        return maxCol;
+    }
+
+    public void setMaxCol(int maxCol) {
+        this.maxCol = maxCol;
+    }
+
+    public char[][] getBufferedText() {
+        return bufferedText;
+    }
+
+    public void setBufferedText(char[][] bufferedText) {
+        this.bufferedText = bufferedText;
+    }
+
+    public boolean isSentenceOver() {
+        return isSentenceOver;
+    }
+
+    public void setSentenceOver(boolean sentenceOver) {
+        isSentenceOver = sentenceOver;
+    }
+
+    public boolean isBufferedTextOver() {
+        return isBufferedTextOver;
+    }
+
+    public void setBufferedTextOver(boolean bufferedTextOver) {
+        isBufferedTextOver = bufferedTextOver;
+    }
+
+    public int getCount_row() {
+        return count_row;
+    }
+
+    public void setCount_row(int count_row) {
+        this.count_row = count_row;
+    }
+
+    public int getCount_col() {
+        return count_col;
+    }
+
+    public void setCount_col(int count_col) {
+        this.count_col = count_col;
+    }
+
+    public int getCount_sentence() {
+        return count_sentence;
+    }
+
+    public void setCount_sentence(int count_sentence) {
+        this.count_sentence = count_sentence;
+    }
+
+    public Timer getDialogueMoveLeft() {
+        return dialogueMoveLeft;
+    }
+
+    public void setDialogueMoveLeft(Timer dialogueMoveLeft) {
+        this.dialogueMoveLeft = dialogueMoveLeft;
+    }
+
+    public Timer getDialogueMoveRight() {
+        return dialogueMoveRight;
+    }
+
+    public void setDialogueMoveRight(Timer dialogueMoveRight) {
+        this.dialogueMoveRight = dialogueMoveRight;
+    }
+
+    public Timer getWordsRun() {
+        return wordsRun;
+    }
+
+    public void setWordsRun(Timer wordsRun) {
+        this.wordsRun = wordsRun;
+    }
+
+    public Timer getIcon1Run() {
+        return icon1Run;
+    }
+
+    public void setIcon1Run(Timer icon1Run) {
+        this.icon1Run = icon1Run;
+    }
+
+    public Timer getHeadRun() {
+        return headRun;
+    }
+
+    public void setHeadRun(Timer headRun) {
+        this.headRun = headRun;
+    }
+
+    public Timer getNameRun() {
+        return nameRun;
+    }
+
+    public void setNameRun(Timer nameRun) {
+        this.nameRun = nameRun;
     }
 
     // 组件1动画

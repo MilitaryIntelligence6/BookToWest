@@ -99,7 +99,7 @@ public class ScenePanel extends JPanel implements Runnable {
             // 地图遮掩
             otherEvent.addMap(backImageGraphics);
             // 2.是否正在对话
-            if (dialogueEvent.isSpeaking || npcEvent.isOral) {
+            if (dialogueEvent.isSpeaking() || npcEvent.isOral) {
                 dialogue.drawDialogue(backImageGraphics);
             }
             // 3.画出选择对话
@@ -182,7 +182,7 @@ public class ScenePanel extends JPanel implements Runnable {
     // 伪键盘监听代码
     public void keyPressed(int keyCode, boolean isControl) {
         if (!narratage.isNarratage) {
-            if (!dialogueEvent.isSpeaking) {
+            if (!dialogueEvent.isSpeaking()) {
                 if (keyCode == KeyEvent.VK_SPACE) {
                     if (reader.getDialogueCode() != null) {
                         b = dialogueEvent.checkDialogue();
@@ -237,20 +237,20 @@ public class ScenePanel extends JPanel implements Runnable {
 					narratage.checkNarratage();
 				}
                 // 2.检查自动的对话
-                if (isScript && !dialogueEvent.isSpeaking
-                        && !dialogueEvent.dialogueEventOver
+                if (isScript && !dialogueEvent.isSpeaking()
+                        && !dialogueEvent.isDialogueEventOver()
                         && !narratage.isNarratage) {
                     dialogueEvent.checkAutoDialogue();
                 }
                 // 3.检查NPC
-				if (!dialogueEvent.isSpeaking && !narratage.isNarratage) {
+				if (!dialogueEvent.isSpeaking() && !narratage.isNarratage) {
 					npcEvent.checkNPCStop();
 				}
                 // 4.检查出口
                 if (exitEvent.getExits() != null) {
-                    if (fightEvent.battle1 != null
-                            && fightEvent.battle1.size() > 1) {
-						if (fightEvent.battle1Over) {
+                    if (fightEvent.getBattle1() != null
+                            && fightEvent.getBattle1().size() > 1) {
+						if (fightEvent.isBattle1Over()) {
 							exitEvent.checkExit();
 						}
                     } else {
@@ -258,8 +258,8 @@ public class ScenePanel extends JPanel implements Runnable {
                     }
                 }
                 // 5.检查位置对话
-                if (isScript && !dialogueEvent.isSpeaking
-                        && !dialogueEvent.dialogueEventOver
+                if (isScript && !dialogueEvent.isSpeaking()
+                        && !dialogueEvent.isDialogueEventOver()
                         && !narratage.isNarratage) {
                     dialogueEvent.checkLocationDialogue();
                 }
@@ -269,7 +269,7 @@ public class ScenePanel extends JPanel implements Runnable {
 				}
 
                 // 7.检查计步战斗
-                if (fightEvent.battle0 != null) {
+                if (fightEvent.getBattle0() != null) {
                     fightEvent.checkBattle0();
                 }
                 if (GameApplication.SCENE_SIGNAL == 1) {

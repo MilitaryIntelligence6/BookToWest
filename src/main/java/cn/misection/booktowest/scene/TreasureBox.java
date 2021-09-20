@@ -28,14 +28,14 @@ public class TreasureBox {
     public void paintBox(Graphics g) {
         if (isEmpty) {
             g.drawImage(emptyBox, x * 32
-                            - equipmentEvent.scene.otherEvent.firstTileX * 8, y * 32
-                            - equipmentEvent.scene.otherEvent.firstTileY * 8,
-                    equipmentEvent.scene);
+                            - equipmentEvent.getScene().otherEvent.firstTileX * 8, y * 32
+                            - equipmentEvent.getScene().otherEvent.firstTileY * 8,
+                    equipmentEvent.getScene());
         } else {
             g.drawImage(fullBox, x * 32
-                            - equipmentEvent.scene.otherEvent.firstTileX * 8, y * 32
-                            - equipmentEvent.scene.otherEvent.firstTileY * 8,
-                    equipmentEvent.scene);
+                            - equipmentEvent.getScene().otherEvent.firstTileX * 8, y * 32
+                            - equipmentEvent.getScene().otherEvent.firstTileY * 8,
+                    equipmentEvent.getScene());
         }
     }
 

@@ -14,10 +14,10 @@ import cn.misection.booktowest.util.Reader;
 import cn.misection.booktowest.media.*;
 
 public class EquipmentEvent {
-    ScenePanel scene;
+    private ScenePanel scene;
     private int x_presentImage;
-    Timer presentImageMove = new Timer(50, new PresentImage());
-    Timer wordsRun = new Timer(100, new WordsRun());
+    private Timer presentImageMove = new Timer(50, new PresentImage());
+    private Timer wordsRun = new Timer(100, new WordsRun());
     private String bufferedText;
     private String text;
     private int count_word;
@@ -86,6 +86,86 @@ public class EquipmentEvent {
                 g.drawString(bufferedText, x_presentImage + 20, 320);
             }
         }
+    }
+
+    public ScenePanel getScene() {
+        return scene;
+    }
+
+    public void setScene(ScenePanel scene) {
+        this.scene = scene;
+    }
+
+    public int getX_presentImage() {
+        return x_presentImage;
+    }
+
+    public void setX_presentImage(int x_presentImage) {
+        this.x_presentImage = x_presentImage;
+    }
+
+    public Timer getPresentImageMove() {
+        return presentImageMove;
+    }
+
+    public void setPresentImageMove(Timer presentImageMove) {
+        this.presentImageMove = presentImageMove;
+    }
+
+    public Timer getWordsRun() {
+        return wordsRun;
+    }
+
+    public void setWordsRun(Timer wordsRun) {
+        this.wordsRun = wordsRun;
+    }
+
+    public String getBufferedText() {
+        return bufferedText;
+    }
+
+    public void setBufferedText(String bufferedText) {
+        this.bufferedText = bufferedText;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public int getCount_word() {
+        return count_word;
+    }
+
+    public void setCount_word(int count_word) {
+        this.count_word = count_word;
+    }
+
+    public boolean isDrawString() {
+        return isDrawString;
+    }
+
+    public void setDrawString(boolean drawString) {
+        isDrawString = drawString;
+    }
+
+    public List<String[]> getTreasureBox() {
+        return treasureBox;
+    }
+
+    public void setTreasureBox(List<String[]> treasureBox) {
+        this.treasureBox = treasureBox;
+    }
+
+    public List<TreasureBox> getTreasureBoxes() {
+        return treasureBoxes;
+    }
+
+    public void setTreasureBoxes(List<TreasureBox> treasureBoxes) {
+        this.treasureBoxes = treasureBoxes;
     }
 
     // 提示对话框的移动

@@ -1,15 +1,14 @@
 package cn.misection.booktowest.scene;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExitEvent {
-    ScenePanel scene;
+    private ScenePanel scene;
     private List<String[]> exits;
     private List<String> nextScene;
     private List<String[]> entrance;
-    public int nextSceneNo;
-    public int dialogueOrder;
+    private int nextSceneNo;
+    private int dialogueOrder;
 
     public ExitEvent(ScenePanel scene, List<String[]> exits,
                      List<String> nextScene, List<String[]> entrance) {
@@ -40,15 +39,15 @@ public class ExitEvent {
                     scene.isInitiateOver = false;
                     // 现在场景的对话
                     if (nextScene.get(i).equals(scene.currentScript[1])) {
-                        if (!scene.dialogueEvent.dialogueEventOver) {
+                        if (!scene.dialogueEvent.isDialogueEventOver()) {
                             dialogueOrder = scene.dialogueEvent
                                     .getDialogueOrder();
                         }
                     }
-                    if (scene.dialogueEvent.dialogueEventOver) {
+                    if (scene.dialogueEvent.isDialogueEventOver()) {
                         scene.currentScript = scene.nextScript;
                     }
-                    if (scene.dialogueEvent.dialogueEventOver
+                    if (scene.dialogueEvent.isDialogueEventOver()
                             && nextScene.get(i).equals(scene.nextScript[1])) {
                         scene.initiation(scene.nextScript[2]);
                         scene.isScript = true;
@@ -88,5 +87,37 @@ public class ExitEvent {
 
     public void setNextScene(List<String> nextScene) {
         this.nextScene = nextScene;
+    }
+
+    public ScenePanel getScene() {
+        return scene;
+    }
+
+    public void setScene(ScenePanel scene) {
+        this.scene = scene;
+    }
+
+    public List<String[]> getEntrance() {
+        return entrance;
+    }
+
+    public void setEntrance(List<String[]> entrance) {
+        this.entrance = entrance;
+    }
+
+    public int getNextSceneNo() {
+        return nextSceneNo;
+    }
+
+    public void setNextSceneNo(int nextSceneNo) {
+        this.nextSceneNo = nextSceneNo;
+    }
+
+    public int getDialogueOrder() {
+        return dialogueOrder;
+    }
+
+    public void setDialogueOrder(int dialogueOrder) {
+        this.dialogueOrder = dialogueOrder;
     }
 }
