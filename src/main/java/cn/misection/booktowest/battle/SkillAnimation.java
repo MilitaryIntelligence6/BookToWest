@@ -129,7 +129,7 @@ public class SkillAnimation {
                 if (code == beAttackedCode && bp.getCurrentBeAttacked() == 5) {
                     //让怪物显示被击效果
                     bp.getEnemyOne().setDraw(false);
-                    bp.getEnemyOne().getBeAttackedAnimation().getTimes(beAttackedTimes);
+                    bp.getEnemyOne().getBeAttackedAnimation().setTimes(beAttackedTimes);
                     bp.getEnemyOne().getBeAttackedAnimation().setDraw(true);
                     bp.getEnemyOne().getBeAttackedAnimation().setStop(false);
                     currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
@@ -138,7 +138,7 @@ public class SkillAnimation {
                 if (code == beAttackedCode && bp.getCurrentBeAttacked() == 1) {
                     //让张小凡显示被击效果
                     bp.getZxf().isDraw = false;
-                    bp.getZxf().beAttackedAnimation.getTimes(beAttackedTimes);
+                    bp.getZxf().beAttackedAnimation.setTimes(beAttackedTimes);
                     bp.getZxf().beAttackedAnimation.setDraw(true);
                     bp.getZxf().beAttackedAnimation.setStop(false);
                     currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
@@ -173,7 +173,7 @@ public class SkillAnimation {
                 if (code == beAttackedCode && bp.getCurrentBeAttacked() == 6) {
                     //让怪物显示被击效果
                     bp.getEnemyTwo().setDraw(false);
-                    bp.getEnemyTwo().getBeAttackedAnimation().getTimes(beAttackedTimes);
+                    bp.getEnemyTwo().getBeAttackedAnimation().setTimes(beAttackedTimes);
                     bp.getEnemyTwo().getBeAttackedAnimation().setDraw(true);
                     bp.getEnemyTwo().getBeAttackedAnimation().setStop(false);
                     currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
@@ -182,7 +182,7 @@ public class SkillAnimation {
                 if (code == beAttackedCode && bp.getCurrentBeAttacked() == 2) {
                     //让文敏显示被击效果
                     bp.getYj().isDraw = false;
-                    bp.getYj().beAttackedAnimation.getTimes(beAttackedTimes);
+                    bp.getYj().beAttackedAnimation.setTimes(beAttackedTimes);
                     bp.getYj().beAttackedAnimation.setDraw(true);
                     bp.getYj().beAttackedAnimation.setStop(false);
                     currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
@@ -218,7 +218,7 @@ public class SkillAnimation {
                     //MusicReader.readmusic("刀声.wav");
                     //让怪物显示被击效果
                     bp.getEnemyThree().setDraw(false);
-                    bp.getEnemyThree().getBeAttackedAnimation().getTimes(beAttackedTimes);
+                    bp.getEnemyThree().getBeAttackedAnimation().setTimes(beAttackedTimes);
                     bp.getEnemyThree().getBeAttackedAnimation().setDraw(true);
                     bp.getEnemyThree().getBeAttackedAnimation().setStop(false);
                     currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
@@ -227,7 +227,7 @@ public class SkillAnimation {
                 if (code == beAttackedCode && bp.getCurrentBeAttacked() == 3) {
                     //让陆雪琪显示被击效果
                     bp.getLxq().setIsDraw(false);
-                    bp.getLxq().getBeAttackedAnimation().getTimes(beAttackedTimes);
+                    bp.getLxq().getBeAttackedAnimation().setTimes(beAttackedTimes);
                     bp.getLxq().getBeAttackedAnimation().setDraw(true);
                     bp.getLxq().getBeAttackedAnimation().setStop(false);
                     currentImage = Reader.readImage("image/技能动画/" + name + "/" + (code + 1) + ".png");
@@ -263,7 +263,7 @@ public class SkillAnimation {
                     //MusicReader.readmusic("刀声.wav");
                     for (Enemy enemy : bp.getEnemyList()) {
                         enemy.setDraw(false);
-                        enemy.getBeAttackedAnimation().getTimes(beAttackedTimes);
+                        enemy.getBeAttackedAnimation().setTimes(beAttackedTimes);
                         enemy.getBeAttackedAnimation().setDraw(true);
                         enemy.getBeAttackedAnimation().setStop(false);
                     }
@@ -300,7 +300,7 @@ public class SkillAnimation {
                     for (Hero hero : bp.getHeroes()) {
                         if (!hero.isDead()) {
                             hero.setIsDraw(false);
-                            hero.getBeAttackedAnimation().getTimes(beAttackedTimes);
+                            hero.getBeAttackedAnimation().setTimes(beAttackedTimes);
                             hero.getBeAttackedAnimation().setDraw(true);
                             hero.getBeAttackedAnimation().setStop(false);
                         }

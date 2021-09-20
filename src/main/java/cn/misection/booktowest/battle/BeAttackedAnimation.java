@@ -3,48 +3,88 @@ package cn.misection.booktowest.battle;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.misection.booktowest.media.MusicReader;
 
 import cn.misection.booktowest.util.Reader;
 
-//受到攻击的动画
+/**
+ * @author javaman
+ * 受到攻击的动画;
+ */
 public class BeAttackedAnimation {
-    //当前图片引用
+
+
+    /**
+     * 当前图片引用
+     */
     private Image currentImage;
-    //图片集合
-    private ArrayList<Image> Images = new ArrayList<Image>();
-    //编号
+
+    /**
+     * 图片集合
+     */
+    private List<Image> ImageList = new ArrayList<>();
+
+    /**
+     * 编号
+     */
     private int code;
-    //当前次数
+
+    /**
+     * 当前次数
+     */
     private int currentTime;
-    //次数
+
+    /**
+     * 次数
+     */
     private int times;
-    //长度
+
+    /**
+     * 长度
+     */
     private int length;
-    //出现位置
+
+    /**
+     * 出现位置
+     */
     private int x;
+
     private int y;
-    //战斗面板引用
+
+    /**
+     * 战斗面板引用
+     */
     private BattlePanel bp;
-    //是否画出
+
+    /**
+     * 是否画出
+     */
     private boolean isDraw;
-    //是否停止
+
+    /**
+     * 是否停止
+     */
     private boolean isStop;
 
-    //获得图片
-    public void getImage(String name, int length) {
+
+    /**
+     * 获得图片;
+     * @param name
+     * @param length
+     */
+    public void requireImage(String name, int length) {
         for (int i = 1; i <= length; i++) {
             Image image = Reader.readImage("image/被击动画/" + name + "/" + i + ".png");
-            Images.add(image);
+            ImageList.add(image);
         }
-        currentImage = Images.get(0);
+        currentImage = ImageList.get(0);
     }
 
-    //构造方法
     public BeAttackedAnimation(String name, int length, int x, int y, BattlePanel bp) {
         this.bp = bp;
-        getImage(name, length);
+        requireImage(name, length);
 
         this.x = x;
         this.y = y;
@@ -55,26 +95,26 @@ public class BeAttackedAnimation {
         isStop = true;
     }
 
-    //得到播放次数
-    public void getTimes(int times) {
-        this.times = times;
-    }
-
-    //画出动画
+    /**
+     * 画出动画;
+     * @param g
+     */
     public void drawAnimation(Graphics g) {
         if (isDraw && currentImage != null) {
             g.drawImage(currentImage, x, y, bp);
         }
     }
 
-    //更新
+    /**
+     * 更新;
+     */
     public void update() {
         if (!isStop && code < length) {
-            currentImage = Images.get(code);
+            currentImage = ImageList.get(code);
             code++;
         } else if (code == length) {
             code = 0;
-            currentImage = Images.get(code);
+            currentImage = ImageList.get(code);
 
             if (currentTime == times) {
                 //停止动画
@@ -130,12 +170,12 @@ public class BeAttackedAnimation {
         this.currentImage = currentImage;
     }
 
-    public ArrayList<Image> getImages() {
-        return Images;
+    public List<Image> getImageList() {
+        return ImageList;
     }
 
-    public void setImages(ArrayList<Image> images) {
-        Images = images;
+    public void setImageList(List<Image> imageList) {
+        ImageList = imageList;
     }
 
     public int getCode() {
@@ -158,6 +198,10 @@ public class BeAttackedAnimation {
         return times;
     }
 
+    /**
+     * 得到播放次数;
+     * @param times
+     */
     public void setTimes(int times) {
         this.times = times;
     }
