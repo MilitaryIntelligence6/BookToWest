@@ -24,19 +24,19 @@ import cn.misection.booktowest.util.Reader;
  * @author wanglizhi
  */
 public class SelectEvent {
-    ScenePanel scene;
-    FightEvent fightEvent;
-    Image selectImage;
-    Image questionImage;
-    Image selectIcon;
+    private ScenePanel scene;
+    private FightEvent fightEvent;
+    private Image selectImage;
+    private Image questionImage;
+    private Image selectIcon;
     // 选择事件中的脚本数据(可以有多组但要一一对应)
-    List<String> selectShopPanel;
-    List<String> selectEquipmentShopPanel;
-    List<String[]> selectBattlePanel;
-    List<String[]> battle2;
-    List<String[]> selectQuestion;
-    List<List<String>> question;
-    List<String[]> answer;
+    private List<String> selectShopPanel;
+    private List<String> selectEquipmentShopPanel;
+    private List<String[]> selectBattlePanel;
+    private List<String[]> battle2;
+    private List<String[]> selectQuestion;
+    private List<List<String>> question;
+    private List<String[]> answer;
     // 对话框相关的参数
     private int x_selectImage;
     private int y_selectImage;
@@ -52,15 +52,15 @@ public class SelectEvent {
     private int maxLength = 22;
     private int fontSize = 20;
     private List<String> currentSentences;
-    Timer wordsRun = new Timer(30, new WordsRun());
-    Timer selectImageMove = new Timer(40, new SelectImageMove());
-    Timer questionImageMove = new Timer(50, new QuestionImageMove());
+    private Timer wordsRun = new Timer(30, new WordsRun());
+    private Timer selectImageMove = new Timer(40, new SelectImageMove());
+    private Timer questionImageMove = new Timer(50, new QuestionImageMove());
     private boolean shopSelect;
     private boolean equipmentSelect;
     private boolean battleSelect;
     private boolean questionSelect;
-    public static List<String> mapName = new ArrayList<>();
-    public static List<List<Boolean>> answeredRecorder = new ArrayList<>();
+    private static List<String> mapName = new ArrayList<>();
+    private static List<List<Boolean>> answeredRecorder = new ArrayList<>();
     private List<Boolean> haveAnswered = new ArrayList<>();
     private List<Boolean> haveFighted = new ArrayList<>();
     private boolean isQuestion;
@@ -70,9 +70,9 @@ public class SelectEvent {
     private int count_battle2;
     private int count_questionAndAnswer;
     // 与外界传输
-    public boolean isSelect;
-    public boolean haveEnteredTheScene;
-    public int count_scene;
+    private boolean isSelect;
+    private boolean haveEnteredTheScene;
+    private int count_scene;
 
     public SelectEvent(ScenePanel scene, FightEvent fightEvent,
                        String fileName, List<String> selectShopPanel,
@@ -119,6 +119,22 @@ public class SelectEvent {
         questionImage = Reader.readImage("dialogue//问题框.png");// 500*500
         selectIcon = Reader.readImage("dialogue//icon.png");// 24*24
         bufferedText = new String[maxLine];
+    }
+
+    public static List<String> getMapName() {
+        return mapName;
+    }
+
+    public static void setMapName(List<String> mapName) {
+        SelectEvent.mapName = mapName;
+    }
+
+    public static List<List<Boolean>> getAnsweredRecorder() {
+        return answeredRecorder;
+    }
+
+    public static void setAnsweredRecorder(List<List<Boolean>> answeredRecorder) {
+        SelectEvent.answeredRecorder = answeredRecorder;
     }
 
     // 画图函数
@@ -387,7 +403,7 @@ public class SelectEvent {
                     // 回答正确，加钱
                     int i = 500 + (int) (500 * Math.random());
                     Money.addCoins(i);
-                    scene.equipmentEvent.drawString("得到" + i + "个金币");
+                    scene.getEquipmentEvent().drawString("得到" + i + "个金币");
                     List<String> response = new ArrayList<>();
                     response.add(null);
                     response.add(answer.get(count_questionAndAnswer)[1]);
@@ -403,7 +419,7 @@ public class SelectEvent {
                     // 回答正确，加钱
                     int i = 500 + (int) (500 * Math.random());
                     Money.reduceCoins(i);
-                    scene.equipmentEvent.drawString("回答错误，扣掉" + i + "个金币");
+                    scene.getEquipmentEvent().drawString("回答错误，扣掉" + i + "个金币");
                     List<String> response = new ArrayList<>();
                     response.add(null);
                     response.add(answer.get(count_questionAndAnswer)[1]);
@@ -423,6 +439,358 @@ public class SelectEvent {
                 isAnswer = false;
             }
         }
+    }
+
+    public ScenePanel getScene() {
+        return scene;
+    }
+
+    public void setScene(ScenePanel scene) {
+        this.scene = scene;
+    }
+
+    public FightEvent getFightEvent() {
+        return fightEvent;
+    }
+
+    public void setFightEvent(FightEvent fightEvent) {
+        this.fightEvent = fightEvent;
+    }
+
+    public Image getSelectImage() {
+        return selectImage;
+    }
+
+    public void setSelectImage(Image selectImage) {
+        this.selectImage = selectImage;
+    }
+
+    public Image getQuestionImage() {
+        return questionImage;
+    }
+
+    public void setQuestionImage(Image questionImage) {
+        this.questionImage = questionImage;
+    }
+
+    public Image getSelectIcon() {
+        return selectIcon;
+    }
+
+    public void setSelectIcon(Image selectIcon) {
+        this.selectIcon = selectIcon;
+    }
+
+    public List<String> getSelectShopPanel() {
+        return selectShopPanel;
+    }
+
+    public void setSelectShopPanel(List<String> selectShopPanel) {
+        this.selectShopPanel = selectShopPanel;
+    }
+
+    public List<String> getSelectEquipmentShopPanel() {
+        return selectEquipmentShopPanel;
+    }
+
+    public void setSelectEquipmentShopPanel(List<String> selectEquipmentShopPanel) {
+        this.selectEquipmentShopPanel = selectEquipmentShopPanel;
+    }
+
+    public List<String[]> getSelectBattlePanel() {
+        return selectBattlePanel;
+    }
+
+    public void setSelectBattlePanel(List<String[]> selectBattlePanel) {
+        this.selectBattlePanel = selectBattlePanel;
+    }
+
+    public List<String[]> getBattle2() {
+        return battle2;
+    }
+
+    public void setBattle2(List<String[]> battle2) {
+        this.battle2 = battle2;
+    }
+
+    public List<String[]> getSelectQuestion() {
+        return selectQuestion;
+    }
+
+    public void setSelectQuestion(List<String[]> selectQuestion) {
+        this.selectQuestion = selectQuestion;
+    }
+
+    public List<List<String>> getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(List<List<String>> question) {
+        this.question = question;
+    }
+
+    public List<String[]> getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(List<String[]> answer) {
+        this.answer = answer;
+    }
+
+    public int getX_selectImage() {
+        return x_selectImage;
+    }
+
+    public void setX_selectImage(int x_selectImage) {
+        this.x_selectImage = x_selectImage;
+    }
+
+    public int getY_selectImage() {
+        return y_selectImage;
+    }
+
+    public void setY_selectImage(int y_selectImage) {
+        this.y_selectImage = y_selectImage;
+    }
+
+    public int getX1_questionImage() {
+        return x1_questionImage;
+    }
+
+    public void setX1_questionImage(int x1_questionImage) {
+        this.x1_questionImage = x1_questionImage;
+    }
+
+    public int getY1_questionImage() {
+        return y1_questionImage;
+    }
+
+    public void setY1_questionImage(int y1_questionImage) {
+        this.y1_questionImage = y1_questionImage;
+    }
+
+    public int getX2_questionImage() {
+        return x2_questionImage;
+    }
+
+    public void setX2_questionImage(int x2_questionImage) {
+        this.x2_questionImage = x2_questionImage;
+    }
+
+    public int getY2_questionImage() {
+        return y2_questionImage;
+    }
+
+    public void setY2_questionImage(int y2_questionImage) {
+        this.y2_questionImage = y2_questionImage;
+    }
+
+    public String[] getBufferedText() {
+        return bufferedText;
+    }
+
+    public void setBufferedText(String[] bufferedText) {
+        this.bufferedText = bufferedText;
+    }
+
+    public int getCount_sentence() {
+        return count_sentence;
+    }
+
+    public void setCount_sentence(int count_sentence) {
+        this.count_sentence = count_sentence;
+    }
+
+    public int getCount_word() {
+        return count_word;
+    }
+
+    public void setCount_word(int count_word) {
+        this.count_word = count_word;
+    }
+
+    public int getCount_bufferedSentence() {
+        return count_bufferedSentence;
+    }
+
+    public void setCount_bufferedSentence(int count_bufferedSentence) {
+        this.count_bufferedSentence = count_bufferedSentence;
+    }
+
+    public int getMaxLine() {
+        return maxLine;
+    }
+
+    public void setMaxLine(int maxLine) {
+        this.maxLine = maxLine;
+    }
+
+    public int getMaxLength() {
+        return maxLength;
+    }
+
+    public void setMaxLength(int maxLength) {
+        this.maxLength = maxLength;
+    }
+
+    public int getFontSize() {
+        return fontSize;
+    }
+
+    public void setFontSize(int fontSize) {
+        this.fontSize = fontSize;
+    }
+
+    public List<String> getCurrentSentences() {
+        return currentSentences;
+    }
+
+    public void setCurrentSentences(List<String> currentSentences) {
+        this.currentSentences = currentSentences;
+    }
+
+    public Timer getWordsRun() {
+        return wordsRun;
+    }
+
+    public void setWordsRun(Timer wordsRun) {
+        this.wordsRun = wordsRun;
+    }
+
+    public Timer getSelectImageMove() {
+        return selectImageMove;
+    }
+
+    public void setSelectImageMove(Timer selectImageMove) {
+        this.selectImageMove = selectImageMove;
+    }
+
+    public Timer getQuestionImageMove() {
+        return questionImageMove;
+    }
+
+    public void setQuestionImageMove(Timer questionImageMove) {
+        this.questionImageMove = questionImageMove;
+    }
+
+    public boolean isShopSelect() {
+        return shopSelect;
+    }
+
+    public void setShopSelect(boolean shopSelect) {
+        this.shopSelect = shopSelect;
+    }
+
+    public boolean isEquipmentSelect() {
+        return equipmentSelect;
+    }
+
+    public void setEquipmentSelect(boolean equipmentSelect) {
+        this.equipmentSelect = equipmentSelect;
+    }
+
+    public boolean isBattleSelect() {
+        return battleSelect;
+    }
+
+    public void setBattleSelect(boolean battleSelect) {
+        this.battleSelect = battleSelect;
+    }
+
+    public boolean isQuestionSelect() {
+        return questionSelect;
+    }
+
+    public void setQuestionSelect(boolean questionSelect) {
+        this.questionSelect = questionSelect;
+    }
+
+    public List<Boolean> getHaveAnswered() {
+        return haveAnswered;
+    }
+
+    public void setHaveAnswered(List<Boolean> haveAnswered) {
+        this.haveAnswered = haveAnswered;
+    }
+
+    public List<Boolean> getHaveFighted() {
+        return haveFighted;
+    }
+
+    public void setHaveFighted(List<Boolean> haveFighted) {
+        this.haveFighted = haveFighted;
+    }
+
+    public boolean isQuestion() {
+        return isQuestion;
+    }
+
+    public void setQuestion(boolean question) {
+        isQuestion = question;
+    }
+
+    public boolean isAnswer() {
+        return isAnswer;
+    }
+
+    public void setAnswer(boolean answer) {
+        isAnswer = answer;
+    }
+
+    public int getCount_selectYesNo() {
+        return count_selectYesNo;
+    }
+
+    public void setCount_selectYesNo(int count_selectYesNo) {
+        this.count_selectYesNo = count_selectYesNo;
+    }
+
+    public int getCount_selectABCD() {
+        return count_selectABCD;
+    }
+
+    public void setCount_selectABCD(int count_selectABCD) {
+        this.count_selectABCD = count_selectABCD;
+    }
+
+    public int getCount_battle2() {
+        return count_battle2;
+    }
+
+    public void setCount_battle2(int count_battle2) {
+        this.count_battle2 = count_battle2;
+    }
+
+    public int getCount_questionAndAnswer() {
+        return count_questionAndAnswer;
+    }
+
+    public void setCount_questionAndAnswer(int count_questionAndAnswer) {
+        this.count_questionAndAnswer = count_questionAndAnswer;
+    }
+
+    public boolean isSelect() {
+        return isSelect;
+    }
+
+    public void setSelect(boolean select) {
+        isSelect = select;
+    }
+
+    public boolean isHaveEnteredTheScene() {
+        return haveEnteredTheScene;
+    }
+
+    public void setHaveEnteredTheScene(boolean haveEnteredTheScene) {
+        this.haveEnteredTheScene = haveEnteredTheScene;
+    }
+
+    public int getCount_scene() {
+        return count_scene;
+    }
+
+    public void setCount_scene(int count_scene) {
+        this.count_scene = count_scene;
     }
 
     // 选择对话框

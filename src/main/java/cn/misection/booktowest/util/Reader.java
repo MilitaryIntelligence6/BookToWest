@@ -63,7 +63,7 @@ public class Reader {
             // 1.地图名称
             s = br.readLine();
             mapName = s;
-            SaveAndLoad.mapName = s;
+            SaveAndLoad.setMapName(s);
             // 2.地图规格
             s = br.readLine();
             ss = s.split("/");
@@ -104,19 +104,19 @@ public class Reader {
                 case "Role":
                     String[] ss = br.readLine().split(" ");
                     if (Integer.parseInt(ss[0]) == 1) {
-                        SaveAndLoad.zhang = true;
+                        SaveAndLoad.setZhang(true);
                     } else {
-                        SaveAndLoad.zhang = false;
+                        SaveAndLoad.setZhang(false);
                     }
                     if (Integer.parseInt(ss[1]) == 1) {
-                        SaveAndLoad.lu = true;
+                        SaveAndLoad.setLu(true);
                     } else {
-                        SaveAndLoad.lu = false;
+                        SaveAndLoad.setLu(false);
                     }
                     if (Integer.parseInt(ss[2]) == 1) {
-                        SaveAndLoad.wen = true;
+                        SaveAndLoad.setWen(true);
                     } else {
-                        SaveAndLoad.wen = false;
+                        SaveAndLoad.setWen(false);
                     }
                     break;
                 // 4.NPC群的 状态（0.静止 1.单向走动 2.原地运动.3.四向运动）

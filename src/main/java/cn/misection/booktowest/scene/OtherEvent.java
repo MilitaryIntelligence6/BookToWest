@@ -11,18 +11,18 @@ import cn.misection.booktowest.util.Reader;
 
 public class OtherEvent {
     // 地图，人物等偏移量
-    int firstTileX;
-    int lastTileX;
-    int firstTileY;
-    int lastTileY;
-    int offsetX;
-    int offsetY;
-    Role role;
-    Map map;
-    ScenePanel scene;
+    private int firstTileX;
+    private int lastTileX;
+    private int firstTileY;
+    private int lastTileY;
+    private int offsetX;
+    private int offsetY;
+    private Role role;
+    private Map map;
+    private ScenePanel scene;
     // 实现地图遮掩问题
-    ArrayList<Image> mapAddOfDay = new ArrayList<Image>();
-    ArrayList<Image> mapAddOfNight = new ArrayList<Image>();
+    private ArrayList<Image> mapAddOfDay = new ArrayList<Image>();
+    private ArrayList<Image> mapAddOfNight = new ArrayList<Image>();
 
     // 得到宝物、地图上绘制金钱
     public OtherEvent(ScenePanel scene, Role role, Map map) {
@@ -39,7 +39,7 @@ public class OtherEvent {
         g.drawString(Money.getCoins() + "", 940, 630);
         if (scene.getMapSet().length == 80) {
             String type = "";
-            if (scene.reader.getMapName().equals("大地图夜.jpg")) {
+            if (scene.getReader().getMapName().equals("大地图夜.jpg")) {
                 type = "夜";
             }
             // 体育馆大门
@@ -97,5 +97,93 @@ public class OtherEvent {
         lastTileY = firstTileY + (int) Math.floor(ScenePanel.HEIGHT / 8) + 1;
         // 返回最小Y偏移值
         lastTileY = Math.min(lastTileY, map.getRow() * 4);
+    }
+
+    public int getFirstTileX() {
+        return firstTileX;
+    }
+
+    public void setFirstTileX(int firstTileX) {
+        this.firstTileX = firstTileX;
+    }
+
+    public int getLastTileX() {
+        return lastTileX;
+    }
+
+    public void setLastTileX(int lastTileX) {
+        this.lastTileX = lastTileX;
+    }
+
+    public int getFirstTileY() {
+        return firstTileY;
+    }
+
+    public void setFirstTileY(int firstTileY) {
+        this.firstTileY = firstTileY;
+    }
+
+    public int getLastTileY() {
+        return lastTileY;
+    }
+
+    public void setLastTileY(int lastTileY) {
+        this.lastTileY = lastTileY;
+    }
+
+    public int getOffsetX() {
+        return offsetX;
+    }
+
+    public void setOffsetX(int offsetX) {
+        this.offsetX = offsetX;
+    }
+
+    public int getOffsetY() {
+        return offsetY;
+    }
+
+    public void setOffsetY(int offsetY) {
+        this.offsetY = offsetY;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public ScenePanel getScene() {
+        return scene;
+    }
+
+    public void setScene(ScenePanel scene) {
+        this.scene = scene;
+    }
+
+    public ArrayList<Image> getMapAddOfDay() {
+        return mapAddOfDay;
+    }
+
+    public void setMapAddOfDay(ArrayList<Image> mapAddOfDay) {
+        this.mapAddOfDay = mapAddOfDay;
+    }
+
+    public ArrayList<Image> getMapAddOfNight() {
+        return mapAddOfNight;
+    }
+
+    public void setMapAddOfNight(ArrayList<Image> mapAddOfNight) {
+        this.mapAddOfNight = mapAddOfNight;
     }
 }

@@ -16,5 +16,15 @@ public class PublicH {
 //        new ExitEvent().getScene();
 //        new FightEvent().getScene();
 //        new Map().getScene();
+//        new Narratage().isNarratage();
+//        new NPC().getName();
+//        new NPCEvent().getScene();
+//        new OtherEvent().getFirstTileX();
+//        new Role().getWalk();
+//        new RoleEvent().getRole();
+//        new SaveAndLoad().getScene();
+//        new ScenePanel().getRole();
+//        new SelectEvent().isSelect();
+//        new TreasureBox().getEquipmentEvent();
     }
 }

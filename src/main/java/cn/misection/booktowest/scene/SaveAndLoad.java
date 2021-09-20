@@ -4,15 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SaveAndLoad {
-    ScenePanel scene;
-    public static boolean zhang;
-    public static boolean lu;
-    public static boolean wen;
-    public static String mapName = "宿舍.png";
-    public boolean isLoad;
+    private ScenePanel scene;
+    private static boolean zhang;
+    private static boolean lu;
+    private static boolean wen;
+    private static String mapName = "宿舍.png";
+    private boolean isLoad;
 
     public SaveAndLoad(ScenePanel scene) {
         this.scene = scene;
+    }
+
+    public static boolean isZhang() {
+        return zhang;
+    }
+
+    public static void setZhang(boolean zhang) {
+        SaveAndLoad.zhang = zhang;
+    }
+
+    public static boolean isLu() {
+        return lu;
+    }
+
+    public static void setLu(boolean lu) {
+        SaveAndLoad.lu = lu;
+    }
+
+    public static boolean isWen() {
+        return wen;
+    }
+
+    public static void setWen(boolean wen) {
+        SaveAndLoad.wen = wen;
+    }
+
+    public static String getMapName() {
+        return mapName;
+    }
+
+    public static void setMapName(String mapName) {
+        SaveAndLoad.mapName = mapName;
     }
 
     // 存档
@@ -22,32 +54,32 @@ public class SaveAndLoad {
          * 要存储的东西 1.当前是否是脚本剧情 2.当前文件名称 3.对话是否结束 4.对话编号 5.主角位置 6.currentScript
          * 7.nextScript
          */
-        sceneInfo.add(scene.isScript + "");
-        sceneInfo.add(scene.fileName);
-        sceneInfo.add(scene.dialogueEvent.isDialogueEventOver() + "");
-        sceneInfo.add(scene.dialogueEvent.getDialogueOrder() + "");
-        sceneInfo.add(scene.role.getX() + "");
-        sceneInfo.add(scene.role.getY() + "");
-        sceneInfo.add(scene.currentScript[0] + " " + scene.currentScript[1]
-                + " " + scene.currentScript[2]);
-        sceneInfo.add(scene.nextScript[0] + " " + scene.nextScript[1] + " "
-                + scene.nextScript[2]);
-        sceneInfo.add(scene.fightEvent.isBattle1Over() + "");
-        sceneInfo.add(scene.fightEvent.getCountOfBattle1() + "");
+        sceneInfo.add(scene.isScript() + "");
+        sceneInfo.add(scene.getFileName());
+        sceneInfo.add(scene.getDialogueEvent().isDialogueEventOver() + "");
+        sceneInfo.add(scene.getDialogueEvent().getDialogueOrder() + "");
+        sceneInfo.add(scene.getRole().getX() + "");
+        sceneInfo.add(scene.getRole().getY() + "");
+        sceneInfo.add(scene.getCurrentScript()[0] + " " + scene.getCurrentScript()[1]
+                + " " + scene.getCurrentScript()[2]);
+        sceneInfo.add(scene.getNextScript()[0] + " " + scene.getNextScript()[1] + " "
+                + scene.getNextScript()[2]);
+        sceneInfo.add(scene.getFightEvent().isBattle1Over() + "");
+        sceneInfo.add(scene.getFightEvent().getCountOfBattle1() + "");
         return sceneInfo;
     }
 
     // 保存回答问题的情况
     public List<String> saveQuestion() {
-        return SelectEvent.mapName;
+        return SelectEvent.getMapName();
     }
 
     public List<String> saveAnswer() {
         List<String> answer = new ArrayList<>();
-        for (int i = 0; i < SelectEvent.answeredRecorder.size(); i++) {
+        for (int i = 0; i < SelectEvent.getAnsweredRecorder().size(); i++) {
             String s = "";
-            for (int j = 0; j < SelectEvent.answeredRecorder.get(i).size(); j++) {
-                s = s + SelectEvent.answeredRecorder.get(i).get(j) + " ";
+            for (int j = 0; j < SelectEvent.getAnsweredRecorder().get(i).size(); j++) {
+                s = s + SelectEvent.getAnsweredRecorder().get(i).get(j) + " ";
             }
             answer.add(s);
         }
@@ -56,7 +88,7 @@ public class SaveAndLoad {
 
     // 加载回答问题的情况
     public void loadQuestion(List<String> question) {
-        SelectEvent.mapName = question;
+        SelectEvent.setMapName(question);
     }
 
     public void loadAnswer(List<String> answer) {
@@ -73,36 +105,52 @@ public class SaveAndLoad {
             }
             answeredRecorder.add(b);
         }
-        SelectEvent.answeredRecorder = answeredRecorder;
+        SelectEvent.setAnsweredRecorder(answeredRecorder);
     }
 
     // 加载存档
     public void loadSceneInfo(List<String> sceneInfo) {
         isLoad = true;
         if (sceneInfo.get(0).equals("true")) {
-            scene.isScript = true;
+            scene.setScript(true);
         } else {
-            scene.isScript = false;
+            scene.setScript(false);
         }
-        scene.isInitiateOver = false;
+        scene.setInitiateOver(false);
         scene.initiation(sceneInfo.get(1));
-        scene.narratage.narratageOver = true;
+        scene.getNarratage().setNarratageOver(true);
         if (sceneInfo.get(2).equals("true")) {
-            scene.dialogueEvent.setDialogueEventOver(true);
+            scene.getDialogueEvent().setDialogueEventOver(true);
         } else {
-            scene.dialogueEvent.setDialogueEventOver(false);
+            scene.getDialogueEvent().setDialogueEventOver(false);
         }
-        scene.dialogueEvent
+        scene.getDialogueEvent()
                 .setDialogueOrder(Integer.parseInt(sceneInfo.get(3)));
-        scene.role.setX(Integer.parseInt(sceneInfo.get(4)));
-        scene.role.setY(Integer.parseInt(sceneInfo.get(5)));
-        scene.currentScript = sceneInfo.get(6).split(" ");
-        scene.nextScript = sceneInfo.get(7).split(" ");
+        scene.getRole().setX(Integer.parseInt(sceneInfo.get(4)));
+        scene.getRole().setY(Integer.parseInt(sceneInfo.get(5)));
+        scene.setCurrentScript(sceneInfo.get(6).split(" "));
+        scene.setNextScript(sceneInfo.get(7).split(" "));
         if (sceneInfo.get(8).equals("true")) {
-            scene.fightEvent.setBattle1Over(true);
+            scene.getFightEvent().setBattle1Over(true);
         } else {
-            scene.fightEvent.setBattle1Over(false);
+            scene.getFightEvent().setBattle1Over(false);
         }
-        scene.fightEvent.setCountOfBattle1(Integer.parseInt(sceneInfo.get(9)));
+        scene.getFightEvent().setCountOfBattle1(Integer.parseInt(sceneInfo.get(9)));
+    }
+
+    public ScenePanel getScene() {
+        return scene;
+    }
+
+    public void setScene(ScenePanel scene) {
+        this.scene = scene;
+    }
+
+    public boolean isLoad() {
+        return isLoad;
+    }
+
+    public void setLoad(boolean load) {
+        isLoad = load;
     }
 }

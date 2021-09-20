@@ -13,13 +13,13 @@ public class NPC {
     // 位置
     private int x;
     private int y;
-    ScenePanel scene;
-    Image image;
+    private ScenePanel scene;
+    private Image image;
     // 0表示静止，1表示走动，2表示原地动
     private int type;
     // 口头语
-    String oral[];
-    String name;
+    private String[] oral;
+    private String name;
     private ArrayList<Image> images = new ArrayList<Image>();
     // 动画计数，走的长度，走的方向（1左，5右 9下 13上）
     private int count = 0;
@@ -86,6 +86,70 @@ public class NPC {
             g.drawImage(images.get(count), x - firstTileX * 8, y - firstTileY
                     * 8, scene);
         }
+    }
+
+    public ScenePanel getScene() {
+        return scene;
+    }
+
+    public void setScene(ScenePanel scene) {
+        this.scene = scene;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public String[] getOral() {
+        return oral;
+    }
+
+    public void setOral(String[] oral) {
+        this.oral = oral;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        this.images = images;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getTemp() {
+        return temp;
+    }
+
+    public void setTemp(int temp) {
+        this.temp = temp;
+    }
+
+    public int getActionRate() {
+        return actionRate;
+    }
+
+    public void setActionRate(int actionRate) {
+        this.actionRate = actionRate;
     }
 
     class action implements ActionListener {

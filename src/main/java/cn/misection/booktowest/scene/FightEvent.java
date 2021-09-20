@@ -1,6 +1,5 @@
 package cn.misection.booktowest.scene;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.misection.booktowest.app.GameApplication;
@@ -112,18 +111,18 @@ public class FightEvent {
                 || enemy1.equals("缘铭道者/5") || enemy1.equals("大刀/5")
                 || enemy1.equals("蒙面怪人/5") || enemy1.equals("商塔堂主/5")
                 || enemy1.equals("最终李洵/5") || enemy1.equals("李洵/5")) {
-            scene.exitEvent.nextScript();
+            scene.getExitEvent().nextScript();
         }
         GameApplication.battlePanel.initial(fileName, zxf, yj, lxq, en1, en2, en3);
-        scene.role.setEvent(true);
+        scene.getRole().setEvent(true);
         GameApplication.switchTo("battle");
     }
 
     public void checkBattle0() {
-        if (scene.role.getX() != x || scene.role.getY() != y) {
+        if (scene.getRole().getX() != x || scene.getRole().getY() != y) {
             count++;
-            x = scene.role.getX();
-            y = scene.role.getY();
+            x = scene.getRole().getX();
+            y = scene.getRole().getY();
         }
         if (count == count_battle0) {
             // 开始战斗

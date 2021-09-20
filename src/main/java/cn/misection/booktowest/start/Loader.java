@@ -51,13 +51,13 @@ public class Loader {
         GameApplication.zhangXiaoFan.loadRoleInfo(zhangXiaoFanInfo);
         GameApplication.luXueQi.loadRoleInfo(luXueQiInfo);
         GameApplication.yuJie.loadRoleInfo(yuJieInfo);
-        GameApplication.scenePanel.sal.loadSceneInfo(sceneInfo);
+        GameApplication.scenePanel.getSal().loadSceneInfo(sceneInfo);
         GameApplication.menuPanel.getEquipPanel().initialEquipInfo(menuInfo);
         GameApplication.shopPanel.initialShopInfo(shopInfo);
         GameApplication.equipmentShopPanel.initialEquipmentShopInfo(equipmentShopInfo);
-        SaveAndLoad.zhang = Boolean.parseBoolean(getTextInfo(textcode).get(0));
-        SaveAndLoad.lu = Boolean.parseBoolean(getTextInfo(textcode).get(1));
-        SaveAndLoad.wen = Boolean.parseBoolean(getTextInfo(textcode).get(2));
+        SaveAndLoad.setZhang(Boolean.parseBoolean(getTextInfo(textcode).get(0)));
+        SaveAndLoad.setLu(Boolean.parseBoolean(getTextInfo(textcode).get(1)));
+        SaveAndLoad.setWen(Boolean.parseBoolean(getTextInfo(textcode).get(2)));
 
     }
 

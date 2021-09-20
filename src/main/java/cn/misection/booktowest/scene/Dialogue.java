@@ -108,10 +108,10 @@ public class Dialogue {
                 for (int j = 0; j < maxCol; j++) {
                     if (bufferedText[i][j] != 0) {
                         if (bufferedText[i][j] == '@') {
-                            scene.dialogueEvent.setDialogueFight(true);
+                            scene.getDialogueEvent().setDialogueFight(true);
                             continue;
                         } else if (bufferedText[i][j] == '$') {
-                            scene.dialogueEvent.setGameOver(true);
+                            scene.getDialogueEvent().setGameOver(true);
                             continue;
                         }
                         if (bufferedText[i][j] == '【') {

@@ -32,10 +32,10 @@ public class Recorder {
 
     public void save(int textCode) {
         roleAndMapInfo = new ArrayList<>();
-        roleAndMapInfo.add("" + SaveAndLoad.zhang);
-        roleAndMapInfo.add("" + SaveAndLoad.lu);
-        roleAndMapInfo.add("" + SaveAndLoad.wen);
-        roleAndMapInfo.add(SaveAndLoad.mapName);
+        roleAndMapInfo.add("" + SaveAndLoad.isZhang());
+        roleAndMapInfo.add("" + SaveAndLoad.isLu());
+        roleAndMapInfo.add("" + SaveAndLoad.isWen());
+        roleAndMapInfo.add(SaveAndLoad.getMapName());
         roleAndMapInfo.add(Reader.task);
         zhangXiaoFanInfo = GameApplication.zhangXiaoFan.saveRoleInfo();
         luXueQiInfo = GameApplication.luXueQi.saveRoleInfo();

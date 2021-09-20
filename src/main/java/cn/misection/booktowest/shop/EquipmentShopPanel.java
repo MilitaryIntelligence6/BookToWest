@@ -483,7 +483,7 @@ public class EquipmentShopPanel extends JPanel {
             y += 20;
             i++;
         }
-        if (SaveAndLoad.zhang) {
+        if (SaveAndLoad.isZhang()) {
             g.drawImage(ani.get(0).image,
                     ani.get(0).getAnimationX(), ani.get(0).getAnimationY(), this);
             g.drawString("体", 55, 30 + 0 * 150);
@@ -495,7 +495,7 @@ public class EquipmentShopPanel extends JPanel {
             g.drawString("精", 55, 30 + 0 * 150 + 60);
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/精气.png"), 60, 30 + 0 * 150 + 60, this);
         }
-        if (SaveAndLoad.lu) {
+        if (SaveAndLoad.isLu()) {
             g.drawImage(ani.get(1).image,
                     ani.get(1).getAnimationX(), ani.get(1).getAnimationY(), this);
             g.drawString("体", 55, 30 + 1 * 150);
@@ -507,7 +507,7 @@ public class EquipmentShopPanel extends JPanel {
             g.drawString("精", 55, 30 + 1 * 150 + 60);
             g.drawImage(Reader.readImage("sources/Shop/按钮组件/精气.png"), 60, 30 + 1 * 150 + 60, this);
         }
-        if (SaveAndLoad.wen) {
+        if (SaveAndLoad.isWen()) {
             g.drawImage(ani.get(2).image,
                     ani.get(2).getAnimationX(), ani.get(2).getAnimationY(), this);
             g.drawString("体", 55, 30 + 2 * 150);

@@ -39,8 +39,8 @@ public class DialogueEvent {
             if (!dialogueEventOver
                     && dialogueCode.get(dialogueOrder).length() > 2) {
                 String[] locations = dialogueCode.get(dialogueOrder).split(",");
-                int x1 = scene.role.getX();
-                int y1 = scene.role.getY();
+                int x1 = scene.getRole().getX();
+                int y1 = scene.getRole().getY();
                 for (int i = 0; i < locations.length; i++) {
                     int x2 = Integer.parseInt((locations[i].split(" ")[0]));
                     int y2 = Integer.parseInt((locations[i].split(" ")[1]));
@@ -53,21 +53,21 @@ public class DialogueEvent {
     }
 
     public boolean checkDialogue() {
-        if (scene.isScript && !dialogueEventOver
+        if (scene.isScript() && !dialogueEventOver
                 && dialogueCode.get(dialogueOrder).length() <= 2) {
             if (Integer.parseInt(dialogueCode.get(dialogueOrder)) != -1) {
-                int type = scene.npcs.get(
+                int type = scene.getNpcs().get(
                                 Integer.parseInt(dialogueCode.get(dialogueOrder)))
                         .getType();
                 if (type == 0) {
-                    int x1 = scene.npcs.get(
+                    int x1 = scene.getNpcs().get(
                                     Integer.parseInt(dialogueCode.get(dialogueOrder)))
                             .getX();
-                    int y1 = scene.npcs.get(
+                    int y1 = scene.getNpcs().get(
                                     Integer.parseInt(dialogueCode.get(dialogueOrder)))
                             .getY();
-                    int x2 = scene.role.getX();
-                    int y2 = scene.role.getY();
+                    int x2 = scene.getRole().getX();
+                    int y2 = scene.getRole().getY();
                     if ((x1 - 1 == x2 && y1 == y2 - 1)
                             || (x1 + 1 == x2 && y1 == y2 - 1)
                             || (x1 == x2 && y1 == y2)
@@ -76,14 +76,14 @@ public class DialogueEvent {
                         return true;
                     }
                 } else if (type == 1) {
-                    if (!scene.npcs
+                    if (!scene.getNpcs()
                             .get(Integer.parseInt(dialogueCode
                                     .get(dialogueOrder))).getWalk().isRunning()) {
                         startSpeak();
                         return true;
                     }
                 } else if (type == 2) {
-                    if (!scene.npcs
+                    if (!scene.getNpcs()
                             .get(Integer.parseInt(dialogueCode
                                     .get(dialogueOrder))).getAction()
                             .isRunning()) {
@@ -112,8 +112,8 @@ public class DialogueEvent {
         dialogueOver = false;
         sentenceOrder = 0;
         isSpeaking = true;
-        scene.role.setEvent(true);
-        scene.dialogue.showSentence(dialogues.get(dialogueOrder).get(
+        scene.getRole().setEvent(true);
+        scene.getDialogue().showSentence(dialogues.get(dialogueOrder).get(
                 sentenceOrder));
         sentenceOrder++;
         dialogueOrder++;
@@ -127,7 +127,7 @@ public class DialogueEvent {
                 }
                 isSpeaking = false;
                 if (dialogueFight) {
-                    scene.fightEvent.startBattle1();
+                    scene.getFightEvent().startBattle1();
                     dialogueFight = false;
                 }
                 if (gameOver) {
@@ -135,16 +135,16 @@ public class DialogueEvent {
                     gameOver = false;
                 }
             } else {
-                if (scene.dialogue.isBufferedTextOver()) {
-                    scene.dialogue.begin();
-                } else if (scene.dialogue.isSentenceOver()) {
-                    scene.dialogue.showSentence(dialogues
+                if (scene.getDialogue().isBufferedTextOver()) {
+                    scene.getDialogue().begin();
+                } else if (scene.getDialogue().isSentenceOver()) {
+                    scene.getDialogue().showSentence(dialogues
                             .get(dialogueOrder - 1).get(sentenceOrder));
                     sentenceOrder++;
-                    scene.dialogue.getIcon1Run().stop();
+                    scene.getDialogue().getIcon1Run().stop();
                     if (sentenceOrder >= dialogues.get(dialogueOrder - 1)
                             .size()) {
-                        scene.dialogue.getIcon1Run().stop();
+                        scene.getDialogue().getIcon1Run().stop();
                         dialogueOver = true;
                     }
                 }

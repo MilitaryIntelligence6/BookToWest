@@ -13,7 +13,7 @@ public class TreasureBox {
     private String treasureName;
     private int x;
     private int y;
-    EquipmentEvent equipmentEvent;
+    private EquipmentEvent equipmentEvent;
     private boolean isEmpty;
     private boolean AroundHero;
 
@@ -28,13 +28,13 @@ public class TreasureBox {
     public void paintBox(Graphics g) {
         if (isEmpty) {
             g.drawImage(emptyBox, x * 32
-                            - equipmentEvent.getScene().otherEvent.firstTileX * 8, y * 32
-                            - equipmentEvent.getScene().otherEvent.firstTileY * 8,
+                            - equipmentEvent.getScene().getOtherEvent().getFirstTileX() * 8, y * 32
+                            - equipmentEvent.getScene().getOtherEvent().getFirstTileY() * 8,
                     equipmentEvent.getScene());
         } else {
             g.drawImage(fullBox, x * 32
-                            - equipmentEvent.getScene().otherEvent.firstTileX * 8, y * 32
-                            - equipmentEvent.getScene().otherEvent.firstTileY * 8,
+                            - equipmentEvent.getScene().getOtherEvent().getFirstTileX() * 8, y * 32
+                            - equipmentEvent.getScene().getOtherEvent().getFirstTileY() * 8,
                     equipmentEvent.getScene());
         }
     }
@@ -59,5 +59,69 @@ public class TreasureBox {
                 equipmentEvent.drawString("得到" + treasureName + " * " + i);
             }
         }
+    }
+
+    public Image getFullBox() {
+        return fullBox;
+    }
+
+    public void setFullBox(Image fullBox) {
+        this.fullBox = fullBox;
+    }
+
+    public Image getEmptyBox() {
+        return emptyBox;
+    }
+
+    public void setEmptyBox(Image emptyBox) {
+        this.emptyBox = emptyBox;
+    }
+
+    public String getTreasureName() {
+        return treasureName;
+    }
+
+    public void setTreasureName(String treasureName) {
+        this.treasureName = treasureName;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public EquipmentEvent getEquipmentEvent() {
+        return equipmentEvent;
+    }
+
+    public void setEquipmentEvent(EquipmentEvent equipmentEvent) {
+        this.equipmentEvent = equipmentEvent;
+    }
+
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
+    public void setEmpty(boolean empty) {
+        isEmpty = empty;
+    }
+
+    public boolean isAroundHero() {
+        return AroundHero;
+    }
+
+    public void setAroundHero(boolean aroundHero) {
+        AroundHero = aroundHero;
     }
 }

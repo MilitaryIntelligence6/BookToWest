@@ -1,7 +1,6 @@
 package cn.misection.booktowest.scene;
 
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,15 +8,15 @@ import java.util.List;
  */
 public class RoleEvent {
 
-    Map map;
-    int[][] mapSet;
-    List<NPC> npcs;
-    Role role;
+    private Map map;
+    private int[][] mapSet;
+    private List<NPC> npcs;
+    private Role role;
     // 成员变量
     // 用于跑步状态判断的变量
-    boolean b = false;
-    long l;
-    long c;
+    private boolean b = false;
+    private long l;
+    private long c;
 
     public RoleEvent(Role role, Map map, int[][] mapSet, List<NPC> npcs) {
         this.role = role;
@@ -36,16 +35,16 @@ public class RoleEvent {
     public void switchWalk(int keyCode) {
         switch (keyCode) {
             case KeyEvent.VK_LEFT:
-                role.setEvent(Role.LEFT);
+                role.setEvent(Role.getLEFT());
                 break;
             case KeyEvent.VK_RIGHT:
-                role.setEvent(Role.RIGHT);
+                role.setEvent(Role.getRIGHT());
                 break;
             case KeyEvent.VK_UP:
-                role.setEvent(Role.UP);
+                role.setEvent(Role.getUP());
                 break;
             case KeyEvent.VK_DOWN:
-                role.setEvent(Role.DOWN);
+                role.setEvent(Role.getDOWN());
                 break;
         }
     }
@@ -65,5 +64,61 @@ public class RoleEvent {
             }
         }
         return true;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public int[][] getMapSet() {
+        return mapSet;
+    }
+
+    public void setMapSet(int[][] mapSet) {
+        this.mapSet = mapSet;
+    }
+
+    public List<NPC> getNpcs() {
+        return npcs;
+    }
+
+    public void setNpcs(List<NPC> npcs) {
+        this.npcs = npcs;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public boolean isB() {
+        return b;
+    }
+
+    public void setB(boolean b) {
+        this.b = b;
+    }
+
+    public long getL() {
+        return l;
+    }
+
+    public void setL(long l) {
+        this.l = l;
+    }
+
+    public long getC() {
+        return c;
+    }
+
+    public void setC(long c) {
+        this.c = c;
     }
 }

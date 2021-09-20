@@ -19,37 +19,37 @@ public class ScenePanel extends JPanel implements Runnable {
     public static final int WIDTH = 1024;
     public static final int HEIGHT = 640;
     // 地图对象、主角对象、NPC对象、Reader对象
-    public Dialogue dialogue;
-    public Narratage narratage;
-    public Role role;
-    public List<NPC> npcs;
+    private Dialogue dialogue;
+    private Narratage narratage;
+    private Role role;
+    private List<NPC> npcs;
     private Map map;
-    Reader reader;
+    private Reader reader;
     // 地图图片、缓冲背景图片、
     private Image backImage;
     private Graphics backImageGraphics;
     // 地图数组
-    private int mapSet[][];
+    private int[][] mapSet;
     // 各类事件
-    public ExitEvent exitEvent;
-    public DialogueEvent dialogueEvent;
-    public RoleEvent roleEvent;
-    public NPCEvent npcEvent;
-    public OtherEvent otherEvent;
-    public FightEvent fightEvent;
-    public SelectEvent selectEvent;
-    public EquipmentEvent equipmentEvent;
-    public SaveAndLoad sal;
-    boolean isInitiateOver = false;
+    private ExitEvent exitEvent;
+    private DialogueEvent dialogueEvent;
+    private RoleEvent roleEvent;
+    private NPCEvent npcEvent;
+    private OtherEvent otherEvent;
+    private FightEvent fightEvent;
+    private SelectEvent selectEvent;
+    private EquipmentEvent equipmentEvent;
+    private SaveAndLoad sal;
+    private boolean isInitiateOver = false;
     private boolean isPaintOver = false;
-    boolean b;
-    public List<String> memory = new ArrayList<>();
+    private boolean b;
+    private List<String> memory = new ArrayList<>();
     // 当前场景以及下一个场景
-    public String fileName;
-    public String[] currentScript = new String[3];
-    public String[] nextScript = new String[3];
-    GameApplication game;
-    public boolean isScript = true;
+    private String fileName;
+    private String[] currentScript = new String[3];
+    private String[] nextScript = new String[3];
+    private GameApplication game;
+    private boolean isScript = true;
 
     // 构造函数
     public ScenePanel(GameApplication gameApplication) {
@@ -68,10 +68,10 @@ public class ScenePanel extends JPanel implements Runnable {
         otherEvent.calOffset();
         super.paint(backImageGraphics);
         // 注意顺序1.是否有旁白
-        if (!narratage.isNarratage) {
-            map.drawMap(backImageGraphics, otherEvent.firstTileX,
-                    otherEvent.firstTileY, otherEvent.lastTileX,
-                    otherEvent.lastTileY);
+        if (!narratage.isNarratage()) {
+            map.drawMap(backImageGraphics, otherEvent.getFirstTileX(),
+                    otherEvent.getFirstTileY(), otherEvent.getLastTileX(),
+                    otherEvent.getLastTileY());
             equipmentEvent.drawTreasureBox(backImageGraphics);
             boolean b = false;
             for (int i = 0; i < npcs.size(); i++) {
@@ -84,33 +84,33 @@ public class ScenePanel extends JPanel implements Runnable {
             if (b) {
                 for (int i = 0; i < npcs.size(); i++) {
                     npcs.get(i).drawNPC(backImageGraphics,
-                            otherEvent.firstTileX, otherEvent.firstTileY);
+                            otherEvent.getFirstTileX(), otherEvent.getFirstTileY());
                 }
-                role.drawHero(backImageGraphics, otherEvent.offsetX,
-                        otherEvent.offsetY);
+                role.drawHero(backImageGraphics, otherEvent.getOffsetX(),
+                        otherEvent.getOffsetY());
             } else {
-                role.drawHero(backImageGraphics, otherEvent.offsetX,
-                        otherEvent.offsetY);
+                role.drawHero(backImageGraphics, otherEvent.getOffsetX(),
+                        otherEvent.getOffsetY());
                 for (int i = 0; i < npcs.size(); i++) {
                     npcs.get(i).drawNPC(backImageGraphics,
-                            otherEvent.firstTileX, otherEvent.firstTileY);
+                            otherEvent.getFirstTileX(), otherEvent.getFirstTileY());
                 }
             }
             // 地图遮掩
             otherEvent.addMap(backImageGraphics);
             // 2.是否正在对话
-            if (dialogueEvent.isSpeaking() || npcEvent.isOral) {
+            if (dialogueEvent.isSpeaking() || npcEvent.isOral()) {
                 dialogue.drawDialogue(backImageGraphics);
             }
             // 3.画出选择对话
-			if (selectEvent.isSelect) {
+			if (selectEvent.isSelect()) {
 				selectEvent.drawSelectImage(backImageGraphics);
 			}
             // 4.画出提示对话
             equipmentEvent.drawPresentation(backImageGraphics);
 
         } else {
-            if (!narratage.narratageOver) {
+            if (!narratage.isNarratageOver()) {
                 narratage.drawNarratage(backImageGraphics);
             }
         }
@@ -152,11 +152,11 @@ public class ScenePanel extends JPanel implements Runnable {
                     this,
                     reader.getDialogueCode(),
                     reader.getDialogue());
-        } else if (sal.isLoad) {
+        } else if (sal.isLoad()) {
             dialogueEvent = new DialogueEvent(this,
                     reader.getDialogueCode(),
                     reader.getDialogue());
-            sal.isLoad = false;
+            sal.setLoad(false);
         }
         // 创建旁白对象
         narratage = new Narratage(this, reader.getNarratage());
@@ -181,7 +181,7 @@ public class ScenePanel extends JPanel implements Runnable {
 
     // 伪键盘监听代码
     public void keyPressed(int keyCode, boolean isControl) {
-        if (!narratage.isNarratage) {
+        if (!narratage.isNarratage()) {
             if (!dialogueEvent.isSpeaking()) {
                 if (keyCode == KeyEvent.VK_SPACE) {
                     if (reader.getDialogueCode() != null) {
@@ -190,12 +190,12 @@ public class ScenePanel extends JPanel implements Runnable {
                         b = false;
                     }
                 }
-                if (!npcEvent.isOral) {
+                if (!npcEvent.isOral()) {
 					if (keyCode == KeyEvent.VK_DOWN
 							|| keyCode == KeyEvent.VK_UP
 							|| keyCode == KeyEvent.VK_LEFT
 							|| keyCode == KeyEvent.VK_RIGHT) {
-						if (!selectEvent.isSelect) {
+						if (!selectEvent.isSelect()) {
 							if (isControl) {
 								roleEvent.checkRun();
 							}
@@ -209,7 +209,7 @@ public class ScenePanel extends JPanel implements Runnable {
 					if (reader.getTreasureBox() != null) {
 						equipmentEvent.keyPressed(keyCode);
 					}
-					if (selectEvent.isSelect) {
+					if (selectEvent.isSelect()) {
 						selectEvent.keyPressed(keyCode);
 					}
                 } else {
@@ -232,18 +232,18 @@ public class ScenePanel extends JPanel implements Runnable {
             if (isInitiateOver) {
                 // 1.检查旁白
 				if (GameApplication.currentPanel.equals(GameApplication.scenePanel)
-						&& isScript && !narratage.isNarratage
-						&& !narratage.narratageOver) {
+						&& isScript && !narratage.isNarratage()
+						&& !narratage.isNarratageOver()) {
 					narratage.checkNarratage();
 				}
                 // 2.检查自动的对话
                 if (isScript && !dialogueEvent.isSpeaking()
                         && !dialogueEvent.isDialogueEventOver()
-                        && !narratage.isNarratage) {
+                        && !narratage.isNarratage()) {
                     dialogueEvent.checkAutoDialogue();
                 }
                 // 3.检查NPC
-				if (!dialogueEvent.isSpeaking() && !narratage.isNarratage) {
+				if (!dialogueEvent.isSpeaking() && !narratage.isNarratage()) {
 					npcEvent.checkNPCStop();
 				}
                 // 4.检查出口
@@ -260,7 +260,7 @@ public class ScenePanel extends JPanel implements Runnable {
                 // 5.检查位置对话
                 if (isScript && !dialogueEvent.isSpeaking()
                         && !dialogueEvent.isDialogueEventOver()
-                        && !narratage.isNarratage) {
+                        && !narratage.isNarratage()) {
                     dialogueEvent.checkLocationDialogue();
                 }
                 // 6.检查宝箱
@@ -366,5 +366,165 @@ public class ScenePanel extends JPanel implements Runnable {
                 .createCustomCursor(image, new Point(0, 0), "hidden");
         // 插入透明游标，以此模拟无游标状态
         setCursor(transparentCursor);
+    }
+
+    public Dialogue getDialogue() {
+        return dialogue;
+    }
+
+    public void setDialogue(Dialogue dialogue) {
+        this.dialogue = dialogue;
+    }
+
+    public Narratage getNarratage() {
+        return narratage;
+    }
+
+    public void setNarratage(Narratage narratage) {
+        this.narratage = narratage;
+    }
+
+    public ExitEvent getExitEvent() {
+        return exitEvent;
+    }
+
+    public void setExitEvent(ExitEvent exitEvent) {
+        this.exitEvent = exitEvent;
+    }
+
+    public DialogueEvent getDialogueEvent() {
+        return dialogueEvent;
+    }
+
+    public void setDialogueEvent(DialogueEvent dialogueEvent) {
+        this.dialogueEvent = dialogueEvent;
+    }
+
+    public RoleEvent getRoleEvent() {
+        return roleEvent;
+    }
+
+    public void setRoleEvent(RoleEvent roleEvent) {
+        this.roleEvent = roleEvent;
+    }
+
+    public NPCEvent getNpcEvent() {
+        return npcEvent;
+    }
+
+    public void setNpcEvent(NPCEvent npcEvent) {
+        this.npcEvent = npcEvent;
+    }
+
+    public OtherEvent getOtherEvent() {
+        return otherEvent;
+    }
+
+    public void setOtherEvent(OtherEvent otherEvent) {
+        this.otherEvent = otherEvent;
+    }
+
+    public FightEvent getFightEvent() {
+        return fightEvent;
+    }
+
+    public void setFightEvent(FightEvent fightEvent) {
+        this.fightEvent = fightEvent;
+    }
+
+    public SelectEvent getSelectEvent() {
+        return selectEvent;
+    }
+
+    public void setSelectEvent(SelectEvent selectEvent) {
+        this.selectEvent = selectEvent;
+    }
+
+    public EquipmentEvent getEquipmentEvent() {
+        return equipmentEvent;
+    }
+
+    public void setEquipmentEvent(EquipmentEvent equipmentEvent) {
+        this.equipmentEvent = equipmentEvent;
+    }
+
+    public SaveAndLoad getSal() {
+        return sal;
+    }
+
+    public void setSal(SaveAndLoad sal) {
+        this.sal = sal;
+    }
+
+    public boolean isInitiateOver() {
+        return isInitiateOver;
+    }
+
+    public void setInitiateOver(boolean initiateOver) {
+        isInitiateOver = initiateOver;
+    }
+
+    public boolean isPaintOver() {
+        return isPaintOver;
+    }
+
+    public void setPaintOver(boolean paintOver) {
+        isPaintOver = paintOver;
+    }
+
+    public boolean isB() {
+        return b;
+    }
+
+    public void setB(boolean b) {
+        this.b = b;
+    }
+
+    public List<String> getMemory() {
+        return memory;
+    }
+
+    public void setMemory(List<String> memory) {
+        this.memory = memory;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String[] getCurrentScript() {
+        return currentScript;
+    }
+
+    public void setCurrentScript(String[] currentScript) {
+        this.currentScript = currentScript;
+    }
+
+    public String[] getNextScript() {
+        return nextScript;
+    }
+
+    public void setNextScript(String[] nextScript) {
+        this.nextScript = nextScript;
+    }
+
+    public GameApplication getGame() {
+        return game;
+    }
+
+    public void setGame(GameApplication game) {
+        this.game = game;
+    }
+
+    public boolean isScript() {
+        return isScript;
+    }
+
+    public void setScript(boolean script) {
+        isScript = script;
     }
 }

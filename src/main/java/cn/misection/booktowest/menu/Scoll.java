@@ -146,10 +146,10 @@ public class Scoll {
     //检查是否移动鼠标进入
     public void checkMoveIn() {
 
-        if (SaveAndLoad.lu) {
+        if (SaveAndLoad.isLu()) {
             hero2.setIsDraw(MenuButton.getYes());
         }
-        if (SaveAndLoad.wen) {
+        if (SaveAndLoad.isWen()) {
             hero4.setIsDraw(MenuButton.getYes());
         }
         for (GameButton button : buttonList) {
@@ -171,7 +171,7 @@ public class Scoll {
             MusicReader.readMusic("换头像.wav");
         }
 
-        if (SaveAndLoad.lu) {
+        if (SaveAndLoad.isLu()) {
 
             if (hero2.isClicked()) {
                 scollImage = image2;
@@ -183,7 +183,7 @@ public class Scoll {
         }
 
 
-        if (SaveAndLoad.wen) {
+        if (SaveAndLoad.isWen()) {
 
             if (hero4.isClicked()) {
                 scollImage = image4;
@@ -205,14 +205,14 @@ public class Scoll {
 
     //画出控制台
     public void drawScoll(Graphics g) {
-        if (SaveAndLoad.zhang) {
+        if (SaveAndLoad.isZhang()) {
             hero1.setIsDraw(MenuButton.getYes());
             level = "" + ZhangXiaoFan.level;
         }
-        if (SaveAndLoad.lu) {
+        if (SaveAndLoad.isLu()) {
             hero2.setIsDraw(MenuButton.getYes());
         }
-        if (SaveAndLoad.wen) {
+        if (SaveAndLoad.isWen()) {
             hero4.setIsDraw(MenuButton.getYes());
         }
 

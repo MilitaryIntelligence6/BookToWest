@@ -19,54 +19,54 @@ public class ExitEvent {
     }
 
     public void nextScript() {
-        scene.currentScript = scene.nextScript;
-        scene.initiation(scene.nextScript[2]);
-        scene.isScript = true;
-        scene.role.setX(Integer.parseInt(scene.currentScript[0].split("/")[0]));
-        scene.role.setY(Integer.parseInt(scene.currentScript[0].split("/")[1]));
+        scene.setCurrentScript(scene.getNextScript());
+        scene.initiation(scene.getNextScript()[2]);
+        scene.setScript(true);
+        scene.getRole().setX(Integer.parseInt(scene.getCurrentScript()[0].split("/")[0]));
+        scene.getRole().setY(Integer.parseInt(scene.getCurrentScript()[0].split("/")[1]));
     }
 
     // 检测出口
     public void checkExit() {
-        int x = scene.role.getX();
-        int y = scene.role.getY();
+        int x = scene.getRole().getX();
+        int y = scene.getRole().getY();
         for (int i = 0; i < exits.size(); i++) {
             for (int j = 0; j < exits.get(i).length; j++) {
                 String[] ss = exits.get(i)[j].split(" ");
                 int k = Integer.parseInt(ss[0]);
                 int l = Integer.parseInt(ss[1]);
                 if (k == x && l == y) {
-                    scene.isInitiateOver = false;
+                    scene.setInitiateOver(false);
                     // 现在场景的对话
-                    if (nextScene.get(i).equals(scene.currentScript[1])) {
-                        if (!scene.dialogueEvent.isDialogueEventOver()) {
-                            dialogueOrder = scene.dialogueEvent
+                    if (nextScene.get(i).equals(scene.getCurrentScript()[1])) {
+                        if (!scene.getDialogueEvent().isDialogueEventOver()) {
+                            dialogueOrder = scene.getDialogueEvent()
                                     .getDialogueOrder();
                         }
                     }
-                    if (scene.dialogueEvent.isDialogueEventOver()) {
-                        scene.currentScript = scene.nextScript;
+                    if (scene.getDialogueEvent().isDialogueEventOver()) {
+                        scene.setCurrentScript(scene.getNextScript());
                     }
-                    if (scene.dialogueEvent.isDialogueEventOver()
-                            && nextScene.get(i).equals(scene.nextScript[1])) {
-                        scene.initiation(scene.nextScript[2]);
-                        scene.isScript = true;
-                        scene.role.setX(Integer.parseInt(scene.currentScript[0]
+                    if (scene.getDialogueEvent().isDialogueEventOver()
+                            && nextScene.get(i).equals(scene.getNextScript()[1])) {
+                        scene.initiation(scene.getNextScript()[2]);
+                        scene.setScript(true);
+                        scene.getRole().setX(Integer.parseInt(scene.getCurrentScript()[0]
                                 .split("/")[0]));
-                        scene.role.setY(Integer.parseInt(scene.currentScript[0]
+                        scene.getRole().setY(Integer.parseInt(scene.getCurrentScript()[0]
                                 .split("/")[1]));
                     } else {
-                        if (nextScene.get(i).equals(scene.currentScript[1])) {
-                            scene.initiation(scene.currentScript[2]);
-                            scene.isScript = true;
-                            scene.dialogueEvent.setDialogueOrder(dialogueOrder);
-                            scene.narratage.narratageOver = true;
+                        if (nextScene.get(i).equals(scene.getCurrentScript()[1])) {
+                            scene.initiation(scene.getCurrentScript()[2]);
+                            scene.setScript(true);
+                            scene.getDialogueEvent().setDialogueOrder(dialogueOrder);
+                            scene.getNarratage().setNarratageOver(true);
                         } else {
                             scene.initiation(nextScene.get(i));
-                            scene.isScript = false;
+                            scene.setScript(false);
                         }
-                        scene.role.setX(Integer.parseInt(entrance.get(i)[0]));
-                        scene.role.setY(Integer.parseInt(entrance.get(i)[1]));
+                        scene.getRole().setX(Integer.parseInt(entrance.get(i)[0]));
+                        scene.getRole().setY(Integer.parseInt(entrance.get(i)[1]));
                     }
                 }
             }

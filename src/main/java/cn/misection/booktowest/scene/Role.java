@@ -11,21 +11,22 @@ import javax.swing.Timer;
 import cn.misection.booktowest.util.Reader;
 
 public class Role {
-    public static final int LEFT = 16;
-    public static final int RIGHT = 24;
-    public static final int UP = 8;
-    public static final int DOWN = 0;
+    private static final int LEFT = 16;
+    private static final int RIGHT = 24;
+    private static final int UP = 8;
+    private static final int DOWN = 0;
     // 在大地图上的位置
-    private int x, y;
+    private int x;
+    private int y;
     // 判断是否移动
-    public boolean isMove = false;
+    private boolean isMove = false;
     // 计步器
     // 每进行一次行走 计步器+7
-    public int stepNum = 0;
+    private int stepNum = 0;
     // 控制角色行走图变换的变量
     private int count = 0;
     private int count2 = 0;
-    boolean nextStep;
+    private boolean nextStep;
     // 移动方向
     private int direction;
     private Image image;
@@ -36,8 +37,8 @@ public class Role {
     private boolean isRun;
     private boolean runOver = false;
     private boolean canStop;
-    Timer walk = new Timer(80, new walk());
-    Timer run = new Timer(80, new run());
+    private Timer walk = new Timer(80, new walk());
+    private Timer run = new Timer(80, new run());
 
     public Role(int x, int y, ScenePanel scene) {
         this.x = x;
@@ -53,6 +54,22 @@ public class Role {
             runImages.add(Reader.readImage("roles//zhangxiaofanRun//" + i
                     + ".png"));
         }
+    }
+
+    public static int getLEFT() {
+        return LEFT;
+    }
+
+    public static int getRIGHT() {
+        return RIGHT;
+    }
+
+    public static int getUP() {
+        return UP;
+    }
+
+    public static int getDOWN() {
+        return DOWN;
     }
 
     public void drawHero(Graphics g, int offsetX, int offsetY) {
@@ -72,7 +89,7 @@ public class Role {
         switch (event) {
             case LEFT:
                 // 依次判定事件
-                if (scene.roleEvent.isAllow((int) Math.ceil(x / 32.0) - 1,
+                if (scene.getRoleEvent().isAllow((int) Math.ceil(x / 32.0) - 1,
                         (int) Math.ceil(y / 32.0))) {
                     if (isRun) {
                         x -= 16;
@@ -83,7 +100,7 @@ public class Role {
                 direction = LEFT;
                 break;
             case RIGHT:
-                if (scene.roleEvent.isAllow((int) Math.floor(x / 32.0) + 1,
+                if (scene.getRoleEvent().isAllow((int) Math.floor(x / 32.0) + 1,
                         (int) Math.ceil(y / 32.0))) {
                     if (isRun) {
                         x += 16;
@@ -94,7 +111,7 @@ public class Role {
                 direction = RIGHT;
                 break;
             case UP:
-                if (scene.roleEvent.isAllow((int) Math.ceil(x / 32.0),
+                if (scene.getRoleEvent().isAllow((int) Math.ceil(x / 32.0),
                         (int) Math.ceil(y / 32.0) - 1)) {
                     if (isRun) {
                         y -= 16;
@@ -105,7 +122,7 @@ public class Role {
                 direction = UP;
                 break;
             case DOWN:
-                if (scene.roleEvent.isAllow((int) Math.ceil(x / 32.0),
+                if (scene.getRoleEvent().isAllow((int) Math.ceil(x / 32.0),
                         (int) Math.floor(y / 32.0) + 1)) {
                     if (isRun) {
                         y += 16;
@@ -119,6 +136,62 @@ public class Role {
             default:
                 break;
         }
+    }
+
+    public boolean isMove() {
+        return isMove;
+    }
+
+    public void setMove(boolean move) {
+        isMove = move;
+    }
+
+    public int getStepNum() {
+        return stepNum;
+    }
+
+    public void setStepNum(int stepNum) {
+        this.stepNum = stepNum;
+    }
+
+    public int getCount2() {
+        return count2;
+    }
+
+    public void setCount2(int count2) {
+        this.count2 = count2;
+    }
+
+    public boolean isNextStep() {
+        return nextStep;
+    }
+
+    public void setNextStep(boolean nextStep) {
+        this.nextStep = nextStep;
+    }
+
+    public boolean isCanStop() {
+        return canStop;
+    }
+
+    public void setCanStop(boolean canStop) {
+        this.canStop = canStop;
+    }
+
+    public Timer getWalk() {
+        return walk;
+    }
+
+    public void setWalk(Timer walk) {
+        this.walk = walk;
+    }
+
+    public Timer getRun() {
+        return run;
+    }
+
+    public void setRun(Timer run) {
+        this.run = run;
     }
 
     class walk implements ActionListener {
