@@ -110,7 +110,7 @@ public class Command {
             drawn = false;
             battlePanel.setCurrentPattern(1);
             //打开怪物选择
-            battlePanel.getEnemySlector().setSlectable(true);
+            battlePanel.getEnemySlector().setSelectable(true);
 
         }
 

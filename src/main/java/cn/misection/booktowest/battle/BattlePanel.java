@@ -399,7 +399,7 @@ public class BattlePanel extends JPanel implements Runnable {
                     drugMenu.checkPressed();
                 }
 
-                if (enemySlector.isSlectable()) {
+                if (enemySlector.isSelectable()) {
                     enemySlector.checkClick(currentX, currentY);
                 }
             }

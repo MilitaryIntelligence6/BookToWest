@@ -1,135 +1,168 @@
 package cn.misection.booktowest.battle;
 
-//怪物选择器类
+/**
+ * @author javaman
+ * 怪物选择器类;
+ */
 public class EnemySlector {
-    //是否可以选择
-    private boolean isSlectable;
-    //怪物1的选择范围
+
+    /**
+     * 是否可以选择;
+     */
+    private boolean selectable;
+
+    /**
+     * 怪物1的选择范围;
+     */
     private int x1;
+
     private int y1;
+
     private int width1;
+
     private int height1;
-    //怪物2的选择范围
+
+    /**
+     * 怪物2的选择范围;
+     */
     private int x2;
+
     private int y2;
+
     private int width2;
+
     private int height2;
-    //怪物3的选择范围
+
+    /**
+     * 怪物3的选择范围;
+     */
     private int x3;
+
     private int y3;
+
     private int width3;
+
     private int height3;
 
-    //战斗面板
-    private BattlePanel bp;
+    /**
+     * 战斗面板;
+     */
+    private BattlePanel battlePanel;
 
-    //构造方法
-    public EnemySlector(BattlePanel bp) {
-        this.bp = bp;
-        isSlectable = false;
+    public EnemySlector(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
+        selectable = false;
         //怪物1
-        if (bp.getEnemyOne() != null) {
+        if (battlePanel.getEnemyOne() != null) {
             //得到图片的宽和高
-            x1 = bp.getEnemyOne().getX();
-            y1 = bp.getEnemyOne().getY();
-            width1 = bp.getEnemyOne().getImages().get(0).getWidth(bp);
-            height1 = bp.getEnemyOne().getImages().get(0).getHeight(bp);
+            x1 = battlePanel.getEnemyOne().getX();
+            y1 = battlePanel.getEnemyOne().getY();
+            width1 = battlePanel.getEnemyOne().getImages().get(0).getWidth(battlePanel);
+            height1 = battlePanel.getEnemyOne().getImages().get(0).getHeight(battlePanel);
         }
 
         //怪物2
-        if (bp.getEnemyTwo() != null) {
+        if (battlePanel.getEnemyTwo() != null) {
             //得到图片的宽和高
-            x2 = bp.getEnemyTwo().getX();
-            y2 = bp.getEnemyTwo().getY();
-            width2 = bp.getEnemyTwo().getImages().get(0).getWidth(bp);
-            height2 = bp.getEnemyTwo().getImages().get(0).getHeight(bp);
+            x2 = battlePanel.getEnemyTwo().getX();
+            y2 = battlePanel.getEnemyTwo().getY();
+            width2 = battlePanel.getEnemyTwo().getImages().get(0).getWidth(battlePanel);
+            height2 = battlePanel.getEnemyTwo().getImages().get(0).getHeight(battlePanel);
         }
 
         //怪物3
-        if (bp.getEnemyThree() != null) {
+        if (battlePanel.getEnemyThree() != null) {
             //得到图片的宽和高
-            x3 = bp.getEnemyThree().getX();
-            y3 = bp.getEnemyThree().getY();
-            width3 = bp.getEnemyThree().getImages().get(0).getWidth(bp);
-            height3 = bp.getEnemyThree().getImages().get(0).getHeight(bp);
+            x3 = battlePanel.getEnemyThree().getX();
+            y3 = battlePanel.getEnemyThree().getY();
+            width3 = battlePanel.getEnemyThree().getImages().get(0).getWidth(battlePanel);
+            height3 = battlePanel.getEnemyThree().getImages().get(0).getHeight(battlePanel);
         }
     }
 
-    //判断是否移动到某个敌人区域内
+    /**
+     * 判断是否移动到某个敌人区域内;
+     * @param currentX
+     * @param currentY
+     */
     public void checkMoveIn(int currentX, int currentY) {
-        if (isSlectable) {
-            if (bp.getEnemyOne() != null) {
+        if (selectable) {
+            if (battlePanel.getEnemyOne() != null) {
                 if (currentX >= x1 && currentX <= x1 + width1 && currentY >= y1 && currentY <= y1 + height1) {
-                    bp.getEnemyOne().setCurrentImage(bp.getEnemyOne().getSelectedImage());
-                    bp.getEnemyOne().setStop(true);
+                    battlePanel.getEnemyOne().setCurrentImage(battlePanel.getEnemyOne().getSelectedImage());
+                    battlePanel.getEnemyOne().setStop(true);
                 } else {
-                    bp.getEnemyOne().setStop(false);
+                    battlePanel.getEnemyOne().setStop(false);
                 }
             }
-            if (bp.getEnemyTwo() != null) {
+            if (battlePanel.getEnemyTwo() != null) {
                 if (currentX >= x2 && currentX <= x2 + width2 && currentY >= y2 && currentY <= y2 + height2) {
-                    bp.getEnemyTwo().setCurrentImage(bp.getEnemyTwo().getSelectedImage());
-                    bp.getEnemyTwo().setStop(true);
+                    battlePanel.getEnemyTwo().setCurrentImage(battlePanel.getEnemyTwo().getSelectedImage());
+                    battlePanel.getEnemyTwo().setStop(true);
                 } else {
-                    bp.getEnemyTwo().setStop(false);
+                    battlePanel.getEnemyTwo().setStop(false);
                 }
             }
-            if (bp.getEnemyThree() != null) {
+            if (battlePanel.getEnemyThree() != null) {
                 if (currentX >= x3 && currentX <= x3 + width3 && currentY >= y3 && currentY <= y3 + height1) {
-                    bp.getEnemyThree().setCurrentImage(bp.getEnemyThree().getSelectedImage());
-                    bp.getEnemyThree().setStop(true);
+                    battlePanel.getEnemyThree().setCurrentImage(battlePanel.getEnemyThree().getSelectedImage());
+                    battlePanel.getEnemyThree().setStop(true);
                 } else {
-                    bp.getEnemyThree().setStop(false);
+                    battlePanel.getEnemyThree().setStop(false);
                 }
             }
         }
     }
 
-    //判断是否点击了某个敌人区域
+    /**
+     * 判断是否点击了某个敌人区域;
+     * @param currentX
+     * @param currentY
+     */
     public void checkClick(int currentX, int currentY) {
-        if (isSlectable) {
+        if (selectable) {
             //检查怪物1
-            if (bp.getEnemyOne() != null) {
+            if (battlePanel.getEnemyOne() != null) {
                 if (currentX >= x1 && currentX <= x1 + width1 && currentY >= y1 && currentY <= y1 + height1) {
-                    bp.setCurrentBeAttacked(5);
-                    isSlectable = false;
+                    battlePanel.setCurrentBeAttacked(5);
+                    selectable = false;
                     //恢复动态
-                    bp.getEnemyOne().setDraw(true);
-                    bp.getEnemyOne().setStop(false);
+                    battlePanel.getEnemyOne().setDraw(true);
+                    battlePanel.getEnemyOne().setStop(false);
                 }
             }
 
             //检查怪物2
-            if (bp.getEnemyTwo() != null) {
+            if (battlePanel.getEnemyTwo() != null) {
                 if (currentX >= x2 && currentX <= x2 + width2 && currentY >= y2 && currentY <= y2 + height2) {
-                    bp.setCurrentBeAttacked(6);
-                    isSlectable = false;
+                    battlePanel.setCurrentBeAttacked(6);
+                    selectable = false;
                     //恢复动态
-                    bp.getEnemyTwo().setDraw(true);
-                    bp.getEnemyTwo().setStop(false);
+                    battlePanel.getEnemyTwo().setDraw(true);
+                    battlePanel.getEnemyTwo().setStop(false);
                 }
             }
 
             //检查怪物3
-            if (bp.getEnemyThree() != null) {
+            if (battlePanel.getEnemyThree() != null) {
                 if (currentX >= x3 && currentX <= x3 + width3 && currentY >= y3 && currentY <= y3 + height1) {
-                    bp.setCurrentBeAttacked(7);
-                    isSlectable = false;
+                    battlePanel.setCurrentBeAttacked(7);
+                    selectable = false;
                     //恢复动态
-                    bp.getEnemyThree().setDraw(true);
-                    bp.getEnemyThree().setStop(false);
+                    battlePanel.getEnemyThree().setDraw(true);
+                    battlePanel.getEnemyThree().setStop(false);
                 }
             }
 
         }
     }
 
-    public boolean isSlectable() {
-        return isSlectable;
+    public boolean isSelectable() {
+        return selectable;
     }
 
-    public void setSlectable(boolean slectable) {
-        isSlectable = slectable;
+    public void setSelectable(boolean selectable) {
+        this.selectable = selectable;
     }
 
     public int getX1() {
@@ -228,11 +261,11 @@ public class EnemySlector {
         this.height3 = height3;
     }
 
-    public BattlePanel getBp() {
-        return bp;
+    public BattlePanel getBattlePanel() {
+        return battlePanel;
     }
 
-    public void setBp(BattlePanel bp) {
-        this.bp = bp;
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 }

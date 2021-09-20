@@ -5,99 +5,199 @@ import java.util.*;
 
 import cn.misection.booktowest.util.*;
 
-//敌人类
+/**
+ * 敌人类;
+ */
 public class Enemy {
-    //角色编号
+
+    /**
+     * 角色编号
+     */
     private int roleCode;
-    //当前图片引用
+
+    /**
+     * 当前图片引用
+     */
     private Image currentImage;
-    //头像图片
+
+    /**
+     * 头像图片
+     */
     private Image headImage;
-    //姓名
+
+    /**
+     * 姓名
+     */
     private String name;
-    //图片集合
+
+    /**
+     * 图片集合
+     */
     private ArrayList<Image> Images = new ArrayList<Image>();
-    //出现坐标
+
+    /**
+     * 出现坐标
+     */
     private int x;
     private int y;
-    //当前编号
+
+    /**
+     * 当前编号
+     */
     private int code;
-    //图片长度
+
+    /**
+     * 图片长度
+     */
     private int length;
-    //是否画出
+
+    /**
+     * 是否画出
+     */
     private boolean isDraw;
-    //是否停止
+
+    /**
+     * 是否停止
+     */
     private boolean isStop;
-    //战斗面板引用
+
+    /**
+     * 战斗面板引用
+     */
     private BattlePanel bp;
 
-    //是否死亡
+    /**
+     * 是否死亡
+     */
     private boolean isDead;
 
-    //速度
+    /**
+     * 速度
+     */
     private int speed;
 
-    //战斗状态
+    /**
+     * 战斗状态
+     */
     private BattleState battleState;
 
-    //被击动画引用
+    /**
+     * 被击动画引用
+     */
     private BeAttackedAnimation beAttackedAnimation;
-    //被击动画长度
+
+    /**
+     * 被击动画长度
+     */
     private int beAttackedLength;
-    //被击动画出现位置
+
+    /**
+     * 被击动画出现位置
+     */
     private int beAttackedX;
+
     private int beAttackedY;
 
-    //被选中后的图片
+    /**
+     * 被选中后的图片
+     */
     private Image selectedImage;
 
-//敌人的战斗数据
-
-    //hp和mp
+    /*
+     * 敌人的战斗数据
+     */
+    /**
+     * hp和mp
+     */
     private int hp;
+
     private int mp;
 
-    //攻击力
+    /**
+     * 攻击力
+     */
     private int hurt;
-    //魔法攻击
+
+    /**
+     * 魔法攻击
+     */
     private int skillHurt;
-    //防御力
+
+    /**
+     * 防御力
+     */
     private int defense;
+
     private int hurtMax;
+
     private int skillHurtMax;
+
     private int defenseMax;
 
-    //招数(默认为1)
+    /**
+     * 招数(默认为1)
+     */
     private int skillNum = 1;
 
-    //当前造成的伤害
+    /**
+     * 当前造成的伤害
+     */
     private int currentDamage;
-    //当前造成的伤害类型
+
+    /**
+     * 当前造成的伤害类型
+     */
     private int currentDamageType;
-    //当前敌人
+
+    /**
+     * 当前敌人
+     */
     private ArrayList<Hero> currentEnemies = new ArrayList<>();
 
-//关于等级的数据
+/**
+ * 关于等级的数据
+ */
 
-    //战胜后可以获得的经验
+    /**
+     * 战胜后可以获得的经验
+     */
     private int exp;
-    //战胜后可以获得的物品
+
+    /**
+     * 战胜后可以获得的物品
+     */
     private String thing;
-    //战胜后可以获得的金钱
+
+    /**
+     * 战胜后可以获得的金钱
+     */
     private int money;
 
-    //存储技能信息
+    /**
+     * 存储技能信息
+     */
     private String skillName;
+
     private int skillLength;
+
     private int skillX;
+
     private int skillY;
+
     private int beAttackedCode;
+
     private int beAttackedTimes;
+
     private int runCode;
+
     private int attackCode;
+
     private int withdrawCode;
+
     private int offsetTo1;
+
     private int offsetTo2;
+
     private int offsetTo3;
 
     public void setSkill(String skillName, int skillLength, int skillX, int skillY, int beAttackedCode,
