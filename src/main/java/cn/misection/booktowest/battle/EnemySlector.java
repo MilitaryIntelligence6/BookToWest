@@ -28,58 +28,58 @@ public class EnemySlector {
         this.bp = bp;
         isSlectable = false;
         //怪物1
-        if (bp.getEm1() != null) {
+        if (bp.getEnemyOne() != null) {
             //得到图片的宽和高
-            x1 = bp.getEm1().getX();
-            y1 = bp.getEm1().getY();
-            width1 = bp.getEm1().getImages().get(0).getWidth(bp);
-            height1 = bp.getEm1().getImages().get(0).getHeight(bp);
+            x1 = bp.getEnemyOne().getX();
+            y1 = bp.getEnemyOne().getY();
+            width1 = bp.getEnemyOne().getImages().get(0).getWidth(bp);
+            height1 = bp.getEnemyOne().getImages().get(0).getHeight(bp);
         }
 
         //怪物2
-        if (bp.getEm2() != null) {
+        if (bp.getEnemyTwo() != null) {
             //得到图片的宽和高
-            x2 = bp.getEm2().getX();
-            y2 = bp.getEm2().getY();
-            width2 = bp.getEm2().getImages().get(0).getWidth(bp);
-            height2 = bp.getEm2().getImages().get(0).getHeight(bp);
+            x2 = bp.getEnemyTwo().getX();
+            y2 = bp.getEnemyTwo().getY();
+            width2 = bp.getEnemyTwo().getImages().get(0).getWidth(bp);
+            height2 = bp.getEnemyTwo().getImages().get(0).getHeight(bp);
         }
 
         //怪物3
-        if (bp.getEm3() != null) {
+        if (bp.getEnemyThree() != null) {
             //得到图片的宽和高
-            x3 = bp.getEm3().getX();
-            y3 = bp.getEm3().getY();
-            width3 = bp.getEm3().getImages().get(0).getWidth(bp);
-            height3 = bp.getEm3().getImages().get(0).getHeight(bp);
+            x3 = bp.getEnemyThree().getX();
+            y3 = bp.getEnemyThree().getY();
+            width3 = bp.getEnemyThree().getImages().get(0).getWidth(bp);
+            height3 = bp.getEnemyThree().getImages().get(0).getHeight(bp);
         }
     }
 
     //判断是否移动到某个敌人区域内
     public void checkMoveIn(int currentX, int currentY) {
         if (isSlectable) {
-            if (bp.getEm1() != null) {
+            if (bp.getEnemyOne() != null) {
                 if (currentX >= x1 && currentX <= x1 + width1 && currentY >= y1 && currentY <= y1 + height1) {
-                    bp.getEm1().setCurrentImage(bp.getEm1().getSelectedImage());
-                    bp.getEm1().setStop(true);
+                    bp.getEnemyOne().setCurrentImage(bp.getEnemyOne().getSelectedImage());
+                    bp.getEnemyOne().setStop(true);
                 } else {
-                    bp.getEm1().setStop(false);
+                    bp.getEnemyOne().setStop(false);
                 }
             }
-            if (bp.getEm2() != null) {
+            if (bp.getEnemyTwo() != null) {
                 if (currentX >= x2 && currentX <= x2 + width2 && currentY >= y2 && currentY <= y2 + height2) {
-                    bp.getEm2().setCurrentImage(bp.getEm2().getSelectedImage());
-                    bp.getEm2().setStop(true);
+                    bp.getEnemyTwo().setCurrentImage(bp.getEnemyTwo().getSelectedImage());
+                    bp.getEnemyTwo().setStop(true);
                 } else {
-                    bp.getEm2().setStop(false);
+                    bp.getEnemyTwo().setStop(false);
                 }
             }
-            if (bp.getEm3() != null) {
+            if (bp.getEnemyThree() != null) {
                 if (currentX >= x3 && currentX <= x3 + width3 && currentY >= y3 && currentY <= y3 + height1) {
-                    bp.getEm3().setCurrentImage(bp.getEm3().getSelectedImage());
-                    bp.getEm3().setStop(true);
+                    bp.getEnemyThree().setCurrentImage(bp.getEnemyThree().getSelectedImage());
+                    bp.getEnemyThree().setStop(true);
                 } else {
-                    bp.getEm3().setStop(false);
+                    bp.getEnemyThree().setStop(false);
                 }
             }
         }
@@ -89,35 +89,35 @@ public class EnemySlector {
     public void checkClick(int currentX, int currentY) {
         if (isSlectable) {
             //检查怪物1
-            if (bp.getEm1() != null) {
+            if (bp.getEnemyOne() != null) {
                 if (currentX >= x1 && currentX <= x1 + width1 && currentY >= y1 && currentY <= y1 + height1) {
                     bp.setCurrentBeAttacked(5);
                     isSlectable = false;
                     //恢复动态
-                    bp.getEm1().setDraw(true);
-                    bp.getEm1().setStop(false);
+                    bp.getEnemyOne().setDraw(true);
+                    bp.getEnemyOne().setStop(false);
                 }
             }
 
             //检查怪物2
-            if (bp.getEm2() != null) {
+            if (bp.getEnemyTwo() != null) {
                 if (currentX >= x2 && currentX <= x2 + width2 && currentY >= y2 && currentY <= y2 + height2) {
                     bp.setCurrentBeAttacked(6);
                     isSlectable = false;
                     //恢复动态
-                    bp.getEm2().setDraw(true);
-                    bp.getEm2().setStop(false);
+                    bp.getEnemyTwo().setDraw(true);
+                    bp.getEnemyTwo().setStop(false);
                 }
             }
 
             //检查怪物3
-            if (bp.getEm3() != null) {
+            if (bp.getEnemyThree() != null) {
                 if (currentX >= x3 && currentX <= x3 + width3 && currentY >= y3 && currentY <= y3 + height1) {
                     bp.setCurrentBeAttacked(7);
                     isSlectable = false;
                     //恢复动态
-                    bp.getEm3().setDraw(true);
-                    bp.getEm3().setStop(false);
+                    bp.getEnemyThree().setDraw(true);
+                    bp.getEnemyThree().setStop(false);
                 }
             }
 

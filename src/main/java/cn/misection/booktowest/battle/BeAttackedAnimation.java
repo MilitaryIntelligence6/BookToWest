@@ -101,17 +101,17 @@ public class BeAttackedAnimation {
                     }
                 }
                 if (bp.getCurrentBeAttacked() == 5) {
-                    bp.getEm1().setDraw(true);
+                    bp.getEnemyOne().setDraw(true);
                 }
                 if (bp.getCurrentBeAttacked() == 6) {
-                    bp.getEm2().setDraw(true);
+                    bp.getEnemyTwo().setDraw(true);
                 }
                 if (bp.getCurrentBeAttacked() == 7) {
-                    bp.getEm3().setDraw(true);
+                    bp.getEnemyThree().setDraw(true);
                 }
 
                 if (bp.getCurrentBeAttacked() == 8) {
-                    for (Enemy e : bp.getEnemies()) {
+                    for (Enemy e : bp.getEnemyList()) {
                         e.setDraw(true);
                     }
                 }

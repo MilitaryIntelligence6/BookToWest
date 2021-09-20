@@ -92,10 +92,10 @@ public class GameOver {
                 }
                 if (code == 10) {
                     //跳转回开始界面
-                    if (bp.getEm1().getName().equals("罹年居士")) {
+                    if (bp.getEnemyOne().getName().equals("罹年居士")) {
                         GameApplication.switchTo("scene");
-                        bp.setEm1(null);
-                        bp.getEnemies().clear();
+                        bp.setEnemyOne(null);
+                        bp.getEnemyList().clear();
                         bp.getZxf().deadAnimation.setDraw(false);
                         bp.getZxf().isDraw = true;
                         ZhangXiaoFan.hp = ZhangXiaoFan.hpMax / 2;
@@ -105,10 +105,10 @@ public class GameOver {
                         bp.getHeroes().clear();
                     } else {
                         GameApplication.switchTo("start");
-                        bp.setEm1(null);
-                        bp.setEm2(null);
-                        bp.setEm3(null);
-                        bp.getEnemies().clear();
+                        bp.setEnemyOne(null);
+                        bp.setEnemyTwo(null);
+                        bp.setEnemyThree(null);
+                        bp.getEnemyList().clear();
                         if (bp.getZxf() != null) {
                             bp.getZxf().deadAnimation.setDraw(false);
                             bp.getZxf().isDraw = true;

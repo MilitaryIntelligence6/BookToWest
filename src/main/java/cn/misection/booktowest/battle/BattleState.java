@@ -4,42 +4,77 @@ import java.awt.*;
 
 import cn.misection.booktowest.util.Reader;
 
-//战斗中出现的状态类
+/**
+ * @author javaman
+ * 战斗中出现的状态类;
+ */
 public class BattleState {
-    //持续的回合数
+
+    /**
+     * 持续的回合数
+     */
     private int roundNum;
-    //战斗面板引用
-    private BattlePanel bp;
-    //类型
+
+    /**
+     * 战斗面板引用
+     */
+    private BattlePanel battlePanel;
+
+    /**
+     * 类型
+     */
     private int type;
-    //是否有效
+
+    /**
+     * 是否有效
+     */
     private boolean isUsable;
-    //是否检查
+
+    /**
+     * 是否检查
+     */
     private boolean isCheck;
-    //成功的概率
+
+    /**
+     * 成功的概率
+     */
     private int successRate;
-    //被附加状态的人物编号 1.张小凡 2.文敏 3.陆雪琪 5.怪物1 6.怪物2 7.怪物3
+
+    /**
+     * 被附加状态的人物编号 1.张小凡 2.文敏 3.陆雪琪 5.怪物1 6.怪物2 7.怪物3
+     */
     private int roleCode;
-    //状态显示的图片
+
+    /**
+     * 状态显示的图片
+     */
     private Image stateImage;
-    //显示的坐标
+
+    /**
+     * 显示的坐标
+     */
     private int x;
+
     private int y;
 
-    //构造方法
-    public BattleState(BattlePanel bp) {
-        this.bp = bp;
+    public BattleState(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 
 
-    //画出状态显示
+    /**
+     * 画出状态显示;
+     * @param g
+     */
     public void drawState(Graphics g) {
         if (isUsable) {
-            g.drawImage(stateImage, x, y, bp);
+            g.drawImage(stateImage, x, y, battlePanel);
         }
     }
 
-    //获取图片
+    /**
+     * 获取图片;
+     */
     public void getImage() {
         switch (type) {
             case 1:
@@ -78,6 +113,8 @@ public class BattleState {
             case 12:
                 stateImage = Reader.readImage("image/状态/潜能爆发.png");
                 break;
+            default:
+                break;
         }
     }
 
@@ -103,7 +140,7 @@ public class BattleState {
     //检查
     public void check() {
         if (isUsable) {
-            if (bp.getCurrentRound() == roleCode && isCheck) {
+            if (battlePanel.getCurrentRound() == roleCode && isCheck) {
                 isCheck = false;
                 if (roundNum > 0) {
                     roundNum--;
@@ -113,7 +150,7 @@ public class BattleState {
                     clear();
                 }
             }
-            if (bp.getCurrentRound() != roleCode) {
+            if (battlePanel.getCurrentRound() != roleCode) {
                 isCheck = true;
             }
         }
@@ -123,22 +160,22 @@ public class BattleState {
     public void Excute() {
         switch (roleCode) {
             case 1:
-                bp.getZxf().excuteState();
+                battlePanel.getZxf().excuteState();
                 break;
             case 2:
-                bp.getYj().excuteState();
+                battlePanel.getYj().excuteState();
                 break;
             case 3:
-                bp.getLxq().excuteState();
+                battlePanel.getLxq().excuteState();
                 break;
             case 5:
-                bp.getEm1().excuteState();
+                battlePanel.getEnemyOne().excuteState();
                 break;
             case 6:
-                bp.getEm2().excuteState();
+                battlePanel.getEnemyTwo().excuteState();
                 break;
             case 7:
-                bp.getEm3().excuteState();
+                battlePanel.getEnemyThree().excuteState();
                 break;
         }
     }
@@ -147,22 +184,22 @@ public class BattleState {
     public void Return() {
         switch (roleCode) {
             case 1:
-                bp.getZxf().returnFromState();
+                battlePanel.getZxf().returnFromState();
                 break;
             case 2:
-                bp.getYj().returnFromState();
+                battlePanel.getYj().returnFromState();
                 break;
             case 3:
-                bp.getLxq().returnFromState();
+                battlePanel.getLxq().returnFromState();
                 break;
             case 5:
-                bp.getEm1().returnFromState();
+                battlePanel.getEnemyOne().returnFromState();
                 break;
             case 6:
-                bp.getEm2().returnFromState();
+                battlePanel.getEnemyTwo().returnFromState();
                 break;
             case 7:
-                bp.getEm3().returnFromState();
+                battlePanel.getEnemyThree().returnFromState();
                 break;
         }
     }
@@ -186,12 +223,12 @@ public class BattleState {
         this.roundNum = roundNum;
     }
 
-    public BattlePanel getBp() {
-        return bp;
+    public BattlePanel getBattlePanel() {
+        return battlePanel;
     }
 
-    public void setBp(BattlePanel bp) {
-        this.bp = bp;
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 
     public int getType() {

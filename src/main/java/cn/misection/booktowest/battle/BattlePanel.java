@@ -11,109 +11,188 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.awt.image.MemoryImageSource;
+import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * @author javaman
+ */
 public class BattlePanel extends JPanel implements Runnable {
+
     private static final long serialVersionUID = 4L;
-    //定义宽度和高度
+
+    /**
+     * 定义宽度和高度
+     */
     private static final int WIDTH = 32 * 32;
+
     private static final int HEIGHT = 20 * 32;
 
-    //战斗图片背景
+    /**
+     * 战斗图片背景
+     */
     private Image backgroundImage;
-    //缓冲图片
+
+    /**
+     * 缓冲图片
+     */
     private Image bufferedPic;
-    //缓冲画笔
+
+    /**
+     * 缓冲画笔
+     */
     private Graphics bufferedGraphics;
-    //字体
+
+    /**
+     * 字体
+     */
     private Font font;
-    //游标对象
+
+    /**
+     * 游标对象
+     */
     private Mouse mouse;
 
-    //游标当前位置
+    /**
+     * 游标当前位置
+     */
     private int currentX;
     private int currentY;
 
-    //控制台
+    /**
+     * 控制台
+     */
     private Command command;
 
-    //技能菜单
+    /**
+     * 技能菜单
+     */
     private SkillMenu skillMenu;
 
-    //药品菜单
+    /**
+     * 药品菜单
+     */
     private DrugMenu drugMenu;
 
-    //状态栏
+    /**
+     * 状态栏
+     */
     private StateBlank stateBlank;
 
-    //指示标志
+    /**
+     * 指示标志
+     */
     private Instruct instruct;
 
-    //怪物选择器
+    /**
+     * 怪物选择器
+     */
     private EnemySlector enemySlector;
 
-    //攻击发动器
+    /**
+     * 攻击发动器
+     */
     private LaunchAttack launchAttack;
 
-    //检查器
+    /**
+     * 检查器
+     */
     private Check check;
 
-    //伤害值显示
-    private ArrayList<HurtValue> hurtValues;
+    /**
+     * 伤害值显示
+     */
+    private List<HurtValue> hurtValues;
 
-    //开始动画
+    /**
+     * 开始动画
+     */
     private StartAnimation startAnimation;
 
-    //背景动画
+    /**
+     * 背景动画
+     */
     private BackgroundAnimation backgroundAnimation;
 
-    //技能动画
+    /**
+     * 技能动画
+     */
     private SkillAnimation skillAnimation;
 
-    //提示
+    /**
+     * 提示
+     */
     private Reminder reminder;
 
-    //战斗胜利提示
+    /**
+     * 战斗胜利提示
+     */
     private VictoryReminder victoryReminder;
 
-    //怒气槽
-    private ArrayList<AngryBar> angryBars = new ArrayList<AngryBar>();
+    /**
+     * 怒气槽
+     */
+    private List<AngryBar> angryBars = new ArrayList<>();
 
-    //我方战斗单位引用
+    /**
+     * 我方战斗单位引用
+     */
     private ZhangXiaoFan zxf;
     private YuJie yj;
     private LuXueQi lxq;
-    //我方战斗单位集合
-    private ArrayList<Hero> heroes = new ArrayList<Hero>();
 
-    //敌人引用
-    private Enemy em1;
-    private Enemy em2;
-    private Enemy em3;
-    private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    /**
+     * 我方战斗单位集合
+     */
+    private List<Hero> heroes = new ArrayList<>();
 
-    //怪物智能
+    // FIXME: 2021/9/20
+    /**
+     * 敌人引用
+     */
+    private Enemy enemyOne;
+
+    private Enemy enemyTwo;
+
+    private Enemy enemyThree;
+
+    private List<Enemy> enemyList = new ArrayList<>();
+
+    /**
+     * 怪物智能
+     */
     private EnemyAI enemyAI;
 
-    //进度条
+    /**
+     * 进度条
+     */
     private ProgressBar progressBar;
 
-    //小精灵
+    /**
+     * 小精灵
+     */
     private Pet pet;
 
-    //游戏结束画面
+    /**
+     * 游戏结束画面
+     */
     private GameOver gameOver;
 
-    //当前回合 1.张小凡 2.文敏 3.陆雪琪 4.宋大仁 5.怪物1 6.怪物2 7.怪物3
+    /**
+     * 当前回合 1.张小凡 2.文敏 3.陆雪琪 4.宋大仁 5.怪物1 6.怪物2 7.怪物3
+     */
     private int currentRound;
 
-    //当前被攻击对象 1.张小凡 2.文敏 3.陆雪琪 4.宋大仁 5.怪物1 6.怪物2 7.怪物3
+    /**
+     * 当前被攻击对象 1.张小凡 2.文敏 3.陆雪琪 4.宋大仁 5.怪物1 6.怪物2 7.怪物3
+     */
     private int currentBeAttacked;
 
-    //当前攻击模式  1.普通攻击 2.技能1 3.技能2 4.技能3 5.技能4 6.技能5
+    /**
+     * 当前攻击模式  1.普通攻击 2.技能1 3.技能2 4.技能3 5.技能4 6.技能5
+     */
     private int currentPattern;
 
-    //构造方法
     public BattlePanel() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         //双缓冲准备
@@ -121,55 +200,41 @@ public class BattlePanel extends JPanel implements Runnable {
         bufferedGraphics = bufferedPic.getGraphics();
         font = new Font("文鼎粗钢笔行楷", Font.BOLD, 15);
         bufferedGraphics.setFont(font);
-
         //创建游标
         mouse = new Mouse(this);
         setMouse();
         requestFocus();
-
-
         //创建控制台
         command = new Command(this);
-
         //创建指示图标
         instruct = new Instruct(this);
-
         //创建药品菜单
         drugMenu = new DrugMenu(this);
-
         //创建伤害值显示
-        hurtValues = new ArrayList<HurtValue>();
-
+        hurtValues = new ArrayList<>();
         //创建背景动画
         backgroundAnimation = new BackgroundAnimation(this);
-
         //创建技能动画
         skillAnimation = new SkillAnimation(this);
-
         //创建提示
         reminder = new Reminder(this, 500, 120);
-
         //创建检查器
         check = new Check(this);
-
         //开启线程
-        Thread t = new Thread(this);
-        t.start();
+        Thread thread = new Thread(this);
+        thread.start();
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public static int getWIDTH() {
-        return WIDTH;
-    }
-
-    public static int getHEIGHT() {
-        return HEIGHT;
-    }
-
-    //初始化方法
+    /**
+     * 初始化方法;
+     * @param s
+     * @param z
+     * @param y
+     * @param l
+     * @param e1
+     * @param e2
+     * @param e3
+     */
     public void initial(String s, ZhangXiaoFan z, YuJie y, LuXueQi l, Enemy e1, Enemy e2, Enemy e3) {
         backgroundImage = Reader.readImage(s);
         //根据背景加入音乐
@@ -214,7 +279,6 @@ public class BattlePanel extends JPanel implements Runnable {
                 break;
         }
 
-
         //添加我方的战斗单位
         zxf = z;
         yj = y;
@@ -229,21 +293,21 @@ public class BattlePanel extends JPanel implements Runnable {
             heroes.add(l);
         }
         //添加敌人
-        em1 = e1;
-        em2 = e2;
-        em3 = e3;
+        enemyOne = e1;
+        enemyTwo = e2;
+        enemyThree = e3;
 
         //怪物智能
         enemyAI = new EnemyAI(this);
         //添加怪物 注意顺序 解决遮掩性问题
-        if (em2 != null) {
-            enemies.add(em2);
+        if (enemyTwo != null) {
+            enemyList.add(enemyTwo);
         }
-        if (em1 != null) {
-            enemies.add(em1);
+        if (enemyOne != null) {
+            enemyList.add(enemyOne);
         }
-        if (em3 != null) {
-            enemies.add(em3);
+        if (enemyThree != null) {
+            enemyList.add(enemyThree);
         }
 
         //创建小精灵
@@ -298,16 +362,18 @@ public class BattlePanel extends JPanel implements Runnable {
     //设置一个键盘监听(外挂)
     public void keyPressed(int keyCode) {
         if (keyCode == KeyEvent.VK_J) {
-            enemies.clear();
-            em1 = null;
-            em2 = null;
-            em3 = null;
+            enemyList.clear();
+            enemyOne = null;
+            enemyTwo = null;
+            enemyThree = null;
             check.checkEnemyDead();
         }
     }
 
 
-    //设置鼠标
+    /**
+     * 设置鼠标;
+     */
     public void setMouse() {
         int[] pixels = new int[256];
         Image image = Toolkit.getDefaultToolkit().createImage(new MemoryImageSource(16, 16, pixels, 0, 16));
@@ -426,7 +492,7 @@ public class BattlePanel extends JPanel implements Runnable {
                 hero.getVictoryAnimation().drawVictoryAnimation(bufferedGraphics);
             }
         }
-        for (Enemy enemy : enemies) {
+        for (Enemy enemy : enemyList) {
             if (enemy != null) {
                 enemy.drawEnemy(bufferedGraphics);
             }
@@ -438,7 +504,7 @@ public class BattlePanel extends JPanel implements Runnable {
             progressBar.drawProgressBar(bufferedGraphics);
         }
         skillMenu.drawSkillMenu(bufferedGraphics);
-        for (Enemy enemy : enemies) {
+        for (Enemy enemy : enemyList) {
             if (enemy.getBeAttackedAnimation() != null) {
                 enemy.getBeAttackedAnimation().drawAnimation(bufferedGraphics);
             }
@@ -452,7 +518,7 @@ public class BattlePanel extends JPanel implements Runnable {
         for (Hero hero : heroes) {
             hero.getBattleState().drawState(bufferedGraphics);
         }
-        for (Enemy enemy : enemies) {
+        for (Enemy enemy : enemyList) {
             enemy.getBattleState().drawState(bufferedGraphics);
         }
         for (HurtValue hurtValue : hurtValues) {
@@ -503,7 +569,7 @@ public class BattlePanel extends JPanel implements Runnable {
                     hero.getDeadAnimation().update();
                 }
             }
-            for (Enemy enemy : enemies) {
+            for (Enemy enemy : enemyList) {
                 if (enemy != null) {
                     enemy.doAction();
                 }
@@ -512,7 +578,7 @@ public class BattlePanel extends JPanel implements Runnable {
                 progressBar.updateProgress();
             }
             skillAnimation.update();
-            for (Enemy enemy : enemies) {
+            for (Enemy enemy : enemyList) {
                 if (enemy.getBeAttackedAnimation() != null) {
                     enemy.getBeAttackedAnimation().update();
                 }
@@ -537,7 +603,7 @@ public class BattlePanel extends JPanel implements Runnable {
             if (reminder != null) {
                 reminder.update();
             }
-            for (Enemy enemy : enemies) {
+            for (Enemy enemy : enemyList) {
                 if (enemy != null) {
                     enemy.getBattleState().check();
                 }
@@ -696,11 +762,11 @@ public class BattlePanel extends JPanel implements Runnable {
         this.check = check;
     }
 
-    public ArrayList<HurtValue> getHurtValues() {
+    public List<HurtValue> getHurtValues() {
         return hurtValues;
     }
 
-    public void setHurtValues(ArrayList<HurtValue> hurtValues) {
+    public void setHurtValues(List<HurtValue> hurtValues) {
         this.hurtValues = hurtValues;
     }
 
@@ -744,11 +810,11 @@ public class BattlePanel extends JPanel implements Runnable {
         this.victoryReminder = victoryReminder;
     }
 
-    public ArrayList<AngryBar> getAngryBars() {
+    public List<AngryBar> getAngryBars() {
         return angryBars;
     }
 
-    public void setAngryBars(ArrayList<AngryBar> angryBars) {
+    public void setAngryBars(List<AngryBar> angryBars) {
         this.angryBars = angryBars;
     }
 
@@ -776,44 +842,44 @@ public class BattlePanel extends JPanel implements Runnable {
         this.lxq = lxq;
     }
 
-    public ArrayList<Hero> getHeroes() {
+    public List<Hero> getHeroes() {
         return heroes;
     }
 
-    public void setHeroes(ArrayList<Hero> heroes) {
+    public void setHeroes(List<Hero> heroes) {
         this.heroes = heroes;
     }
 
-    public Enemy getEm1() {
-        return em1;
+    public Enemy getEnemyOne() {
+        return enemyOne;
     }
 
-    public void setEm1(Enemy em1) {
-        this.em1 = em1;
+    public void setEnemyOne(Enemy enemyOne) {
+        this.enemyOne = enemyOne;
     }
 
-    public Enemy getEm2() {
-        return em2;
+    public Enemy getEnemyTwo() {
+        return enemyTwo;
     }
 
-    public void setEm2(Enemy em2) {
-        this.em2 = em2;
+    public void setEnemyTwo(Enemy enemyTwo) {
+        this.enemyTwo = enemyTwo;
     }
 
-    public Enemy getEm3() {
-        return em3;
+    public Enemy getEnemyThree() {
+        return enemyThree;
     }
 
-    public void setEm3(Enemy em3) {
-        this.em3 = em3;
+    public void setEnemyThree(Enemy enemyThree) {
+        this.enemyThree = enemyThree;
     }
 
-    public ArrayList<Enemy> getEnemies() {
-        return enemies;
+    public List<Enemy> getEnemyList() {
+        return enemyList;
     }
 
-    public void setEnemies(ArrayList<Enemy> enemies) {
-        this.enemies = enemies;
+    public void setEnemyList(List<Enemy> enemyList) {
+        this.enemyList = enemyList;
     }
 
     public EnemyAI getEnemyAI() {

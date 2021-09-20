@@ -193,26 +193,26 @@ public class LuXueQi implements Hero {
         switch (bp.getCurrentBeAttacked()) {
             case 5:
                 currentEnemies.clear();
-                currentEnemies.add(bp.getEm1());
+                currentEnemies.add(bp.getEnemyOne());
                 break;
             case 6:
                 currentEnemies.clear();
-                currentEnemies.add(bp.getEm2());
+                currentEnemies.add(bp.getEnemyTwo());
                 break;
             case 7:
                 currentEnemies.clear();
-                currentEnemies.add(bp.getEm3());
+                currentEnemies.add(bp.getEnemyThree());
                 break;
             case 8:
                 currentEnemies.clear();
-                if (bp.getEm1() != null) {
-                    currentEnemies.add(bp.getEm1());
+                if (bp.getEnemyOne() != null) {
+                    currentEnemies.add(bp.getEnemyOne());
                 }
-                if (bp.getEm2() != null) {
-                    currentEnemies.add(bp.getEm2());
+                if (bp.getEnemyTwo() != null) {
+                    currentEnemies.add(bp.getEnemyTwo());
                 }
-                if (bp.getEm3() != null) {
-                    currentEnemies.add(bp.getEm3());
+                if (bp.getEnemyThree() != null) {
+                    currentEnemies.add(bp.getEnemyThree());
                 }
                 break;
         }
@@ -247,16 +247,16 @@ public class LuXueQi implements Hero {
                 if (bp.getYj() != null && !bp.getYj().isDead) {
                     bp.getProgressBar().setYuX(bp.getProgressBar().getBarX() + 400);
                 }
-                if (bp.getEm1() != null) {
+                if (bp.getEnemyOne() != null) {
                     bp.getProgressBar().setEnemy1X(bp.getProgressBar().getBarX());
                 }
-                if (bp.getEm2() != null) {
+                if (bp.getEnemyTwo() != null) {
                     bp.getProgressBar().setEnemy2X(bp.getProgressBar().getBarX());
                 }
-                if (bp.getEm3() != null) {
+                if (bp.getEnemyThree() != null) {
                     bp.getProgressBar().setEnemy3X(bp.getProgressBar().getBarX());
                 }
-                for (Enemy enemy : bp.getEnemies()) {
+                for (Enemy enemy : bp.getEnemyList()) {
                     enemy.getBattleState().set(1, 5, 70, enemy.getRoleCode(), enemy.getX(), enemy.getY());
                     enemy.checkState();
                 }
@@ -264,7 +264,7 @@ public class LuXueQi implements Hero {
                 break;
             case 4:
                 attackSkill(80, 30, 150);
-                for (Enemy enemy : bp.getEnemies()) {
+                for (Enemy enemy : bp.getEnemyList()) {
                     enemy.getBattleState().set(2, 9, 80, enemy.getRoleCode(), enemy.getX(), enemy.getY());
                     enemy.checkState();
                 }
@@ -278,7 +278,7 @@ public class LuXueQi implements Hero {
                 break;
             case 6:
                 attackSkill(180, 30, 200);
-                for (Enemy enemy : bp.getEnemies()) {
+                for (Enemy enemy : bp.getEnemyList()) {
                     int type = (int) (Math.random() * 6) + 5;
                     enemy.getBattleState().set(2, type, 100, enemy.getRoleCode(), enemy.getX(), enemy.getY());
                     enemy.checkState();

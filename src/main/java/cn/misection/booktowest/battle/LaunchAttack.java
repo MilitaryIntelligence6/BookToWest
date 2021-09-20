@@ -365,9 +365,9 @@ public class LaunchAttack {
                 code++;
             } else {
                 bp.getHurtValues().clear();
-                bp.getEm1().calDamage();
+                bp.getEnemyOne().calDamage();
                 bp.setCurrentPattern(0);
-                bp.getEm1().attack();
+                bp.getEnemyOne().attack();
                 code = 0;
             }
         }
@@ -377,9 +377,9 @@ public class LaunchAttack {
                 code++;
             } else {
                 bp.getHurtValues().clear();
-                bp.getEm1().calDamage();
+                bp.getEnemyOne().calDamage();
                 bp.setCurrentPattern(0);
-                bp.getEm1().attack();
+                bp.getEnemyOne().attack();
                 code = 0;
             }
         }
@@ -394,7 +394,7 @@ public class LaunchAttack {
             }
             bp.getCheck().checkHeroDead();
             //人物重新出现
-            bp.getEm1().setDraw(true);
+            bp.getEnemyOne().setDraw(true);
             //进度条继续
             bp.getProgressBar().setEnemy1X(bp.getProgressBar().getBarX());
             //恢复
@@ -410,9 +410,9 @@ public class LaunchAttack {
                 code++;
             } else {
                 bp.getHurtValues().clear();
-                bp.getEm2().calDamage();
+                bp.getEnemyTwo().calDamage();
                 bp.setCurrentPattern(0);
-                bp.getEm2().attack();
+                bp.getEnemyTwo().attack();
                 code = 0;
             }
         }
@@ -422,9 +422,9 @@ public class LaunchAttack {
                 code++;
             } else {
                 bp.getHurtValues().clear();
-                bp.getEm2().calDamage();
+                bp.getEnemyTwo().calDamage();
                 bp.setCurrentPattern(0);
-                bp.getEm2().attack();
+                bp.getEnemyTwo().attack();
                 code = 0;
             }
         }
@@ -439,7 +439,7 @@ public class LaunchAttack {
             }
             bp.getCheck().checkHeroDead();
             //人物重新出现
-            bp.getEm2().setDraw(true);
+            bp.getEnemyTwo().setDraw(true);
             //进度条继续
             bp.getProgressBar().setEnemy2X(bp.getProgressBar().getBarX());
             //恢复
@@ -455,9 +455,9 @@ public class LaunchAttack {
                 code++;
             } else {
                 bp.getHurtValues().clear();
-                bp.getEm3().calDamage();
+                bp.getEnemyThree().calDamage();
                 bp.setCurrentPattern(0);
-                bp.getEm3().attack();
+                bp.getEnemyThree().attack();
                 code = 0;
             }
         }
@@ -467,9 +467,9 @@ public class LaunchAttack {
                 code++;
             } else {
                 bp.getHurtValues().clear();
-                bp.getEm3().calDamage();
+                bp.getEnemyThree().calDamage();
                 bp.setCurrentPattern(0);
-                bp.getEm3().attack();
+                bp.getEnemyThree().attack();
                 code = 0;
             }
         }
@@ -485,7 +485,7 @@ public class LaunchAttack {
             }
             bp.getCheck().checkHeroDead();
             //人物重新出现
-            bp.getEm3().setDraw(true);
+            bp.getEnemyThree().setDraw(true);
             //进度条继续
             bp.getProgressBar().setEnemy3X(bp.getProgressBar().getBarX());
             //恢复

@@ -51,15 +51,15 @@ public class Pet {
         int i = 0;
         while (true) {
             i = (int) (Math.random() * 3) + 5;
-            if (i == 5 && bp.getEm1() != null) {
+            if (i == 5 && bp.getEnemyOne() != null) {
                 bp.setCurrentBeAttacked(5);
                 break;
             }
-            if (i == 6 && bp.getEm2() != null) {
+            if (i == 6 && bp.getEnemyTwo() != null) {
                 bp.setCurrentBeAttacked(6);
                 break;
             }
-            if (i == 7 && bp.getEm3() != null) {
+            if (i == 7 && bp.getEnemyThree() != null) {
                 bp.setCurrentBeAttacked(7);
                 break;
             }
@@ -70,13 +70,13 @@ public class Pet {
     public void calDamage() {
         switch (bp.getCurrentBeAttacked()) {
             case 5:
-                currentEnemy = bp.getEm1();
+                currentEnemy = bp.getEnemyOne();
                 break;
             case 6:
-                currentEnemy = bp.getEm2();
+                currentEnemy = bp.getEnemyTwo();
                 break;
             case 7:
-                currentEnemy = bp.getEm3();
+                currentEnemy = bp.getEnemyThree();
                 break;
         }
 

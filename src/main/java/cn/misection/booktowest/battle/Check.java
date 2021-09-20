@@ -16,26 +16,26 @@ public class Check {
     //检查怪物是否死亡 注意要在所有的技能动画发动结束以后
     public void checkEnemyDead() {
 
-        if (bp.getEm1() != null && bp.getEm1().getHp() <= 0) {
-            bp.getEnemies().remove(bp.getEnemies().indexOf(bp.getEm1()));
-            bp.setEm1(null);
+        if (bp.getEnemyOne() != null && bp.getEnemyOne().getHp() <= 0) {
+            bp.getEnemyList().remove(bp.getEnemyList().indexOf(bp.getEnemyOne()));
+            bp.setEnemyOne(null);
             bp.getProgressBar().setEnemy1X(0);
         }
 
-        if (bp.getEm2() != null && bp.getEm2().getHp() <= 0) {
-            bp.getEnemies().remove(bp.getEnemies().indexOf(bp.getEm2()));
-            bp.setEm2(null);
+        if (bp.getEnemyTwo() != null && bp.getEnemyTwo().getHp() <= 0) {
+            bp.getEnemyList().remove(bp.getEnemyList().indexOf(bp.getEnemyTwo()));
+            bp.setEnemyTwo(null);
             bp.getProgressBar().setEnemy2X(0);
         }
 
-        if (bp.getEm3() != null && bp.getEm3().getHp() <= 0) {
-            bp.getEnemies().remove(bp.getEnemies().indexOf(bp.getEm3()));
-            bp.setEm3(null);
+        if (bp.getEnemyThree() != null && bp.getEnemyThree().getHp() <= 0) {
+            bp.getEnemyList().remove(bp.getEnemyList().indexOf(bp.getEnemyThree()));
+            bp.setEnemyThree(null);
             bp.getProgressBar().setEnemy3X(0);
         }
 
         //如果全部怪物被杀死
-        if (bp.getEm1() == null && bp.getEm2() == null && bp.getEm3() == null) {
+        if (bp.getEnemyOne() == null && bp.getEnemyTwo() == null && bp.getEnemyThree() == null) {
 
             //我方获得所有经验
             for (Hero hero : bp.getHeroes()) {

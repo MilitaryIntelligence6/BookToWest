@@ -125,26 +125,26 @@ public class ZhangXiaoFan implements Hero {
         switch (bp.getCurrentBeAttacked()) {
             case 5:
                 currentEnemies.clear();
-                currentEnemies.add(bp.getEm1());
+                currentEnemies.add(bp.getEnemyOne());
                 break;
             case 6:
                 currentEnemies.clear();
-                currentEnemies.add(bp.getEm2());
+                currentEnemies.add(bp.getEnemyTwo());
                 break;
             case 7:
                 currentEnemies.clear();
-                currentEnemies.add(bp.getEm3());
+                currentEnemies.add(bp.getEnemyThree());
                 break;
             case 8:
                 currentEnemies.clear();
-                if (bp.getEm1() != null) {
-                    currentEnemies.add(bp.getEm1());
+                if (bp.getEnemyOne() != null) {
+                    currentEnemies.add(bp.getEnemyOne());
                 }
-                if (bp.getEm2() != null) {
-                    currentEnemies.add(bp.getEm2());
+                if (bp.getEnemyTwo() != null) {
+                    currentEnemies.add(bp.getEnemyTwo());
                 }
-                if (bp.getEm3() != null) {
-                    currentEnemies.add(bp.getEm3());
+                if (bp.getEnemyThree() != null) {
+                    currentEnemies.add(bp.getEnemyThree());
                 }
                 break;
         }

@@ -10,42 +10,69 @@ import java.awt.*;
  */
 public class BackgroundAnimation {
 
-    //当前图片
+
+    /**
+     * 当前图片
+     */
     private Image currentImage;
-    //坐标
+
+    /**
+     * 坐标
+     */
     private int x;
     private int y;
-    //是否画出
-    private boolean drawn;
-    //是否停止
-    private boolean stopped;
-    //是否完毕
-    private boolean overed;
-    //编号
-    private int code;
-    //长度
-    private int length;
-    //名称
-    private String name;
-    //战斗面板引用
-    private BattlePanel bp;
 
-    public BackgroundAnimation(BattlePanel bp, String name, int length) {
-        this.bp = bp;
-        drawn = false;
-        stopped = true;
+    /**
+     * 是否画出
+     */
+    private boolean drawn;
+
+    /**
+     * 是否停止
+     */
+    private boolean stopped;
+
+    /**
+     * 是否完毕
+     */
+    private boolean overed;
+
+    /**
+     * 编号
+     */
+    private int code;
+
+    /**
+     * 长度
+     */
+    private int length;
+
+    /**
+     * 名称
+     */
+    private String name;
+
+    /**
+     * 战斗面板引用
+     */
+    private BattlePanel battlePanel;
+
+    public BackgroundAnimation(BattlePanel battlePanel, String name, int length) {
+        this.battlePanel = battlePanel;
+        this.drawn = false;
+        this.stopped = true;
         this.length = length;
         this.name = name;
-        x = 0;
-        y = 0;
+        this.x = 0;
+        this.y = 0;
     }
 
-    public BackgroundAnimation(BattlePanel bp) {
-        this.bp = bp;
-        drawn = false;
-        stopped = true;
-        x = 0;
-        y = 0;
+    public BackgroundAnimation(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
+        this.drawn = false;
+        this.stopped = true;
+        this.x = 0;
+        this.y = 0;
     }
 
     public void set(String name, int length) {
@@ -56,7 +83,7 @@ public class BackgroundAnimation {
     //画出背景动画
     public void drawBackAnimation(Graphics g) {
         if (drawn) {
-            g.drawImage(currentImage, x, y, bp);
+            g.drawImage(currentImage, x, y, battlePanel);
         }
     }
 
@@ -149,11 +176,11 @@ public class BackgroundAnimation {
         this.name = name;
     }
 
-    public BattlePanel getBp() {
-        return bp;
+    public BattlePanel getBattlePanel() {
+        return battlePanel;
     }
 
-    public void setBp(BattlePanel bp) {
-        this.bp = bp;
+    public void setBattlePanel(BattlePanel battlePanel) {
+        this.battlePanel = battlePanel;
     }
 }

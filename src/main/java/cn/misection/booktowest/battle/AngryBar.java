@@ -4,6 +4,7 @@ package cn.misection.booktowest.battle;
 import cn.misection.booktowest.util.Reader;
 
 import java.awt.*;
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -11,37 +12,72 @@ import java.util.ArrayList;
  * 怒气槽类;
  */
 public class AngryBar {
-    //背景层
+    /**
+     * 背景层
+     */
     private Image back;
-    //当前图片
+
+    /**
+     * 当前图片
+     */
     private Image currentImage;
-    //图片集合
-    private ArrayList<Image> images = new ArrayList<Image>();
-    //计时用编号
+
+    /**
+     * 图片集合
+     */
+    private List<Image> images = new ArrayList<Image>();
+
+    /**
+     * 计时用编号
+     */
     private int code;
-    //是否画出
+
+    /**
+     * 是否画出
+     */
     private boolean isDraw;
-    //是否停止
+
+    /**
+     * 是否停止
+     */
     private boolean isStop;
-    //底图的坐标
+
+    /**
+     * 底图的坐标
+     */
     private int backX;
+
     private int backY;
-    //里部图的坐标
+
+    /**
+     * 里部图的坐标
+     */
     private int dx1;
+
     private int dy1;
+
     private int dx2;
+
     private int dy2;
+
     private int sx1;
+
     private int sy1;
+
     private int sx2;
+
     private int sy2;
 
-    //战斗面板引用
+    /**
+     * 战斗面板引用
+     */
     private BattlePanel bp;
-    //当前英雄
+
+    /**
+     * 当前英雄
+     */
     private Hero hero;
 
-    //构造方法
     public AngryBar(BattlePanel bp, Hero hero) {
         this.bp = bp;
         this.hero = hero;
@@ -143,11 +179,11 @@ public class AngryBar {
         this.currentImage = currentImage;
     }
 
-    public ArrayList<Image> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<Image> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 

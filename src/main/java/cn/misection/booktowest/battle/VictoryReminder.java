@@ -187,7 +187,7 @@ public class VictoryReminder {
     //得到战斗信息
     public void getInformation() {
         //计算当前战斗可以获得多少经验,金钱,物品
-        for (Enemy e : bp.getEnemies()) {
+        for (Enemy e : bp.getEnemyList()) {
             expToGet += e.getExp();
             moneyToGet += e.getMoney();
             things.add(e.getThing());
