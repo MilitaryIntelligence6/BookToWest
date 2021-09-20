@@ -4,15 +4,19 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.Timer;
 
 import cn.misection.booktowest.util.Reader;
 
+/**
+ * @author javaman
+ */
 public class Narratage {
     ScenePanel scene;
     // 背景图片
-    private ArrayList<Image> backImages1 = new ArrayList<Image>();
-    private ArrayList<String> narratage;
+    private List<Image> backImages1 = new ArrayList<>();
+    private List<String> narratage;
     private int index = 0;
     Timer background = new Timer(180, new Background());
     Timer wordRun = new Timer(50, new WordRun());
@@ -32,7 +36,7 @@ public class Narratage {
     public boolean isNarratage;
     public boolean narratageOver;
 
-    public Narratage(ScenePanel scene, ArrayList<String> narratage) {
+    public Narratage(ScenePanel scene, List<String> narratage) {
         this.narratage = narratage;
         if (narratage == null) {
             narratageOver = true;
@@ -149,11 +153,11 @@ public class Narratage {
         }
     }
 
-    public ArrayList<String> getNarratage() {
+    public List<String> getNarratage() {
         return narratage;
     }
 
-    public void setNarratage(ArrayList<String> narratage) {
+    public void setNarratage(List<String> narratage) {
         this.narratage = narratage;
     }
 }

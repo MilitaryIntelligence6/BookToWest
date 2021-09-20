@@ -1,6 +1,7 @@
 package cn.misection.booktowest.scene;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SaveAndLoad {
     ScenePanel scene;
@@ -15,8 +16,8 @@ public class SaveAndLoad {
     }
 
     // 存档
-    public ArrayList<String> saveSceneInfo() {
-        ArrayList<String> sceneInfo = new ArrayList<String>();
+    public List<String> saveSceneInfo() {
+        List<String> sceneInfo = new ArrayList<>();
         /**
          * 要存储的东西 1.当前是否是脚本剧情 2.当前文件名称 3.对话是否结束 4.对话编号 5.主角位置 6.currentScript
          * 7.nextScript
@@ -37,12 +38,12 @@ public class SaveAndLoad {
     }
 
     // 保存回答问题的情况
-    public ArrayList<String> saveQuestion() {
+    public List<String> saveQuestion() {
         return SelectEvent.mapName;
     }
 
-    public ArrayList<String> saveAnswer() {
-        ArrayList<String> answer = new ArrayList<String>();
+    public List<String> saveAnswer() {
+        List<String> answer = new ArrayList<>();
         for (int i = 0; i < SelectEvent.answeredRecorder.size(); i++) {
             String s = "";
             for (int j = 0; j < SelectEvent.answeredRecorder.get(i).size(); j++) {
@@ -54,14 +55,14 @@ public class SaveAndLoad {
     }
 
     // 加载回答问题的情况
-    public void loadQuestion(ArrayList<String> question) {
+    public void loadQuestion(List<String> question) {
         SelectEvent.mapName = question;
     }
 
-    public void loadAnswer(ArrayList<String> answer) {
-        ArrayList<ArrayList<Boolean>> answeredRecorder = new ArrayList<ArrayList<Boolean>>();
+    public void loadAnswer(List<String> answer) {
+        List<List<Boolean>> answeredRecorder = new ArrayList<>();
         for (int i = 0; i < answer.size(); i++) {
-            ArrayList<Boolean> b = new ArrayList<Boolean>();
+            List<Boolean> b = new ArrayList<>();
             String[] ss = answer.get(i).split(" ");
             for (int j = 0; j < ss.length; j++) {
                 if (ss[j].equals("true")) {
@@ -76,7 +77,7 @@ public class SaveAndLoad {
     }
 
     // 加载存档
-    public void loadSceneInfo(ArrayList<String> sceneInfo) {
+    public void loadSceneInfo(List<String> sceneInfo) {
         isLoad = true;
         if (sceneInfo.get(0).equals("true")) {
             scene.isScript = true;

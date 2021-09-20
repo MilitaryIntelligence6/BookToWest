@@ -1,17 +1,18 @@
 package cn.misection.booktowest.scene;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExitEvent {
     ScenePanel scene;
-    private ArrayList<String[]> exits;
-    private ArrayList<String> nextScene;
-    private ArrayList<String[]> entrance;
+    private List<String[]> exits;
+    private List<String> nextScene;
+    private List<String[]> entrance;
     public int nextSceneNo;
     public int dialogueOrder;
 
-    public ExitEvent(ScenePanel scene, ArrayList<String[]> exits,
-                     ArrayList<String> nextScene, ArrayList<String[]> entrance) {
+    public ExitEvent(ScenePanel scene, List<String[]> exits,
+                     List<String> nextScene, List<String[]> entrance) {
         this.entrance = entrance;
         this.exits = exits;
         this.nextScene = nextScene;
@@ -73,19 +74,19 @@ public class ExitEvent {
         }
     }
 
-    public ArrayList<String[]> getExits() {
+    public List<String[]> getExits() {
         return exits;
     }
 
-    public void setExits(ArrayList<String[]> exits) {
+    public void setExits(List<String[]> exits) {
         this.exits = exits;
     }
 
-    public ArrayList<String> getNextScene() {
+    public List<String> getNextScene() {
         return nextScene;
     }
 
-    public void setNextScene(ArrayList<String> nextScene) {
+    public void setNextScene(List<String> nextScene) {
         this.nextScene = nextScene;
     }
 }

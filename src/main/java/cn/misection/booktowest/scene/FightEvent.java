@@ -1,6 +1,7 @@
 package cn.misection.booktowest.scene;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.misection.booktowest.app.GameApplication;
 import cn.misection.booktowest.battle.Enemy;
@@ -12,8 +13,8 @@ public class FightEvent {
 
     public static boolean fight;
     ScenePanel scene;
-    public ArrayList<String[]> battle0;
-    public ArrayList<String[]> battle1;
+    public List<String[]> battle0;
+    public List<String[]> battle1;
     public int countOfBattle1;
     public int count;
     private int x;
@@ -21,8 +22,8 @@ public class FightEvent {
     private int count_battle0;
     public boolean battle1Over;
 
-    public FightEvent(ScenePanel scene, ArrayList<String[]> battle0,
-                      ArrayList<String[]> battle1) {
+    public FightEvent(ScenePanel scene, List<String[]> battle0,
+                      List<String[]> battle1) {
         this.scene = scene;
         this.battle0 = battle0;
         if (battle0 != null) {

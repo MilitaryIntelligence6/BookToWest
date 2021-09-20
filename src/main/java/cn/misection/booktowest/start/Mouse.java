@@ -7,6 +7,9 @@ import java.awt.Toolkit;
 import java.awt.image.MemoryImageSource;
 import javax.swing.JPanel;
 
+/**
+ * @author javaman
+ */
 public class Mouse {
     //鼠标的动画
     StartAnimation mouseAnimation;

@@ -184,6 +184,8 @@ public class ShowValue {
                 currentImages.add(image);
                 break;
 
+            default:
+                break;
         }
     }
 

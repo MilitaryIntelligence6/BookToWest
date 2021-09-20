@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Timer;
 
@@ -29,13 +30,13 @@ public class SelectEvent {
     Image questionImage;
     Image selectIcon;
     // 选择事件中的脚本数据(可以有多组但要一一对应)
-    ArrayList<String> selectShopPanel;
-    ArrayList<String> selectEquipmentShopPanel;
-    ArrayList<String[]> selectBattlePanel;
-    ArrayList<String[]> battle2;
-    ArrayList<String[]> selectQuestion;
-    ArrayList<ArrayList<String>> question;
-    ArrayList<String[]> answer;
+    List<String> selectShopPanel;
+    List<String> selectEquipmentShopPanel;
+    List<String[]> selectBattlePanel;
+    List<String[]> battle2;
+    List<String[]> selectQuestion;
+    List<List<String>> question;
+    List<String[]> answer;
     // 对话框相关的参数
     private int x_selectImage;
     private int y_selectImage;
@@ -50,7 +51,7 @@ public class SelectEvent {
     private int maxLine = 20;
     private int maxLength = 22;
     private int fontSize = 20;
-    private ArrayList<String> currentSentences;
+    private List<String> currentSentences;
     Timer wordsRun = new Timer(30, new WordsRun());
     Timer selectImageMove = new Timer(40, new SelectImageMove());
     Timer questionImageMove = new Timer(50, new QuestionImageMove());
@@ -58,10 +59,10 @@ public class SelectEvent {
     private boolean equipmentSelect;
     private boolean battleSelect;
     private boolean questionSelect;
-    public static ArrayList<String> mapName = new ArrayList<String>();
-    public static ArrayList<ArrayList<Boolean>> answeredRecorder = new ArrayList<ArrayList<Boolean>>();
-    private ArrayList<Boolean> haveAnswered = new ArrayList<Boolean>();
-    private ArrayList<Boolean> haveFighted = new ArrayList<Boolean>();
+    public static List<String> mapName = new ArrayList<>();
+    public static List<List<Boolean>> answeredRecorder = new ArrayList<>();
+    private List<Boolean> haveAnswered = new ArrayList<>();
+    private List<Boolean> haveFighted = new ArrayList<>();
     private boolean isQuestion;
     private boolean isAnswer;
     private int count_selectYesNo = 2;
@@ -74,11 +75,11 @@ public class SelectEvent {
     public int count_scene;
 
     public SelectEvent(ScenePanel scene, FightEvent fightEvent,
-                       String fileName, ArrayList<String> selectShopPanel,
-                       ArrayList<String> selectEquipmentShopPanel,
-                       ArrayList<String[]> selectBattlePanel,
-                       ArrayList<String[]> selectQuestion, ArrayList<String[]> battle2,
-                       ArrayList<ArrayList<String>> question, ArrayList<String[]> answer) {
+                       String fileName, List<String> selectShopPanel,
+                       List<String> selectEquipmentShopPanel,
+                       List<String[]> selectBattlePanel,
+                       List<String[]> selectQuestion, List<String[]> battle2,
+                       List<List<String>> question, List<String[]> answer) {
         this.scene = scene;
         this.fightEvent = fightEvent;
         this.selectShopPanel = selectShopPanel;
@@ -250,7 +251,7 @@ public class SelectEvent {
     public void showSelectBattlePanel(int battleNo) {
         isSelect = true;
         battleSelect = true;
-        currentSentences = new ArrayList<String>();
+        currentSentences = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             currentSentences.add(selectBattlePanel.get(battleNo)[i]);
         }
@@ -267,7 +268,7 @@ public class SelectEvent {
         count_questionAndAnswer = questionNo;
         isSelect = true;
         questionSelect = true;
-        currentSentences = new ArrayList<String>();
+        currentSentences = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             currentSentences.add(selectQuestion.get(questionNo)[i]);
         }
@@ -294,7 +295,7 @@ public class SelectEvent {
     }
 
     // 显示回答
-    public void showAnswer(ArrayList<String> response) {
+    public void showAnswer(List<String> response) {
         isAnswer = true;
         currentSentences = response;
         x_selectImage = 0;
@@ -362,7 +363,7 @@ public class SelectEvent {
                     haveFighted.remove(count_battle2);
                     haveFighted.add(count_battle2, true);
                     GameApplication.switchTo("battle");
-                    ArrayList<String> response = new ArrayList<String>();
+                    List<String> response = new ArrayList<>();
                     response.add(null);
                     response.add("既然身手那么好就别装嫩了!唉,看来以后我要收敛点了!  你们软件堂的人就是闷骚!");
                     showAnswer(response);
@@ -387,7 +388,7 @@ public class SelectEvent {
                     int i = 500 + (int) (500 * Math.random());
                     Money.addCoins(i);
                     scene.equipmentEvent.drawString("得到" + i + "个金币");
-                    ArrayList<String> response = new ArrayList<String>();
+                    List<String> response = new ArrayList<>();
                     response.add(null);
                     response.add(answer.get(count_questionAndAnswer)[1]);
                     response.add(answer.get(count_questionAndAnswer)[3]);
@@ -403,7 +404,7 @@ public class SelectEvent {
                     int i = 500 + (int) (500 * Math.random());
                     Money.reduceCoins(i);
                     scene.equipmentEvent.drawString("回答错误，扣掉" + i + "个金币");
-                    ArrayList<String> response = new ArrayList<String>();
+                    List<String> response = new ArrayList<>();
                     response.add(null);
                     response.add(answer.get(count_questionAndAnswer)[1]);
                     response.add(answer.get(count_questionAndAnswer)[2]);

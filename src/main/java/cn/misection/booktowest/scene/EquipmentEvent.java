@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Timer;
 
@@ -21,14 +22,14 @@ public class EquipmentEvent {
     private String text;
     private int count_word;
     private boolean isDrawString;
-    private ArrayList<String[]> treasureBox;
-    private ArrayList<TreasureBox> treasureBoxes;
+    private List<String[]> treasureBox;
+    private List<TreasureBox> treasureBoxes;
 
-    public EquipmentEvent(ScenePanel scene, ArrayList<String[]> treasureBox) {
+    public EquipmentEvent(ScenePanel scene, List<String[]> treasureBox) {
         this.scene = scene;
         this.treasureBox = treasureBox;
         if (treasureBox != null) {
-            treasureBoxes = new ArrayList<TreasureBox>();
+            treasureBoxes = new ArrayList<>();
             for (int i = 0; i < treasureBox.size(); i++) {
                 TreasureBox box = new TreasureBox(treasureBox.get(i)[0],
                         treasureBox.get(i)[1], this);

@@ -2,12 +2,16 @@ package cn.misection.booktowest.scene;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * @author javaman
+ */
 public class RoleEvent {
 
     Map map;
     int[][] mapSet;
-    ArrayList<NPC> npcs;
+    List<NPC> npcs;
     Role role;
     // 成员变量
     // 用于跑步状态判断的变量
@@ -15,7 +19,7 @@ public class RoleEvent {
     long l;
     long c;
 
-    public RoleEvent(Role role, Map map, int[][] mapSet, ArrayList<NPC> npcs) {
+    public RoleEvent(Role role, Map map, int[][] mapSet, List<NPC> npcs) {
         this.role = role;
         this.map = map;
         this.mapSet = mapSet;

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.misection.booktowest.app.*;
 import cn.misection.booktowest.scene.*;
@@ -12,16 +13,16 @@ import cn.misection.booktowest.util.Reader;
 
 public class Recorder {
     //接受四个信息列表，分别为role，cn.misection.booktowest.scene，cn.misection.booktowest.menu，cn.misection.booktowest.shop
-    private ArrayList<String> roleAndMapInfo;
-    private ArrayList<String> zhangXiaoFanInfo;
-    private ArrayList<String> luXueQiInfo;
-    private ArrayList<String> yuJieInfo;
-    private ArrayList<String> sceneInfo;
-    private ArrayList<String> menuInfo;
-    private ArrayList<String> shopInfo;
-    private ArrayList<String> equipmentShopInfo;
-    private ArrayList<String> questionInfo;
-    private ArrayList<String> answerInfo;
+    private List<String> roleAndMapInfo;
+    private List<String> zhangXiaoFanInfo;
+    private List<String> luXueQiInfo;
+    private List<String> yuJieInfo;
+    private List<String> sceneInfo;
+    private List<String> menuInfo;
+    private List<String> shopInfo;
+    private List<String> equipmentShopInfo;
+    private List<String> questionInfo;
+    private List<String> answerInfo;
     private SaveAndLoad sa;
     private BufferedWriter writer;
 
@@ -30,7 +31,7 @@ public class Recorder {
     }
 
     public void save(int textCode) {
-        roleAndMapInfo = new ArrayList<String>();
+        roleAndMapInfo = new ArrayList<>();
         roleAndMapInfo.add("" + SaveAndLoad.zhang);
         roleAndMapInfo.add("" + SaveAndLoad.lu);
         roleAndMapInfo.add("" + SaveAndLoad.wen);

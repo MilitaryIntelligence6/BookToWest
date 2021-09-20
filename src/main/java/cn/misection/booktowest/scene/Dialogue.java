@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.ArrayList;
 
 public class Dialogue {
@@ -24,7 +25,7 @@ public class Dialogue {
     // 是否打印对话
     public boolean isPrint;
     // 头像图片集合
-    ArrayList<Image> heads = new ArrayList<Image>();
+    List<Image> heads = new ArrayList<>();
     private int x_head;
     private int y_head;
     // 名字、

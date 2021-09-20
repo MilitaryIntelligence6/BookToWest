@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.MemoryImageSource;
+import java.util.List;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -21,7 +22,7 @@ public class ScenePanel extends JPanel implements Runnable {
     public Dialogue dialogue;
     public Narratage narratage;
     public Role role;
-    public ArrayList<NPC> npcs;
+    public List<NPC> npcs;
     private Map map;
     Reader reader;
     // 地图图片、缓冲背景图片、
@@ -42,7 +43,7 @@ public class ScenePanel extends JPanel implements Runnable {
     boolean isInitiateOver = false;
     private boolean isPaintOver = false;
     boolean b;
-    public ArrayList<String> memory = new ArrayList<>();
+    public List<String> memory = new ArrayList<>();
     // 当前场景以及下一个场景
     public String fileName;
     public String[] currentScript = new String[3];
@@ -133,7 +134,7 @@ public class ScenePanel extends JPanel implements Runnable {
         map = new Map(reader.getMapName(), this, reader.getRow(),
                 reader.getCol());
         // 创建NPC对象列表
-        npcs = new ArrayList<NPC>();
+        npcs = new ArrayList<>();
         if (reader.getNpcs() != null) {
             npcs = reader.getNpcs();
         }
@@ -147,10 +148,13 @@ public class ScenePanel extends JPanel implements Runnable {
         dialogue = new Dialogue(this);
         // 将该场景的对话编号，所有对话，及其对应的类型载入
         if (reader.getDialogueCode() != null) {
-            dialogueEvent = new DialogueEvent(this, reader.getDialogueCode(),
+            dialogueEvent = new DialogueEvent(
+                    this,
+                    reader.getDialogueCode(),
                     reader.getDialogue());
         } else if (sal.isLoad) {
-            dialogueEvent = new DialogueEvent(this, reader.getDialogueCode(),
+            dialogueEvent = new DialogueEvent(this,
+                    reader.getDialogueCode(),
                     reader.getDialogue());
             sal.isLoad = false;
         }
@@ -313,11 +317,11 @@ public class ScenePanel extends JPanel implements Runnable {
         this.role = role;
     }
 
-    public ArrayList<NPC> getNpcs() {
+    public List<NPC> getNpcs() {
         return npcs;
     }
 
-    public void setNpcs(ArrayList<NPC> npcs) {
+    public void setNpcs(List<NPC> npcs) {
         this.npcs = npcs;
     }
 

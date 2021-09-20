@@ -2,6 +2,7 @@ package cn.misection.booktowest.util;
 
 import java.awt.Image;
 import java.io.*;
+import java.util.List;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -14,8 +15,8 @@ public class Reader {
     private BufferedReader br;
     private FileReader fileReader;
     // NPC链表
-    private ArrayList<NPC> npcs;
-    private ArrayList<String[]> npcList;
+    private List<NPC> npcs;
+    private List<String[]> npcList;
     // 地图名
     private String mapName;
     // 地图大小
@@ -27,28 +28,28 @@ public class Reader {
     private int roleX = 12;
     private int roleY = 8;
     // 对话类型列表和对话列表
-    private ArrayList<String> dialogueCode;
-    private ArrayList<ArrayList<String[]>> dialogue;
+    private List<String> dialogueCode;
+    private List<List<String[]>> dialogue;
     // 出口的坐标集合，以及下一个场景的文件名称
-    private ArrayList<String[]> exits;
-    private ArrayList<String> nextScene;
-    private ArrayList<String[]> entrance;
+    private List<String[]> exits;
+    private List<String> nextScene;
+    private List<String[]> entrance;
     // 旁白集合
-    private ArrayList<String> narratage;
+    private List<String> narratage;
     private String[] nextScript;
     // 战斗集合
-    private ArrayList<String[]> battle0;
-    private ArrayList<String[]> battle1;
+    private List<String[]> battle0;
+    private List<String[]> battle1;
     // 选择事件中的脚本数据(可以有多组但要一一对应)
-    private ArrayList<String> selectShopPanel;
-    private ArrayList<String> selectEquipmentShopPanel;
-    private ArrayList<String[]> selectBattlePanel;
-    private ArrayList<String[]> battle2;
-    private ArrayList<String[]> selectQuestion;
-    private ArrayList<ArrayList<String>> question;
-    private ArrayList<String[]> answer;
+    private List<String> selectShopPanel;
+    private List<String> selectEquipmentShopPanel;
+    private List<String[]> selectBattlePanel;
+    private List<String[]> battle2;
+    private List<String[]> selectQuestion;
+    private List<List<String>> question;
+    private List<String[]> answer;
     // 宝箱
-    private ArrayList<String[]> treasureBox;
+    private List<String[]> treasureBox;
     // 场景音乐
     private String sceneMusic;
     public static String task = null;
@@ -121,8 +122,8 @@ public class Reader {
                 // 4.NPC群的 状态（0.静止 1.单向走动 2.原地运动.3.四向运动）
                 // 、初始位置、图片帧数、文件夹名称、口头禅、运动的人的方向和范围
                 case "NPC":
-                    npcs = new ArrayList<NPC>();
-                    npcList = new ArrayList<String[]>();
+                    npcs = new ArrayList<>();
+                    npcList = new ArrayList<>();
                     ss = br.readLine().split("/");
                     for (int i = 0; i < ss.length; i++) {
                         String[] npcInfo = ss[i].split(" ");
@@ -153,12 +154,12 @@ public class Reader {
                 // 5.读所有的对话
                 case "Dialogue":
                     // 先读出对话的类型，自动或者对应某个NPC
-                    dialogueCode = new ArrayList<String>();
-                    dialogue = new ArrayList<ArrayList<String[]>>();
+                    dialogueCode = new ArrayList<>();
+                    dialogue = new ArrayList<>();
                     ss = br.readLine().split("/");
                     for (int i = 0; i < ss.length; i++) {
                         dialogueCode.add(ss[i]);
-                        ArrayList<String[]> al = new ArrayList<String[]>();
+                        List<String[]> al = new ArrayList<>();
                         while (!(s = br.readLine()).equals("#")) {
                             al.add(s.split("/"));
                         }
@@ -167,7 +168,7 @@ public class Reader {
                     break;
                 // 6.读旁白
                 case "Narratage":
-                    narratage = new ArrayList<String>();
+                    narratage = new ArrayList<>();
                     while (!(s = br.readLine()).equals("#")) {
                         String s2 = s;
                         narratage.add(s2);
@@ -175,9 +176,9 @@ public class Reader {
                     break;
                 // 7.读出口
                 case "Exit":
-                    exits = new ArrayList<String[]>();
-                    nextScene = new ArrayList<String>();
-                    entrance = new ArrayList<String[]>();
+                    exits = new ArrayList<>();
+                    nextScene = new ArrayList<>();
+                    entrance = new ArrayList<>();
                     int num = Integer.parseInt(br.readLine());
                     for (int i = 0; i < num; i++) {
                         s = br.readLine();
@@ -197,32 +198,32 @@ public class Reader {
                 case "Fight":
                     s = br.readLine();
                     if (s.equals("0")) {
-                        battle0 = new ArrayList<String[]>();
+                        battle0 = new ArrayList<>();
                         while (!(s = br.readLine()).equals("#")) {
                             battle0.add(s.split(" "));
                         }
                     } else if (s.equals("1")) {
-                        battle1 = new ArrayList<String[]>();
+                        battle1 = new ArrayList<>();
                         while (!(s = br.readLine()).equals("#")) {
                             battle1.add(s.split(" "));
                         }
                     }
                     break;
                 case "SelectShopPanel":
-                    selectShopPanel = new ArrayList<String>();
+                    selectShopPanel = new ArrayList<>();
                     for (int i = 0; i < 4; i++) {
                         selectShopPanel.add(br.readLine());
                     }
                     break;
                 case "SelectEquipmentShopPanel":
-                    selectEquipmentShopPanel = new ArrayList<String>();
+                    selectEquipmentShopPanel = new ArrayList<>();
                     for (int i = 0; i < 4; i++) {
                         selectEquipmentShopPanel.add(br.readLine());
                     }
                     break;
                 case "SelectBattlePanel":
-                    selectBattlePanel = new ArrayList<String[]>();
-                    battle2 = new ArrayList<String[]>();
+                    selectBattlePanel = new ArrayList<>();
+                    battle2 = new ArrayList<>();
                     while (!(s = br.readLine()).equals("#")) {
                         String[] sss = new String[4];
                         sss[0] = s;
@@ -234,9 +235,9 @@ public class Reader {
                     }
                     break;
                 case "SelectQuestion":
-                    selectQuestion = new ArrayList<String[]>();
-                    question = new ArrayList<ArrayList<String>>();
-                    answer = new ArrayList<String[]>();
+                    selectQuestion = new ArrayList<>();
+                    question = new ArrayList<>();
+                    answer = new ArrayList<>();
                     while (!(s = br.readLine()).equals("#")) {
                         String[] sss = new String[4];
                         sss[0] = s;
@@ -244,7 +245,7 @@ public class Reader {
                             sss[i] = br.readLine();
                         }
                         selectQuestion.add(sss);
-                        ArrayList<String> que = new ArrayList<String>();
+                        List<String> que = new ArrayList<>();
                         while (!(s = br.readLine()).equals("Answer")) {
                             que.add(s);
                         }
@@ -257,7 +258,7 @@ public class Reader {
                     }
                     break;
                 case "TreasureBox":
-                    treasureBox = new ArrayList<String[]>();
+                    treasureBox = new ArrayList<>();
                     while (!(s = br.readLine()).equals("#")) {
                         ss = s.split(" ");
                         treasureBox.add(ss);
@@ -292,11 +293,11 @@ public class Reader {
     }
 
     // 一堆getters and setters
-    public ArrayList<String[]> getNpcList() {
+    public List<String[]> getNpcList() {
         return npcList;
     }
 
-    public void setNpcList(ArrayList<String[]> npcList) {
+    public void setNpcList(List<String[]> npcList) {
         this.npcList = npcList;
     }
 
@@ -348,59 +349,59 @@ public class Reader {
         this.roleY = roleY;
     }
 
-    public ArrayList<ArrayList<String[]>> getDialogue() {
+    public List<List<String[]>> getDialogue() {
         return dialogue;
     }
 
-    public void setDialogue(ArrayList<ArrayList<String[]>> dialogue) {
+    public void setDialogue(List<List<String[]>> dialogue) {
         this.dialogue = dialogue;
     }
 
-    public ArrayList<String[]> getExits() {
+    public List<String[]> getExits() {
         return exits;
     }
 
-    public void setExits(ArrayList<String[]> exits) {
+    public void setExits(List<String[]> exits) {
         this.exits = exits;
     }
 
-    public ArrayList<String> getNextScene() {
+    public List<String> getNextScene() {
         return nextScene;
     }
 
-    public void setNextScene(ArrayList<String> nextScene) {
+    public void setNextScene(List<String> nextScene) {
         this.nextScene = nextScene;
     }
 
-    public ArrayList<String> getNarratage() {
+    public List<String> getNarratage() {
         return narratage;
     }
 
-    public void setNarratage(ArrayList<String> narratage) {
+    public void setNarratage(List<String> narratage) {
         this.narratage = narratage;
     }
 
-    public ArrayList<String> getDialogueCode() {
+    public List<String> getDialogueCode() {
         return dialogueCode;
     }
 
-    public void setDialogueCode(ArrayList<String> dialogueCode) {
+    public void setDialogueCode(List<String> dialogueCode) {
         this.dialogueCode = dialogueCode;
     }
 
-    public ArrayList<NPC> getNpcs() {
+    public List<NPC> getNpcs() {
         return npcs;
     }
 
-    public void setNpcs(ArrayList<NPC> npcs) {
+    public void setNpcs(List<NPC> npcs) {
         this.npcs = npcs;
     }
 
-    public ArrayList<String[]> getEntrance() {
+    public List<String[]> getEntrance() {
         return entrance;
     }
 
-    public void setEntrance(ArrayList<String[]> entrance) {
+    public void setEntrance(List<String[]> entrance) {
         this.entrance = entrance;
     }
 
@@ -412,84 +413,84 @@ public class Reader {
         this.nextScript = nextScript;
     }
 
-    public ArrayList<String[]> getBattle0() {
+    public List<String[]> getBattle0() {
         return battle0;
     }
 
-    public void setBattle0(ArrayList<String[]> battle0) {
+    public void setBattle0(List<String[]> battle0) {
         this.battle0 = battle0;
     }
 
-    public ArrayList<String[]> getBattle1() {
+    public List<String[]> getBattle1() {
         return battle1;
     }
 
-    public void setBattle1(ArrayList<String[]> battle1) {
+    public void setBattle1(List<String[]> battle1) {
         this.battle1 = battle1;
     }
 
-    public ArrayList<String> getSelectShopPanel() {
+    public List<String> getSelectShopPanel() {
         return selectShopPanel;
     }
 
-    public void setSelectShopPanel(ArrayList<String> selectShopPanel) {
+    public void setSelectShopPanel(List<String> selectShopPanel) {
         this.selectShopPanel = selectShopPanel;
     }
 
-    public ArrayList<String[]> getSelectBattlePanel() {
+    public List<String[]> getSelectBattlePanel() {
         return selectBattlePanel;
     }
 
-    public void setSelectBattlePanel(ArrayList<String[]> selectBattlePanel) {
+    public void setSelectBattlePanel(List<String[]> selectBattlePanel) {
         this.selectBattlePanel = selectBattlePanel;
     }
 
-    public ArrayList<String[]> getBattle2() {
+    public List<String[]> getBattle2() {
         return battle2;
     }
 
-    public void setBattle2(ArrayList<String[]> battle2) {
+    public void setBattle2(List<String[]> battle2) {
         this.battle2 = battle2;
     }
 
-    public ArrayList<String[]> getSelectQuestion() {
+    public List<String[]> getSelectQuestion() {
         return selectQuestion;
     }
 
-    public void setSelectQuestion(ArrayList<String[]> selectQuestion) {
+    public void setSelectQuestion(List<String[]> selectQuestion) {
         this.selectQuestion = selectQuestion;
     }
 
-    public ArrayList<ArrayList<String>> getQuestion() {
+    public List<List<String>> getQuestion() {
         return question;
     }
 
-    public void setQuestion(ArrayList<ArrayList<String>> question) {
+    public void setQuestion(List<List<String>> question) {
         this.question = question;
     }
 
-    public ArrayList<String[]> getAnswer() {
+    public List<String[]> getAnswer() {
         return answer;
     }
 
-    public void setAnswer(ArrayList<String[]> answer) {
+    public void setAnswer(List<String[]> answer) {
         this.answer = answer;
     }
 
-    public ArrayList<String[]> getTreasureBox() {
+    public List<String[]> getTreasureBox() {
         return treasureBox;
     }
 
-    public void setTreasureBox(ArrayList<String[]> treasureBox) {
+    public void setTreasureBox(List<String[]> treasureBox) {
         this.treasureBox = treasureBox;
     }
 
-    public ArrayList<String> getSelectEquipmentShopPanel() {
+    public List<String> getSelectEquipmentShopPanel() {
         return selectEquipmentShopPanel;
     }
 
     public void setSelectEquipmentShopPanel(
-            ArrayList<String> selectEquipmentShopPanel) {
+            List<String> selectEquipmentShopPanel) {
         this.selectEquipmentShopPanel = selectEquipmentShopPanel;
     }
 

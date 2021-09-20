@@ -2,23 +2,37 @@ package cn.misection.booktowest.scene;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.misection.booktowest.app.GameApplication;
 
+/**
+ * @author javaman
+ */
 public class DialogueEvent {
-    ScenePanel scene;
-    public boolean dialogueEventOver;// 有无主线对话
-    public boolean isSpeaking;// 是否正在进行主线对话
+
+    private ScenePanel scene;
+
+    /**
+     * 有无主线对话;
+     */
+    public boolean dialogueEventOver;
+
+    /**
+     * 是否正在进行主线对话;
+     */
+    public boolean isSpeaking;
     private int dialogueOrder = 0;
     private int sentenceOrder = 0;
     private boolean dialogueOver;
     public boolean dialogueFight;
     public boolean gameOver;
-    public ArrayList<String> dialogueCode;
-    public ArrayList<ArrayList<String[]>> dialogues;
+    public List<String> dialogueCode;
+    public List<List<String[]>> dialogues;
 
-    public DialogueEvent(ScenePanel scene, ArrayList<String> dialogueCode,
-                         ArrayList<ArrayList<String[]>> dialogues) {
+    public DialogueEvent(ScenePanel scene,
+                         List<String> dialogueCode,
+                         List<List<String[]>> dialogues) {
         this.scene = scene;
         this.dialogueCode = dialogueCode;
         this.dialogues = dialogues;
